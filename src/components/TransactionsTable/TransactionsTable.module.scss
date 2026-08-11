@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+// === MIXIN ===
+@mixin inter {
+  font-family: "Inter", sans-serif;
+}
+// === /MIXIN ===
+//== VARIABLES ===
+$base: 4px;
+
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semi: 600;
+$fw-bold: 700;
+
+$fs-xs: 12px;
+$fs-1: 14px;
+$fs-2: 16px;
+$fs-3: 20px;
+$fs-4: 24px;
+$fs-5: 32px;
+$fs-6: 40px;
+
+$transition: 0.2s;
+
+$color--white: #fff;
+$color--dark: #000000;
+
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xl: 960px;
+
+//== /VARIABLES ===
+//=== TRANSACTIONS === //
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  &__filter {
+    display: flex;
+    padding-left: $base * 7;
+
+    .span {
+      @include inter();
+    }
+  }
+  .date {
+    width: 20%;
+    &_td {
+      font-weight: $fw-bold;
+      font-size: $fs-2;
+      span {
+        font-weight: $fw-light;
+        color: #6e6893;
+      }
+    }
+  }
+  .description {
+    width: 25%;
+  }
+  .details {
+    width: 30%;
+  }
+
+  th {
+    background-color: #d9d5ec;
+    padding: $base * 4;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+    font-weight: $fw-semi;
+    font-size: $fs-3;
+    text-transform: uppercase;
+  }
+  td {
+    padding: $base * 4;
+    border-bottom: 1px solid #d9d5ec;
+  }
+}

@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+// === MIXIN ===
+@mixin inter {
+  font-family: "Inter", sans-serif;
+}
+// === /MIXIN ===
+//== VARIABLES ===
+$base: 4px;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semi: 600;
+$fw-bold: 700;
+$fs-xs: 11px;
+$fs-1: 14px;
+$fs-2: 16px;
+$fs-3: 18px;
+$fs-4: 24px;
+$fs-5: 32px;
+$fs-6: 40px;
+.profile {
+  display: flex;
+  background-color: #f3f5fa;
+  padding: $base * 3 0 $base * 3 $base * 3;
+  width: $base * 50;
+  //margin-top: $base * 20;
+  margin-bottom: $base * 3;
+  img {
+    width: 46px;
+    height: 46px;
+    margin-right: $base * 5;
+  }
+  span {
+    @include inter();
+    font-weight: $fw-medium;
+    font-size: $fs-1;
+  }
+}
+.button_login,
+.button_logout {
+  span {
+    margin-right: $base;
+  }
+  display: flex;
+  width: $base * 30;
+  padding: $base * 3 $base $base * 3 $base;
+  justify-content: center;
+  align-items: center;
+  @include inter();
+  font-size: $fs-2;
+}

@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+// === MIXIN ===
+@mixin inter {
+  font-family: "Inter", sans-serif;
+}
+// === /MIXIN ===
+//== VARIABLES ===
+$base: 4px;
+
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semi: 600;
+$fw-bold: 700;
+
+$fs-xs: 11px;
+$fs-1: 14px;
+$fs-2: 16px;
+$fs-3: 18px;
+$fs-4: 24px;
+$fs-5: 32px;
+$fs-6: 40px;
+
+$transition: 0.2s;
+
+$color--primary: #5c5c5c;
+$color--secondary: #4e36fc;
+$color--white: #fff;
+$color--dark: #000000;
+$color--blue-dark: #4f46ba;
+
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xl: 960px;
+
+//== /VARIABLES ===
+
+// === SIDE === //
+.h1 {
+  @include inter();
+  font-size: $fs-4;
+  font-weight: $fw-regular;
+  color: #4e36fc;
+}
+.slide {
+  width: 25%;
+  padding-left: $base * 8;
+  height: 100%;
+  position: fixed;
+  top: $base * 14;
+  left: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.topWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: $base * 19;
+  img {
+    margin-right: $base;
+  }
+}
+.menu {
+  display: flex;
+  flex-direction: column;
+  &__item {
+    display: flex;
+    margin-bottom: $base * 8;
+    svg {
+      margin-right: $base * 5;
+    }
+    span {
+      font-size: $fs-3;
+    }
+  }
+}
+
+// === /SIDE === //

@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+// === MIXIN ===
+@mixin inter {
+  font-family: "Inter", sans-serif;
+}
+
+// === /MIXIN ===
+//== VARIABLES ===
+$base: 4px;
+
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semi: 600;
+$fw-bold: 700;
+
+$fs-xs: 12px;
+$fs-1: 14px;
+$fs-2: 16px;
+$fs-3: 20px;
+$fs-4: 24px;
+$fs-5: 32px;
+$fs-6: 40px;
+
+$transition: 0.2s;
+
+$color--white: #fff;
+$color--dark: #000000;
+$color--green-fon: #cdffcd;
+$color-green-text: #007f00;
+$color--red-fon: #ffe0e0;
+$color--red-text: #d30000;
+
+$color--gray1: #e1e2e2;
+$color--gray2: #d5d6d6;
+
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xl: 960px;
+
+//== /VARIABLES ===
+
+//== COMMON ===
+html {
+  font-size: 16px;
+  @include inter();
+}
+body {
+  @include inter();
+}
+.App {
+  background-color: $color--white;
+  margin: 0 auto;
+  padding-top: $base * 14;
+  height: 100%;
+  padding-left: 25%;
+}
+a {
+  text-decoration: none;
+  color: $color--dark;
+}
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+.text {
+  font-size: 50px;
+}
+.h2 {
+  @include inter();
+  font-size: $fs-4;
+  font-weight: $fw-bold;
+}
+.h3 {
+  @include inter();
+  font-size: $fs-3;
+  font-weight: $fw-bold;
+  margin-bottom: $base * 3;
+}
+.btn {
+  background-color: #9dd458;
+  border-radius: 18px;
+}
+button {
+  cursor: pointer;
+}
+/* CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: sans-serif;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+button {
+  box-shadow: 0px 0px 3px 0px #6d5bd0;
+  border-radius: 6px;
+  background-color: $color--white;
+  border: 1px solid #4e36fc; /* Цвет границы */
+
+  transition: all 0.1s ease;
+
+  &:hover {
+    transition: all 150ms linear;
+    opacity: 0.85;
+  }
+  &:active {
+    transition: all 150ms linear;
+    opacity: 0.75;
+  }
+
+  &:focus {
+    outline: none;
+    outline-offset: -4px;
+  }
+}
+.button {
+  &__filter {
+    display: flex;
+    padding: 10px;
+    margin-right: $base * 17;
+    img {
+      margin-right: $base * 2;
+    }
+    &:hover {
+      background-color: $color--gray1;
+      opacity: 1;
+    }
+
+    &:active {
+      background-color: $color--gray2;
+      opacity: 1;
+    }
+  }
+  &__add_transaction {
+    font-weight: $fw-semi;
+    font-size: $fs-3;
+    padding: $base $base * 3;
+    &:hover {
+      color: #202129;
+      background-color: $color--gray2;
+      opacity: 1;
+    }
+
+    &:active {
+      background-color: $color--gray2;
+      opacity: 1;
+    }
+  }
+}
+//===CONTAINER===
+.container {
+  background-color: $color--white;
+  max-width: $screen-xl;
+  //margin: 0 auto;
+}
+.section-outter {
+  padding: 0 20px;
+}
+//===/CONTAINER===
+//== /COMMON ===
+
+/* TransactionDetail.module.scss */
+
+.container {
+  padding: $base * 4;
+  background-color: $color--white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  @include inter();
+  font-size: $fs-5;
+  font-weight: $fw-bold;
+  margin-bottom: $base * 5;
+}
+
+.details {
+  font-size: $fs-3;
+  @include inter();
+  margin-bottom: $base * 3;
+}
+
+.label {
+  @include inter();
+  font-size: $fs-3;
+  font-weight: $fw-semi;
+  color: $color--dark;
+}
+
+.loading {
+  @include inter();
+  font-size: $fs-2;
+  color: $color--gray1;
+}

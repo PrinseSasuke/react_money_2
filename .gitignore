@@ -1,0 +1,7 @@
+node_modules/
+build/
+dist/
+*.css.map
+src/**/*.module.css
+.env
+backend/node_modules/
