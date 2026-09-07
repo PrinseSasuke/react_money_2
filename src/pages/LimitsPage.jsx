@@ -70,7 +70,7 @@ const LimitsPage = () => {
 
   return (
     <div className="container-limit" style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
-      <h2>Контроль лимита расходов</h2>
+      <h2>Контроль лимита расходовввв</h2>
 
       {!editing ? (
         <div style={{ marginBottom: '20px' }} className='limit-c'>
