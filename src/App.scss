@@ -264,6 +264,8 @@ button {
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Увеличенная тень при фокусе */
     color: var(--text-primary);
+  }
+}
 .search_icon {
   font-size: 18px; /* Размер иконки */
   color: #9a9ab3; /* Цвет иконки */
@@ -457,7 +459,9 @@ button {
   border-radius: 10px;
   background-color: var(--bg-surface);
   cursor: pointer;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
   font-size: 1rem;
   color: #4e36fc;
   margin-bottom: 20px;
@@ -487,7 +491,6 @@ button {
   word-wrap: break-word;
 }
 
-
 .container-limit {
   padding: 30px;
   background-color: #f9f9fb;
@@ -498,7 +501,7 @@ button {
 }
 
 h2 {
-  color: #1B1D4E;
+  color: #1b1d4e;
   font-size: 24px;
   margin-bottom: 20px;
   text-align: center;
@@ -534,7 +537,7 @@ h2 {
   }
 
   strong {
-    color: #4E36FC;
+    color: #4e36fc;
   }
 
   .warning {
@@ -543,7 +546,7 @@ h2 {
     margin-top: 15px;
   }
 }
-.limit-c{
+.limit-c {
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
