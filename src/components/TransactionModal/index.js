@@ -58,6 +58,8 @@ function TransactionModal({
       bottom: "auto",
       transform: "translate(-50%, -50%)",
       padding: "30px 50px",
+      background: "var(--bg-surface)",
+      color: "var(--text-primary)",
     },
     overlay: {
       backgroundColor: "transperent",

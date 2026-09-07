@@ -48,7 +48,7 @@ $screen-xl: 960px;
   // display: flex;
   // flex-direction: column;
   &:hover {
-    background-color: $color--gray1;
+    background-color: var(--border-light);
   }
 }
 .day__result {
@@ -61,7 +61,7 @@ $screen-xl: 960px;
 .calendar {
   width: 100%;
   margin: 0 auto;
-  background: #fff;
+  background: var(--bg-surface);
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 15px;

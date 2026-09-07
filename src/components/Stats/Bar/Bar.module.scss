@@ -53,7 +53,7 @@ body {
   @include inter();
 }
 .App {
-  background-color: $color--white;
+  background-color: var(--bg-page);
   margin: 0 auto;
   padding-top: $base * 14;
   height: 100%;
@@ -61,7 +61,7 @@ body {
 }
 a {
   text-decoration: none;
-  color: $color--dark;
+  color: var(--text-primary);
 }
 ul {
   padding: 0;

@@ -50,7 +50,7 @@ body {
   @include inter();
 }
 .App {
-  background-color: $color--white;
+  background-color: var(--bg-page);
   margin: 0 auto;
   padding-top: $base * 14;
   height: 100%;
@@ -59,7 +59,7 @@ body {
 }
 a {
   text-decoration: none;
-  color: $color--dark;
+  color: var(--text-primary);
 }
 ul {
   padding: 0;
@@ -133,7 +133,7 @@ ol {
 button {
   box-shadow: 0px 0px 3px 0px #6d5bd0;
   border-radius: 6px;
-  background-color: $color--white;
+  background-color: var(--bg-surface);
   border: 1px solid #4e36fc; /* Цвет границы */
 
   transition: all 0.1s ease;
@@ -161,12 +161,12 @@ button {
       margin-right: $base * 2;
     }
     &:hover {
-      background-color: $color--gray1;
+      background-color: var(--border-light);
       opacity: 1;
     }
 
     &:active {
-      background-color: $color--gray2;
+      background-color: var(--border-mid);
       opacity: 1;
     }
   }
@@ -176,19 +176,19 @@ button {
     padding: $base $base * 3;
     &:hover {
       color: #202129;
-      background-color: $color--gray2;
+      background-color: var(--border-mid);
       opacity: 1;
     }
 
     &:active {
-      background-color: $color--gray2;
+      background-color: var(--border-mid);
       opacity: 1;
     }
   }
 }
 //===CONTAINER===
 .container {
-  background-color: $color--white;
+  background-color: var(--bg-page);
   max-width: $screen-xl;
   //margin: 0 auto;
 }
@@ -263,11 +263,7 @@ button {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Исходная тень */
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Увеличенная тень при фокусе */
-    color: $color--dark;
-  }
-}
-
-/* Стили для иконки */
+    color: var(--text-primary);
 .search_icon {
   font-size: 18px; /* Размер иконки */
   color: #9a9ab3; /* Цвет иконки */
@@ -384,9 +380,7 @@ button {
   position: absolute;
   top: 40px; /* Поднимаем фильтр немного ниже кнопки */
   left: 0;
-  background-color: white;
-  border: 1px solid #ddd;
-  padding: 15px;
+  background-color: var(--bg-surface);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 200px;
   z-index: 1000;
@@ -445,7 +439,7 @@ button {
 // == /FILTER == //
 .excel-container {
   padding: 20px;
-  background: #fafafa;
+  background: var(--bg-page);
   @include inter();
 }
 
@@ -453,7 +447,7 @@ button {
   font-size: $fs-6;
   font-weight: 700;
   margin-bottom: 24px;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .file-upload-input {
@@ -461,7 +455,7 @@ button {
   padding: 12px 20px;
   border: 2px dashed #4e36fc;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: var(--bg-surface);
   cursor: pointer;
   transition: background-color 0.3s ease, border-color 0.3s ease;
   font-size: 1rem;
@@ -480,7 +474,7 @@ button {
 }
 
 .imported-data {
-  background-color: #fff;
+  background-color: var(--bg-surface);
   padding: 16px;
   border-radius: 8px;
   text-align: left;

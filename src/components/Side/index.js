@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import LoginButton from "../Auth/LoginButton.js";
 import LogoutButton from "../Auth/LogoutButton.js";
 import Profile from "../Auth/Profile.js";
+import { useTheme } from "../../hooks/useTheme";
 import { useState } from "react";
 function Side() {
   const [activeItem, setActiveItem] = useState("home");
+  const { theme, toggleTheme } = useTheme();
   const getFillColor = (item) => (activeItem === item ? "#4E36FC" : "#1B1D4E");
   return (
     <div className={styles.slide}>
@@ -205,6 +207,16 @@ function Side() {
           </Link>
         </li> */}
       </ul>
+
+      <button
+        type="button"
+        onClick={toggleTheme}
+        className={styles.themeToggle}
+        aria-label="Переключить тему"
+        title={theme === "light" ? "Включить тёмную тему" : "Включить светлую тему"}
+      >
+        {theme === "light" ? "🌙 Тёмная тема" : "☀️ Светлая тема"}
+      </button>
 
       <LoginButton />
       <div className={styles.profie__wrapper}>

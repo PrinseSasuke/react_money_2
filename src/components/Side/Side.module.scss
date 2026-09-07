@@ -77,3 +77,18 @@ $screen-xl: 960px;
 }
 
 // === /SIDE === //
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: $base * 4;
+  padding: $base * 2 $base * 3;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-mid);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: $fs-1;
+  @include inter();
+}

@@ -61,13 +61,15 @@ $screen-xl: 960px;
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 200px;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
   transition: box-shadow 0.3s ease, transform 0.2s ease; /* Добавляем анимацию трансформации */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   &:hover {
     transform: scale(1.05); /* Увеличение */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    color: $color--dark;
+    color: var(--text-primary);
   }
 
   &:active {
@@ -83,7 +85,7 @@ $screen-xl: 960px;
   &:focus {
     transform: scale(1.05); /* Увеличение */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    border-color: $color--white;
+    border-color: var(--bg-surface);
   }
 }
 
