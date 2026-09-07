@@ -193,7 +193,7 @@ const ForecastPage = () => {
       <div style={{ marginBottom: "20px" }}>
         <h3>Доходы (с прогнозом)</h3>
         <p>
-          Средний доход: <strong>{incomeForecast} ₽</strong>
+          Средний заработок: <strong>{incomeForecast} ₽</strong>
         </p>
         <Chart
           chartType="LineChart"
