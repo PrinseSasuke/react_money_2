@@ -1,0 +1,14 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: PodChaos
+metadata:
+  name: backend-pod-kill
+  namespace: react-money
+spec:
+  action: pod-kill
+  mode: one
+  selector:
+    namespaces: [react-money]
+    labelSelectors:
+      app: backend
+  scheduler:
+    cron: "@every 10m"
