@@ -67,3 +67,6 @@ export const deleteAccount = (id, reassignTo) =>
     method: "DELETE",
     body: JSON.stringify({ reassignTo }),
   });
+
+// Курсы валют
+export const getExchangeRates = () => request("/exchange-rates");

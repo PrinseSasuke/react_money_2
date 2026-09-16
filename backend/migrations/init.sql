@@ -48,3 +48,11 @@ CREATE INDEX IF NOT EXISTS idx_accounts_user_id ON accounts(user_id);
 ALTER TABLE transactions ADD COLUMN IF NOT EXISTS account_id UUID REFERENCES accounts(id) ON DELETE SET NULL;
 CREATE INDEX IF NOT EXISTS idx_transactions_account_id ON transactions(account_id);
 
+-- Курсы валют к рублю (кэш ежедневного фида ЦБ РФ)
+CREATE TABLE IF NOT EXISTS exchange_rates (
+  currency_code TEXT NOT NULL,
+  rate_to_rub NUMERIC(14, 6) NOT NULL,
+  fetched_at DATE NOT NULL,
+  PRIMARY KEY (currency_code, fetched_at)
+);
+
