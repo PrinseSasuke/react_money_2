@@ -10,8 +10,10 @@ const accountsRoutes = require("./routes/accounts");
 const exchangeRatesRoutes = require("./routes/exchangeRates");
 const recurringRoutes = require("./routes/recurring");
 const exportRoutes = require("./routes/export");
+const telegramRoutes = require("./routes/telegram");
 const { fetchAndStoreRates } = require("./services/exchangeRates");
 const { runDueRecurring } = require("./services/recurringRunner");
+require("./services/telegramBot"); // запускает long polling, если задан TELEGRAM_BOT_TOKEN
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -28,6 +30,7 @@ app.use("/api/accounts", accountsRoutes);
 app.use("/api/exchange-rates", exchangeRatesRoutes);
 app.use("/api/recurring", recurringRoutes);
 app.use("/api/export", exportRoutes);
+app.use("/api/telegram", telegramRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err);

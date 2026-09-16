@@ -80,6 +80,11 @@ export const updateRecurring = (id, item) =>
 export const deleteRecurring = (id) =>
   request(`/recurring/${id}`, { method: "DELETE" });
 
+// Telegram
+export const getTelegramStatus = () => request("/telegram/status");
+export const getTelegramLinkCode = () =>
+  request("/telegram/link-code", { method: "POST" });
+
 // Экспорт — отдельная функция, а не через request(), т.к. ответ бинарный,
 // а не JSON.
 export async function downloadExport(type, params = {}) {

@@ -28,6 +28,7 @@ services:
       DB_PASSWORD: app
       DB_NAME: react_money
       JWT_SECRET: ${JWT_SECRET}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
 
   frontend:
     build:

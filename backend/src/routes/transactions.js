@@ -1,6 +1,8 @@
 const express = require("express");
 const pool = require("../db");
 const { requireAuth } = require("../middleware/auth");
+const { checkAndNotifyLimit } = require("../services/limitAlert");
+const { sendLimitAlert } = require("../services/telegramBot");
 
 const router = express.Router();
 router.use(requireAuth);
@@ -87,6 +89,12 @@ router.post("/", async (req, res) => {
       ]
     );
     res.status(201).json(mapRow(result.rows[0]));
+
+    if (type === "Расход") {
+      checkAndNotifyLimit(req.userId, sendLimitAlert).catch((err) =>
+        console.error("Ошибка проверки лимита:", err)
+      );
+    }
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Ошибка создания транзакции" });

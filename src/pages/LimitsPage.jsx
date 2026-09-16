@@ -9,6 +9,9 @@ const LimitsPage = () => {
   const [editing, setEditing] = useState(false);
   const [newLimit, setNewLimit] = useState('50000');
   const [currentExpenses, setCurrentExpenses] = useState(0);
+  const [telegramLinked, setTelegramLinked] = useState(false);
+  const [linkCode, setLinkCode] = useState('');
+  const [telegramError, setTelegramError] = useState('');
 
   useEffect(() => {
     if (!user) return;
@@ -28,7 +31,22 @@ const LimitsPage = () => {
     };
 
     fetchData();
+
+    api
+      .getTelegramStatus()
+      .then((data) => setTelegramLinked(data.linked))
+      .catch((err) => console.error('Не удалось получить статус Telegram:', err));
   }, [user]);
+
+  const handleLinkTelegram = async () => {
+    setTelegramError('');
+    try {
+      const { code } = await api.getTelegramLinkCode();
+      setLinkCode(code);
+    } catch (err) {
+      setTelegramError(err.message);
+    }
+  };
 
   useEffect(() => {
     if (transactions.length === 0) {
@@ -101,6 +119,24 @@ const LimitsPage = () => {
         <p>Потрачено в текущем месяце: <strong>{currentExpenses} ₽</strong></p>
         <p>Осталось до лимита: <strong>{remaining} ₽</strong></p>
         {isExceeded && <p style={{ color: 'var(--color-expense-text)', fontWeight: 'bold' }}>⚠ Лимит расходов превышен!</p>}
+      </div>
+
+      <div style={{ marginTop: '24px', textAlign: 'center' }}>
+        <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>Telegram-бот</h3>
+        {telegramLinked ? (
+          <p style={{ color: 'var(--color-income-text)' }}>
+            ✅ Telegram привязан — уведомления о лимите и быстрое добавление трат доступны
+          </p>
+        ) : linkCode ? (
+          <p>
+            Напишите боту <strong>/link {linkCode}</strong>, чтобы привязать аккаунт
+          </p>
+        ) : (
+          <button onClick={handleLinkTelegram} style={{ padding: '8px 16px', borderRadius: '8px', cursor: 'pointer' }}>
+            Привязать Telegram
+          </button>
+        )}
+        {telegramError && <p style={{ color: 'var(--color-expense-text)' }}>{telegramError}</p>}
       </div>
     </div>
   );
