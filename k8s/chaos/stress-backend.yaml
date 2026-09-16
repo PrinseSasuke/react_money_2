@@ -1,0 +1,19 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: StressChaos
+metadata:
+  name: backend-stress
+  namespace: react-money
+spec:
+  mode: one
+  selector:
+    namespaces: [react-money]
+    labelSelectors:
+      app: backend
+  stressors:
+    cpu:
+      workers: 1
+      load: 100
+    memory:
+      workers: 1
+      size: "220MiB"
+  duration: "2m"
