@@ -6,3 +6,7 @@ src/**/*.module.css
 .env
 backend/node_modules/
 backend/uploads/
+test-results/
+playwright-report/
+/blob-report/
+/playwright/.cache/

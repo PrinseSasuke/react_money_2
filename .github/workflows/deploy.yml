@@ -1,11 +1,78 @@
-name: Deploy to VPS
+name: Test and Deploy
 
 on:
   push:
     branches: [main]
+  pull_request:
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres-test:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: app
+          POSTGRES_PASSWORD: app
+          POSTGRES_DB: react_money_test
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd "pg_isready -U app -d react_money_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: npm install
+
+      - name: Run backend unit + integration tests (Jest/Supertest)
+        working-directory: backend
+        run: npm test
+
+      - name: Install frontend dependencies
+        run: npm install
+
+      - name: Build frontend
+        # CI=true (set automatically by GitHub Actions) makes CRA treat
+        # ESLint warnings as build errors, which is stricter than the actual
+        # prod build (Dockerfile runs plain `npm run build`, no CI var) —
+        # match what really governs the deploy instead of a stricter gate.
+        run: npm run build
+        env:
+          CI: false
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Run E2E tests (functional, accessibility, no-horizontal-scroll)
+        # Visual regression (visual.spec.js) is excluded here: its baseline
+        # screenshots were generated on Windows and render measurably
+        # differently on Linux CI runners, which would fail on font/AA
+        # differences alone rather than real regressions. Run it locally
+        # (`npm run test:e2e`) where the OS stays consistent between runs —
+        # see FEATURES-STATUS-2.md for the full explanation.
+        run: npx playwright test --grep-invert "visual regression"
+
+      - name: Upload Playwright report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
   deploy:
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Deploy via SSH
