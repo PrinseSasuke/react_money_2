@@ -156,6 +156,11 @@ textarea {
   border: 1px solid var(--border-mid);
   border-radius: 4px;
   padding: 8px 12px;
+
+  &:focus-visible {
+    outline: 2px solid #4e36fc;
+    outline-offset: 1px;
+  }
 }
 
 button {
@@ -179,6 +184,11 @@ button {
   &:focus {
     outline: none;
     outline-offset: -4px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #4e36fc;
+    outline-offset: 1px;
   }
 }
 .button {
