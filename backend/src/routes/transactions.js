@@ -15,6 +15,7 @@ const mapRow = (row) => ({
   date: row.date,
   user_id: row.user_id,
   account_id: row.account_id,
+  is_auto_generated: row.is_auto_generated,
 });
 
 // Проверяет, что счёт с данным id принадлежит текущему пользователю

@@ -56,3 +56,23 @@ CREATE TABLE IF NOT EXISTS exchange_rates (
   PRIMARY KEY (currency_code, fetched_at)
 );
 
+-- Повторяющиеся транзакции (шаблоны, из которых крон создаёт реальные)
+CREATE TABLE IF NOT EXISTS recurring_transactions (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  account_id UUID REFERENCES accounts(id) ON DELETE SET NULL,
+  type TEXT NOT NULL CHECK (type IN ('Доход', 'Расход')),
+  source TEXT NOT NULL DEFAULT 'Остальное',
+  description TEXT DEFAULT '',
+  summ NUMERIC(14, 2) NOT NULL,
+  currency TEXT NOT NULL DEFAULT 'RUB',
+  frequency TEXT NOT NULL CHECK (frequency IN ('daily', 'weekly', 'monthly')),
+  next_run_date DATE NOT NULL,
+  active BOOLEAN NOT NULL DEFAULT true,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_recurring_user_id ON recurring_transactions(user_id);
+
+ALTER TABLE transactions ADD COLUMN IF NOT EXISTS is_auto_generated BOOLEAN NOT NULL DEFAULT false;
+

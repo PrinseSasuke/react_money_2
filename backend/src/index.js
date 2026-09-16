@@ -8,7 +8,9 @@ const transactionsRoutes = require("./routes/transactions");
 const limitsRoutes = require("./routes/limits");
 const accountsRoutes = require("./routes/accounts");
 const exchangeRatesRoutes = require("./routes/exchangeRates");
+const recurringRoutes = require("./routes/recurring");
 const { fetchAndStoreRates } = require("./services/exchangeRates");
+const { runDueRecurring } = require("./services/recurringRunner");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -23,6 +25,7 @@ app.use("/api/transactions", transactionsRoutes);
 app.use("/api/limits", limitsRoutes);
 app.use("/api/accounts", accountsRoutes);
 app.use("/api/exchange-rates", exchangeRatesRoutes);
+app.use("/api/recurring", recurringRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err);
@@ -44,5 +47,12 @@ setTimeout(() => {
 cron.schedule("0 6 * * *", () => {
   fetchAndStoreRates().catch((err) =>
     console.error("Не удалось обновить курс валют:", err.message)
+  );
+});
+
+// Генерируем due-транзакции по активным повторяющимся платежам раз в сутки.
+cron.schedule("0 6 * * *", () => {
+  runDueRecurring().catch((err) =>
+    console.error("Ошибка запуска повторяющихся платежей:", err.message)
   );
 });

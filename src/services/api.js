@@ -70,3 +70,12 @@ export const deleteAccount = (id, reassignTo) =>
 
 // Курсы валют
 export const getExchangeRates = () => request("/exchange-rates");
+
+// Регулярные платежи
+export const getRecurring = () => request("/recurring");
+export const createRecurring = (item) =>
+  request("/recurring", { method: "POST", body: JSON.stringify(item) });
+export const updateRecurring = (id, item) =>
+  request(`/recurring/${id}`, { method: "PUT", body: JSON.stringify(item) });
+export const deleteRecurring = (id) =>
+  request(`/recurring/${id}`, { method: "DELETE" });

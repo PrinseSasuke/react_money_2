@@ -13,6 +13,7 @@ function Transaction({
   currency,
   id,
   account_id,
+  is_auto_generated,
 }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const { transactions, setTransactions } = useOutletContext();
@@ -101,7 +102,14 @@ function Transaction({
   return (
     <>
       <tr>
-        <td className={styles.date_td}>{formatDate(date)}</td>
+        <td className={styles.date_td}>
+          {formatDate(date)}
+          {is_auto_generated && (
+            <span title="Создано автоматически" style={{ marginLeft: "6px" }}>
+              🔁
+            </span>
+          )}
+        </td>
         <td className={styles.details_td}>
           <span
             className={styles.table__status}
