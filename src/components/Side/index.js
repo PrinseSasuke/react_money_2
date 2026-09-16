@@ -177,6 +177,33 @@ function Side() {
             <span>Лимит</span>
           </Link>
         </li>
+        <li
+          className={styles.menu__item}
+          onClick={() => setActiveItem("accounts")}
+        >
+          <Link to="/accounts" style={{ display: "flex" }}>
+            <svg
+              width="21"
+              height="17"
+              viewBox="0 0 21 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="0.5"
+                y="0.5"
+                width="20"
+                height="16"
+                rx="2"
+                stroke={getFillColor("accounts")}
+              />
+              <path d="M0.5 5.5H20.5" stroke={getFillColor("accounts")} />
+              <rect x="3" y="10" width="6" height="2.5" fill={getFillColor("accounts")} />
+            </svg>
+
+            <span>Счета</span>
+          </Link>
+        </li>
         {/* <li
           className={styles.menu__item}
           onClick={() => setActiveItem("statistic")}

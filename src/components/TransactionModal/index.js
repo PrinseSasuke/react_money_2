@@ -24,8 +24,10 @@ function TransactionModal({
     description: "",
     summ: "",
     currency: "Рубль",
+    account_id: "",
   };
   const [form, setForm] = useState(INITIAL_STATE);
+  const [accounts, setAccounts] = useState([]);
   const CATEGORIES = {
     Расход: [
       "Супермаркеты",
@@ -50,6 +52,19 @@ function TransactionModal({
       setStartDate(new Date());
     }
   }, [mode, initialData, user]);
+
+  useEffect(() => {
+    if (!user || !isOpen) return;
+    api
+      .getAccounts()
+      .then((data) => {
+        setAccounts(data);
+        setForm((prev) =>
+          prev.account_id ? prev : { ...prev, account_id: data[0]?.id || "" }
+        );
+      })
+      .catch((err) => console.error("Не удалось загрузить счета:", err));
+  }, [user, isOpen]);
   const customFormStyles = {
     content: {
       top: "50%",
@@ -218,6 +233,23 @@ function TransactionModal({
             >
               <option value="rub">Рубль</option>
               <option value="usd">Доллар</option>
+            </select>
+          </div>
+          <div className={styles.flexContainer}>
+            <label className={styles.label}>Счёт</label>
+            <select
+              id="account_id"
+              name="account_id"
+              className={styles.select}
+              value={form.account_id || ""}
+              onChange={handleChange}
+              required
+            >
+              {accounts.map((account) => (
+                <option value={account.id} key={account.id}>
+                  {account.name}
+                </option>
+              ))}
             </select>
           </div>
           <button type="submit" className={styles.button__submit}>

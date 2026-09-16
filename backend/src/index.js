@@ -5,6 +5,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/auth");
 const transactionsRoutes = require("./routes/transactions");
 const limitsRoutes = require("./routes/limits");
+const accountsRoutes = require("./routes/accounts");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -17,6 +18,7 @@ app.get("/api/health", (req, res) => res.json({ status: "ok" }));
 app.use("/api/auth", authRoutes);
 app.use("/api/transactions", transactionsRoutes);
 app.use("/api/limits", limitsRoutes);
+app.use("/api/accounts", accountsRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err);

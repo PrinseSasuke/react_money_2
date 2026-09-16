@@ -14,7 +14,17 @@ const mapRow = (row) => ({
   currency: row.currency,
   date: row.date,
   user_id: row.user_id,
+  account_id: row.account_id,
 });
+
+// Проверяет, что счёт с данным id принадлежит текущему пользователю
+async function assertOwnsAccount(client, accountId, userId) {
+  const { rows } = await client.query(
+    "SELECT id FROM accounts WHERE id = $1 AND user_id = $2",
+    [accountId, userId]
+  );
+  return rows.length > 0;
+}
 
 // Получить все транзакции текущего пользователя
 router.get("/", async (req, res) => {
@@ -49,14 +59,21 @@ router.get("/:id", async (req, res) => {
 
 // Создать транзакцию
 router.post("/", async (req, res) => {
-  const { type, source, description, summ, currency, date } = req.body;
+  const { type, source, description, summ, currency, date, account_id } =
+    req.body;
   if (!type || !summ) {
     return res.status(400).json({ error: "type и summ обязательны" });
   }
+  if (!account_id) {
+    return res.status(400).json({ error: "account_id обязателен" });
+  }
   try {
+    if (!(await assertOwnsAccount(pool, account_id, req.userId))) {
+      return res.status(400).json({ error: "Счёт не найден" });
+    }
     const result = await pool.query(
-      `INSERT INTO transactions (user_id, type, source, description, summ, currency, date)
-       VALUES ($1, $2, $3, $4, $5, $6, COALESCE($7, now())) RETURNING *`,
+      `INSERT INTO transactions (user_id, type, source, description, summ, currency, date, account_id)
+       VALUES ($1, $2, $3, $4, $5, $6, COALESCE($7, now()), $8) RETURNING *`,
       [
         req.userId,
         type,
@@ -65,6 +82,7 @@ router.post("/", async (req, res) => {
         summ,
         currency || "Рубль",
         date || null,
+        account_id,
       ]
     );
     res.status(201).json(mapRow(result.rows[0]));
@@ -83,11 +101,22 @@ router.post("/bulk", async (req, res) => {
   const client = await pool.connect();
   try {
     await client.query("BEGIN");
+
+    // Для строк без account_id (например, импорт из Excel) используем
+    // самый старый счёт пользователя по умолчанию.
+    const {
+      rows: [defaultAccount],
+    } = await client.query(
+      "SELECT id FROM accounts WHERE user_id = $1 ORDER BY created_at LIMIT 1",
+      [req.userId]
+    );
+
     const inserted = [];
     for (const tr of transactions) {
+      const accountId = tr.account_id || defaultAccount?.id || null;
       const result = await client.query(
-        `INSERT INTO transactions (user_id, type, source, description, summ, currency, date)
-         VALUES ($1, $2, $3, $4, $5, $6, COALESCE($7, now())) RETURNING *`,
+        `INSERT INTO transactions (user_id, type, source, description, summ, currency, date, account_id)
+         VALUES ($1, $2, $3, $4, $5, $6, COALESCE($7, now()), $8) RETURNING *`,
         [
           req.userId,
           tr.type,
@@ -96,6 +125,7 @@ router.post("/bulk", async (req, res) => {
           tr.summ,
           tr.currency || "Рубль",
           tr.date || null,
+          accountId,
         ]
       );
       inserted.push(mapRow(result.rows[0]));
@@ -113,7 +143,11 @@ router.post("/bulk", async (req, res) => {
 
 // Обновить транзакцию
 router.put("/:id", async (req, res) => {
-  const { type, source, description, summ, currency, date } = req.body;
+  const { type, source, description, summ, currency, date, account_id } =
+    req.body;
+  if (account_id && !(await assertOwnsAccount(pool, account_id, req.userId))) {
+    return res.status(400).json({ error: "Счёт не найден" });
+  }
   try {
     const result = await pool.query(
       `UPDATE transactions
@@ -122,10 +156,21 @@ router.put("/:id", async (req, res) => {
            description = COALESCE($3, description),
            summ = COALESCE($4, summ),
            currency = COALESCE($5, currency),
-           date = COALESCE($6, date)
+           date = COALESCE($6, date),
+           account_id = COALESCE($9, account_id)
        WHERE id = $7 AND user_id = $8
        RETURNING *`,
-      [type, source, description, summ, currency, date, req.params.id, req.userId]
+      [
+        type,
+        source,
+        description,
+        summ,
+        currency,
+        date,
+        req.params.id,
+        req.userId,
+        account_id,
+      ]
     );
     if (result.rows.length === 0) {
       return res.status(404).json({ error: "Транзакция не найдена" });

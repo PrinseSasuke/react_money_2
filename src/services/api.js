@@ -55,3 +55,15 @@ export const deleteTransaction = (id) =>
 export const getLimit = () => request("/limits");
 export const setLimit = (amount) =>
   request("/limits", { method: "PUT", body: JSON.stringify({ amount }) });
+
+// Счета
+export const getAccounts = () => request("/accounts");
+export const createAccount = (account) =>
+  request("/accounts", { method: "POST", body: JSON.stringify(account) });
+export const updateAccount = (id, account) =>
+  request(`/accounts/${id}`, { method: "PUT", body: JSON.stringify(account) });
+export const deleteAccount = (id, reassignTo) =>
+  request(`/accounts/${id}`, {
+    method: "DELETE",
+    body: JSON.stringify({ reassignTo }),
+  });

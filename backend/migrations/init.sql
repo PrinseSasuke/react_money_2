@@ -32,3 +32,19 @@ CREATE TABLE IF NOT EXISTS limits (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+-- Счета пользователя
+CREATE TABLE IF NOT EXISTS accounts (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
+  type TEXT NOT NULL DEFAULT 'card' CHECK (type IN ('cash', 'card', 'savings')),
+  currency TEXT NOT NULL DEFAULT 'RUB',
+  initial_balance NUMERIC(14, 2) NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_accounts_user_id ON accounts(user_id);
+
+ALTER TABLE transactions ADD COLUMN IF NOT EXISTS account_id UUID REFERENCES accounts(id) ON DELETE SET NULL;
+CREATE INDEX IF NOT EXISTS idx_transactions_account_id ON transactions(account_id);
+

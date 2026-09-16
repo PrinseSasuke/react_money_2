@@ -14,6 +14,7 @@ import TransactionDetail from "./components/TransactionDetail";
 import LimitsPage from "./pages/LimitsPage";
 import Excel from "./pages/Excel";
 import ForecastPage from "./pages/Forecast";
+import AccountsPage from "./pages/AccountsPage";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const router = createBrowserRouter([
@@ -86,6 +87,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <LimitsPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/accounts",
+        element: (
+          <ProtectedRoute>
+            <AccountsPage />
           </ProtectedRoute>
         ),
       }

@@ -4,7 +4,16 @@ import * as api from "../../services/api";
 import { useOutletContext } from "react-router-dom";
 import TransactionModal from "../TransactionModal";
 import { Link } from "react-router-dom";
-function Transaction({ date, type, source, description, summ, currency, id }) {
+function Transaction({
+  date,
+  type,
+  source,
+  description,
+  summ,
+  currency,
+  id,
+  account_id,
+}) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const { transactions, setTransactions } = useOutletContext();
   //Модалка
@@ -34,6 +43,7 @@ function Transaction({ date, type, source, description, summ, currency, id }) {
       description,
       summ,
       currency,
+      account_id,
     });
     setIsEditModalOpen(true);
     setIsMenuOpen(false);
