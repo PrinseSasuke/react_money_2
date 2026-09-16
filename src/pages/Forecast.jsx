@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import * as api from "../services/api";
 import { useAuth } from "../context/AuthContext";
+import { useTheme } from "../hooks/useTheme";
 import { Chart } from "react-google-charts";
 
 const ForecastPage = () => {
   const { user } = useAuth();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+  const chartTextColor = isDark ? "#ececf1" : "#1b1d4e";
+  const chartGridColor = isDark ? "#33354a" : "#e1e2e2";
   const [transactions, setTransactions] = useState([]);
   const [expenseForecast, setExpenseForecast] = useState(0);
   const [incomeForecast, setIncomeForecast] = useState(0);
@@ -164,7 +169,7 @@ const ForecastPage = () => {
           Прирост расходов за период: <strong>{expenseGrowth} %</strong>
         </p>
         {overspending && (
-          <p style={{ color: "red" }}>
+          <p style={{ color: "var(--color-expense-text)" }}>
             ⚠ Текущие расходы превышают средний прогноз!
           </p>
         )}
@@ -183,9 +188,22 @@ const ForecastPage = () => {
           options={{
             title: "Динамика расходов + прогноз",
             curveType: "function",
-            legend: { position: "bottom" },
-            vAxis: { title: "Расходы (₽)" },
-            hAxis: { title: "Месяц" },
+            colors: ["#EF4444"],
+            backgroundColor: "transparent",
+            titleTextStyle: { color: chartTextColor },
+            legend: { position: "bottom", textStyle: { color: chartTextColor } },
+            vAxis: {
+              title: "Расходы (₽)",
+              textStyle: { color: chartTextColor },
+              titleTextStyle: { color: chartTextColor },
+              gridlines: { color: chartGridColor },
+            },
+            hAxis: {
+              title: "Месяц",
+              textStyle: { color: chartTextColor },
+              titleTextStyle: { color: chartTextColor },
+              gridlines: { color: chartGridColor },
+            },
           }}
         />
       </div>
@@ -203,9 +221,22 @@ const ForecastPage = () => {
           options={{
             title: "Динамика доходов + прогноз",
             curveType: "function",
-            legend: { position: "bottom" },
-            vAxis: { title: "Доходы (₽)" },
-            hAxis: { title: "Месяц" },
+            colors: ["#22C55E"],
+            backgroundColor: "transparent",
+            titleTextStyle: { color: chartTextColor },
+            legend: { position: "bottom", textStyle: { color: chartTextColor } },
+            vAxis: {
+              title: "Доходы (₽)",
+              textStyle: { color: chartTextColor },
+              titleTextStyle: { color: chartTextColor },
+              gridlines: { color: chartGridColor },
+            },
+            hAxis: {
+              title: "Месяц",
+              textStyle: { color: chartTextColor },
+              titleTextStyle: { color: chartTextColor },
+              gridlines: { color: chartGridColor },
+            },
           }}
         />
       </div>

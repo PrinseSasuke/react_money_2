@@ -50,7 +50,7 @@ const Authorize = () => {
           minLength={6}
           required
         />
-        {error && <span style={{ color: "#D30000" }}>{error}</span>}
+        {error && <span style={{ color: "var(--color-expense-text)" }}>{error}</span>}
         <button type="submit" className="button_login" disabled={submitting}>
           {mode === "login" ? "Войти" : "Зарегистрироваться"}
         </button>

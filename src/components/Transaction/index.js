@@ -60,8 +60,8 @@ function Transaction({ date, type, source, description, summ, currency, id }) {
     };
   }, []);
   const COLORS = {
-    Доход: ["#CDFFCD", "#007F00"],
-    Расход: ["#FFE0E0", "#D30000"],
+    Доход: ["var(--color-income-bg)", "var(--color-income-text)"],
+    Расход: ["var(--color-expense-bg)", "var(--color-expense-text)"],
   };
   const colors = COLORS[type];
   // const formatDate = (date) => {

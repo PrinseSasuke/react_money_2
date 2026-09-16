@@ -219,7 +219,7 @@ function Side() {
       </button>
 
       <LoginButton />
-      <div className={styles.profie__wrapper}>
+      <div className={styles.profile__wrapper}>
         <Profile />
         <LogoutButton />
       </div>

@@ -174,7 +174,7 @@ button {
     font-size: $fs-3;
     padding: $base $base * 3;
     &:hover {
-      color: #202129;
+      color: var(--text-primary);
       background-color: var(--border-mid);
       opacity: 1;
     }
@@ -203,7 +203,7 @@ button {
   padding: $base * 4;
   background-color: var(--bg-surface);
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .title {
@@ -229,5 +229,5 @@ button {
 .loading {
   @include inter();
   font-size: $fs-2;
-  color: var(--border-light);
+  color: var(--text-secondary);
 }

@@ -100,7 +100,7 @@ const LimitsPage = () => {
       <div style={{ textAlign: 'center', fontSize: '16px' }}>
         <p>Потрачено в текущем месяце: <strong>{currentExpenses} ₽</strong></p>
         <p>Осталось до лимита: <strong>{remaining} ₽</strong></p>
-        {isExceeded && <p style={{ color: 'red', fontWeight: 'bold' }}>⚠ Лимит расходов превышен!</p>}
+        {isExceeded && <p style={{ color: 'var(--color-expense-text)', fontWeight: 'bold' }}>⚠ Лимит расходов превышен!</p>}
       </div>
     </div>
   );

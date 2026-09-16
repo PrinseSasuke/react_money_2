@@ -19,7 +19,7 @@ $fs-5: 32px;
 $fs-6: 40px;
 .profile {
   display: flex;
-  background-color: #f3f5fa;
+  background-color: var(--bg-hover);
   padding: $base * 3 0 $base * 3 $base * 3;
   width: $base * 50;
   //margin-top: $base * 20;

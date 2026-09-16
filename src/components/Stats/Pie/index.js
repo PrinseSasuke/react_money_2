@@ -1,21 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 import { AppContext } from "../../../App";
+import { useTheme } from "../../../hooks/useTheme";
 
 // Настройки графиков с различными цветами
-const options = (title, colors) => ({
-  title,
-  pieHole: 0.4,
-  colors, // Используем переданную палитру цветов
-  legend: {
-    position: "right",
-    alignment: "center",
-    textStyle: {
-      fontSize: 14,
-      color: "#333",
+const options = (title, colors, isDark) => {
+  const textColor = isDark ? "#ececf1" : "#1b1d4e";
+  return {
+    title,
+    pieHole: 0.4,
+    colors, // Используем переданную палитру цветов
+    backgroundColor: "transparent",
+    titleTextStyle: { color: textColor },
+    legend: {
+      position: "right",
+      alignment: "center",
+      textStyle: {
+        fontSize: 14,
+        color: textColor,
+      },
     },
-  },
-});
+  };
+};
 
 // Категории транзакций
 const CATEGORIES = {
@@ -34,6 +40,7 @@ const CATEGORIES = {
 
 function PieChart({ start, end, type, colors }) {
   const { transactions } = useContext(AppContext);
+  const { theme } = useTheme();
   const [chartData, setChartData] = useState([["Категория", "Сумма"]]);
 
   useEffect(() => {
@@ -86,7 +93,8 @@ function PieChart({ start, end, type, colors }) {
         data={chartData}
         options={options(
           type === "Доход" ? "Доходы по категориям" : "Расходы по категориям",
-          colors
+          colors,
+          theme === "dark"
         )}
       />
     </div>
@@ -101,7 +109,7 @@ export default function PieChartsContainer({ start, end }) {
         end={end}
         type="Доход"
         colors={[
-          "#4CAF50", // Зеленый для зарплаты
+          "#22C55E", // Зеленый для зарплаты (соответствует stats-income.svg)
           "#81C784", // Бледно-зеленый для дополнительного дохода
           "#FFEB3B", // Желтый для соц. выплат
           "#8BC34A", // Лаймовый для остального дохода
@@ -112,7 +120,7 @@ export default function PieChartsContainer({ start, end }) {
         end={end}
         type="Расход"
         colors={[
-          "#F44336", // Ярко-красный для супермаркетов
+          "#EF4444", // Ярко-красный для супермаркетов (соответствует stats-outcome.svg)
           "#E57373", // Бледно-красный для переводов
           "#FF9800", // Оранжевый для фастфуда
           "#9C27B0", // Пурпурный для одежды
