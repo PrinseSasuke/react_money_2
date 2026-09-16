@@ -75,8 +75,9 @@ $screen-xl: 960px;
   vertical-align: middle;
   padding: 0;
   position: relative;
+  border: 1px solid var(--border-light);
   border-radius: 8px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   cursor: pointer;
 
   &:hover button {
