@@ -79,3 +79,31 @@ export const updateRecurring = (id, item) =>
   request(`/recurring/${id}`, { method: "PUT", body: JSON.stringify(item) });
 export const deleteRecurring = (id) =>
   request(`/recurring/${id}`, { method: "DELETE" });
+
+// Экспорт — отдельная функция, а не через request(), т.к. ответ бинарный,
+// а не JSON.
+export async function downloadExport(type, params = {}) {
+  const token = getToken();
+  const query = new URLSearchParams(
+    Object.entries(params).filter(([, v]) => v !== undefined && v !== null && v !== "")
+  ).toString();
+
+  const response = await fetch(`${API_URL}/export/${type}?${query}`, {
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  });
+  if (!response.ok) {
+    const data = await response.json().catch(() => ({}));
+    throw new Error(data.error || "Ошибка экспорта");
+  }
+
+  const blob = await response.blob();
+  const filename = type === "excel" ? "transactions.xlsx" : "transactions.pdf";
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}

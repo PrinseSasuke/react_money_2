@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Bar from "../components/Stats/Bar";
 import { AppContext } from "../App"; // Путь к AppContext
 import PieChartsContainer from "../components/Stats/Pie";
+import * as api from "../services/api";
 export default function Stats() {
   const today = new Date();
   const yesterday = new Date(today);
@@ -14,6 +15,23 @@ export default function Stats() {
   const [balance, setBalance] = useState(0);
   const [totalIncome, setTotalIncome] = useState(0);
   const [totalOutcome, setTotalOutcome] = useState(0);
+  const [exporting, setExporting] = useState(false);
+  const [exportError, setExportError] = useState("");
+
+  const handleExport = async (type) => {
+    setExportError("");
+    setExporting(true);
+    try {
+      await api.downloadExport(type, {
+        from: startDate?.toISOString(),
+        to: endDate?.toISOString(),
+      });
+    } catch (err) {
+      setExportError(err.message);
+    } finally {
+      setExporting(false);
+    }
+  };
 
   const onChange = (dates) => {
     const [start, end] = dates;
@@ -94,6 +112,18 @@ export default function Stats() {
             <p>Выберите даты</p>
           )}
         </div>
+
+        <div style={{ display: "flex", gap: "8px", marginTop: "8px" }}>
+          <button type="button" disabled={exporting} onClick={() => handleExport("excel")}>
+            Экспорт в Excel
+          </button>
+          <button type="button" disabled={exporting} onClick={() => handleExport("pdf")}>
+            Экспорт в PDF
+          </button>
+        </div>
+        {exportError && (
+          <p style={{ color: "var(--color-expense-text)" }}>{exportError}</p>
+        )}
       </div>
 
       <div className="stats-info">

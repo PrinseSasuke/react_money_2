@@ -9,6 +9,7 @@ const limitsRoutes = require("./routes/limits");
 const accountsRoutes = require("./routes/accounts");
 const exchangeRatesRoutes = require("./routes/exchangeRates");
 const recurringRoutes = require("./routes/recurring");
+const exportRoutes = require("./routes/export");
 const { fetchAndStoreRates } = require("./services/exchangeRates");
 const { runDueRecurring } = require("./services/recurringRunner");
 
@@ -26,6 +27,7 @@ app.use("/api/limits", limitsRoutes);
 app.use("/api/accounts", accountsRoutes);
 app.use("/api/exchange-rates", exchangeRatesRoutes);
 app.use("/api/recurring", recurringRoutes);
+app.use("/api/export", exportRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err);
