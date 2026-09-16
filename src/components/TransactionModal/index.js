@@ -9,6 +9,7 @@ import { AppContext } from "../../App";
 import { useContext } from "react";
 import { useAuth } from "../../context/AuthContext";
 import * as api from "../../services/api";
+import AttachmentsPanel from "../AttachmentsPanel";
 function TransactionModal({
   mode = "add",
   isOpen,
@@ -256,6 +257,10 @@ function TransactionModal({
             {mode === "add" ? "Сохранить" : "Обновить"}
           </button>
         </form>
+
+        {mode === "edit" && initialData?.id && (
+          <AttachmentsPanel transactionId={initialData.id} />
+        )}
       </Modal>
     </div>
   );

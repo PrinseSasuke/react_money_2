@@ -85,6 +85,47 @@ export const getTelegramStatus = () => request("/telegram/status");
 export const getTelegramLinkCode = () =>
   request("/telegram/link-code", { method: "POST" });
 
+// Вложения (чеки/квитанции)
+export const getAttachments = (transactionId) =>
+  request(`/transactions/${transactionId}/attachments`);
+export const deleteAttachment = (attachmentId) =>
+  request(`/attachments/${attachmentId}`, { method: "DELETE" });
+
+// Загрузка — не через request(), тело FormData, а не JSON
+export async function uploadAttachment(transactionId, file) {
+  const token = getToken();
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(
+    `${API_URL}/transactions/${transactionId}/attachments`,
+    {
+      method: "POST",
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+      body: formData,
+    }
+  );
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(data.error || "Ошибка загрузки файла");
+  }
+  return data;
+}
+
+// Скачивание/превью — ответ бинарный, нужен Bearer-токен в заголовке
+// (недоступно обычному <img src>/<a href>), поэтому fetch + blob URL.
+export async function fetchAttachmentBlob(attachmentId) {
+  const token = getToken();
+  const response = await fetch(`${API_URL}/attachments/${attachmentId}`, {
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  });
+  if (!response.ok) {
+    const data = await response.json().catch(() => ({}));
+    throw new Error(data.error || "Ошибка получения файла");
+  }
+  return response.blob();
+}
+
 // Экспорт — отдельная функция, а не через request(), т.к. ответ бинарный,
 // а не JSON.
 export async function downloadExport(type, params = {}) {

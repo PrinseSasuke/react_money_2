@@ -5,3 +5,4 @@ dist/
 src/**/*.module.css
 .env
 backend/node_modules/
+backend/uploads/

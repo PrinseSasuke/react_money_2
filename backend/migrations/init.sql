@@ -13,6 +13,19 @@ ALTER TABLE users ADD COLUMN IF NOT EXISTS telegram_chat_id BIGINT UNIQUE;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS telegram_link_code TEXT;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS last_limit_notified_month TEXT;
 
+-- Вложения к транзакциям (фото чеков, PDF-квитанции)
+CREATE TABLE IF NOT EXISTS transaction_attachments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  transaction_id UUID NOT NULL REFERENCES transactions(id) ON DELETE CASCADE,
+  file_name TEXT NOT NULL,
+  file_path TEXT NOT NULL,
+  mime_type TEXT NOT NULL,
+  file_size INTEGER NOT NULL,
+  uploaded_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_attachments_transaction_id ON transaction_attachments(transaction_id);
+
 -- Транзакции (доход/расход)
 CREATE TABLE IF NOT EXISTS transactions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
