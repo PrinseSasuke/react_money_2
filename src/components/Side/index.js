@@ -20,7 +20,7 @@ function Side() {
       </Link>
       <ul className={styles.menu}>
         <li className={styles.menu__item} onClick={() => setActiveItem("home")}>
-          <Link to="/" style={{ display: "flex" }}>
+          <Link to="/" style={{ display: "flex" }} aria-label="Главная">
             <svg
               width="19"
               height="17"
@@ -40,7 +40,7 @@ function Side() {
           className={styles.menu__item}
           onClick={() => setActiveItem("history")}
         >
-          <Link to="/transactions" style={{ display: "flex" }}>
+          <Link to="/transactions" style={{ display: "flex" }} aria-label="Мои операции">
             <svg
               width="21"
               height="18"
@@ -64,7 +64,7 @@ function Side() {
           className={styles.menu__item}
           onClick={() => setActiveItem("import")}
         >
-          <Link to="/import" style={{ display: "flex" }}>
+          <Link to="/import" style={{ display: "flex" }} aria-label="Импорт">
             <svg
               width="21"
               height="21"
@@ -85,7 +85,7 @@ function Side() {
           className={styles.menu__item}
           onClick={() => setActiveItem("stats")}
         >
-          <Link to="/stats" style={{ display: "flex" }}>
+          <Link to="/stats" style={{ display: "flex" }} aria-label="Статистика">
             <svg
               width="21"
               height="18"
@@ -114,7 +114,7 @@ function Side() {
           className={styles.menu__item}
           onClick={() => setActiveItem("forecast")}
         >
-          <Link to="/forecast" style={{ display: "flex" }}>
+          <Link to="/forecast" style={{ display: "flex" }} aria-label="Прогноз">
             <svg
               width="20"
               height="20"
@@ -146,7 +146,7 @@ function Side() {
           className={styles.menu__item}
           onClick={() => setActiveItem("limit")}
         >
-          <Link to="/limit" style={{ display: "flex" }}>
+          <Link to="/limit" style={{ display: "flex" }} aria-label="Лимит">
             <svg
               width="21"
               height="21"
@@ -181,7 +181,7 @@ function Side() {
           className={styles.menu__item}
           onClick={() => setActiveItem("accounts")}
         >
-          <Link to="/accounts" style={{ display: "flex" }}>
+          <Link to="/accounts" style={{ display: "flex" }} aria-label="Счета">
             <svg
               width="21"
               height="17"
@@ -208,7 +208,7 @@ function Side() {
           className={styles.menu__item}
           onClick={() => setActiveItem("recurring")}
         >
-          <Link to="/recurring" style={{ display: "flex" }}>
+          <Link to="/recurring" style={{ display: "flex" }} aria-label="Регулярные">
             <svg
               width="19"
               height="19"

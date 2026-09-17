@@ -29,6 +29,9 @@ services:
       DB_NAME: react_money
       JWT_SECRET: ${JWT_SECRET}
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      UPLOAD_DIR: /app/uploads
+    volumes:
+      - uploads_data:/app/uploads
 
   frontend:
     build:
@@ -61,5 +64,6 @@ services:
 
 volumes:
   postgres_data:
+  uploads_data:
   certbot_www:
   certbot_certs:

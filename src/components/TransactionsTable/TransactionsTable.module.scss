@@ -91,3 +91,19 @@ $screen-xl: 960px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+
+.cardList {
+  display: none;
+  flex-direction: column;
+  gap: $base * 3;
+}
+
+@media (max-width: 599px) {
+  .tableWrapper {
+    display: none;
+  }
+
+  .cardList {
+    display: flex;
+  }
+}

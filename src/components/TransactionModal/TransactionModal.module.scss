@@ -171,4 +171,33 @@ fieldset {
   .custom_date_input {
     width: 100%;
   }
+
+  // Тапабельная зона на мобильных — не меньше 44px по высоте (стандарт для пальца)
+  .input,
+  .select,
+  .textarea,
+  .custom_date_input {
+    min-height: 44px;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  .button__submit {
+    min-height: 44px;
+    padding: $base * 3 $base * 6;
+  }
+
+  .close {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -#{$base * 3} -#{$base * 3} -#{$base * 3} 0;
+
+    img {
+      width: 18px;
+      height: 16px;
+    }
+  }
 }

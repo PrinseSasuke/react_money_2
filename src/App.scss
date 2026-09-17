@@ -342,10 +342,12 @@ button {
 
   .search_container {
     width: 100%;
+    padding: 14px 10px; // тапабельная зона ~44px на мобильных
   }
 
   .button__filter {
     margin-right: 0;
+    min-height: 44px;
   }
 
   .filter_dropdown {

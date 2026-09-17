@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import * as api from "../../services/api";
 import { useEffect, useState } from "react";
 import styles from "./TransactionDetail.module.scss";
+import AttachmentsPanel from "../AttachmentsPanel";
 
 function TransactionDetail() {
   const { id } = useParams(); // Получаем id транзакции из URL
@@ -50,6 +51,7 @@ function TransactionDetail() {
         <p className={styles.label}>Дата:</p>
         <p>{new Date(transaction.date).toLocaleString()}</p>
       </div>
+      <AttachmentsPanel transactionId={id} />
     </div>
   );
 }

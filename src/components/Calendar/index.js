@@ -26,8 +26,8 @@ function Calendar() {
 
             return (
               <td
-                className={styles.day}
                 {...DayProps}
+                className={`${DayProps.className || ""} ${styles.day}`}
                 style={{ visibility: summ ? "visible" : "hidden" }}
               >
                 <Link to={`/transactions/date/${dayDate}`}>

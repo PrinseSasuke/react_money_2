@@ -1,8 +1,10 @@
 const express = require("express");
+const fs = require("fs");
 const pool = require("../db");
 const { requireAuth } = require("../middleware/auth");
 const { checkAndNotifyLimit } = require("../services/limitAlert");
 const { sendLimitAlert } = require("../services/telegramBot");
+const { upload } = require("../middleware/upload");
 
 const router = express.Router();
 router.use(requireAuth);
@@ -18,7 +20,27 @@ const mapRow = (row) => ({
   user_id: row.user_id,
   account_id: row.account_id,
   is_auto_generated: row.is_auto_generated,
+  attachment_count:
+    row.attachment_count !== undefined ? Number(row.attachment_count) : undefined,
 });
+
+const mapAttachmentRow = (row) => ({
+  id: row.id,
+  transaction_id: row.transaction_id,
+  file_name: row.file_name,
+  mime_type: row.mime_type,
+  file_size: row.file_size,
+  uploaded_at: row.uploaded_at,
+});
+
+// Проверяет, что транзакция принадлежит текущему пользователю
+async function assertOwnsTransaction(client, transactionId, userId) {
+  const { rows } = await client.query(
+    "SELECT id FROM transactions WHERE id = $1 AND user_id = $2",
+    [transactionId, userId]
+  );
+  return rows.length > 0;
+}
 
 // Проверяет, что счёт с данным id принадлежит текущему пользователю
 async function assertOwnsAccount(client, accountId, userId) {
@@ -33,7 +55,11 @@ async function assertOwnsAccount(client, accountId, userId) {
 router.get("/", async (req, res) => {
   try {
     const result = await pool.query(
-      "SELECT * FROM transactions WHERE user_id = $1 ORDER BY date DESC",
+      `SELECT t.*,
+              (SELECT COUNT(*) FROM transaction_attachments a WHERE a.transaction_id = t.id) AS attachment_count
+       FROM transactions t
+       WHERE t.user_id = $1
+       ORDER BY t.date DESC`,
       [req.userId]
     );
     res.json(result.rows.map(mapRow));
@@ -205,6 +231,61 @@ router.delete("/:id", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Ошибка удаления транзакции" });
+  }
+});
+
+// Загрузить вложение (чек/квитанция) к транзакции
+router.post(
+  "/:id/attachments",
+  (req, res, next) => {
+    upload.single("file")(req, res, (err) => {
+      if (err) return res.status(400).json({ error: err.message });
+      next();
+    });
+  },
+  async (req, res) => {
+    if (!req.file) {
+      return res.status(400).json({ error: "Файл не передан" });
+    }
+    try {
+      if (!(await assertOwnsTransaction(pool, req.params.id, req.userId))) {
+        fs.unlink(req.file.path, () => {});
+        return res.status(404).json({ error: "Транзакция не найдена" });
+      }
+      const result = await pool.query(
+        `INSERT INTO transaction_attachments (transaction_id, file_name, file_path, mime_type, file_size)
+         VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+        [
+          req.params.id,
+          req.file.originalname,
+          req.file.filename,
+          req.file.mimetype,
+          req.file.size,
+        ]
+      );
+      res.status(201).json(mapAttachmentRow(result.rows[0]));
+    } catch (err) {
+      fs.unlink(req.file.path, () => {});
+      console.error(err);
+      res.status(500).json({ error: "Ошибка загрузки вложения" });
+    }
+  }
+);
+
+// Список вложений транзакции
+router.get("/:id/attachments", async (req, res) => {
+  try {
+    if (!(await assertOwnsTransaction(pool, req.params.id, req.userId))) {
+      return res.status(404).json({ error: "Транзакция не найдена" });
+    }
+    const result = await pool.query(
+      "SELECT * FROM transaction_attachments WHERE transaction_id = $1 ORDER BY uploaded_at",
+      [req.params.id]
+    );
+    res.json(result.rows.map(mapAttachmentRow));
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Ошибка получения вложений" });
   }
 });
 

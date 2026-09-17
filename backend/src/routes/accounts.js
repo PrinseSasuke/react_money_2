@@ -114,13 +114,13 @@ router.delete("/:id", async (req, res) => {
       "SELECT id FROM accounts WHERE user_id = $1",
       [req.userId]
     );
+    if (!owned.rows.some((r) => r.id === req.params.id)) {
+      return res.status(404).json({ error: "Счёт не найден" });
+    }
     if (owned.rows.length <= 1) {
       return res
         .status(400)
         .json({ error: "Нельзя удалить единственный счёт" });
-    }
-    if (!owned.rows.some((r) => r.id === req.params.id)) {
-      return res.status(404).json({ error: "Счёт не найден" });
     }
 
     const { rows: txRows } = await client.query(

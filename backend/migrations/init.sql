@@ -29,6 +29,19 @@ CREATE TABLE IF NOT EXISTS transactions (
 CREATE INDEX IF NOT EXISTS idx_transactions_user_id ON transactions(user_id);
 CREATE INDEX IF NOT EXISTS idx_transactions_user_date ON transactions(user_id, date);
 
+-- Вложения к транзакциям (фото чеков, PDF-квитанции)
+CREATE TABLE IF NOT EXISTS transaction_attachments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  transaction_id UUID NOT NULL REFERENCES transactions(id) ON DELETE CASCADE,
+  file_name TEXT NOT NULL,
+  file_path TEXT NOT NULL,
+  mime_type TEXT NOT NULL,
+  file_size INTEGER NOT NULL,
+  uploaded_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_attachments_transaction_id ON transaction_attachments(transaction_id);
+
 -- Лимит расходов на пользователя
 CREATE TABLE IF NOT EXISTS limits (
   user_id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
