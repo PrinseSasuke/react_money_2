@@ -55,3 +55,101 @@ export const deleteTransaction = (id) =>
 export const getLimit = () => request("/limits");
 export const setLimit = (amount) =>
   request("/limits", { method: "PUT", body: JSON.stringify({ amount }) });
+
+// Счета
+export const getAccounts = () => request("/accounts");
+export const createAccount = (account) =>
+  request("/accounts", { method: "POST", body: JSON.stringify(account) });
+export const updateAccount = (id, account) =>
+  request(`/accounts/${id}`, { method: "PUT", body: JSON.stringify(account) });
+export const deleteAccount = (id, reassignTo) =>
+  request(`/accounts/${id}`, {
+    method: "DELETE",
+    body: JSON.stringify({ reassignTo }),
+  });
+
+// Курсы валют
+export const getExchangeRates = () => request("/exchange-rates");
+
+// Регулярные платежи
+export const getRecurring = () => request("/recurring");
+export const createRecurring = (item) =>
+  request("/recurring", { method: "POST", body: JSON.stringify(item) });
+export const updateRecurring = (id, item) =>
+  request(`/recurring/${id}`, { method: "PUT", body: JSON.stringify(item) });
+export const deleteRecurring = (id) =>
+  request(`/recurring/${id}`, { method: "DELETE" });
+
+// Telegram
+export const getTelegramStatus = () => request("/telegram/status");
+export const getTelegramLinkCode = () =>
+  request("/telegram/link-code", { method: "POST" });
+
+// Вложения (чеки/квитанции)
+export const getAttachments = (transactionId) =>
+  request(`/transactions/${transactionId}/attachments`);
+export const deleteAttachment = (attachmentId) =>
+  request(`/attachments/${attachmentId}`, { method: "DELETE" });
+
+// Загрузка — не через request(), тело FormData, а не JSON
+export async function uploadAttachment(transactionId, file) {
+  const token = getToken();
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(
+    `${API_URL}/transactions/${transactionId}/attachments`,
+    {
+      method: "POST",
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+      body: formData,
+    }
+  );
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(data.error || "Ошибка загрузки файла");
+  }
+  return data;
+}
+
+// Скачивание/превью — ответ бинарный, нужен Bearer-токен в заголовке
+// (недоступно обычному <img src>/<a href>), поэтому fetch + blob URL.
+export async function fetchAttachmentBlob(attachmentId) {
+  const token = getToken();
+  const response = await fetch(`${API_URL}/attachments/${attachmentId}`, {
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  });
+  if (!response.ok) {
+    const data = await response.json().catch(() => ({}));
+    throw new Error(data.error || "Ошибка получения файла");
+  }
+  return response.blob();
+}
+
+// Экспорт — отдельная функция, а не через request(), т.к. ответ бинарный,
+// а не JSON.
+export async function downloadExport(type, params = {}) {
+  const token = getToken();
+  const query = new URLSearchParams(
+    Object.entries(params).filter(([, v]) => v !== undefined && v !== null && v !== "")
+  ).toString();
+
+  const response = await fetch(`${API_URL}/export/${type}?${query}`, {
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  });
+  if (!response.ok) {
+    const data = await response.json().catch(() => ({}));
+    throw new Error(data.error || "Ошибка экспорта");
+  }
+
+  const blob = await response.blob();
+  const filename = type === "excel" ? "transactions.xlsx" : "transactions.pdf";
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}

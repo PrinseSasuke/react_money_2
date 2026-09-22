@@ -40,7 +40,8 @@ $screen-xl: 960px;
 .form {
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
 }
 .label {
   @include inter();
@@ -58,23 +59,23 @@ $screen-xl: 960px;
   @include inter();
   padding: 8px 12px;
   font-size: $fs-2;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-mid);
   border-radius: 4px;
   width: 200px;
   background-color: var(--bg-surface);
   color: var(--text-primary);
   transition: box-shadow 0.3s ease, transform 0.2s ease; /* Добавляем анимацию трансформации */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px var(--shadow-color);
 
   &:hover {
     transform: scale(1.05); /* Увеличение */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px var(--shadow-color);
     color: var(--text-primary);
   }
 
   &:active {
     transform: scale(1.05); /* Увеличение */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Убираем тень */
+    box-shadow: 0 2px 4px var(--shadow-color); /* Убираем тень */
   }
 }
 .select {
@@ -84,7 +85,7 @@ $screen-xl: 960px;
   &:hover,
   &:focus {
     transform: scale(1.05); /* Увеличение */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px var(--shadow-color);
     border-color: var(--bg-surface);
   }
 }
@@ -141,10 +142,62 @@ fieldset {
 }
 .radioLabel {
   &Income {
-    color: $color-green-text;
+    color: var(--color-income-text);
     margin-right: $base * 3;
   }
   &Expense {
-    color: $color--red-text;
+    color: var(--color-expense-text);
+  }
+}
+
+@media (max-width: $screen-md - 1) {
+  .flexContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $base * 2;
+  }
+
+  .label {
+    margin-right: 0;
+  }
+
+  fieldset {
+    flex-direction: column;
+    gap: $base * 3;
+  }
+
+  .input,
+  .select,
+  .custom_date_input {
+    width: 100%;
+  }
+
+  // Тапабельная зона на мобильных — не меньше 44px по высоте (стандарт для пальца)
+  .input,
+  .select,
+  .textarea,
+  .custom_date_input {
+    min-height: 44px;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  .button__submit {
+    min-height: 44px;
+    padding: $base * 3 $base * 6;
+  }
+
+  .close {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -#{$base * 3} -#{$base * 3} -#{$base * 3} 0;
+
+    img {
+      width: 18px;
+      height: 16px;
+    }
   }
 }

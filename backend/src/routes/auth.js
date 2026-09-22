@@ -37,6 +37,11 @@ router.post("/register", async (req, res) => {
     await pool.query("INSERT INTO limits (user_id, amount) VALUES ($1, 50000)", [
       user.id,
     ]);
+    await pool.query(
+      `INSERT INTO accounts (user_id, name, type, currency, initial_balance)
+       VALUES ($1, 'Основной', 'card', 'RUB', 0)`,
+      [user.id]
+    );
 
     const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
       expiresIn: "30d",

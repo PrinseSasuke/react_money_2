@@ -52,7 +52,7 @@ $screen-xl: 960px;
       font-size: $fs-2;
       span {
         font-weight: $fw-light;
-        color: #6e6893;
+        color: var(--text-secondary);
       }
     }
   }
@@ -64,16 +64,46 @@ $screen-xl: 960px;
   }
 
   th {
-    background-color: #d9d5ec;
+    background-color: var(--bg-accent-soft);
     padding: $base * 4;
     text-align: left;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid var(--border-mid);
     font-weight: $fw-semi;
     font-size: $fs-3;
     text-transform: uppercase;
   }
   td {
     padding: $base * 4;
-    border-bottom: 1px solid #d9d5ec;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  tbody tr {
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: var(--bg-hover);
+    }
+  }
+}
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cardList {
+  display: none;
+  flex-direction: column;
+  gap: $base * 3;
+}
+
+@media (max-width: 599px) {
+  .tableWrapper {
+    display: none;
+  }
+
+  .cardList {
+    display: flex;
   }
 }

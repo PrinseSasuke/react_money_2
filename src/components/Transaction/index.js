@@ -1,54 +1,27 @@
 import React from "react";
 import styles from "./Transaction.module.scss";
 import * as api from "../../services/api";
-import { useOutletContext } from "react-router-dom";
 import TransactionModal from "../TransactionModal";
 import { Link } from "react-router-dom";
-function Transaction({ date, type, source, description, summ, currency, id }) {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const { transactions, setTransactions } = useOutletContext();
-  //Модалка
-  const [isEditModalOpen, setIsEditModalOpen] = React.useState(false);
-  const [transactionToEdit, setTransactionToEdit] = React.useState(false);
+import { useTransactionActions } from "./useTransactionActions";
+import { formatDate } from "./formatDate";
 
-  const deleteTransaction = (id) => {
-    setTransactions((prev) =>
-      prev.filter((transaction) => transaction.id !== id)
-    );
-  };
-  const handleDelete = async () => {
-    try {
-      await api.deleteTransaction(id);
-      deleteTransaction(id);
-      setIsMenuOpen(false);
-    } catch (error) {
-      alert(error.message);
-    }
-  };
-  const handleEdit = () => {
-    setTransactionToEdit({
-      id,
-      date,
-      type,
-      source,
-      description,
-      summ,
-      currency,
-    });
-    setIsEditModalOpen(true);
-    setIsMenuOpen(false);
-  };
-  const handleUpdate = (updatedTr) => {
-    setTransactions((prev) => {
-      return prev.map((transaction) =>
-        transaction.id === updatedTr.id ? updatedTr : transaction
-      );
-    });
-    setIsEditModalOpen(false);
-  };
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+function Transaction(props) {
+  const { date, type, source, description, summ, currency, id, attachment_count } =
+    props;
+  const {
+    isMenuOpen,
+    setIsMenuOpen,
+    toggleMenu,
+    isEditModalOpen,
+    setIsEditModalOpen,
+    transactionToEdit,
+    handleDelete,
+    handleEdit,
+    handleUpdate,
+    colors,
+  } = useTransactionActions(props);
+
   const handleOutsideClick = (e) => {
     if (e.target.closest(`.${styles.dots}`)) return;
     setIsMenuOpen(false);
@@ -59,39 +32,23 @@ function Transaction({ date, type, source, description, summ, currency, id }) {
       document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
-  const COLORS = {
-    Доход: ["#CDFFCD", "#007F00"],
-    Расход: ["#FFE0E0", "#D30000"],
-  };
-  const colors = COLORS[type];
-  // const formatDate = (date) => {
-  //   const dateObj = new Date(date);
-  //   return new Intl.DateTimeFormat("ru-RU", {
-  //     day: "numeric",
-  //     month: "long",
-  //     year: "numeric",
-  //   }).format(dateObj);
-  // };
-  const formatDate = (date) => {
-    if (!date) return "Некорректная дата";
 
-    const dateObj = new Date(date);
-
-    if (isNaN(dateObj)) return "Некорректная дата";
-
-    return new Intl.DateTimeFormat("ru-RU", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    }).format(dateObj);
-  };
   return (
     <>
       <tr>
-        <td className={styles.date_td}>{formatDate(date)}</td>
+        <td className={styles.date_td}>
+          {formatDate(date)}
+          {props.is_auto_generated && (
+            <span title="Создано автоматически" style={{ marginLeft: "6px" }}>
+              🔁
+            </span>
+          )}
+          {attachment_count > 0 && (
+            <span title="Есть вложение" style={{ marginLeft: "6px" }}>
+              📎
+            </span>
+          )}
+        </td>
         <td className={styles.details_td}>
           <span
             className={styles.table__status}

@@ -14,6 +14,8 @@ import TransactionDetail from "./components/TransactionDetail";
 import LimitsPage from "./pages/LimitsPage";
 import Excel from "./pages/Excel";
 import ForecastPage from "./pages/Forecast";
+import AccountsPage from "./pages/AccountsPage";
+import RecurringPage from "./pages/RecurringPage";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const router = createBrowserRouter([
@@ -86,6 +88,22 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <LimitsPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/accounts",
+        element: (
+          <ProtectedRoute>
+            <AccountsPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/recurring",
+        element: (
+          <ProtectedRoute>
+            <RecurringPage />
           </ProtectedRoute>
         ),
       }

@@ -20,7 +20,7 @@ function Side() {
       </Link>
       <ul className={styles.menu}>
         <li className={styles.menu__item} onClick={() => setActiveItem("home")}>
-          <Link to="/" style={{ display: "flex" }}>
+          <Link to="/" style={{ display: "flex" }} aria-label="Главная">
             <svg
               width="19"
               height="17"
@@ -40,7 +40,7 @@ function Side() {
           className={styles.menu__item}
           onClick={() => setActiveItem("history")}
         >
-          <Link to="/transactions" style={{ display: "flex" }}>
+          <Link to="/transactions" style={{ display: "flex" }} aria-label="Мои операции">
             <svg
               width="21"
               height="18"
@@ -64,7 +64,7 @@ function Side() {
           className={styles.menu__item}
           onClick={() => setActiveItem("import")}
         >
-          <Link to="/import" style={{ display: "flex" }}>
+          <Link to="/import" style={{ display: "flex" }} aria-label="Импорт">
             <svg
               width="21"
               height="21"
@@ -85,7 +85,7 @@ function Side() {
           className={styles.menu__item}
           onClick={() => setActiveItem("stats")}
         >
-          <Link to="/stats" style={{ display: "flex" }}>
+          <Link to="/stats" style={{ display: "flex" }} aria-label="Статистика">
             <svg
               width="21"
               height="18"
@@ -114,7 +114,7 @@ function Side() {
           className={styles.menu__item}
           onClick={() => setActiveItem("forecast")}
         >
-          <Link to="/forecast" style={{ display: "flex" }}>
+          <Link to="/forecast" style={{ display: "flex" }} aria-label="Прогноз">
             <svg
               width="20"
               height="20"
@@ -146,7 +146,7 @@ function Side() {
           className={styles.menu__item}
           onClick={() => setActiveItem("limit")}
         >
-          <Link to="/limit" style={{ display: "flex" }}>
+          <Link to="/limit" style={{ display: "flex" }} aria-label="Лимит">
             <svg
               width="21"
               height="21"
@@ -175,6 +175,62 @@ function Side() {
             </svg>
 
             <span>Лимит</span>
+          </Link>
+        </li>
+        <li
+          className={styles.menu__item}
+          onClick={() => setActiveItem("accounts")}
+        >
+          <Link to="/accounts" style={{ display: "flex" }} aria-label="Счета">
+            <svg
+              width="21"
+              height="17"
+              viewBox="0 0 21 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="0.5"
+                y="0.5"
+                width="20"
+                height="16"
+                rx="2"
+                stroke={getFillColor("accounts")}
+              />
+              <path d="M0.5 5.5H20.5" stroke={getFillColor("accounts")} />
+              <rect x="3" y="10" width="6" height="2.5" fill={getFillColor("accounts")} />
+            </svg>
+
+            <span>Счета</span>
+          </Link>
+        </li>
+        <li
+          className={styles.menu__item}
+          onClick={() => setActiveItem("recurring")}
+        >
+          <Link to="/recurring" style={{ display: "flex" }} aria-label="Регулярные">
+            <svg
+              width="19"
+              height="19"
+              viewBox="0 0 19 19"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17 9.5C17 13.6421 13.6421 17 9.5 17C5.35786 17 2 13.6421 2 9.5C2 5.35786 5.35786 2 9.5 2"
+                stroke={getFillColor("recurring")}
+                stroke-linecap="round"
+              />
+              <path
+                d="M14 2L17 2L17 5"
+                stroke={getFillColor("recurring")}
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path d="M17 2L12.5 6.5" stroke={getFillColor("recurring")} stroke-linecap="round" />
+            </svg>
+
+            <span>Регулярные</span>
           </Link>
         </li>
         {/* <li
@@ -219,7 +275,7 @@ function Side() {
       </button>
 
       <LoginButton />
-      <div className={styles.profie__wrapper}>
+      <div className={styles.profile__wrapper}>
         <Profile />
         <LogoutButton />
       </div>

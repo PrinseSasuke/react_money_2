@@ -26,8 +26,8 @@ function Calendar() {
 
             return (
               <td
-                className={styles.day}
                 {...DayProps}
+                className={`${DayProps.className || ""} ${styles.day}`}
                 style={{ visibility: summ ? "visible" : "hidden" }}
               >
                 <Link to={`/transactions/date/${dayDate}`}>
@@ -35,8 +35,8 @@ function Calendar() {
                     className={styles.day_buttton}
                     disabled={!useDayDate(dayDate)}
                     style={{
-                      backgroundColor: summ > 0 ? "#CDFFCD" : "#FFE0E0",
-                      color: summ > 0 ? "#007F00" : "#D30000",
+                      backgroundColor: summ > 0 ? "var(--color-income-bg)" : "var(--color-expense-bg)",
+                      color: summ > 0 ? "var(--color-income-text)" : "var(--color-expense-text)",
                     }}
                   >
                     <div className={styles.day__date}>{dayDate}</div>
