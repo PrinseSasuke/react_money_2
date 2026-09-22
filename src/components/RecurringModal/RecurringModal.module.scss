@@ -64,3 +64,35 @@ $fs-4: 24px;
   display: block;
   margin: 0 auto;
 }
+
+@media (max-width: 767px) {
+  .radioRow {
+    flex-wrap: wrap;
+    gap: $base * 3;
+  }
+
+  .input,
+  .select {
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  .button__submit {
+    min-height: 44px;
+    width: 100%;
+  }
+
+  .close {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -12px -12px -12px 0;
+
+    img {
+      width: 18px;
+      height: 16px;
+    }
+  }
+}
