@@ -1,0 +1,16 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: StressChaos
+metadata:
+  name: staircase-step-1
+  namespace: react-money
+spec:
+  mode: one
+  selector:
+    namespaces: [react-money]
+    pods:
+      react-money: ["backend-8fd64c8cc-rcm8x"]
+  stressors:
+    memory:
+      workers: 1
+      size: "40MiB"
+  duration: "40s"
