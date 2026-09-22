@@ -1,0 +1,538 @@
+openapi: 3.0.3
+info:
+  title: react-money API
+  description: >
+    Сгенерировано вручную по фактическому коду backend/src/routes/*.js
+    (в проекте не было готовой OpenAPI-спецификации). Открой в любом
+    Swagger UI (например https://editor.swagger.io) для интерактивного
+    просмотра.
+  version: "1.0.0"
+servers:
+  - url: /api
+security:
+  - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+    User:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        email: { type: string, format: email }
+        displayName: { type: string }
+    AuthResponse:
+      type: object
+      properties:
+        token: { type: string }
+        user: { $ref: "#/components/schemas/User" }
+    Transaction:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        type: { type: string, enum: ["Доход", "Расход"] }
+        source: { type: string }
+        description: { type: string }
+        summ: { type: number }
+        currency: { type: string }
+        date: { type: string, format: date-time }
+        user_id: { type: string, format: uuid }
+        account_id: { type: string, format: uuid, nullable: true }
+        is_auto_generated: { type: boolean }
+        attachment_count: { type: integer }
+    TransactionInput:
+      type: object
+      required: [type, summ, account_id]
+      properties:
+        type: { type: string, enum: ["Доход", "Расход"] }
+        source: { type: string }
+        description: { type: string }
+        summ: { type: number }
+        currency: { type: string, default: "Рубль" }
+        date: { type: string, format: date-time }
+        account_id: { type: string, format: uuid }
+    Account:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string }
+        type: { type: string, enum: [cash, card, savings] }
+        currency: { type: string, enum: [RUB, USD, EUR] }
+        initialBalance: { type: number }
+        balance: { type: number }
+        createdAt: { type: string, format: date-time }
+    AccountInput:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string }
+        type: { type: string, enum: [cash, card, savings] }
+        currency: { type: string, enum: [RUB, USD, EUR] }
+        initialBalance: { type: number }
+    Recurring:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        account_id: { type: string, format: uuid, nullable: true }
+        type: { type: string, enum: ["Доход", "Расход"] }
+        source: { type: string }
+        description: { type: string }
+        summ: { type: number }
+        currency: { type: string }
+        frequency: { type: string, enum: [daily, weekly, monthly] }
+        next_run_date: { type: string, format: date }
+        active: { type: boolean }
+        created_at: { type: string, format: date-time }
+    Attachment:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        transaction_id: { type: string, format: uuid }
+        file_name: { type: string }
+        mime_type: { type: string }
+        file_size: { type: integer }
+        uploaded_at: { type: string, format: date-time }
+  responses:
+    NotFound:
+      description: Не найдено
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+    Unauthorized:
+      description: Не авторизован / невалидный токен
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+    BadRequest:
+      description: Ошибка валидации
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+
+paths:
+  /health:
+    get:
+      summary: Проверка живости сервиса
+      security: []
+      responses:
+        "200": { description: OK }
+
+  /auth/register:
+    post:
+      summary: Регистрация
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string, minLength: 6 }
+                displayName: { type: string }
+      responses:
+        "201":
+          description: Создан
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AuthResponse" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "409": { description: Email уже занят }
+
+  /auth/login:
+    post:
+      summary: Вход
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string }
+                password: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AuthResponse" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+  /auth/me:
+    get:
+      summary: Текущий пользователь
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user: { $ref: "#/components/schemas/User" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+  /transactions:
+    get:
+      summary: Список транзакций текущего пользователя
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Transaction" }
+    post:
+      summary: Создать транзакцию
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/TransactionInput" }
+      responses:
+        "201":
+          description: Создана
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Transaction" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+
+  /transactions/bulk:
+    post:
+      summary: Массовое создание транзакций (импорт из Excel)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [transactions]
+              properties:
+                transactions:
+                  type: array
+                  items: { $ref: "#/components/schemas/TransactionInput" }
+      responses:
+        "201":
+          description: Созданы
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Transaction" }
+
+  /transactions/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string, format: uuid }
+    get:
+      summary: Одна транзакция
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Transaction" }
+        "404": { $ref: "#/components/responses/NotFound" }
+    put:
+      summary: Обновить транзакцию (частично)
+      requestBody:
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/TransactionInput" }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Transaction" }
+        "404": { $ref: "#/components/responses/NotFound" }
+    delete:
+      summary: Удалить транзакцию
+      responses:
+        "200": { description: Удалена }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /transactions/{id}/attachments:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string, format: uuid }
+    get:
+      summary: Список вложений транзакции
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Attachment" }
+        "404": { $ref: "#/components/responses/NotFound" }
+    post:
+      summary: Загрузить вложение (JPG/PNG/PDF, до 10MB)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file: { type: string, format: binary }
+      responses:
+        "201":
+          description: Загружено
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Attachment" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /limits:
+    get:
+      summary: Месячный лимит расходов
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  amount: { type: number }
+    put:
+      summary: Установить лимит
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [amount]
+              properties:
+                amount: { type: number, minimum: 0 }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  amount: { type: number }
+        "400": { $ref: "#/components/responses/BadRequest" }
+
+  /accounts:
+    get:
+      summary: Список счетов с балансом
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Account" }
+    post:
+      summary: Создать счёт
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/AccountInput" }
+      responses:
+        "201":
+          description: Создан
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Account" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+
+  /accounts/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string, format: uuid }
+    put:
+      summary: Обновить счёт
+      requestBody:
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/AccountInput" }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Account" }
+        "404": { $ref: "#/components/responses/NotFound" }
+    delete:
+      summary: Удалить счёт (нельзя удалить последний; нужен reassignTo, если есть транзакции)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reassignTo: { type: string, format: uuid }
+      responses:
+        "200": { description: Удалён }
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "409": { description: "Есть транзакции — нужен reassignTo" }
+
+  /exchange-rates:
+    get:
+      summary: Последние закэшированные курсы валют к рублю
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: { type: number }
+                example: { RUB: 1, USD: 93.44, EUR: 101.12 }
+
+  /recurring:
+    get:
+      summary: Список повторяющихся платежей
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Recurring" }
+    post:
+      summary: Создать шаблон повторяющегося платежа
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [type, summ, frequency, next_run_date]
+              properties:
+                account_id: { type: string, format: uuid, nullable: true }
+                type: { type: string, enum: ["Доход", "Расход"] }
+                source: { type: string }
+                description: { type: string }
+                summ: { type: number }
+                currency: { type: string }
+                frequency: { type: string, enum: [daily, weekly, monthly] }
+                next_run_date: { type: string, format: date }
+      responses:
+        "201":
+          description: Создан
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Recurring" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+
+  /recurring/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string, format: uuid }
+    put:
+      summary: Обновить шаблон (в т.ч. active — приостановить/включить)
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Recurring" }
+        "404": { $ref: "#/components/responses/NotFound" }
+    delete:
+      summary: Удалить шаблон
+      responses:
+        "200": { description: Удалён }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /export/excel:
+    get:
+      summary: Экспорт транзакций в Excel
+      parameters:
+        - { name: from, in: query, schema: { type: string, format: date } }
+        - { name: to, in: query, schema: { type: string, format: date } }
+        - { name: accountId, in: query, schema: { type: string, format: uuid } }
+      responses:
+        "200":
+          description: Бинарный .xlsx
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet: {}
+
+  /export/pdf:
+    get:
+      summary: Экспорт транзакций в PDF
+      parameters:
+        - { name: from, in: query, schema: { type: string, format: date } }
+        - { name: to, in: query, schema: { type: string, format: date } }
+      responses:
+        "200":
+          description: Бинарный .pdf
+          content:
+            application/pdf: {}
+
+  /telegram/status:
+    get:
+      summary: Привязан ли Telegram к аккаунту
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  linked: { type: boolean }
+
+  /telegram/link-code:
+    post:
+      summary: Сгенерировать одноразовый код привязки Telegram
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code: { type: string }
+
+  /attachments/{attachmentId}:
+    parameters:
+      - name: attachmentId
+        in: path
+        required: true
+        schema: { type: string, format: uuid }
+    get:
+      summary: Скачать/превью вложения (бинарный файл)
+      responses:
+        "200": { description: Бинарное содержимое файла }
+        "404": { $ref: "#/components/responses/NotFound" }
+    delete:
+      summary: Удалить вложение
+      responses:
+        "200": { description: Удалено }
+        "404": { $ref: "#/components/responses/NotFound" }
