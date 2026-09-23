@@ -50,7 +50,7 @@ export default function Topbar({ isDesktop, onMenuClick }) {
       sx={{ minHeight: 72, bgcolor: (t) => alpha(t.palette.background.default, 0.85) }}
     >
       {isDesktop ? (
-        <div className="min-w-0">
+        <div className="greeting min-w-0">
           <Typography variant="subtitle1" component="p" noWrap>
             Здравствуйте, {shortName}
           </Typography>

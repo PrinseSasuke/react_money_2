@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { List, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import LogoutRounded from "@mui/icons-material/LogoutRounded";
 import Brand from "./Brand";
 import { MAIN_NAV, SECONDARY_NAV } from "./navItems";
@@ -27,12 +27,14 @@ function NavList({ items, onNavigate }) {
   return (
     <List disablePadding>
       {items.map(({ to, label, icon: Icon, end }) => (
-        <ListItemButton key={to} component={NavLink} to={to} end={end} onClick={onNavigate} sx={itemSx}>
-          <ListItemIcon>
-            <Icon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary={label} />
-        </ListItemButton>
+        <ListItem key={to} disablePadding>
+          <ListItemButton component={NavLink} to={to} end={end} onClick={onNavigate} sx={itemSx}>
+            <ListItemIcon>
+              <Icon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary={label} />
+          </ListItemButton>
+        </ListItem>
       ))}
     </List>
   );
