@@ -8,6 +8,8 @@ RUN npm install
 
 COPY public ./public
 COPY src ./src
+# Без конфига CRA не подключает Tailwind — все утилиты разметки пропали бы из CSS.
+COPY tailwind.config.js ./
 
 ARG REACT_APP_API_URL=http://localhost:4000/api
 ENV REACT_APP_API_URL=$REACT_APP_API_URL
