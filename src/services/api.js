@@ -16,7 +16,9 @@ async function request(path, options = {}) {
   const data = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(data.error || "Ошибка запроса к серверу");
+    const error = new Error(data.error || "Ошибка запроса к серверу");
+    error.status = response.status;
+    throw error;
   }
   return data;
 }

@@ -24,11 +24,13 @@ test("login page has no serious/critical a11y violations", async ({ page }) => {
 test("home page has no serious/critical a11y violations", async ({ page }) => {
   await loginAsNewUser(page);
   await page.goto("/");
+  await page.waitForLoadState("networkidle");
   await expectNoSeriousViolations(page);
 });
 
 test("transactions page has no serious/critical a11y violations", async ({ page }) => {
   await loginAsNewUser(page);
   await page.goto("/transactions");
+  await page.waitForLoadState("networkidle");
   await expectNoSeriousViolations(page);
 });

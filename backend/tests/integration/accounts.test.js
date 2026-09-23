@@ -1,4 +1,5 @@
 const { app, request, registerUser, registerUserWithAccount } = require("../helpers");
+const pool = require("../../src/db");
 
 describe("accounts", () => {
   it("gives a new user a default account on registration", async () => {
@@ -39,6 +40,32 @@ describe("accounts", () => {
     const res = await request(app).get("/api/accounts").set("Authorization", `Bearer ${token}`);
     const account = res.body.find((a) => a.id === accountId);
     expect(account.balance).toBe(700);
+  });
+
+  it("converts transactions in another currency at the CBR rate", async () => {
+    const { token, accountId } = await registerUserWithAccount();
+    const today = new Date().toISOString().slice(0, 10);
+    await pool.query(
+      `INSERT INTO exchange_rates (currency_code, rate_to_rub, fetched_at)
+       VALUES ('USD', 90, $1)
+       ON CONFLICT (currency_code, fetched_at) DO NOTHING`,
+      [today]
+    );
+    const rates = await request(app).get("/api/exchange-rates").set("Authorization", `Bearer ${token}`);
+    const usd = rates.body.USD;
+
+    await request(app)
+      .post("/api/transactions")
+      .set("Authorization", `Bearer ${token}`)
+      .send({ type: "Доход", summ: 1000, currency: "Рубль", account_id: accountId });
+    await request(app)
+      .post("/api/transactions")
+      .set("Authorization", `Bearer ${token}`)
+      .send({ type: "Расход", summ: 10, currency: "usd", account_id: accountId });
+
+    const res = await request(app).get("/api/accounts").set("Authorization", `Bearer ${token}`);
+    const account = res.body.find((a) => a.id === accountId);
+    expect(account.balance).toBeCloseTo(1000 - 10 * usd, 2);
   });
 
   it("blocks deleting the user's last remaining account", async () => {

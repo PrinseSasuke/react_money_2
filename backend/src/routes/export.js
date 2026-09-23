@@ -4,6 +4,8 @@ const XLSX = require("xlsx");
 const PDFDocument = require("pdfkit");
 const pool = require("../db");
 const { requireAuth } = require("../middleware/auth");
+const { getLatestRates } = require("../services/exchangeRates");
+const { toRub, round2 } = require("../services/currency");
 
 const router = express.Router();
 router.use(requireAuth);
@@ -45,7 +47,10 @@ async function fetchTransactions(userId, from, to, accountId) {
 router.get("/excel", async (req, res) => {
   try {
     const { from, to, accountId } = req.query;
-    const transactions = await fetchTransactions(req.userId, from, to, accountId);
+    const [transactions, rates] = await Promise.all([
+      fetchTransactions(req.userId, from, to, accountId),
+      getLatestRates(),
+    ]);
 
     const data = transactions.map((t) => ({
       Дата: new Date(t.date).toLocaleString("ru-RU"),
@@ -54,6 +59,7 @@ router.get("/excel", async (req, res) => {
       Описание: t.description,
       Сумма: Number(t.summ),
       Валюта: t.currency,
+      "Сумма в ₽": round2(toRub(Number(t.summ), t.currency, rates)),
     }));
 
     const worksheet = XLSX.utils.json_to_sheet(data);
@@ -76,7 +82,10 @@ router.get("/excel", async (req, res) => {
 router.get("/pdf", async (req, res) => {
   try {
     const { from, to } = req.query;
-    const transactions = await fetchTransactions(req.userId, from, to, null);
+    const [transactions, rates] = await Promise.all([
+      fetchTransactions(req.userId, from, to, null),
+      getLatestRates(),
+    ]);
 
     const doc = new PDFDocument({ margin: 40 });
     res.setHeader("Content-Type", "application/pdf");
@@ -101,8 +110,9 @@ router.get("/pdf", async (req, res) => {
     doc.fontSize(10);
     transactions.forEach((t) => {
       const summ = Number(t.summ);
-      if (t.type === "Доход") totalIncome += summ;
-      else totalExpense += summ;
+      const summRub = toRub(summ, t.currency, rates);
+      if (t.type === "Доход") totalIncome += summRub;
+      else totalExpense += summRub;
       const dateStr = new Date(t.date).toLocaleDateString("ru-RU");
       doc.text(
         `${dateStr}   ${t.type}   ${t.source}   ${t.description || ""}   ${summ} ${t.currency}`
@@ -111,9 +121,10 @@ router.get("/pdf", async (req, res) => {
 
     doc.moveDown();
     doc.fontSize(12);
-    doc.text(`Доход: ${totalIncome.toFixed(2)}`);
-    doc.text(`Расход: ${totalExpense.toFixed(2)}`);
-    doc.text(`Баланс: ${(totalIncome - totalExpense).toFixed(2)}`);
+    doc.text(`Доход: ${totalIncome.toFixed(2)} ₽`);
+    doc.text(`Расход: ${totalExpense.toFixed(2)} ₽`);
+    doc.text(`Баланс: ${(totalIncome - totalExpense).toFixed(2)} ₽`);
+    doc.fontSize(9).text("Суммы в валюте пересчитаны в рубли по последнему курсу ЦБ РФ.");
 
     doc.end();
   } catch (err) {

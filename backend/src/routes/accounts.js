@@ -1,6 +1,8 @@
 const express = require("express");
 const pool = require("../db");
 const { requireAuth } = require("../middleware/auth");
+const { getLatestRates } = require("../services/exchangeRates");
+const { convert, round2 } = require("../services/currency");
 
 const router = express.Router();
 router.use(requireAuth);
@@ -18,25 +20,35 @@ const mapRow = (row) => ({
   createdAt: row.created_at,
 });
 
-// Получить все счета текущего пользователя вместе с вычисленным балансом
+// Получить все счета текущего пользователя вместе с вычисленным балансом.
+// Баланс — в валюте счёта: операция в другой валюте пересчитывается по
+// последнему курсу ЦБ (раньше суммы складывались как есть, $ шли как ₽).
 router.get("/", async (req, res) => {
   try {
-    const result = await pool.query(
-      `SELECT a.*,
-              a.initial_balance
-                + COALESCE(SUM(CASE
-                    WHEN t.type = 'Доход' THEN t.summ
-                    WHEN t.type = 'Расход' THEN -t.summ
-                    ELSE 0
-                  END), 0) AS balance
-       FROM accounts a
-       LEFT JOIN transactions t ON t.account_id = a.id
-       WHERE a.user_id = $1
-       GROUP BY a.id
-       ORDER BY a.created_at`,
-      [req.userId]
-    );
-    res.json(result.rows.map(mapRow));
+    const [accountsResult, sumsResult, rates] = await Promise.all([
+      pool.query("SELECT * FROM accounts WHERE user_id = $1 ORDER BY created_at", [req.userId]),
+      pool.query(
+        `SELECT account_id, currency,
+                SUM(CASE
+                  WHEN type = 'Доход' THEN summ
+                  WHEN type = 'Расход' THEN -summ
+                  ELSE 0
+                END) AS net
+         FROM transactions
+         WHERE user_id = $1 AND account_id IS NOT NULL
+         GROUP BY account_id, currency`,
+        [req.userId]
+      ),
+      getLatestRates(),
+    ]);
+
+    const accounts = accountsResult.rows.map((account) => {
+      const movement = sumsResult.rows
+        .filter((row) => row.account_id === account.id)
+        .reduce((acc, row) => acc + convert(Number(row.net), row.currency, account.currency, rates), 0);
+      return { ...account, balance: round2(Number(account.initial_balance) + movement) };
+    });
+    res.json(accounts.map(mapRow));
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Ошибка получения счетов" });

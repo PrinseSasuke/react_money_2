@@ -1,4 +1,6 @@
 const pool = require("../db");
+const { getLatestRates } = require("./exchangeRates");
+const { toRub } = require("./currency");
 
 // Проверяет лимит расходов пользователя за текущий месяц; если он превышен
 // и уведомление за этот месяц ещё не отправлялось — вызывает sendMessage
@@ -22,14 +24,17 @@ async function checkAndNotifyLimit(userId, sendMessage) {
   const limit = limitRow ? Number(limitRow.amount) : 50000;
 
   const currentMonth = new Date().toISOString().slice(0, 7); // "2026-09"
-  const {
-    rows: [sumRow],
-  } = await pool.query(
-    `SELECT COALESCE(SUM(summ), 0) AS total FROM transactions
-     WHERE user_id = $1 AND type = 'Расход' AND to_char(date, 'YYYY-MM') = $2`,
-    [userId, currentMonth]
-  );
-  const spent = Number(sumRow.total);
+  // Лимит задан в рублях — расходы в других валютах пересчитываем по курсу ЦБ.
+  const [{ rows: sums }, rates] = await Promise.all([
+    pool.query(
+      `SELECT currency, SUM(summ) AS total FROM transactions
+       WHERE user_id = $1 AND type = 'Расход' AND to_char(date, 'YYYY-MM') = $2
+       GROUP BY currency`,
+      [userId, currentMonth]
+    ),
+    getLatestRates(),
+  ]);
+  const spent = sums.reduce((acc, row) => acc + toRub(Number(row.total), row.currency, rates), 0);
 
   if (spent > limit && user.last_limit_notified_month !== currentMonth) {
     await sendMessage(
