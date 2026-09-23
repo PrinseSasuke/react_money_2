@@ -2,7 +2,8 @@ import React from "react";
 import styles from "./Transaction.module.scss";
 import * as api from "../../services/api";
 import TransactionModal from "../TransactionModal";
-import { Link } from "react-router-dom";
+import DropdownMenu from "../DropdownMenu";
+import { Link, useNavigate } from "react-router-dom";
 import { useTransactionActions } from "./useTransactionActions";
 import { formatDate } from "./formatDate";
 
@@ -21,21 +22,34 @@ function Transaction(props) {
     handleUpdate,
     colors,
   } = useTransactionActions(props);
+  const navigate = useNavigate();
+  const dotsRef = React.useRef(null);
+  const menuRef = React.useRef(null);
 
-  const handleOutsideClick = (e) => {
-    if (e.target.closest(`.${styles.dots}`)) return;
-    setIsMenuOpen(false);
-  };
+  const closeMenu = React.useCallback(() => setIsMenuOpen(false), [setIsMenuOpen]);
+
+  const handleOutsideClick = React.useCallback(
+    (e) => {
+      if (dotsRef.current?.contains(e.target)) return;
+      if (menuRef.current?.contains(e.target)) return;
+      closeMenu();
+    },
+    [closeMenu]
+  );
   React.useEffect(() => {
     document.addEventListener("click", handleOutsideClick);
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
-  }, []);
+  }, [handleOutsideClick]);
 
   return (
     <>
-      <tr>
+      <tr
+        className={styles.row}
+        onDoubleClick={() => navigate(`/transactions/${id}`)}
+        title="Двойной клик — открыть подробности"
+      >
         <td className={styles.date_td}>
           {formatDate(date)}
           {props.is_auto_generated && (
@@ -96,10 +110,15 @@ function Transaction(props) {
         <td className={styles.about}>
           <span>Подробнее</span>
         </td>
-        <td className={styles.dots} onClick={toggleMenu}>
-          <img src="./img/more.svg" alt="" />
-          {isMenuOpen && (
-            <div className={styles.dropdownMenu}>
+        <td className={styles.dots} ref={dotsRef} onClick={toggleMenu}>
+          <img src="./img/more.svg" alt="Меню" />
+          <DropdownMenu
+            anchorRef={dotsRef}
+            isOpen={isMenuOpen}
+            onClose={closeMenu}
+            className={styles.dropdownMenu}
+          >
+            <div ref={menuRef}>
               <button
                 className={styles.dropdownMenuClose}
                 onClick={() => setIsMenuOpen(false)}
@@ -118,7 +137,7 @@ function Transaction(props) {
                 </li>
               </ul>
             </div>
-          )}
+          </DropdownMenu>
         </td>
       </tr>
       {isEditModalOpen && (

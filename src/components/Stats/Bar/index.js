@@ -77,19 +77,25 @@ export default function Bar({ start, end }) {
     calculateData();
   }, [transactions, start, end]);
 
+  const hasData = chartData.length > 1;
+
   return (
     <div
       style={{ width: "100%", height: "400px" }}
       className={styles.bar_container}
     >
-      <Chart
-        width="100%"
-        height="400px"
-        chartType="ColumnChart"
-        loader={<div>Loading Chart</div>}
-        data={chartData}
-        options={getOptions(theme === "dark")}
-      />
+      {hasData ? (
+        <Chart
+          width="100%"
+          height="400px"
+          chartType="ColumnChart"
+          loader={<div>Loading Chart</div>}
+          data={chartData}
+          options={getOptions(theme === "dark")}
+        />
+      ) : (
+        <div className={styles.empty}>Нет данных за выбранный период</div>
+      )}
     </div>
   );
 }

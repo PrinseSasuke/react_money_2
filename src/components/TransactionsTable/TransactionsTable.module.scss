@@ -107,3 +107,78 @@ $screen-xl: 960px;
     display: flex;
   }
 }
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $base * 3;
+  margin-top: $base * 4;
+  padding-top: $base * 3;
+  border-top: 1px solid var(--border-light);
+  font-size: $fs-1;
+  color: var(--text-secondary);
+}
+
+.pageSize {
+  display: flex;
+  align-items: center;
+  gap: $base * 2;
+
+  select {
+    padding: $base $base * 2;
+    min-height: 36px;
+  }
+}
+
+.pageInfo {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.pageControls {
+  display: flex;
+  align-items: center;
+  gap: $base * 2;
+
+  button {
+    min-width: 36px;
+    min-height: 36px;
+    padding: 0;
+    font-weight: $fw-semi;
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.pageCurrent {
+  min-width: 60px;
+  text-align: center;
+  font-weight: $fw-medium;
+  color: var(--text-primary);
+}
+
+@media (max-width: $screen-md - 1) {
+  .pagination {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .pageSize {
+    justify-content: center;
+  }
+
+  .pageControls {
+    justify-content: center;
+
+    button {
+      min-width: 44px;
+      min-height: 44px;
+    }
+  }
+}

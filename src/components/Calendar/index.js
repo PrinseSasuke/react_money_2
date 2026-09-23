@@ -7,6 +7,15 @@ import { useDayDate } from "../../hooks/useDayDate";
 import { ru } from "react-day-picker/locale";
 import styles from "./Calendar.module.scss";
 import { Link } from "react-router-dom";
+
+// "2026-09-22" -> "22.09" — без года, компактно для маленькой ячейки
+const formatShortDate = (isoDate) => {
+  const [, month, day] = isoDate.split("-");
+  return `${day}.${month}`;
+};
+
+const formatSumm = (summ) => new Intl.NumberFormat("ru-RU").format(summ);
+
 function Calendar() {
   const [selected, setSelected] = useState();
   return (
@@ -23,6 +32,7 @@ function Calendar() {
             const { day, ...DayProps } = props;
             const dayDate = props["data-day"];
             const { summ } = useDayDate(dayDate);
+            const isIncome = summ > 0;
 
             return (
               <td
@@ -32,19 +42,17 @@ function Calendar() {
               >
                 <Link to={`/transactions/date/${dayDate}`}>
                   <button
-                    className={styles.day_buttton}
+                    className={`${styles.day_buttton} ${
+                      isIncome ? styles.day_buttton__income : styles.day_buttton__expense
+                    }`}
                     disabled={!useDayDate(dayDate)}
-                    style={{
-                      backgroundColor: summ > 0 ? "var(--color-income-bg)" : "var(--color-expense-bg)",
-                      color: summ > 0 ? "var(--color-income-text)" : "var(--color-expense-text)",
-                    }}
                   >
-                    <div className={styles.day__date}>{dayDate}</div>
-                    <div className={styles.day__result}>
-                      <span>{!summ || "Итого: "}</span>
-
-                      <span className={styles.summ}>{summ || null}</span>
-                    </div>
+                    <span className={styles.day__date}>{formatShortDate(dayDate)}</span>
+                    {summ ? (
+                      <span className={styles.summ} title={`Итого: ${summ}`}>
+                        {formatSumm(summ)}
+                      </span>
+                    ) : null}
                   </button>
                 </Link>
               </td>

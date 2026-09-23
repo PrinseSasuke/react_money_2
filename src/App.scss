@@ -202,13 +202,30 @@ button {
     outline-offset: 1px;
   }
 }
+
+// В тёмной теме кнопки на фоне --bg-surface сливались с карточками —
+// поднимаем их на тон светлее, чтобы они читались как интерактивный элемент.
+[data-theme="dark"] button {
+  background-color: var(--bg-hover);
+  border-color: #6f5cff;
+
+  &:hover {
+    background-color: var(--border-mid);
+  }
+}
+
 .button {
   &__filter {
     display: flex;
-    padding: 10px;
+    align-items: center;
+    gap: $base * 2;
+    padding: 10px 14px;
     margin-right: $base * 17;
+    white-space: nowrap;
     img {
-      margin-right: $base * 2;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
     }
     &:hover {
       background-color: var(--border-light);
@@ -316,20 +333,39 @@ button {
     box-shadow: 0 4px 8px var(--shadow-color); /* Увеличенная тень при фокусе */
     color: var(--text-primary);
   }
+  &:focus-within {
+    border-color: #4e36fc;
+    box-shadow: 0 0 0 3px rgba(78, 54, 252, 0.15);
+  }
 }
 .search_icon {
+  display: flex;
   font-size: 18px; /* Размер иконки */
   color: var(--text-muted); /* Цвет иконки */
   margin-right: 8px; /* Отступ между иконкой и инпутом */
+  flex-shrink: 0;
+
+  img {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 /* Стили для поля ввода */
 .search_input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  padding: 0; /* контейнер уже даёт отступы, своих не добавляем */
   border: none; /* Убираем стандартную границу */
   outline: none; /* Убираем обводку при фокусе */
   background-color: transparent; /* Прозрачный фон */
   font-size: 16px; /* Размер текста */
   color: var(--text-secondary); /* Цвет текста */
+
+  &:focus-visible {
+    outline: none; /* фокус уже показан рамкой .search_container */
+  }
 }
 
 .search_input::placeholder {
@@ -394,6 +430,54 @@ button {
   font-size: $fs-4;
   font-weight: bold;
   margin-bottom: $base * 3;
+}
+
+.export-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $base * 3;
+  margin-top: $base * 4;
+  margin-bottom: $base * 5;
+}
+
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $base * 2;
+  margin-top: $base * 3;
+}
+
+.button__action {
+  @include inter();
+  padding: $base * 2 $base * 4;
+  min-height: 36px;
+  font-size: $fs-1;
+  font-weight: $fw-medium;
+  white-space: nowrap;
+
+  &--danger {
+    border-color: var(--color-expense-text);
+    color: var(--color-expense-text);
+
+    &:hover {
+      background-color: var(--color-expense-bg);
+      opacity: 1;
+    }
+  }
+}
+
+.button__export {
+  @include inter();
+  font-weight: $fw-medium;
+  font-size: $fs-1;
+  padding: $base * 3 $base * 5;
+  min-height: 44px;
+  white-space: nowrap;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
 
 .date-picker-container {
@@ -601,7 +685,7 @@ button {
   margin: 20px auto;
 }
 
-h2 {
+.container-limit h2 {
   color: var(--text-primary);
   font-size: 24px;
   margin-bottom: 20px;

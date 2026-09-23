@@ -15,6 +15,9 @@ export default function Stats() {
   const [balance, setBalance] = useState(0);
   const [totalIncome, setTotalIncome] = useState(0);
   const [totalOutcome, setTotalOutcome] = useState(0);
+  const [balanceChangePct, setBalanceChangePct] = useState(null);
+  const [incomeChangePct, setIncomeChangePct] = useState(null);
+  const [outcomeChangePct, setOutcomeChangePct] = useState(null);
   const [exporting, setExporting] = useState(false);
   const [exportError, setExportError] = useState("");
 
@@ -39,48 +42,68 @@ export default function Stats() {
     setEndDate(end);
   };
 
-  // Функция для фильтрации транзакций в выбранном диапазоне дат
-  const filterTransactionsByDate = () => {
-    if (!startDate || !endDate) return [];
+  // Функция для фильтрации транзакций в заданном диапазоне дат
+  const filterTransactionsInRange = (from, to) => {
+    if (!from || !to) return [];
 
     return transactions.filter((transaction) => {
       const transactionDate = new Date(transaction.date);
-      return transactionDate >= startDate && transactionDate <= endDate;
+      return transactionDate >= from && transactionDate <= to;
     });
+  };
+
+  const sumByType = (list, type) =>
+    list
+      .filter((transaction) => transaction.type === type)
+      .reduce((acc, transaction) => acc + parseInt(transaction.summ), 0);
+
+  // Изменение в % относительно предыдущего периода такой же длины.
+  // prev === 0: считаем "с нуля" рост как +100%, если появились деньги,
+  // и 0%, если ничего не изменилось (не было и нет) — деления на 0 избегаем.
+  const percentChange = (current, previous) => {
+    if (previous === 0) return current === 0 ? 0 : 100;
+    return ((current - previous) / Math.abs(previous)) * 100;
   };
 
   // Функция для расчета баланса, дохода и расхода
   const calculateStats = () => {
-    const filteredTransactions = filterTransactionsByDate();
+    const filteredTransactions = filterTransactionsInRange(startDate, endDate);
 
-    const incomeTransactions = filteredTransactions.filter(
-      (transaction) => transaction.type === "Доход"
-    );
-    const outcomeTransactions = filteredTransactions.filter(
-      (transaction) => transaction.type === "Расход"
-    );
-
-    const totalIncome = incomeTransactions.reduce(
-      (acc, transaction) => acc + parseInt(transaction.summ),
-      0
-    );
-
-    const totalOutcome = outcomeTransactions.reduce(
-      (acc, transaction) => acc + parseInt(transaction.summ),
-      0
-    );
-
+    const totalIncome = sumByType(filteredTransactions, "Доход");
+    const totalOutcome = sumByType(filteredTransactions, "Расход");
     const balance = totalIncome - totalOutcome;
 
     setTotalIncome(totalIncome);
     setTotalOutcome(totalOutcome);
     setBalance(balance);
+
+    // Предыдущий период той же длины, сразу перед выбранным
+    if (startDate && endDate) {
+      const periodMs = endDate.getTime() - startDate.getTime();
+      const prevEnd = new Date(startDate.getTime() - 1);
+      const prevStart = new Date(prevEnd.getTime() - periodMs);
+      const prevTransactions = filterTransactionsInRange(prevStart, prevEnd);
+
+      const prevIncome = sumByType(prevTransactions, "Доход");
+      const prevOutcome = sumByType(prevTransactions, "Расход");
+      const prevBalance = prevIncome - prevOutcome;
+
+      setIncomeChangePct(percentChange(totalIncome, prevIncome));
+      setOutcomeChangePct(percentChange(totalOutcome, prevOutcome));
+      setBalanceChangePct(percentChange(balance, prevBalance));
+    }
   };
 
   // Вызов calculateStats при изменении дат
   useEffect(() => {
     calculateStats();
   }, [startDate, endDate, transactions]);
+
+  const formatPercent = (pct) => {
+    if (pct === null || Number.isNaN(pct)) return "—";
+    const sign = pct >= 0 ? "+" : "";
+    return `${sign}${pct.toFixed(2).replace(".", ",")}%`;
+  };
 
   return (
     <div className="stats-container">
@@ -113,11 +136,21 @@ export default function Stats() {
           )}
         </div>
 
-        <div style={{ display: "flex", gap: "8px", marginTop: "8px" }}>
-          <button type="button" disabled={exporting} onClick={() => handleExport("excel")}>
+        <div className="export-actions">
+          <button
+            type="button"
+            className="button__export"
+            disabled={exporting}
+            onClick={() => handleExport("excel")}
+          >
             Экспорт в Excel
           </button>
-          <button type="button" disabled={exporting} onClick={() => handleExport("pdf")}>
+          <button
+            type="button"
+            className="button__export"
+            disabled={exporting}
+            onClick={() => handleExport("pdf")}
+          >
             Экспорт в PDF
           </button>
         </div>
@@ -132,11 +165,7 @@ export default function Stats() {
           <span className="income-text">Баланс</span>
           <div className="income__container">
             <span className="income-count">{balance.toFixed(2)}</span>
-            <span className="income-percent">
-              {balance >= 0
-                ? `+${((balance / totalIncome) * 100).toFixed(2)}%`
-                : `-${((Math.abs(balance) / totalIncome) * 100).toFixed(2)}%`}
-            </span>
+            <span className="income-percent">{formatPercent(balanceChangePct)}</span>
           </div>
         </div>
         <div className="income">
@@ -144,7 +173,7 @@ export default function Stats() {
           <span className="income-text">Общий доход</span>
           <div className="income__container">
             <span className="income-count">{totalIncome.toFixed(2)}</span>
-            <span className="income-percent">+1,29%</span>
+            <span className="income-percent">{formatPercent(incomeChangePct)}</span>
           </div>
         </div>
         <div className="outcome">
@@ -152,7 +181,7 @@ export default function Stats() {
           <span className="outcome-text">Общий расход</span>
           <div className="outcome__container">
             <span className="outcome-count">{totalOutcome.toFixed(2)}</span>
-            <span className="outcome-percent">+1,29%</span>
+            <span className="outcome-percent">{formatPercent(outcomeChangePct)}</span>
           </div>
         </div>
       </div>

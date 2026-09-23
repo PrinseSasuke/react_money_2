@@ -105,9 +105,10 @@ export default function RecurringPage() {
                 {item.summ} {item.currency}
               </div>
             </div>
-            <div style={{ display: "flex", gap: "8px" }}>
+            <div className="action-buttons">
               <button
                 type="button"
+                className="button__action"
                 onClick={() => {
                   setEditingItem(item);
                   setModalOpen(true);
@@ -115,10 +116,18 @@ export default function RecurringPage() {
               >
                 Изменить
               </button>
-              <button type="button" onClick={() => toggleActive(item)}>
+              <button
+                type="button"
+                className="button__action"
+                onClick={() => toggleActive(item)}
+              >
                 {item.active ? "Отключить" : "Включить"}
               </button>
-              <button type="button" onClick={() => handleDelete(item)}>
+              <button
+                type="button"
+                className="button__action button__action--danger"
+                onClick={() => handleDelete(item)}
+              >
                 Удалить
               </button>
             </div>

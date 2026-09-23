@@ -81,21 +81,69 @@ $screen-xl: 960px;
 .themeToggle {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  gap: $base * 2;
+  align-self: flex-start;
+  width: auto;
   margin-bottom: $base * 4;
-  padding: $base * 2 $base * 3;
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-mid);
+  padding: $base $base * 2;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
   border-radius: 8px;
   cursor: pointer;
   font-size: $fs-1;
+  color: var(--text-primary);
   @include inter();
+
+  &:hover {
+    background-color: var(--bg-hover);
+    opacity: 1;
+  }
+}
+
+.themeToggleTrack {
+  position: relative;
+  width: 38px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background-color: var(--border-mid);
+  transition: background-color 0.2s ease;
+}
+
+.themeToggleThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--bg-surface);
+  font-size: 11px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  box-shadow: 0 1px 2px var(--shadow-color);
+}
+
+.themeToggleOn {
+  .themeToggleTrack {
+    background-color: #4e36fc;
+  }
+  .themeToggleThumb {
+    transform: translateX(16px);
+  }
+}
+
+.themeToggleLabel {
+  white-space: nowrap;
 }
 
 .menu__item {
-  border-radius: 8px;
-  padding: $base $base * 2;
+  border-radius: 6px;
+  padding: $base $base;
   transition: background-color 0.15s ease;
 
   a {

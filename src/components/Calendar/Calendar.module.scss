@@ -37,23 +37,9 @@ $screen-xl: 960px;
 // ===CALENDAR=== //
 .dayPicker {
   @include inter();
-  font-size: $fs-3;
-  border-collapse: separate;
-  border-spacing: 8px 12px;
-}
-.day_buttton {
-  font-size: $fs-2;
-  padding: $base * 3;
-  &:hover {
-    background-color: var(--border-light);
-  }
-}
-.day__result {
-  display: flex;
-  align-items: center;
-}
-.result {
   font-size: $fs-1;
+  border-collapse: separate;
+  border-spacing: 6px 6px;
 }
 .calendar {
   width: 100%;
@@ -68,6 +54,12 @@ $screen-xl: 960px;
   :global(.rdp-root) {
     --rdp-accent-color: #4e36fc;
     --rdp-accent-background-color: var(--bg-hover);
+    width: 100%;
+  }
+
+  :global(.rdp-month_grid) {
+    width: 100%;
+    table-layout: fixed;
   }
 }
 .day {
@@ -75,49 +67,69 @@ $screen-xl: 960px;
   vertical-align: middle;
   padding: 0;
   position: relative;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-
-  &:hover button {
-    filter: brightness(90%);
-  }
 }
 .day_buttton {
   width: 100%;
-  height: 70px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
+  height: 64px;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 2px 6px var(--shadow-color);
-  transition: box-shadow 0.3s ease;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 6px 8px;
+  overflow: hidden;
+  background-color: var(--bg-page);
+  transition: border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 
   &:disabled {
     cursor: default;
     opacity: 0.4;
   }
 
-  &:not(:disabled):focus {
+  &:not(:disabled):focus-visible {
     outline: 2px solid #4e36fc;
+    outline-offset: 1px;
   }
 
   &:hover:not(:disabled) {
-    box-shadow: 0 4px 12px rgba(78, 54, 252, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px var(--shadow-color);
+  }
+
+  &__income {
+    border-color: var(--color-income-text);
+    background-color: var(--color-income-bg);
+  }
+
+  &__expense {
+    border-color: var(--color-expense-text);
+    background-color: var(--color-expense-bg);
   }
 }
 .day__date {
-  font-size: 18px;
-  margin-bottom: 6px;
+  font-size: $fs-xs;
+  font-weight: $fw-medium;
+  color: var(--text-muted);
 }
 .summ {
-  font-weight: 700;
-  margin-top: 2px;
+  width: 100%;
+  font-weight: $fw-bold;
+  font-size: $fs-1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.day_buttton__income .summ {
+  color: var(--color-income-text);
+}
+.day_buttton__expense .summ {
+  color: var(--color-expense-text);
 }
 
 @media (max-width: $screen-md - 1) {
@@ -126,19 +138,21 @@ $screen-xl: 960px;
   }
 
   .dayPicker {
-    border-spacing: 2px 6px;
-    font-size: $fs-1;
-  }
-
-  .day_buttton {
-    height: 52px;
-    padding: $base;
+    border-spacing: 3px 3px;
     font-size: $fs-xs;
   }
 
+  .day_buttton {
+    height: 48px;
+    padding: 4px 6px;
+  }
+
   .day__date {
-    font-size: 12px;
-    margin-bottom: 2px;
+    font-size: 10px;
+  }
+
+  .summ {
+    font-size: $fs-xs;
   }
 }
 // ===//CALENDAR=== //

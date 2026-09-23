@@ -89,11 +89,19 @@ export default function AccountsPage() {
             <div className="income-count">
               {account.balance.toFixed(2)} {account.currency}
             </div>
-            <div style={{ display: "flex", gap: "8px", marginTop: "12px" }}>
-              <button type="button" onClick={() => openEdit(account)}>
+            <div className="action-buttons">
+              <button
+                type="button"
+                className="button__action"
+                onClick={() => openEdit(account)}
+              >
                 Изменить
               </button>
-              <button type="button" onClick={() => handleDelete(account, null)}>
+              <button
+                type="button"
+                className="button__action button__action--danger"
+                onClick={() => handleDelete(account, null)}
+              >
                 Удалить
               </button>
             </div>
@@ -118,6 +126,7 @@ export default function AccountsPage() {
                 </select>
                 <button
                   type="button"
+                  className="button__action"
                   disabled={!reassignTarget}
                   onClick={() => handleDelete(account, reassignTarget)}
                   style={{ marginLeft: "8px" }}

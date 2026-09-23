@@ -2,7 +2,8 @@ import React from "react";
 import styles from "./TransactionCard.module.scss";
 import * as api from "../../services/api";
 import TransactionModal from "../TransactionModal";
-import { Link } from "react-router-dom";
+import DropdownMenu from "../DropdownMenu";
+import { Link, useNavigate } from "react-router-dom";
 import { useTransactionActions } from "../Transaction/useTransactionActions";
 import { formatDate } from "../Transaction/formatDate";
 
@@ -30,21 +31,33 @@ function TransactionCard(props) {
     handleUpdate,
     colors,
   } = useTransactionActions(props);
+  const navigate = useNavigate();
+  const dotsRef = React.useRef(null);
+  const menuRef = React.useRef(null);
 
-  const handleOutsideClick = (e) => {
-    if (e.target.closest(`.${styles.dots}`)) return;
-    setIsMenuOpen(false);
-  };
+  const closeMenu = React.useCallback(() => setIsMenuOpen(false), [setIsMenuOpen]);
+
+  const handleOutsideClick = React.useCallback(
+    (e) => {
+      if (dotsRef.current?.contains(e.target)) return;
+      if (menuRef.current?.contains(e.target)) return;
+      closeMenu();
+    },
+    [closeMenu]
+  );
   React.useEffect(() => {
     document.addEventListener("click", handleOutsideClick);
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
-  }, []);
+  }, [handleOutsideClick]);
 
   return (
     <>
-      <div className={styles.card}>
+      <div
+        className={styles.card}
+        onDoubleClick={() => navigate(`/transactions/${id}`)}
+      >
         <div className={styles.cardHeader}>
           <span className={styles.date}>
             {formatDate(date)}
@@ -59,10 +72,15 @@ function TransactionCard(props) {
               </span>
             )}
           </span>
-          <div className={styles.dots} onClick={toggleMenu}>
+          <div className={styles.dots} ref={dotsRef} onClick={toggleMenu}>
             <img src="./img/more.svg" alt="Меню" />
-            {isMenuOpen && (
-              <div className={styles.dropdownMenu}>
+            <DropdownMenu
+              anchorRef={dotsRef}
+              isOpen={isMenuOpen}
+              onClose={closeMenu}
+              className={styles.dropdownMenu}
+            >
+              <div ref={menuRef}>
                 <button
                   className={styles.dropdownMenuClose}
                   onClick={() => setIsMenuOpen(false)}
@@ -79,7 +97,7 @@ function TransactionCard(props) {
                   </li>
                 </ul>
               </div>
-            )}
+            </DropdownMenu>
           </div>
         </div>
 

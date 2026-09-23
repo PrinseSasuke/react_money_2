@@ -138,3 +138,13 @@ ol {
     @include inter();
   }
 }
+
+.empty {
+  @include inter();
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-muted);
+  font-size: $fs-2;
+}

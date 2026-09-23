@@ -32,6 +32,9 @@ $screen-lg: 992px;
 $screen-xl: 960px;
 
 //== /VARIABLES ===
+.row {
+  cursor: pointer;
+}
 .date_td {
   font-weight: $fw-bold;
   font-size: $fs-2;
@@ -101,9 +104,7 @@ $screen-xl: 960px;
   position: relative;
 }
 .dropdownMenu {
-  position: absolute;
-  top: 30px;
-  right: 0;
+  position: relative;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-mid);
   box-shadow: 0 4px 8px var(--shadow-color);
@@ -114,9 +115,19 @@ $screen-xl: 960px;
   padding: $base * 3;
 }
 
+.dropdownMenu ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .dropdownMenu li {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
   padding: $base * 2 $base * 3;
   cursor: pointer;
+  font-weight: $fw-medium;
   color: var(--text-primary);
   border-radius: 4px;
   transition: background-color 0.15s ease;
@@ -127,7 +138,15 @@ $screen-xl: 960px;
 }
 
 .deleteItem {
+  margin-top: $base;
+  border-top: 1px solid var(--border-light);
+  border-radius: 0;
+  padding-top: $base * 3;
   color: var(--color-expense-text);
+
+  &:hover {
+    background-color: var(--color-expense-bg);
+  }
 }
 .dropdownMenuClose {
   display: flex;

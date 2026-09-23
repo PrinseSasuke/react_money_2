@@ -11,7 +11,7 @@ function Excel() {
   };
   return (
     <div className="excel-container">
-      <h1 className="excel-title">Загрузка и анализ Excel</h1>
+      <h2 className="h3">Загрузка и анализ Excel</h2>
       <FileUpload onFileSelect={setExcelFile} />
       {excelFile && (
         <ExcelReader file={excelFile} onDataLoad={handleDataLoad} />

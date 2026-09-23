@@ -44,9 +44,7 @@ $base: 4px;
 }
 
 .dropdownMenu {
-  position: absolute;
-  top: 36px;
-  right: 0;
+  position: relative;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-mid);
   box-shadow: 0 4px 8px var(--shadow-color);
@@ -59,6 +57,7 @@ $base: 4px;
   li {
     padding: $base * 3 $base * 3;
     cursor: pointer;
+    font-weight: 500;
     color: var(--text-primary);
     border-radius: 4px;
     list-style: none;
@@ -74,6 +73,9 @@ $base: 4px;
   ul {
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
 }
 
@@ -97,7 +99,14 @@ $base: 4px;
 }
 
 .deleteItem {
+  margin-top: $base;
+  border-top: 1px solid var(--border-light);
+  border-radius: 0;
   color: var(--color-expense-text);
+
+  &:hover {
+    background-color: var(--color-expense-bg);
+  }
 }
 
 .cardBody {

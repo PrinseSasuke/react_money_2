@@ -267,11 +267,19 @@ function Side() {
       <button
         type="button"
         onClick={toggleTheme}
-        className={styles.themeToggle}
+        className={`${styles.themeToggle} ${theme === "dark" ? styles.themeToggleOn : ""}`}
         aria-label="Переключить тему"
+        aria-pressed={theme === "dark"}
         title={theme === "light" ? "Включить тёмную тему" : "Включить светлую тему"}
       >
-        {theme === "light" ? "🌙 Тёмная тема" : "☀️ Светлая тема"}
+        <span className={styles.themeToggleTrack}>
+          <span className={styles.themeToggleThumb}>
+            {theme === "light" ? "🌙" : "☀️"}
+          </span>
+        </span>
+        <span className={styles.themeToggleLabel}>
+          {theme === "light" ? "Тёмная тема" : "Светлая тема"}
+        </span>
       </button>
 
       <LoginButton />
