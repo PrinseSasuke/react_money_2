@@ -1,5 +1,10 @@
 const { defineConfig, devices } = require("@playwright/test");
 
+// Порт dev-сервера для E2E: если 3000 занят чем-то посторонним (иначе
+// reuseExistingServer молча прогонит тесты против чужого процесса).
+const WEB_PORT = process.env.E2E_WEB_PORT || "3000";
+const WEB_URL = `http://localhost:${WEB_PORT}`;
+
 module.exports = defineConfig({
   testDir: "./e2e",
   timeout: 30000,
@@ -15,7 +20,7 @@ module.exports = defineConfig({
     toHaveScreenshot: { maxDiffPixelRatio: 0.02 },
   },
   use: {
-    baseURL: "http://localhost:3000",
+    baseURL: WEB_URL,
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
   },
@@ -50,10 +55,11 @@ module.exports = defineConfig({
     },
     {
       command: "npm start",
-      url: "http://localhost:3000",
+      url: WEB_URL,
       reuseExistingServer: !process.env.CI,
       timeout: 120000,
       env: {
+        PORT: WEB_PORT,
         REACT_APP_API_URL: "http://localhost:4001/api",
         BROWSER: "none",
       },

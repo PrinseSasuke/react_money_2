@@ -1,4 +1,4 @@
-const { request: pwRequest } = require("@playwright/test");
+const { request: pwRequest, expect } = require("@playwright/test");
 const { API_URL } = require("./config");
 
 function uniqueEmail(prefix = "e2e") {
@@ -27,14 +27,15 @@ async function loginAsNewUser(page, overrides = {}) {
   await page.goto("/login");
   await page.evaluate((token) => localStorage.setItem("token", token), account.token);
   await page.goto("/");
+  // Без этой проверки тест после неудачного входа молча продолжился бы
+  // на странице логина (так раньше «проходили» a11y-проверки главной).
+  await expect(page.getByRole("button", { name: "Меню пользователя" })).toBeVisible();
   return account;
 }
 
-// TransactionsTable renders both the <table> row and the mobile card for
-// every transaction simultaneously, toggling which one is visible via CSS
-// media query (see Block 1). getByText() alone matches both DOM nodes and
-// trips Playwright's strict mode, so narrow to whichever copy is actually
-// visible at the current viewport.
+// Текст операции может встречаться в DOM больше одного раза (например,
+// в списке и в ещё не размонтированном диалоге) — берём видимую копию,
+// чтобы не упираться в strict mode Playwright.
 function visibleText(page, text, options) {
   return page.getByText(text, options).and(page.locator(":visible"));
 }

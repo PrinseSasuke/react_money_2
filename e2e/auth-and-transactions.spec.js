@@ -1,6 +1,23 @@
 const { test, expect } = require("@playwright/test");
 const { loginAsNewUser, uniqueEmail, visibleText } = require("./helpers");
 
+// Меню действий строки таблицы (десктоп) или карточки (мобильный список).
+async function openRowMenu(page, text) {
+  await page
+    .getByTestId("transaction-item")
+    .filter({ hasText: text })
+    .getByRole("button", { name: "Действия с операцией" })
+    .click();
+}
+
+async function addTransaction(page, description, summ) {
+  await page.getByRole("button", { name: "Добавить запись" }).click();
+  await page.locator("#description").fill(description);
+  await page.locator("#summ").fill(summ);
+  await page.getByRole("button", { name: "Сохранить" }).click();
+  await expect(visibleText(page, description)).toBeVisible();
+}
+
 test.describe("registration, login, transactions", () => {
   test("register via UI -> lands on home", async ({ page }) => {
     const email = uniqueEmail();
@@ -12,44 +29,24 @@ test.describe("registration, login, transactions", () => {
     await page.getByRole("button", { name: "Зарегистрироваться" }).click();
 
     await expect(page).toHaveURL("/");
-    // "Главная" label is intentionally icon-only (hidden) on very narrow
-    // mobile viewports (see Block 1) — check something visible at every size.
+    // Бренд виден при любой ширине: в сайдбаре на десктопе, в шапке на мобильном.
     await expect(page.getByText("React-Money")).toBeVisible();
   });
 
   test("add transaction -> appears in the list", async ({ page }) => {
     await loginAsNewUser(page);
-
     await page.goto("/transactions");
-    await page.getByRole("button", { name: "Добавить запись" }).click();
-
-    const description = `E2E тестовая операция ${Date.now()}`;
-    await page.locator("#description").fill(description);
-    await page.locator("#summ").fill("321");
-    await page.getByRole("button", { name: "Сохранить" }).click();
-
-    await expect(visibleText(page, description)).toBeVisible();
+    await addTransaction(page, `E2E тестовая операция ${Date.now()}`, "321");
   });
 
   test("edit a transaction", async ({ page }) => {
     await loginAsNewUser(page);
-
     await page.goto("/transactions");
-    await page.getByRole("button", { name: "Добавить запись" }).click();
     const original = `E2E to-edit ${Date.now()}`;
-    await page.locator("#description").fill(original);
-    await page.locator("#summ").fill("100");
-    await page.getByRole("button", { name: "Сохранить" }).click();
-    await expect(visibleText(page, original)).toBeVisible();
+    await addTransaction(page, original, "100");
 
-    // Открываем меню строки/карточки с этим описанием и жмём "Изменить"
-    await visibleText(page, original)
-      .locator("xpath=ancestor::tr | ancestor::div[contains(@class,'TransactionCard')]")
-      .first()
-      .locator("img")
-      .first()
-      .click();
-    await page.getByText("Изменить").click();
+    await openRowMenu(page, original);
+    await page.getByRole("menuitem", { name: "Изменить" }).click();
 
     const updated = `E2E edited ${Date.now()}`;
     await page.locator("#description").fill(updated);
@@ -60,22 +57,12 @@ test.describe("registration, login, transactions", () => {
 
   test("delete a transaction", async ({ page }) => {
     await loginAsNewUser(page);
-
     await page.goto("/transactions");
-    await page.getByRole("button", { name: "Добавить запись" }).click();
     const description = `E2E to-delete ${Date.now()}`;
-    await page.locator("#description").fill(description);
-    await page.locator("#summ").fill("50");
-    await page.getByRole("button", { name: "Сохранить" }).click();
-    await expect(visibleText(page, description)).toBeVisible();
+    await addTransaction(page, description, "50");
 
-    await visibleText(page, description)
-      .locator("xpath=ancestor::tr | ancestor::div[contains(@class,'TransactionCard')]")
-      .first()
-      .locator("img")
-      .first()
-      .click();
-    await page.getByText("Удалить", { exact: true }).click();
+    await openRowMenu(page, description);
+    await page.getByRole("menuitem", { name: "Удалить" }).click();
 
     await expect(page.getByText(description)).toHaveCount(0);
   });
