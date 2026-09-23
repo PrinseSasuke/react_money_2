@@ -45,7 +45,10 @@ spec:
             - name: DB_NAME
               value: "react_money"
             - name: JWT_SECRET
-              value: "a53c6f363f3d6cdf24ded1de0a71e5226b7fcec7dd022d14dc6fdde6158ee6a2"
+              valueFrom:
+                secretKeyRef:
+                  name: react-money-secrets
+                  key: JWT_SECRET
           resources:
             requests:
               cpu: 100m

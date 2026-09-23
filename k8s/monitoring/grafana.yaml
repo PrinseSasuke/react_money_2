@@ -1,0 +1,130 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-datasources
+  namespace: monitoring
+data:
+  datasource.yaml: |
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        access: proxy
+        url: http://prometheus:9090
+        isDefault: true
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboard-provisioning
+  namespace: monitoring
+data:
+  dashboards.yaml: |
+    apiVersion: 1
+    providers:
+      - name: react-money
+        type: file
+        options:
+          path: /var/lib/grafana/dashboards
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboard-reactmoney
+  namespace: monitoring
+data:
+  react-money.json: |
+    {
+      "title": "react-money — CPU/Memory",
+      "uid": "react-money-overview",
+      "timezone": "browser",
+      "schemaVersion": 39,
+      "refresh": "10s",
+      "panels": [
+        {
+          "id": 1,
+          "title": "Memory (working set) per backend pod",
+          "type": "timeseries",
+          "gridPos": {"h": 9, "w": 12, "x": 0, "y": 0},
+          "targets": [
+            {"expr": "container_memory_working_set_bytes{namespace=\"react-money\",container=\"backend\"}", "legendFormat": "{{pod}}"}
+          ]
+        },
+        {
+          "id": 2,
+          "title": "CPU rate per backend pod",
+          "type": "timeseries",
+          "gridPos": {"h": 9, "w": 12, "x": 12, "y": 0},
+          "targets": [
+            {"expr": "rate(container_cpu_usage_seconds_total{namespace=\"react-money\",container=\"backend\"}[1m])", "legendFormat": "{{pod}}"}
+          ]
+        },
+        {
+          "id": 3,
+          "title": "Memory forecast (60s ahead) vs 256Mi limit",
+          "type": "timeseries",
+          "gridPos": {"h": 9, "w": 24, "x": 0, "y": 9},
+          "targets": [
+            {"expr": "predict_linear(container_memory_working_set_bytes{namespace=\"react-money\",container=\"backend\"}[5m], 60)", "legendFormat": "forecast {{pod}}"}
+          ]
+        }
+      ]
+    }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: grafana}
+  template:
+    metadata:
+      labels: {app: grafana}
+    spec:
+      containers:
+        - name: grafana
+          image: grafana/grafana:11.2.0
+          ports:
+            - containerPort: 3000
+          env:
+            - name: GF_SECURITY_ADMIN_USER
+              value: "admin"
+            - name: GF_SECURITY_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: grafana-admin
+                  key: admin-password
+            - name: GF_AUTH_ANONYMOUS_ENABLED
+              value: "false"
+          resources:
+            requests: {cpu: 100m, memory: 128Mi}
+            limits: {cpu: 300m, memory: 256Mi}
+          volumeMounts:
+            - {name: datasources, mountPath: /etc/grafana/provisioning/datasources}
+            - {name: dashboard-provisioning, mountPath: /etc/grafana/provisioning/dashboards}
+            - {name: dashboard-reactmoney, mountPath: /var/lib/grafana/dashboards}
+          readinessProbe:
+            httpGet: {path: /api/health, port: 3000}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+      volumes:
+        - name: datasources
+          configMap: {name: grafana-datasources}
+        - name: dashboard-provisioning
+          configMap: {name: grafana-dashboard-provisioning}
+        - name: dashboard-reactmoney
+          configMap: {name: grafana-dashboard-reactmoney}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  selector: {app: grafana}
+  ports:
+    - port: 3000
+      targetPort: 3000

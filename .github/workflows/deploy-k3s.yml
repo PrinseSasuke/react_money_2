@@ -1,0 +1,51 @@
+name: Deploy to k3s stand
+
+# Runs only after "Test and Deploy" (tests + prod deploy) finished green on a push to main,
+# and deploys exactly that commit to the stand. Prod workflow is not touched by this file.
+on:
+  workflow_run:
+    workflows: ["Test and Deploy"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: "Commit SHA to deploy (empty = latest main)"
+        required: false
+
+concurrency:
+  group: k3s-stand
+  cancel-in-progress: false
+
+jobs:
+  deploy-stand:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve commit to deploy
+        id: sha
+        env:
+          SHA: ${{ github.event.workflow_run.head_sha || inputs.sha || github.sha }}
+        run: |
+          [[ "$SHA" =~ ^[0-9a-f]{7,40}$ ]] || { echo "invalid sha: $SHA"; exit 1; }
+          echo "value=$SHA" >> "$GITHUB_OUTPUT"
+          echo "Deploying $SHA to the k3s stand" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Build and roll out on the stand via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          DEPLOY_SHA: ${{ steps.sha.outputs.value }}
+        with:
+          host: ${{ secrets.K3S_HOST }}
+          username: ${{ secrets.K3S_USER }}
+          key: ${{ secrets.K3S_SSH_KEY }}
+          envs: DEPLOY_SHA
+          command_timeout: 30m
+          script: |
+            set -e
+            cd "${{ secrets.K3S_PROJECT_PATH }}"
+            git fetch --quiet origin
+            git checkout --quiet --detach "$DEPLOY_SHA"
+            bash k8s/deploy-stand.sh "$DEPLOY_SHA"

@@ -43,6 +43,12 @@ data:
     global:
       scrape_interval: 5s
       evaluation_interval: 5s
+    rule_files:
+      - /etc/prometheus/rules/*.yml
+    alerting:
+      alertmanagers:
+        - static_configs:
+            - targets: ['alertmanager:9093']
     scrape_configs:
       - job_name: 'kubelet-cadvisor'
         scheme: https
@@ -60,6 +66,24 @@ data:
             regex: (.+)
             target_label: __metrics_path__
             replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-rules
+  namespace: monitoring
+data:
+  react-money.yml: |
+    groups:
+      - name: react-money
+        rules:
+          - alert: BackendMemoryForecastHigh
+            expr: predict_linear(container_memory_working_set_bytes{namespace="react-money",container="backend"}[5m], 60) > 256 * 1024 * 1024
+            for: 10s
+            labels:
+              severity: warning
+            annotations:
+              summary: "Под {{ $labels.pod }}: прогноз памяти через 60с превысит лимит 256Mi"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -81,7 +105,7 @@ spec:
           args:
             - --config.file=/etc/prometheus/prometheus.yml
             - --storage.tsdb.path=/prometheus
-            - --storage.tsdb.retention.time=6h
+            - --storage.tsdb.retention.time=48h
             - --web.enable-lifecycle
           ports:
             - containerPort: 9090
@@ -90,6 +114,7 @@ spec:
             limits: {cpu: 400m, memory: 450Mi}
           volumeMounts:
             - {name: config, mountPath: /etc/prometheus}
+            - {name: rules, mountPath: /etc/prometheus/rules}
             - {name: data, mountPath: /prometheus}
           readinessProbe:
             httpGet: {path: /-/ready, port: 9090}
@@ -98,6 +123,8 @@ spec:
       volumes:
         - name: config
           configMap: {name: prometheus-config}
+        - name: rules
+          configMap: {name: prometheus-rules}
         - name: data
           emptyDir: {}
 ---
