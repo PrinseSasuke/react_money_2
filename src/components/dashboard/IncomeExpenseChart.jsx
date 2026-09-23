@@ -5,10 +5,11 @@ import SectionCard from "../ui/SectionCard";
 import EmptyState from "../ui/EmptyState";
 import { formatMonthKey, formatNumber, toMonthKey } from "../../utils/format";
 import { EXPENSE, INCOME } from "../../utils/categories";
+import { amountRub } from "../../utils/currency";
 
 const MONTHS = 6;
 
-export default function IncomeExpenseChart({ transactions }) {
+export default function IncomeExpenseChart({ transactions, rates }) {
   const theme = useTheme();
 
   const { labels, income, expense, hasData } = useMemo(() => {
@@ -21,8 +22,8 @@ export default function IncomeExpenseChart({ transactions }) {
     transactions.forEach((t) => {
       const key = toMonthKey(t.date);
       if (!(key in inc)) return;
-      if (t.type === INCOME) inc[key] += Number(t.summ) || 0;
-      if (t.type === EXPENSE) exp[key] += Number(t.summ) || 0;
+      if (t.type === INCOME) inc[key] += amountRub(t, rates);
+      if (t.type === EXPENSE) exp[key] += amountRub(t, rates);
     });
     const incomeValues = keys.map((k) => inc[k]);
     const expenseValues = keys.map((k) => exp[k]);
@@ -32,7 +33,7 @@ export default function IncomeExpenseChart({ transactions }) {
       expense: expenseValues,
       hasData: [...incomeValues, ...expenseValues].some((v) => v > 0),
     };
-  }, [transactions]);
+  }, [transactions, rates]);
 
   return (
     <SectionCard title="Доходы и расходы" subtitle={`За последние ${MONTHS} месяцев`}>

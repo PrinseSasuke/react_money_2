@@ -11,6 +11,14 @@ test("totals splits income and expense", () => {
   });
 });
 
+test("totals convert dollar operations to rubles instead of adding them as-is", () => {
+  const list = [
+    { date: "2026-09-01", type: "Доход", summ: 1000, currency: "Рубль" },
+    { date: "2026-09-02", type: "Расход", summ: 10, currency: "usd" },
+  ];
+  expect(totals(list, { RUB: 1, USD: 90 })).toEqual({ income: 1000, expense: 900, balance: 100 });
+});
+
 test("percentChange handles zero previous value without dividing by zero", () => {
   expect(percentChange(0, 0)).toBe(0);
   expect(percentChange(50, 0)).toBe(100);

@@ -7,6 +7,7 @@ import ChevronRightRounded from "@mui/icons-material/ChevronRightRounded";
 import SectionCard from "../ui/SectionCard";
 import { formatCompact, formatNumber, toDayKey } from "../../utils/format";
 import { EXPENSE } from "../../utils/categories";
+import { amountRub } from "../../utils/currency";
 
 const WEEKDAYS = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 
@@ -98,7 +99,7 @@ function DayCell({ date, net, isToday, onOpen, compact }) {
   );
 }
 
-export default function MonthCalendar({ transactions }) {
+export default function MonthCalendar({ transactions, rates }) {
   const navigate = useNavigate();
   const theme = useTheme();
   const compact = useMediaQuery(theme.breakpoints.down("sm"), { noSsr: true });
@@ -112,11 +113,11 @@ export default function MonthCalendar({ transactions }) {
     const map = new Map();
     transactions.forEach((t) => {
       const key = toDayKey(t.date);
-      const amount = Number(t.summ) || 0;
+      const amount = amountRub(t, rates);
       map.set(key, (map.get(key) || 0) + (t.type === EXPENSE ? -amount : amount));
     });
     return map;
-  }, [transactions]);
+  }, [transactions, rates]);
 
   const cells = useMemo(() => buildCells(month), [month]);
   const todayKey = toDayKey(new Date());

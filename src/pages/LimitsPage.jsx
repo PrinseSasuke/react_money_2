@@ -8,6 +8,7 @@ import PageHeader from "../components/ui/PageHeader";
 import SectionCard from "../components/ui/SectionCard";
 import { formatMoney, formatNumber, toMonthKey } from "../utils/format";
 import { EXPENSE } from "../utils/categories";
+import { amountRub } from "../utils/currency";
 
 function Metric({ label, value, color }) {
   return (
@@ -23,7 +24,7 @@ function Metric({ label, value, color }) {
 }
 
 const LimitsPage = () => {
-  const { transactions } = useOutletContext();
+  const { transactions, rates } = useOutletContext();
   const [limit, setLimit] = useState(50000);
   const [editing, setEditing] = useState(false);
   const [newLimit, setNewLimit] = useState("50000");
@@ -43,8 +44,8 @@ const LimitsPage = () => {
     const monthKey = toMonthKey(new Date());
     return transactions
       .filter((t) => t.type === EXPENSE && toMonthKey(t.date) === monthKey)
-      .reduce((acc, t) => acc + (Number(t.summ) || 0), 0);
-  }, [transactions]);
+      .reduce((acc, t) => acc + amountRub(t, rates), 0);
+  }, [transactions, rates]);
 
   const remaining = limit - currentExpenses;
   const isExceeded = currentExpenses > limit;

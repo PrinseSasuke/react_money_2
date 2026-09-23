@@ -13,6 +13,7 @@ import StatCard from "../components/ui/StatCard";
 import EmptyState from "../components/ui/EmptyState";
 import { formatMoney, formatMonthKey, formatNumber, toMonthKey } from "../utils/format";
 import { EXPENSE, INCOME } from "../utils/categories";
+import { amountRub } from "../utils/currency";
 
 const MONTHS_AHEAD = 3;
 
@@ -36,14 +37,14 @@ const nextMonthKeys = (lastKey, count) => {
   return Array.from({ length: count }, (_, i) => toMonthKey(new Date(y, m - 1 + i + 1, 1)));
 };
 
-function useForecast(transactions) {
+function useForecast(transactions, rates) {
   return useMemo(() => {
     if (transactions.length === 0) return null;
     const expenseByMonth = {};
     const incomeByMonth = {};
     transactions.forEach((t) => {
       const key = toMonthKey(t.date);
-      const summ = Number(t.summ) || 0;
+      const summ = amountRub(t, rates);
       if (t.type === EXPENSE) expenseByMonth[key] = (expenseByMonth[key] || 0) + summ;
       if (t.type === INCOME) incomeByMonth[key] = (incomeByMonth[key] || 0) + summ;
     });
@@ -71,7 +72,7 @@ function useForecast(transactions) {
       expenseGrowth: firstExpense === 0 ? 0 : ((lastExpense - firstExpense) / firstExpense) * 100,
       overspending: currentExpense > expenseAvg,
     };
-  }, [transactions]);
+  }, [transactions, rates]);
 }
 
 function ForecastChart({ labels, history, forecast, color, name }) {
@@ -104,9 +105,9 @@ function ForecastChart({ labels, history, forecast, color, name }) {
 }
 
 const ForecastPage = () => {
-  const { transactions } = useOutletContext();
+  const { transactions, rates } = useOutletContext();
   const theme = useTheme();
-  const forecast = useForecast(transactions);
+  const forecast = useForecast(transactions, rates);
 
   return (
     <div>

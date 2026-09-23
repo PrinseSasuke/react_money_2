@@ -41,7 +41,7 @@ export default function RecentTransactions({ transactions, limit = 5 }) {
                   {formatDateTime(t.date)}
                 </Typography>
               </div>
-              <AmountText summ={t.summ} type={t.type} currency={t.currency} variant="body2" />
+              <AmountText summ={t.summ} type={t.type} currency={t.currency} variant="body2" showRub />
             </ButtonBase>
           ))}
         </Box>

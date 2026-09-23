@@ -5,22 +5,23 @@ import SectionCard from "../ui/SectionCard";
 import EmptyState from "../ui/EmptyState";
 import { CATEGORIES, categoryColor } from "../../utils/categories";
 import { formatMoney } from "../../utils/format";
+import { amountRub } from "../../utils/currency";
 
-export default function CategoryDonut({ title, transactions, type }) {
+export default function CategoryDonut({ title, transactions, type, rates }) {
   const { data, total } = useMemo(() => {
     const grouped = {};
     transactions
       .filter((t) => t.type === type)
       .forEach((t) => {
         const category = CATEGORIES[type].includes(t.source) ? t.source : "Остальное";
-        grouped[category] = (grouped[category] || 0) + (Number(t.summ) || 0);
+        grouped[category] = (grouped[category] || 0) + amountRub(t, rates);
       });
     const items = Object.entries(grouped)
       .filter(([, value]) => value > 0)
       .sort((a, b) => b[1] - a[1])
       .map(([label, value]) => ({ id: label, label, value, color: categoryColor(label) }));
     return { data: items, total: items.reduce((acc, i) => acc + i.value, 0) };
-  }, [transactions, type]);
+  }, [transactions, type, rates]);
 
   return (
     <SectionCard title={title}>

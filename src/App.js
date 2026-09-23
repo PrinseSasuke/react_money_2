@@ -6,6 +6,7 @@ import Sidebar, { SIDEBAR_WIDTH } from "./components/layout/Sidebar";
 import Topbar from "./components/layout/Topbar";
 import { useAuth } from "./context/AuthContext";
 import * as api from "./services/api";
+import { DEFAULT_RATES } from "./utils/currency";
 
 export const AppContext = createContext({});
 
@@ -32,9 +33,19 @@ function App() {
     if (user) refreshTransactions();
   }, [user, refreshTransactions]);
 
+  // Курсы ЦБ для пересчёта операций в $/€ в рубли во всех сводках.
+  const [rates, setRates] = useState(DEFAULT_RATES);
+  useEffect(() => {
+    if (!user) return;
+    api
+      .getExchangeRates()
+      .then((data) => setRates({ ...DEFAULT_RATES, ...data }))
+      .catch((err) => console.error("Не удалось загрузить курсы валют:", err));
+  }, [user]);
+
   const contextValue = useMemo(
-    () => ({ transactions, setTransactions, refreshTransactions }),
-    [transactions, refreshTransactions]
+    () => ({ transactions, setTransactions, refreshTransactions, rates }),
+    [transactions, refreshTransactions, rates]
   );
 
   return (

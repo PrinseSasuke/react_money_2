@@ -5,6 +5,7 @@ import SectionCard from "../ui/SectionCard";
 import EmptyState from "../ui/EmptyState";
 import { formatNumber, toDayKey } from "../../utils/format";
 import { EXPENSE, INCOME } from "../../utils/categories";
+import { amountRub } from "../../utils/currency";
 
 const shortDay = (dayKey) => {
   const [, m, d] = dayKey.split("-");
@@ -13,7 +14,7 @@ const shortDay = (dayKey) => {
 
 // Дни без операций не показываем — как и раньше, иначе на длинных периодах
 // график превращается в редкие столбики среди пустых дат.
-export default function DailyBarChart({ transactions }) {
+export default function DailyBarChart({ transactions, rates }) {
   const theme = useTheme();
 
   const { labels, income, expense } = useMemo(() => {
@@ -21,8 +22,8 @@ export default function DailyBarChart({ transactions }) {
     transactions.forEach((t) => {
       const key = toDayKey(t.date);
       const entry = byDay.get(key) || { income: 0, expense: 0 };
-      if (t.type === INCOME) entry.income += Number(t.summ) || 0;
-      if (t.type === EXPENSE) entry.expense += Number(t.summ) || 0;
+      if (t.type === INCOME) entry.income += amountRub(t, rates);
+      if (t.type === EXPENSE) entry.expense += amountRub(t, rates);
       byDay.set(key, entry);
     });
     const days = [...byDay.keys()].sort();
@@ -31,7 +32,7 @@ export default function DailyBarChart({ transactions }) {
       income: days.map((d) => byDay.get(d).income),
       expense: days.map((d) => byDay.get(d).expense),
     };
-  }, [transactions]);
+  }, [transactions, rates]);
 
   return (
     <SectionCard title="Динамика по дням" subtitle="Доходы и расходы за выбранный период">

@@ -13,11 +13,11 @@ import RecentTransactions from "../components/dashboard/RecentTransactions";
 import AccountsWidget from "../components/dashboard/AccountsWidget";
 import { formatMoney } from "../utils/format";
 import { monthToDateComparison } from "../utils/stats";
+import { toRub } from "../utils/currency";
 
 function Home() {
-  const { transactions } = useOutletContext();
+  const { transactions, rates } = useOutletContext();
   const [accounts, setAccounts] = useState([]);
-  const [rates, setRates] = useState({ RUB: 1 });
 
   // Балансы счетов пересчитываются бэкендом — перечитываем их при изменении
   // списка операций (добавили/удалили трату — баланс на главной сразу верный).
@@ -28,18 +28,8 @@ function Home() {
       .catch((err) => console.error("Не удалось загрузить счета:", err));
   }, [transactions]);
 
-  useEffect(() => {
-    api
-      .getExchangeRates()
-      .then(setRates)
-      .catch((err) => console.error("Не удалось загрузить курс валют:", err));
-  }, []);
-
-  const totalRub = accounts.reduce(
-    (acc, account) => acc + account.balance * (rates[account.currency] ?? 1),
-    0
-  );
-  const month = useMemo(() => monthToDateComparison(transactions), [transactions]);
+  const totalRub = accounts.reduce((acc, account) => acc + toRub(account.balance, account.currency, rates), 0);
+  const month = useMemo(() => monthToDateComparison(transactions, new Date(), rates), [transactions, rates]);
 
   return (
     <div>
@@ -78,7 +68,7 @@ function Home() {
 
       <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
         <div className="min-w-0 lg:col-span-2">
-          <IncomeExpenseChart transactions={transactions} />
+          <IncomeExpenseChart transactions={transactions} rates={rates} />
         </div>
         <div className="min-w-0">
           <RecentTransactions transactions={transactions} />
@@ -87,7 +77,7 @@ function Home() {
 
       <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
         <div className="min-w-0 lg:col-span-2">
-          <MonthCalendar transactions={transactions} />
+          <MonthCalendar transactions={transactions} rates={rates} />
         </div>
         <div className="min-w-0">
           <AccountsWidget accounts={accounts} />

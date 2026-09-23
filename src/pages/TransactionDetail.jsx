@@ -92,6 +92,7 @@ function TransactionDetail() {
                   type={transaction.type}
                   currency={transaction.currency}
                   variant="h5"
+                  showRub
                 />
               </div>
 

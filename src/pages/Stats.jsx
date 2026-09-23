@@ -25,7 +25,7 @@ const PRESETS = [
 ];
 
 export default function Stats() {
-  const { transactions } = useContext(AppContext);
+  const { transactions, rates } = useContext(AppContext);
   const [preset, setPreset] = useState("month");
   const [startDate, setStartDate] = useState(() => dayjs().startOf("month"));
   const [endDate, setEndDate] = useState(() => dayjs());
@@ -42,9 +42,9 @@ export default function Stats() {
     [transactions, from?.getTime(), to?.getTime(), rangeValid]
   );
   const { current, change } = useMemo(
-    () => periodComparison(transactions, rangeValid ? from : null, rangeValid ? to : null),
+    () => periodComparison(transactions, rangeValid ? from : null, rangeValid ? to : null, rates),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [transactions, from?.getTime(), to?.getTime(), rangeValid]
+    [transactions, rates, from?.getTime(), to?.getTime(), rangeValid]
   );
 
   const applyPreset = (p) => {
@@ -169,12 +169,12 @@ export default function Stats() {
       </div>
 
       <div className="mt-4">
-        <DailyBarChart transactions={inRange} />
+        <DailyBarChart transactions={inRange} rates={rates} />
       </div>
 
       <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <CategoryDonut title="Доходы по категориям" transactions={inRange} type={INCOME} />
-        <CategoryDonut title="Расходы по категориям" transactions={inRange} type={EXPENSE} />
+        <CategoryDonut title="Доходы по категориям" transactions={inRange} type={INCOME} rates={rates} />
+        <CategoryDonut title="Расходы по категориям" transactions={inRange} type={EXPENSE} rates={rates} />
       </div>
     </div>
   );

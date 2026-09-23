@@ -93,7 +93,7 @@ function DesktopTable({ rows, readOnly, onOpen }) {
               </TableCell>
               <TableCell sx={{ whiteSpace: "nowrap", color: "text.secondary" }}>{formatDateTime(t.date)}</TableCell>
               <TableCell align="right">
-                <AmountText summ={t.summ} type={t.type} currency={t.currency} />
+                <AmountText summ={t.summ} type={t.type} currency={t.currency} showRub />
               </TableCell>
               {!readOnly && (
                 <TableCell align="right">
@@ -128,7 +128,7 @@ function MobileList({ rows, readOnly, onOpen }) {
             </Typography>
           </div>
           <div className="flex flex-col items-end gap-1">
-            <AmountText summ={t.summ} type={t.type} currency={t.currency} />
+            <AmountText summ={t.summ} type={t.type} currency={t.currency} showRub />
             {!readOnly && <TransactionActionsMenu transaction={t} />}
           </div>
         </div>
