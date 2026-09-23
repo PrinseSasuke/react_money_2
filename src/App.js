@@ -50,6 +50,7 @@ function App() {
               top: 0,
               height: "100vh",
               overflowY: "auto",
+              overflowX: "hidden",
               bgcolor: "background.sidebar",
               borderRight: 1,
               borderColor: "divider",
@@ -61,7 +62,7 @@ function App() {
           <Drawer
             open={mobileOpen}
             onClose={() => setMobileOpen(false)}
-            slotProps={{ paper: { sx: { bgcolor: "background.sidebar", borderRadius: 0 } } }}
+            slotProps={{ paper: { sx: { width: SIDEBAR_WIDTH, bgcolor: "background.sidebar", borderRadius: 0 } } }}
           >
             <Sidebar onNavigate={() => setMobileOpen(false)} />
           </Drawer>

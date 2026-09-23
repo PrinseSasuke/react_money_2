@@ -5,8 +5,8 @@ export default function SectionCard({ title, subtitle, action, children, content
     <Card sx={{ height: "100%", ...sx }}>
       <CardContent sx={{ height: "100%", display: "flex", flexDirection: "column", ...contentSx }}>
         {(title || action) && (
-          <div className="mb-4 flex items-start justify-between gap-3">
-            <div className="min-w-0">
+          <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
+            <div className="min-w-0 flex-[1_1_180px]">
               {title && (
                 <Typography variant="h6" component="h2">
                   {title}

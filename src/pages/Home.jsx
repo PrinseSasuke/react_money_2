@@ -45,7 +45,7 @@ function Home() {
     <div>
       <PageHeader title="Обзор" subtitle="Сводка по счетам и операциям за текущий месяц" />
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 min-[1280px]:grid-cols-4">
         <StatCard
           highlighted
           label="Общий баланс"

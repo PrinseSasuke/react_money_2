@@ -93,7 +93,14 @@ export function createAppTheme(mode) {
         },
         MuiCardContent: {
           styleOverrides: {
-            root: { padding: 24, "&:last-child": { paddingBottom: 24 } },
+            root: ({ theme }) => ({
+              padding: 16,
+              "&:last-child": { paddingBottom: 16 },
+              [theme.breakpoints.up("sm")]: {
+                padding: 24,
+                "&:last-child": { paddingBottom: 24 },
+              },
+            }),
           },
         },
         MuiButton: {

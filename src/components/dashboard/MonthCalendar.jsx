@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, ButtonBase, IconButton, Tooltip, Typography } from "@mui/material";
-import { alpha } from "@mui/material/styles";
+import { Box, ButtonBase, IconButton, Tooltip, Typography, useMediaQuery } from "@mui/material";
+import { alpha, useTheme } from "@mui/material/styles";
 import ChevronLeftRounded from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRounded from "@mui/icons-material/ChevronRightRounded";
 import SectionCard from "../ui/SectionCard";
-import { formatNumber, toDayKey } from "../../utils/format";
+import { formatCompact, formatNumber, toDayKey } from "../../utils/format";
 import { EXPENSE } from "../../utils/categories";
 
 const WEEKDAYS = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
@@ -27,11 +27,12 @@ function buildCells(month) {
   ];
 }
 
-function DayCell({ date, net, isToday, onOpen }) {
+function DayCell({ date, net, isToday, onOpen, compact }) {
   const hasOps = net !== undefined;
   const isExpense = hasOps && net < 0;
   const dd = String(date.getDate()).padStart(2, "0");
   const mm = String(date.getMonth() + 1).padStart(2, "0");
+  const sign = net > 0 ? "+" : net < 0 ? "−" : "";
 
   const content = (
     <>
@@ -39,7 +40,7 @@ function DayCell({ date, net, isToday, onOpen }) {
         variant="caption"
         sx={{ fontWeight: isToday ? 700 : 500, color: isToday ? "primary.main" : "text.secondary", lineHeight: 1.2 }}
       >
-        {dd}.{mm}
+        {compact ? date.getDate() : `${dd}.${mm}`}
       </Typography>
       {hasOps && (
         <Typography
@@ -48,12 +49,13 @@ function DayCell({ date, net, isToday, onOpen }) {
           sx={{
             width: "100%",
             fontWeight: 700,
-            fontSize: { xs: "0.65rem", sm: "0.75rem" },
+            fontSize: { xs: "0.625rem", sm: "0.75rem" },
+            letterSpacing: { xs: "-0.02em", sm: 0 },
             color: (t) => (isExpense ? t.palette.finance.expense.text : t.palette.finance.income.text),
           }}
         >
-          {net > 0 ? "+" : net < 0 ? "−" : ""}
-          {formatNumber(Math.abs(net))}
+          {sign}
+          {compact ? formatCompact(net) : formatNumber(Math.abs(net))}
         </Typography>
       )}
     </>
@@ -63,7 +65,7 @@ function DayCell({ date, net, isToday, onOpen }) {
     width: "100%",
     minHeight: { xs: 48, sm: 64 },
     borderRadius: 2.5,
-    p: { xs: 0.75, sm: 1 },
+    p: { xs: 0.5, sm: 1 },
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
@@ -98,6 +100,8 @@ function DayCell({ date, net, isToday, onOpen }) {
 
 export default function MonthCalendar({ transactions }) {
   const navigate = useNavigate();
+  const theme = useTheme();
+  const compact = useMediaQuery(theme.breakpoints.down("sm"), { noSsr: true });
   const [month, setMonth] = useState(() => {
     const now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), 1);
@@ -149,6 +153,7 @@ export default function MonthCalendar({ transactions }) {
               date={date}
               net={netByDay.get(toDayKey(date))}
               isToday={toDayKey(date) === todayKey}
+              compact={compact}
               onOpen={() => navigate(`/transactions/date/${toDayKey(date)}`)}
             />
           ) : (

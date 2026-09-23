@@ -49,11 +49,7 @@ export default function Sidebar({ onNavigate }) {
   };
 
   return (
-    <nav
-      aria-label="Основная навигация"
-      className="flex h-full flex-col px-4 py-6"
-      style={{ width: SIDEBAR_WIDTH }}
-    >
+    <nav aria-label="Основная навигация" className="flex h-full w-full flex-col px-4 py-6">
       <div className="mb-8 px-2">
         <Brand />
       </div>

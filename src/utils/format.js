@@ -32,6 +32,15 @@ export function formatNumber(value) {
   return compactFormatter.format(Number(value) || 0);
 }
 
+// Для очень узких мест (ячейка календаря на телефоне): 120000 -> "120к", 8400 -> "8,4к".
+export function formatCompact(value) {
+  const n = Math.abs(Number(value) || 0);
+  const trim = (x) => String(Number(x.toFixed(1))).replace(".", ",");
+  if (n >= 1_000_000) return `${trim(n / 1_000_000)}м`;
+  if (n >= 1_000) return `${trim(n / 1_000)}к`;
+  return String(Math.round(n));
+}
+
 export function formatSignedMoney(value, type, currency) {
   const sign = type === "Расход" ? "−" : "+";
   return `${sign}${formatMoney(value, currency)}`;

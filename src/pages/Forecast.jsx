@@ -129,7 +129,7 @@ const ForecastPage = () => {
             </Alert>
           )}
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 min-[1280px]:grid-cols-4">
             <StatCard highlighted label="Прогнозируемый баланс" value={formatMoney(forecast.balance, "RUB")} icon={AccountBalanceWalletRounded} />
             <StatCard label="Средний доход в месяц" value={formatMoney(forecast.incomeAvg, "RUB")} icon={SouthWestRounded} />
             <StatCard label="Средний расход в месяц" value={formatMoney(forecast.expenseAvg, "RUB")} icon={NorthEastRounded} />
