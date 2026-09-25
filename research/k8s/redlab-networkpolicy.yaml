@@ -1,0 +1,40 @@
+# Изоляция egress для redlab: подам разрешён выход ТОЛЬКО к цели атак (react-money),
+# к самому redlab (внутренний sink эксфильтрации) и к DNS. Любой выход в интернет запрещён.
+# Это ключевая гарантия безопасности стенда (RULES.md §2.2, TZ A-7): атакующий под
+# физически не может достучаться до внешнего адреса.
+#
+# Селекторы namespace'ов используют авто-метку kubernetes.io/metadata.name (её ставит сам
+# Kubernetes >= 1.21), поэтому чужие namespace'ы РЕДАКТИРОВАТЬ НЕ НУЖНО — изоляция соблюдена.
+#
+# ВАЖНО: NetworkPolicy применяется, только если CNI её исполняет. В k3s встроенный
+# контроллер сетевых политик это делает. Проверка фактической блокировки — `labctl doctor --egress-test`.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: redlab-egress-lockdown
+  namespace: redlab
+spec:
+  podSelector: {}          # все поды в redlab
+  policyTypes: [Egress]
+  egress:
+    # 1) DNS (обязательно, иначе не резолвятся имена сервисов внутри кластера)
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+      ports:
+        - {protocol: UDP, port: 53}
+        - {protocol: TCP, port: 53}
+    # 2) цель атак — приложение react-money
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: react-money}
+    # 3) внутренний sink эксфильтрации — сам redlab
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: redlab}
+    # 4) Traefik (вход в API идёт через ingress-контроллер в kube-system)
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+          podSelector:
+            matchLabels: {app.kubernetes.io/name: traefik}

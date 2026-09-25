@@ -1,0 +1,6 @@
+# Скрипты и манифесты исполняются на Linux-сервере — концы строк всегда LF,
+# иначе shebang (#!/usr/bin/env ...) ломается на сервере ("bad interpreter").
+labctl      text eol=lf
+*.py        text eol=lf
+*.yaml      text eol=lf
+*.sh        text eol=lf

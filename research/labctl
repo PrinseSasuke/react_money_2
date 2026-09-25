@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Обёртка labctl. Долгие прогоны (`scenario run`) уходят в tmux, чтобы обрыв SSH
+# не убивал сбор данных. Отключиться, не прерывая: Ctrl+B, затем D. Вернуться: labctl attach
+# (по образцу scripts/chaos из основного проекта).
+export KUBECONFIG="${KUBECONFIG:-$HOME/.kube/config}"
+DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+
+if [ "$1" = "attach" ]; then
+  exec tmux attach -t labctl
+fi
+
+# В tmux заводим только длинные фоновые прогоны сценариев.
+if [ "$1" = "scenario" ] && [ "$2" = "run" ] && [ -z "$TMUX" ] && command -v tmux >/dev/null; then
+  if tmux has-session -t labctl 2>/dev/null; then
+    echo "Прогон уже идёт — подключаюсь (отключиться, не прерывая: Ctrl+B, затем D)"
+    sleep 1
+    exec tmux attach -t labctl
+  fi
+  exec tmux new-session -s labctl \
+    "python3 '$DIR/labctl.py' $(printf '%q ' "$@"); echo; read -rp 'Готово. Enter — закрыть.'"
+fi
+
+exec python3 "$DIR/labctl.py" "$@"

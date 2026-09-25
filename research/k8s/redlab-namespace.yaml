@@ -1,0 +1,10 @@
+# redlab · изолированный namespace для атакующих Job'ов и sink эксфильтрации.
+# Живёт отдельно от приложения (react-money), нагрузки (loadtest) и мониторинга (monitoring).
+# Ничего из диплома не трогает. Метка purpose=redlab — чтобы политики и doctor его находили.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: redlab
+  labels:
+    purpose: redlab
+    part-of: research-ids-ml
