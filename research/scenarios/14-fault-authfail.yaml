@@ -1,0 +1,63 @@
+# 14 · fault · Шторм 401: клиенты с невалидным токеном массово получают отказ, ~2 минуты.
+# Инструмент: k6 (constant-arrival-rate) с заведомо невалидным JWT в Authorization
+# Ожидаемый след: rps_401_403 и rps_4xx взлетают; requireAuth отдаёт 401 БЕЗ обращения к БД,
+#                 поэтому pg_tps и латентность в норме. ВНЕШНЕ похоже на brute-force (атака 20).
+# Гипотеза (ДВОЙНИК brute-force): реальный сбой авторизации — протухший JWT-секрет после ротации,
+#           из-за чего у ВСЕХ клиентов токены стали невалидны — 401 идут широким штатным потоком
+#           на разные эндпоинты. brute-force же узко долбит /api/auth/login перебором паролей.
+#           Модель должна отличить «сломанную авторизацию» от «перебора паролей».
+#
+# Это штатный сбой (битые токены легитимных клиентов), а не атака: без словаря и без БД,
+# просто много обычных запросов с истёкшим токеном. Генератор в redlab (egress пускает к Traefik),
+# чистится штатным scenario stop.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fault-authfail-k6
+  namespace: redlab
+data:
+  script.js: |
+    import http from 'k6/http';
+    export const options = {
+      scenarios: {
+        s: {
+          executor: 'constant-arrival-rate',
+          rate: Number(__ENV.RATE || 300),
+          timeUnit: '1s',
+          duration: __ENV.DURATION || '120s',
+          preAllocatedVUs: 50,
+          maxVUs: 500,
+        },
+      },
+    };
+    const URL = 'http://traefik.kube-system.svc.cluster.local/api/auth/me';
+    const params = { headers: { Authorization: 'Bearer invalid.expired.token' }, timeout: '10s' };
+    export default function () { http.get(URL, params); }
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fault-authfail
+  namespace: redlab
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 600
+  activeDeadlineSeconds: 150
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: k6
+          image: grafana/k6:latest
+          args: ["run", "--quiet", "/scripts/script.js"]
+          env:
+            - {name: RATE, value: "300"}
+            - {name: DURATION, value: "120s"}
+          resources:
+            requests: {cpu: 100m, memory: 64Mi}
+            limits: {cpu: "1", memory: 512Mi}
+          volumeMounts:
+            - {name: script, mountPath: /scripts}
+      volumes:
+        - name: script
+          configMap: {name: fault-authfail-k6}

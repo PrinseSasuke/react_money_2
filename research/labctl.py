@@ -472,18 +472,39 @@ def _variant(info, rng):
     observe_s = KILL_OBSERVE_S
     effect_s = (6 * 60) if cls == "norm" else (info.get("duration") or KILL_OBSERVE_S)
     intensity = {"rate": load_rate, "duration_s": effect_s, "action": info.get("action")}
+
+    # flash-crowd — норма, но с высоким rps (двойник флуда)
+    is_flash = cls == "norm" and name.endswith("flashcrowd")
+    if is_flash:
+        load_rate = 1000
+        intensity = {"rate": load_rate, "duration_s": effect_s, "flash_crowd": True}
     if rng is None:
         return doc, effect_s, observe_s, load_rate, intensity
 
     load_rate = rng.choice([80, 90, 100, 110, 120])
     if cls == "norm":
         effect_s = rng.choice([300, 360, 420, 480])
-        intensity = {"rate": load_rate, "duration_s": effect_s}
+        if is_flash:
+            load_rate = rng.choice([700, 1000, 1300, 1600])
+            intensity = {"rate": load_rate, "duration_s": effect_s, "flash_crowd": True}
+        else:
+            intensity = {"rate": load_rate, "duration_s": effect_s}
+    elif kind == "httpchaos":
+        dur = rng.choice([180, 240, 300, 360])
+        doc["spec"]["duration"] = f"{dur}s"; effect_s = dur
+        code = (doc.get("spec") or {}).get("replace", {}).get("code")
+        intensity = {"rate": load_rate, "duration_s": dur, "http_code": code}
     elif kind == "networkchaos":
-        lat = rng.choice([100, 150, 200, 300, 400]); dur = rng.choice([180, 240, 300, 360])
-        doc["spec"]["delay"]["latency"] = f"{lat}ms"; doc["spec"]["duration"] = f"{dur}s"
-        effect_s = dur
-        intensity = {"rate": load_rate, "latency_ms": lat, "duration_s": dur}
+        dur = rng.choice([180, 240, 300, 360])
+        sp = doc["spec"]; sp["duration"] = f"{dur}s"; effect_s = dur
+        if "delay" in sp:
+            lat = rng.choice([100, 150, 200, 300, 400]); sp["delay"]["latency"] = f"{lat}ms"
+            intensity = {"rate": load_rate, "latency_ms": lat, "duration_s": dur}
+        elif "loss" in sp:
+            loss = rng.choice([80, 90, 100]); sp["loss"]["loss"] = str(loss)
+            intensity = {"rate": load_rate, "loss_pct": loss, "duration_s": dur}
+        else:
+            intensity = {"rate": load_rate, "duration_s": dur}
     elif kind == "stresschaos":
         workers = rng.choice([1, 2]); load = rng.choice([70, 85, 100])
         dur = rng.choice([180, 240, 300, 360])
@@ -492,8 +513,12 @@ def _variant(info, rng):
         doc["spec"]["duration"] = f"{dur}s"; effect_s = dur
         intensity = {"rate": load_rate, "cpu_workers": workers, "cpu_load": load, "duration_s": dur}
     elif kind == "podchaos":
-        observe_s = rng.choice([180, 240, 300]); effect_s = observe_s
-        intensity = {"rate": load_rate, "observe_s": observe_s, "action": info.get("action")}
+        if info.get("action") in _INSTANT_PODCHAOS:      # pod-kill — мгновенно, задаём окно наблюдения
+            observe_s = rng.choice([180, 240, 300]); effect_s = observe_s
+            intensity = {"rate": load_rate, "observe_s": observe_s, "action": info.get("action")}
+        else:                                            # pod-failure — есть duration
+            dur = rng.choice([180, 240, 300, 360]); doc["spec"]["duration"] = f"{dur}s"; effect_s = dur
+            intensity = {"rate": load_rate, "duration_s": dur, "action": info.get("action")}
     elif kind == "job":
         if name.endswith("flood"):
             r = rng.choice([1000, 2000, 3000, 4000, 5000]); dur = rng.choice([90, 120, 150])
