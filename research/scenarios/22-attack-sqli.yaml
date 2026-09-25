@@ -1,0 +1,48 @@
+# 22 · attack · Сканирование SQL-инъекций по API транзакций через Traefik.
+# ATT&CK: T1190 (Exploit Public-Facing Application)
+# Инструмент: sqlmap (--batch), с валидным токеном тестового пользователя
+# Ожидаемый след: множество аномальных запросов к /api/transactions/*, всплеск rps_4xx/5xx,
+#                 рост pg_tps и, возможно, pg_rollbacks и req_p99. Приложение использует
+#                 параметризованные запросы (реально не инъектируется) — нам нужен только
+#                 наблюдаемый СЛЕД сканера, а не эксплуатация (TZ §1.4).
+# Гипотеза: SQLi-скан отличается от brute-force тем, что бьёт по data-эндпоинтам с валидным
+#           токеном (200/404/500 + нагрузка на БД), а не 401 на логине.
+#
+# Токен — из secret redlab/attack-token (labctl копирует его из loadtest/loadtest-token перед
+# прогоном; без зашитых кредов, RULES.md R-5). Цикл до потолка activeDeadlineSeconds.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: attack-sqli
+  namespace: redlab
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 600
+  activeDeadlineSeconds: 200
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: sqlmap
+          image: ilyaglow/sqlmap:latest
+          command: ["sh", "-c"]
+          args:
+            - |
+              TOKEN="$(cat /token/TOKEN)"
+              BASE="http://traefik.kube-system.svc.cluster.local"
+              echo "[attack] sqlmap-скан /api/transactions/* с токеном"
+              while true; do
+                python /sqlmap/sqlmap.py -u "$BASE/api/transactions/1*" \
+                  --headers="Authorization: Bearer $TOKEN" \
+                  --batch --flush-session --level=3 --risk=2 \
+                  --technique=BEUST --threads=8 --timeout=10 \
+                  --disable-coloring || true
+              done
+          resources:
+            requests: {cpu: 100m, memory: 128Mi}
+            limits: {cpu: 500m, memory: 512Mi}
+          volumeMounts:
+            - {name: token, mountPath: /token, readOnly: true}
+      volumes:
+        - name: token
+          secret: {secretName: attack-token}

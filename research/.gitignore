@@ -1,7 +1,11 @@
 # Производные/крупные артефакты — не версионируем (RULES.md §3.5).
 # Первичная разметка journal.jsonl — ВЕРСИОНИРУЕТСЯ (ценность для воспроизводимости).
 dataset.csv
+windows.csv
 *.raw.json
+*.bak
+*.pdf
+*.docx
 results/**/*.png
 results/**/*.csv
 __pycache__/
