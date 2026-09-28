@@ -11,3 +11,5 @@ results/**/*.csv
 __pycache__/
 *.pyc
 ml/.venv/
+ml/results/
+ml/*.log
