@@ -1,0 +1,16 @@
+# 04 · Падение пода backend под нагрузкой: убивается один случайный под, мгновенно.
+# Гипотеза: второй под держит трафик, ReplicaSet поднимает замену. Меряем MTTR и сколько запросов потерялось.
+# Запуск (сначала нагрузка и 3 минуты «нормы»):  kubectl create -f ~/experiments/04-kill-backend.yaml
+# Grafana: «04 · Падение пода backend под нагрузкой»
+apiVersion: chaos-mesh.org/v1alpha1
+kind: PodChaos
+metadata:
+  generateName: kill-backend-
+  namespace: react-money
+spec:
+  action: pod-kill
+  mode: one
+  selector:
+    namespaces: [react-money]
+    labelSelectors: {app: backend}
+  gracePeriod: 0

@@ -1,0 +1,25 @@
+# 03 · Потеря пакетов: 30% пакетов backend → postgres теряются, 5 минут.
+# Гипотеза: большинство запросов быстрые, часть ждёт переотправки TCP — среднее почти не меняется, p95/p99 растут.
+# Запуск (сначала нагрузка и 3 минуты «нормы»):  kubectl create -f ~/experiments/03-loss-db.yaml
+# Grafana: «03 · Потеря пакетов до БД»
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  generateName: loss-db-
+  namespace: react-money
+spec:
+  action: loss
+  mode: all
+  selector:
+    namespaces: [react-money]
+    labelSelectors: {app: backend}
+  direction: to
+  target:
+    mode: all
+    selector:
+      namespaces: [react-money]
+      labelSelectors: {app: postgres}
+  loss:
+    loss: "30"
+    correlation: "0"
+  duration: "5m"

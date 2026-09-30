@@ -1,0 +1,20 @@
+# 08 · Перегрузка CPU backend: 1 воркер на 100% в каждом поде backend, 5 минут.
+# Гипотеза: CPU упрётся в limit (300m), это ~300% от requests (100m) при цели HPA 70% — HPA добавит реплики.
+# Запуск (сначала нагрузка и 3 минуты «нормы»):  kubectl create -f ~/experiments/08-cpu-stress.yaml
+# Grafana: «08 · Перегрузка CPU backend»
+apiVersion: chaos-mesh.org/v1alpha1
+kind: StressChaos
+metadata:
+  generateName: cpu-stress-
+  namespace: react-money
+spec:
+  mode: all
+  selector:
+    namespaces: [react-money]
+    labelSelectors: {app: backend}
+  containerNames: [backend]
+  stressors:
+    cpu:
+      workers: 1
+      load: 100
+  duration: "5m"

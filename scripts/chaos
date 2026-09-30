@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# `chaos run ...` goes into a tmux session so a dropped SSH connection doesn't kill the run.
+# Detach without stopping: Ctrl+B, then D.  Re-attach: chaos attach
+export KUBECONFIG="${KUBECONFIG:-$HOME/.kube/config}"
+DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+
+if [ "$1" = "attach" ]; then
+  exec tmux attach -t chaos
+fi
+
+if [ "$1" = "run" ] && [ -z "$TMUX" ] && command -v tmux >/dev/null; then
+  if tmux has-session -t chaos 2>/dev/null; then
+    echo "Прогон уже идёт — подключаюсь к нему (отключиться, не прерывая: Ctrl+B, затем D)"
+    sleep 1
+    exec tmux attach -t chaos
+  fi
+  exec tmux new-session -s chaos "python3 '$DIR/chaos_run.py' $(printf '%q ' "$@"); echo; read -rp 'Готово. Enter — закрыть окно.'"
+fi
+
+exec python3 "$DIR/chaos_run.py" "$@"

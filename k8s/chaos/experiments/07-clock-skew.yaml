@@ -1,0 +1,17 @@
+# 07 · Сдвиг часов на backend: +31 день (744h), 3 минуты.
+# Гипотеза: JWT живут 30 дней — при сдвиге все токены «просрочены», ожидаем лавину 401.
+# Запуск (сначала нагрузка и 3 минуты «нормы»):  kubectl create -f ~/experiments/07-clock-skew.yaml
+# Grafana: «07 · Сдвиг часов на backend»
+apiVersion: chaos-mesh.org/v1alpha1
+kind: TimeChaos
+metadata:
+  generateName: clock-skew-
+  namespace: react-money
+spec:
+  mode: all
+  selector:
+    namespaces: [react-money]
+    labelSelectors: {app: backend}
+  timeOffset: "744h"
+  clockIds: [CLOCK_REALTIME]
+  duration: "3m"

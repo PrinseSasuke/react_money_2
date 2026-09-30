@@ -1,0 +1,70 @@
+# Open-loop load: a constant 100 req/s on GET /api/auth/me through Traefik, like real users.
+# Open-loop matters: new requests keep arriving even when responses slow down, so a DB
+# slowdown turns into a growing queue instead of a quietly lower request rate.
+# Requires secret loadtest/loadtest-token with key TOKEN (JWT of a test user).
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: loadtest
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k6-api-me
+  namespace: loadtest
+data:
+  script.js: |
+    import http from 'k6/http';
+    import { check } from 'k6';
+
+    export const options = {
+      scenarios: {
+        users: {
+          executor: 'constant-arrival-rate',
+          rate: Number(__ENV.RATE || 100),
+          timeUnit: '1s',
+          duration: __ENV.DURATION || '12m',
+          preAllocatedVUs: 50,
+          maxVUs: 1500,
+        },
+      },
+      summaryTrendStats: ['avg', 'p(50)', 'p(95)', 'p(99)', 'max'],
+    };
+
+    const URL = 'http://traefik.kube-system.svc.cluster.local/api/auth/me';
+    const params = { headers: { Authorization: `Bearer ${__ENV.TOKEN}` }, timeout: '30s' };
+
+    export default function () {
+      const res = http.get(URL, params);
+      check(res, { 'status 200': (r) => r.status === 200 });
+    }
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: k6-api-me
+  namespace: loadtest
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 86400
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: k6
+          image: grafana/k6:latest
+          args: ["run", "--quiet", "/scripts/script.js"]
+          env:
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef: {name: loadtest-token, key: TOKEN}
+            - {name: RATE, value: "100"}
+            - {name: DURATION, value: "12m"}
+          resources:
+            requests: {cpu: 200m, memory: 128Mi}
+            limits: {cpu: "1", memory: 768Mi}
+          volumeMounts:
+            - {name: script, mountPath: /scripts}
+      volumes:
+        - name: script
+          configMap: {name: k6-api-me}

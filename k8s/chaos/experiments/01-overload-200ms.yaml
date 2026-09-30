@@ -1,0 +1,26 @@
+# 01 · Граница перегрузки: +200ms на пакеты backend → postgres, 5 минут.
+# Гипотеза: потолок 20/0.2 = 100 ответов/с = нагрузке: ровно на грани, очередь может то расти, то рассасываться.
+# Запуск (сначала нагрузка и 3 минуты «нормы»):  kubectl create -f ~/experiments/01-overload-200ms.yaml
+# Grafana: «01 · Граница перегрузки»
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  generateName: overload-200ms-
+  namespace: react-money
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces: [react-money]
+    labelSelectors: {app: backend}
+  direction: to
+  target:
+    mode: all
+    selector:
+      namespaces: [react-money]
+      labelSelectors: {app: postgres}
+  delay:
+    latency: "200ms"
+    jitter: "10ms"
+    correlation: "0"
+  duration: "5m"

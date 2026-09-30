@@ -1,0 +1,24 @@
+# "Slow DB": +300ms on every packet from backend pods to postgres, for 5 minutes.
+# Same parameters as the experiment created through the Chaos Mesh dashboard.
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: network-delay-db
+  namespace: react-money
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces: [react-money]
+    labelSelectors: {app: backend}
+  direction: to
+  target:
+    mode: all
+    selector:
+      namespaces: [react-money]
+      labelSelectors: {app: postgres}
+  delay:
+    latency: "300ms"
+    jitter: "10ms"
+    correlation: "0"
+  duration: "5m"

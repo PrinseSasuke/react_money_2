@@ -1,0 +1,22 @@
+# 02 · Обрыв связи с БД: пакеты backend → postgres не доходят, 2 минуты.
+# Гипотеза: в пуле нет таймаута, поэтому запросы повиснут, а не упадут. Поды backend останутся Ready (health не ходит в БД).
+# Запуск (сначала нагрузка и 3 минуты «нормы»):  kubectl create -f ~/experiments/02-partition-db.yaml
+# Grafana: «02 · Обрыв связи с БД»
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  generateName: partition-db-
+  namespace: react-money
+spec:
+  action: partition
+  mode: all
+  selector:
+    namespaces: [react-money]
+    labelSelectors: {app: backend}
+  direction: to
+  target:
+    mode: all
+    selector:
+      namespaces: [react-money]
+      labelSelectors: {app: postgres}
+  duration: "2m"

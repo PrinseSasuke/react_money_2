@@ -26,6 +26,11 @@ data:
         type: file
         options:
           path: /var/lib/grafana/dashboards
+      - name: chaos-experiments
+        type: file
+        folder: "Эксперименты Chaos Mesh"
+        options:
+          path: /var/lib/grafana/dashboards-chaos
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -70,6 +75,79 @@ data:
         }
       ]
     }
+  slow-db.json: |
+    {
+      "title": "Эксперимент: медленная БД",
+      "uid": "slow-db",
+      "timezone": "browser",
+      "schemaVersion": 39,
+      "refresh": "5s",
+      "time": {"from": "now-20m", "to": "now"},
+      "panels": [
+        {
+          "id": 1, "type": "timeseries", "title": "Задержка API backend (через Traefik)",
+          "gridPos": {"h": 9, "w": 12, "x": 0, "y": 0},
+          "fieldConfig": {"defaults": {"unit": "s"}},
+          "targets": [
+            {"expr": "sum(rate(traefik_service_request_duration_seconds_sum{service=~\"react-money-backend.*\"}[30s])) / sum(rate(traefik_service_request_duration_seconds_count{service=~\"react-money-backend.*\"}[30s]))", "legendFormat": "среднее"},
+            {"expr": "histogram_quantile(0.95, sum by (le) (rate(traefik_service_request_duration_seconds_bucket{service=~\"react-money-backend.*\"}[30s])))", "legendFormat": "p95"}
+          ]
+        },
+        {
+          "id": 2, "type": "timeseries", "title": "Ответы backend в секунду по коду",
+          "gridPos": {"h": 9, "w": 12, "x": 12, "y": 0},
+          "fieldConfig": {"defaults": {"unit": "reqps"}},
+          "targets": [
+            {"expr": "sum by (code) (rate(traefik_service_requests_total{service=~\"react-money-backend.*\"}[30s]))", "legendFormat": "{{code}}"}
+          ]
+        },
+        {
+          "id": 3, "type": "timeseries", "title": "Открытые соединения в Traefik (запросы в ожидании)",
+          "gridPos": {"h": 8, "w": 12, "x": 0, "y": 9},
+          "targets": [
+            {"expr": "sum by (entrypoint) (traefik_open_connections)", "legendFormat": "{{entrypoint}}"}
+          ]
+        },
+        {
+          "id": 4, "type": "timeseries", "title": "Готовность подов backend (1 = Ready)",
+          "gridPos": {"h": 8, "w": 12, "x": 12, "y": 9},
+          "fieldConfig": {"defaults": {"min": 0, "max": 1.2}},
+          "targets": [
+            {"expr": "kube_pod_status_ready{namespace=\"react-money\",pod=~\"backend-.*\",condition=\"true\"}", "legendFormat": "{{pod}}"}
+          ]
+        },
+        {
+          "id": 5, "type": "timeseries", "title": "Перезапуски контейнеров (react-money)",
+          "gridPos": {"h": 8, "w": 8, "x": 0, "y": 17},
+          "targets": [
+            {"expr": "sum by (pod) (kube_pod_container_status_restarts_total{namespace=\"react-money\"})", "legendFormat": "{{pod}}"}
+          ]
+        },
+        {
+          "id": 6, "type": "timeseries", "title": "Реплики backend (HPA)",
+          "gridPos": {"h": 8, "w": 8, "x": 8, "y": 17},
+          "targets": [
+            {"expr": "kube_horizontalpodautoscaler_status_current_replicas{namespace=\"react-money\"}", "legendFormat": "текущие"},
+            {"expr": "kube_horizontalpodautoscaler_status_desired_replicas{namespace=\"react-money\"}", "legendFormat": "желаемые"}
+          ]
+        },
+        {
+          "id": 7, "type": "timeseries", "title": "CPU backend по подам",
+          "gridPos": {"h": 8, "w": 8, "x": 16, "y": 17},
+          "targets": [
+            {"expr": "sum by (pod) (rate(container_cpu_usage_seconds_total{namespace=\"react-money\",container=\"backend\"}[1m]))", "legendFormat": "{{pod}}"}
+          ]
+        },
+        {
+          "id": 8, "type": "timeseries", "title": "Память backend по подам",
+          "gridPos": {"h": 8, "w": 24, "x": 0, "y": 25},
+          "fieldConfig": {"defaults": {"unit": "bytes"}},
+          "targets": [
+            {"expr": "container_memory_working_set_bytes{namespace=\"react-money\",container=\"backend\"}", "legendFormat": "{{pod}}"}
+          ]
+        }
+      ]
+    }
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -106,6 +184,7 @@ spec:
             - {name: datasources, mountPath: /etc/grafana/provisioning/datasources}
             - {name: dashboard-provisioning, mountPath: /etc/grafana/provisioning/dashboards}
             - {name: dashboard-reactmoney, mountPath: /var/lib/grafana/dashboards}
+            - {name: dashboards-chaos, mountPath: /var/lib/grafana/dashboards-chaos}
           readinessProbe:
             httpGet: {path: /api/health, port: 3000}
             initialDelaySeconds: 5
@@ -117,6 +196,8 @@ spec:
           configMap: {name: grafana-dashboard-provisioning}
         - name: dashboard-reactmoney
           configMap: {name: grafana-dashboard-reactmoney}
+        - name: dashboards-chaos
+          configMap: {name: grafana-dashboards-chaos}
 ---
 apiVersion: v1
 kind: Service

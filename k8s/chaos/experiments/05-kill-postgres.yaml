@@ -1,0 +1,16 @@
+# 05 · Падение Postgres: убивается postgres-0 (единственная копия БД), мгновенно.
+# Гипотеза: неизбежный простой на время пересоздания пода; данные на диске (PVC) сохраняются. Смотрим, как быстро backend оживает после базы.
+# Запуск (сначала нагрузка и 3 минуты «нормы»):  kubectl create -f ~/experiments/05-kill-postgres.yaml
+# Grafana: «05 · Падение Postgres»
+apiVersion: chaos-mesh.org/v1alpha1
+kind: PodChaos
+metadata:
+  generateName: kill-postgres-
+  namespace: react-money
+spec:
+  action: pod-kill
+  mode: one
+  selector:
+    namespaces: [react-money]
+    labelSelectors: {app: postgres}
+  gracePeriod: 0

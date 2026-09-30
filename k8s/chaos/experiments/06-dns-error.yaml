@@ -1,0 +1,19 @@
+# 06 · Сбой DNS у backend: имя postgres перестаёт резолвиться, 5 минут.
+# Гипотеза: «спящий» отказ — пул держит уже открытые соединения, поэтому сначала ничего не ломается.
+# Проявится при новом соединении: во время эксперимента убей один под backend (04-kill-backend.yaml).
+# Запуск (сначала нагрузка и 3 минуты «нормы»):  kubectl create -f ~/experiments/06-dns-error.yaml
+# Grafana: «06 · Сбой DNS у backend»
+apiVersion: chaos-mesh.org/v1alpha1
+kind: DNSChaos
+metadata:
+  generateName: dns-error-
+  namespace: react-money
+spec:
+  action: error
+  mode: all
+  patterns:
+    - "postgres*"
+  selector:
+    namespaces: [react-money]
+    labelSelectors: {app: backend}
+  duration: "5m"
