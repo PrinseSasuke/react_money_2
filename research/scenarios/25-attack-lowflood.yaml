@@ -1,0 +1,49 @@
+# 25 · attack · Слабый флуд (low-rate DDoS) на /api/health — на грани нормы.
+# ATT&CK: T1499 (Endpoint Denial of Service) — стелс-вариант
+# Ожидаемый след: умеренный rps (сотни/с) — заметно выше нормы (~100), но близко к flash-crowd
+#                 и к пикам легитимной нагрузки. Ошибки/задержка почти не растут.
+# Гипотеза: трудный случай — слабый флуд перекрывается с легитимным наплывом (01 flash-crowd);
+#           именно здесь false-attack/пропуски наиболее вероятны — ищем границу.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: attack-lowflood-k6
+  namespace: redlab
+data:
+  script.js: |
+    import http from 'k6/http';
+    export const options = {
+      scenarios: { s: { executor: 'constant-arrival-rate',
+        rate: Number(__ENV.RATE || 300), timeUnit: '1s',
+        duration: __ENV.DURATION || '180s', preAllocatedVUs: 100, maxVUs: 800 } },
+    };
+    const URL = 'http://traefik.kube-system.svc.cluster.local/api/health';
+    export default function () { http.get(URL, { timeout: '10s' }); }
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: attack-lowflood
+  namespace: redlab
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 600
+  activeDeadlineSeconds: 210
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: k6
+          image: grafana/k6:latest
+          args: ["run", "--quiet", "/scripts/script.js"]
+          env:
+            - {name: RATE, value: "300"}
+            - {name: DURATION, value: "180s"}
+          resources:
+            requests: {cpu: 200m, memory: 128Mi}
+            limits: {cpu: "1", memory: 512Mi}
+          volumeMounts:
+            - {name: script, mountPath: /scripts}
+      volumes:
+        - name: script
+          configMap: {name: attack-lowflood-k6}

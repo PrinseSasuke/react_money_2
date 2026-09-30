@@ -1,0 +1,55 @@
+# 24 · attack · Перебор путей/эндпоинтов (enumeration) по /api/* → шторм 404.
+# ATT&CK: T1595.003 (Active Scanning: Wordlist Scanning) / T1083 (File and Directory Discovery)
+# Инструмент: k6 (перебор несуществующих путей под /api/)
+# Ожидаемый след: всплеск rps_4xx с кодом 404 (не 401!) — НОВАЯ сигнатура, отличная от
+#                 brute-force (401) и SQLi (5xx). Нагрузка на БД не растёт.
+# Гипотеза: сканер путей даёт узнаваемый профиль 404 на множестве несуществующих ручек —
+#           расширяет покрытие типов атак (важно после leave-one-attack-out).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: attack-pathscan-k6
+  namespace: redlab
+data:
+  script.js: |
+    import http from 'k6/http';
+    export const options = {
+      scenarios: { s: { executor: 'constant-arrival-rate',
+        rate: Number(__ENV.RATE || 50), timeUnit: '1s',
+        duration: __ENV.DURATION || '180s', preAllocatedVUs: 50, maxVUs: 300 } },
+    };
+    const BASE = 'http://traefik.kube-system.svc.cluster.local';
+    const paths = ['/api/admin','/api/users','/api/config','/api/v1/secret','/api/debug',
+      '/api/backup','/api/.env','/api/internal','/api/root','/api/private','/api/db',
+      '/api/console','/api/status/all','/api/keys','/api/dump'];
+    export default function () {
+      http.get(BASE + paths[Math.floor(Math.random()*paths.length)], { timeout: '10s' });
+    }
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: attack-pathscan
+  namespace: redlab
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 600
+  activeDeadlineSeconds: 210
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: k6
+          image: grafana/k6:latest
+          args: ["run", "--quiet", "/scripts/script.js"]
+          env:
+            - {name: RATE, value: "50"}
+            - {name: DURATION, value: "180s"}
+          resources:
+            requests: {cpu: 100m, memory: 64Mi}
+            limits: {cpu: "1", memory: 512Mi}
+          volumeMounts:
+            - {name: script, mountPath: /scripts}
+      volumes:
+        - name: script
+          configMap: {name: attack-pathscan-k6}

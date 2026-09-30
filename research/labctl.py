@@ -57,9 +57,9 @@ RUN_LABEL = "labctl-run"               # метка, по которой нах�
 # Виды Chaos Mesh, которые может создать сценарий-«сбой» (для status/stop).
 CHAOS_KINDS = ["networkchaos", "podchaos", "dnschaos", "timechaos",
                "stresschaos", "iochaos", "httpchaos"]
-BASELINE_S = 180        # 3 мин «нормы» до сценария (§4.1)
-RECOVERY_S = 120        # окно восстановления после сценария
-COOLDOWN_S = 120        # пауза между сценариями в `run all`
+BASELINE_S = 120        # «норма» до сценария (урезано со 180 для баланса классов)
+RECOVERY_S = 60         # окно восстановления после сценария (урезано со 120)
+COOLDOWN_S = 60         # пауза между прогонами в `run all`
 KILL_OBSERVE_S = 300    # окно наблюдения для мгновенных действий (pod-kill)
 
 try:
@@ -520,13 +520,20 @@ def _variant(info, rng):
             dur = rng.choice([180, 240, 300, 360]); doc["spec"]["duration"] = f"{dur}s"; effect_s = dur
             intensity = {"rate": load_rate, "duration_s": dur, "action": info.get("action")}
     elif kind == "job":
-        if name.endswith("flood"):
-            r = rng.choice([1000, 2000, 3000, 4000, 5000]); dur = rng.choice([90, 120, 150])
+        # k6-атаки с параметром rate: своя «сила» на сценарий (в т.ч. стелс-варианты)
+        rate_map = {
+            "21-attack-flood": [1000, 2000, 3000, 4000, 5000],   # громкий флуд
+            "25-attack-lowflood": [150, 250, 350, 500],          # стелс-флуд у нормы
+            "23-attack-lowbrute": [5, 10, 15, 25],               # медленный перебор
+            "24-attack-pathscan": [30, 50, 70],                  # скан путей
+        }
+        dur = rng.choice([120, 150, 180, 200, 240])
+        if name in rate_map:
+            r = rng.choice(rate_map[name])
             _set_job_env(doc, "RATE", r); _set_job_env(doc, "DURATION", f"{dur}s")
             doc["spec"]["activeDeadlineSeconds"] = dur + 30; effect_s = dur + 30
-            intensity = {"rate": load_rate, "flood_rate": r, "duration_s": dur}
-        else:  # bruteforce, sqli — варьируем длительность воздействия
-            dur = rng.choice([120, 150, 180, 200])
+            intensity = {"rate": load_rate, "job_rate": r, "duration_s": dur}
+        else:  # bruteforce(20), sqli(22), authfail(14) — цикл до дедлайна, варьируем длительность
             doc["spec"]["activeDeadlineSeconds"] = dur; effect_s = dur
             intensity = {"rate": load_rate, "duration_s": dur}
     return doc, effect_s, observe_s, load_rate, intensity
