@@ -32,7 +32,8 @@ HERE = Path(__file__).resolve().parent
 RESEARCH = HERE.parent
 CID = T.CID
 CLASSES = T.CLASSES
-ATTACKS = ["20-attack-bruteforce", "21-attack-flood", "22-attack-sqli"]
+ATTACKS = ["20-attack-bruteforce", "21-attack-flood", "22-attack-sqli",
+           "23-attack-lowbrute", "24-attack-pathscan", "25-attack-lowflood"]
 
 out = []
 def log(s=""):
