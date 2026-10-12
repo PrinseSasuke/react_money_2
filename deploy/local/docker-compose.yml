@@ -1,0 +1,119 @@
+# Local environment for the receipts services (ТЗ, stage L0): Postgres, NATS JetStream, SeaweedFS (S3), core-api.
+# Only for the laptop — the stand, k8s and prod are not touched.
+#
+#   cp deploy/local/.env.example deploy/local/.env      (once)
+#   docker compose -f deploy/local/docker-compose.yml up -d
+#   docker compose -f deploy/local/docker-compose.yml ps
+#
+# nats-init and seaweedfs-init create the streams and the bucket, then exit with code 0.
+name: react-money-local
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: react_money
+      # read by db/init/10-receipts.sh on the first start of an empty volume
+      RECEIPTS_DB_PASSWORD: ${RECEIPTS_DB_PASSWORD:?set it in deploy/local/.env}
+    ports:
+      - "${PG_PORT:-5432}:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d react_money"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  nats:
+    image: nats:2.10-alpine
+    command: ["-js", "-sd", "/data", "-m", "8222"]
+    ports:
+      - "4222:4222"
+      - "8222:8222" # monitoring: http://localhost:8222
+    volumes:
+      - nats_data:/data
+    mem_limit: 128m # ~100 МБ, as planned for the stand
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8222/healthz?js-enabled-only=true"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  nats-init:
+    image: natsio/nats-box:0.14.5
+    depends_on:
+      nats:
+        condition: service_healthy
+    environment:
+      NATS_URL: nats://nats:4222
+    volumes:
+      - ./nats/init-streams.sh:/init-streams.sh:ro
+    entrypoint: ["sh", "/init-streams.sh"]
+    restart: "no"
+
+  # S3 storage for receipt photos. SeaweedFS instead of MinIO: MinIO stopped publishing its images
+  # (minio/minio and minio/mc are gone from Docker Hub). The S3 API is the same for the services.
+  seaweedfs:
+    image: chrislusf/seaweedfs:latest
+    environment:
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY:?set it in deploy/local/.env}
+      S3_SECRET_KEY: ${S3_SECRET_KEY:?set it in deploy/local/.env}
+    volumes:
+      - ./seaweedfs/start.sh:/start.sh:ro
+      - s3_data:/data
+    entrypoint: ["sh", "/start.sh"]
+    ports:
+      - "8333:8333" # S3 API
+      - "9333:9333" # master UI: http://localhost:9333
+      - "8888:8888" # filer UI (browse files): http://localhost:8888
+    mem_limit: 256m
+    healthcheck:
+      # any HTTP answer from the S3 gateway (403 to an anonymous request included) means it is up
+      test: ["CMD-SHELL", "wget -S -q -O /dev/null http://127.0.0.1:8333/ 2>&1 | grep -q HTTP/"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  seaweedfs-init:
+    image: chrislusf/seaweedfs:latest
+    depends_on:
+      seaweedfs:
+        condition: service_healthy
+    volumes:
+      - ./seaweedfs/init-bucket.sh:/init-bucket.sh:ro
+    entrypoint: ["sh", "/init-bucket.sh"]
+    restart: "no"
+
+  core-api:
+    build: ../../backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PORT: 4000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: app
+      DB_PASSWORD: app
+      DB_NAME: react_money
+      JWT_SECRET: ${JWT_SECRET:?set it in deploy/local/.env}
+      UPLOAD_DIR: /app/uploads
+    ports:
+      - "4000:4000"
+    volumes:
+      - uploads_data:/app/uploads
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:4000/api/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  pg_data:
+  nats_data:
+  s3_data:
+  uploads_data:
