@@ -139,6 +139,30 @@ services:
       timeout: 5s
       retries: 30
 
+  receipts-worker:
+    build: ../../services/receipts-worker
+    depends_on:
+      nats-init:
+        condition: service_completed_successfully
+      receipts-api: # creates the receipts tables on start
+        condition: service_healthy
+      core-api:
+        condition: service_healthy
+    environment:
+      METRICS_PORT: 3101
+      DATABASE_URL: postgres://receipts_svc:${RECEIPTS_DB_PASSWORD}@postgres:5432/react_money
+      NATS_URL: nats://nats:4222
+      JWT_SECRET: ${JWT_SECRET}
+      CORE_API_URL: http://core-api:4000
+      WORKER_CONCURRENCY: ${WORKER_CONCURRENCY:-4}
+      PARSER: stub
+      # for failure scenarios (ТЗ, section 8): an artificially slow or flaky parser
+      PARSER_DELAY_MS: ${PARSER_DELAY_MS:-0}
+      PARSER_FAIL_RATE: ${PARSER_FAIL_RATE:-0}
+    ports:
+      - "3101:3101" # /healthz and /metrics only
+    stop_grace_period: 30s # time to finish the current tasks on docker stop
+
 volumes:
   pg_data:
   nats_data:

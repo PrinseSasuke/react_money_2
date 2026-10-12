@@ -21,6 +21,35 @@ describe("transactions CRUD", () => {
     expect(listRes.body[0].id).toBe(createRes.body.id);
   });
 
+  it("returns the existing transaction for a repeated externalId", async () => {
+    const { token, accountId } = await registerUserWithAccount();
+    const body = { type: "Расход", summ: 250, account_id: accountId, externalId: "7380440700000000:12345:1234567890" };
+
+    const first = await request(app).post("/api/transactions").set("Authorization", `Bearer ${token}`).send(body);
+    const second = await request(app).post("/api/transactions").set("Authorization", `Bearer ${token}`).send(body);
+
+    expect(first.status).toBe(201);
+    expect(second.status).toBe(200);
+    expect(second.body.id).toBe(first.body.id);
+    const listRes = await request(app).get("/api/transactions").set("Authorization", `Bearer ${token}`);
+    expect(listRes.body).toHaveLength(1);
+  });
+
+  it("keeps externalId per user", async () => {
+    const a = await registerUserWithAccount();
+    const b = await registerUserWithAccount();
+    const key = "7380440700000000:1:1";
+
+    const resA = await request(app).post("/api/transactions").set("Authorization", `Bearer ${a.token}`)
+      .send({ type: "Расход", summ: 10, account_id: a.accountId, externalId: key });
+    const resB = await request(app).post("/api/transactions").set("Authorization", `Bearer ${b.token}`)
+      .send({ type: "Расход", summ: 10, account_id: b.accountId, externalId: key });
+
+    expect(resA.status).toBe(201);
+    expect(resB.status).toBe(201);
+    expect(resB.body.id).not.toBe(resA.body.id);
+  });
+
   it("requires account_id", async () => {
     const { token } = await registerUserWithAccount();
 

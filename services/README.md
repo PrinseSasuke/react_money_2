@@ -2,7 +2,13 @@
 
 `receipts-api` принимает чек (фото или строку QR), `receipts-worker` в фоне разбирает его и создаёт трату в core-api. Сейчас всё работает только локально, на ноутбуке; стенд, k8s и прод не затрагиваются. Требования — в ТЗ «сервис разбора чеков (локальная версия)».
 
-## Запуск окружения (этап L0)
+```
+клиент ──POST /api/receipts──► receipts-api ──► S3 (фото) + Postgres (схема receipts) + NATS (receipts.parse)
+                                                                                   │
+core-api ◄──POST /api/transactions (externalId = фискальный ключ)── receipts-worker ◄┘
+```
+
+## Запуск окружения
 
 Нужны Docker Desktop (запущен) и этот репозиторий. Из корня репозитория:
 
@@ -12,10 +18,12 @@ docker compose -f deploy/local/docker-compose.yml up -d
 docker compose -f deploy/local/docker-compose.yml ps -a
 ```
 
-Готово, когда `postgres`, `nats`, `seaweedfs` и `core-api` в состоянии `healthy`, а `nats-init` и `seaweedfs-init` завершились с кодом 0.
+Готово, когда `postgres`, `nats`, `seaweedfs`, `core-api`, `receipts-api` и `receipts-worker` в состоянии `healthy`, а `nats-init` и `seaweedfs-init` завершились с кодом 0.
 
 | Что | Адрес |
 |---|---|
+| receipts-api | http://localhost:3100 (`/api/receipts`, `/healthz`, `/readyz`, `/metrics`) |
+| receipts-worker | http://localhost:3101 (`/healthz`, `/metrics`) |
 | core-api | http://localhost:4000/api/health |
 | NATS (клиенты) | nats://localhost:4222 |
 | NATS (мониторинг) | http://localhost:8222 |
@@ -40,6 +48,27 @@ docker compose -f deploy/local/docker-compose.yml exec postgres psql -U receipts
 ```
 
 Вторая команда должна вернуть `permission denied for table users`: сервис чеков не видит таблицы core-api.
+
+**Путь чека целиком** (QR → `parsed` → трата в core-api; тот же QR ещё раз → `duplicate`, вторая трата не создаётся):
+
+```bash
+node scripts/e2e.mjs
+```
+
+Скрипт сам регистрирует тестового пользователя в локальном core-api (`E2E_EMAIL` / `E2E_PASSWORD` из `deploy/local/.env.example`).
+
+**Тесты сервисов** (без docker): `npm test` в `services/receipts-api` и `services/receipts-worker`.
+
+## Как worker обрабатывает чек
+
+1. Берёт задачу из консьюмера `receipts-worker`; чек уже в конечном статусе — только `ack` (повторная доставка).
+2. `processing`, разбор `StubParser` (строка QR формата ФНС; фото без QR → `error` / `ocr_not_implemented`).
+3. Занимает фискальный ключ `fn:i:fp` в `receipts.fiscal_claims`; ключ уже у другого чека → `duplicate`.
+4. Создаёт трату в core-api (`externalId` = фискальный ключ, повтор вызова вернёт ту же трату) → `parsed`, затем `ack`.
+
+Временные ошибки (core-api 5xx/429/таймаут, база недоступна) — повтор через 1 с → 5 с → 30 с → 2 мин; после 5 попыток — `error` / `max_attempts` и копия задачи в `receipts.dlq`. Постоянные (QR не разбирается, 4xx от core-api) — сразу `error`.
+
+Для сценариев отказов в `deploy/local/.env`: `PARSER_DELAY_MS` (медленный разбор), `PARSER_FAIL_RATE` (доля временных ошибок, 0–1), `WORKER_CONCURRENCY`.
 
 ## Остановить и сбросить
 

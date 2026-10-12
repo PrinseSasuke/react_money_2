@@ -20,6 +20,7 @@ const mapRow = (row) => ({
   user_id: row.user_id,
   account_id: row.account_id,
   is_auto_generated: row.is_auto_generated,
+  external_id: row.external_id ?? null,
   attachment_count:
     row.attachment_count !== undefined ? Number(row.attachment_count) : undefined,
 });
@@ -87,8 +88,10 @@ router.get("/:id", async (req, res) => {
 });
 
 // Создать транзакцию
+// externalId — необязательный ключ идемпотентности (сервис чеков передаёт фискальный
+// ключ чека): повтор с тем же ключом отвечает 200 с уже созданной транзакцией.
 router.post("/", async (req, res) => {
-  const { type, source, description, summ, currency, date, account_id } =
+  const { type, source, description, summ, currency, date, account_id, externalId } =
     req.body;
   if (!type || !summ) {
     return res.status(400).json({ error: "type и summ обязательны" });
@@ -96,13 +99,18 @@ router.post("/", async (req, res) => {
   if (!account_id) {
     return res.status(400).json({ error: "account_id обязателен" });
   }
+  if (externalId !== undefined && (typeof externalId !== "string" || !externalId || externalId.length > 200)) {
+    return res.status(400).json({ error: "externalId должен быть непустой строкой до 200 символов" });
+  }
   try {
     if (!(await assertOwnsAccount(pool, account_id, req.userId))) {
       return res.status(400).json({ error: "Счёт не найден" });
     }
     const result = await pool.query(
-      `INSERT INTO transactions (user_id, type, source, description, summ, currency, date, account_id)
-       VALUES ($1, $2, $3, $4, $5, $6, COALESCE($7, now()), $8) RETURNING *`,
+      `INSERT INTO transactions (user_id, type, source, description, summ, currency, date, account_id, external_id)
+       VALUES ($1, $2, $3, $4, $5, $6, COALESCE($7, now()), $8, $9)
+       ON CONFLICT (user_id, external_id) WHERE external_id IS NOT NULL DO NOTHING
+       RETURNING *`,
       [
         req.userId,
         type,
@@ -112,8 +120,17 @@ router.post("/", async (req, res) => {
         currency || "Рубль",
         date || null,
         account_id,
+        externalId || null,
       ]
     );
+    if (result.rows.length === 0) {
+      // повтор: транзакция с этим externalId уже есть — отдаём её, лимит не проверяем второй раз
+      const existing = await pool.query(
+        "SELECT * FROM transactions WHERE user_id = $1 AND external_id = $2",
+        [req.userId, externalId]
+      );
+      return res.status(200).json(mapRow(existing.rows[0]));
+    }
     res.status(201).json(mapRow(result.rows[0]));
 
     if (type === "Расход") {
