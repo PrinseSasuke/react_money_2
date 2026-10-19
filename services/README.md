@@ -70,6 +70,29 @@ node scripts/e2e.mjs
 
 Для сценариев отказов в `deploy/local/.env`: `PARSER_DELAY_MS` (медленный разбор), `PARSER_FAIL_RATE` (доля временных ошибок, 0–1), `WORKER_CONCURRENCY`.
 
+Если на последней попытке недоступна и база, задача всё равно уходит в DLQ, а в её заголовках `Status-Written: false`: чек остался в `processing`, нужен человек. Такие случаи считает метрика `receipts_dlq_total{status_written="false"}`. Заголовки копии в DLQ: `Receipt-Id`, `Error-Code`, `Deliveries`, `Status-Written`.
+
+## Сценарии отказов
+
+Скрипт сам ломает окружение (останавливает и убивает контейнеры, замедляет разбор) и проверяет ожидаемый результат из ТЗ:
+
+```bash
+node scripts/scenarios.mjs all
+```
+
+| Сценарий | Что проверяется |
+|---|---|
+| `worker-stopped` | 50 чеков копятся в очереди, после старта worker все `parsed`, потерь нет |
+| `worker-killed` | `docker kill` посреди разбора → повторная доставка после `ack_wait`, трата одна |
+| `duplicates` | тот же QR дважды → `duplicate`; повтор задачи с другим `Nats-Msg-Id` ничего не меняет |
+| `storage-down` | без SeaweedFS фото → `503` за ≤ 3 с, QR принимается и разбирается |
+| `queue-down` | без NATS → `503` за ≤ 3 с, чек в `error` / `queue_unavailable`; после подъёма всё работает само |
+| `core-api-down` | core-api лежит минуту → повторы с задержкой, после подъёма `parsed` |
+| `core-api-long` | core-api лежит дольше всех попыток → `error` / `max_attempts` и копия в DLQ |
+| `slow-parser` | разбор 3 с → очередь растёт (видно в метриках), всё обрабатывается |
+
+Один сценарий: `node scripts/scenarios.mjs worker-killed`. Вся серия ~10 минут.
+
 ## Остановить и сбросить
 
 ```bash

@@ -113,8 +113,17 @@ test("last delivery still failing → error max_attempts and DLQ", async () => {
     receipts: [{ id: "r1" }],
     coreApi: { createExpense: async () => { throw new TemporaryError("core_api_unavailable", "503"); } },
   });
-  expect(await processTask({ receiptId: "r1" }, { count: 5, max: 5 }, deps)).toMatchObject({ action: "dlq", result: "error" });
+  expect(await processTask({ receiptId: "r1" }, { count: 5, max: 5 }, deps)).toMatchObject({ action: "dlq", result: "error", statusWritten: true });
   expect(db.rows.get("r1")).toMatchObject({ status: "error", error_code: "max_attempts" });
+});
+
+test("last delivery with the database down → DLQ anyway, flagged as status not written", async () => {
+  const { db, deps } = setup({
+    receipts: [{ id: "r1" }],
+    coreApi: { createExpense: async () => { throw new TemporaryError("core_api_unavailable", "503"); } },
+  });
+  db.finishError = async () => { throw new Error("database is down"); };
+  expect(await processTask({ receiptId: "r1" }, { count: 5, max: 5 }, deps)).toMatchObject({ action: "dlq", statusWritten: false });
 });
 
 test("a parser slower than the timeout → temporary parse_timeout", async () => {

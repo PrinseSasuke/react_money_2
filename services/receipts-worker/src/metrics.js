@@ -22,6 +22,8 @@ function createMetrics() {
     queuePending: new client.Gauge(opts({ name: "receipts_queue_pending", help: "Tasks waiting in the queue (consumer num_pending)" })),
     queueOldestAge: new client.Gauge(opts({ name: "receipts_queue_oldest_age_seconds", help: "Age of the oldest task still in the queue" })),
     retries: new client.Counter(opts({ name: "receipts_retries_total", help: "Tasks sent back for a retry, by reason", labelNames: ["reason"] })),
+    // status_written="false" needs a person: the receipt is in the DLQ but its row still says "processing"
+    dlq: new client.Counter(opts({ name: "receipts_dlq_total", help: "Tasks moved to the DLQ", labelNames: ["status_written"] })),
   };
 }
 

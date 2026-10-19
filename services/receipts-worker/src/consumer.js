@@ -1,4 +1,4 @@
-const { StringCodec } = require("nats");
+const { StringCodec, headers } = require("nats");
 const { processTask, retryDelay } = require("./processor");
 const { classify } = require("./errors");
 
@@ -34,7 +34,7 @@ async function startConsumer({ nc, deps, logger, concurrency }) {
       // the database failed even before or after the work itself: retry the whole task later
       const err = classify(e);
       decision = delivery.count >= delivery.max
-        ? { action: "dlq", result: "error", reason: err.code }
+        ? { action: "dlq", result: "error", reason: err.code, statusWritten: false }
         : { action: "nak", delayMs: retryDelay(delivery.count), result: "retry", reason: err.code };
       log.warn({ err: err.message }, "task failed before a status could be written");
     }
@@ -45,8 +45,15 @@ async function startConsumer({ nc, deps, logger, concurrency }) {
       deps.metrics.retries.inc({ reason: decision.reason });
       m.nak(decision.delayMs);
     } else {
-      await js.publish(DLQ_SUBJECT, m.data);
+      const h = headers();
+      h.set("Receipt-Id", String(task.receiptId));
+      h.set("Error-Code", String(decision.reason));
+      h.set("Deliveries", String(delivery.count));
+      h.set("Status-Written", String(decision.statusWritten));
+      await js.publish(DLQ_SUBJECT, m.data, { headers: h });
       await m.ackAck();
+      deps.metrics.dlq.inc({ status_written: String(decision.statusWritten) });
+      if (!decision.statusWritten) log.error("moved to DLQ, but the receipt status could not be written: it stays 'processing'");
     }
     if (["parsed", "duplicate", "error"].includes(decision.result)) deps.metrics.processed.inc({ result: decision.result });
     log.info({ action: decision.action, result: decision.result, reason: decision.reason, delayMs: decision.delayMs }, "task handled");

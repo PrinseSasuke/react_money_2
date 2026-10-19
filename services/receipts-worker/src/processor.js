@@ -37,8 +37,11 @@ async function processTask(task, delivery, { db, parser, coreApi, metrics, confi
       return { action: "ack", result: "error", reason: err.code };
     }
     if (delivery.count >= delivery.max) {
-      await db.finishError(receipt.id, "max_attempts", `${delivery.count} attempts, last: ${err.message}`);
-      return { action: "dlq", result: "error", reason: err.code };
+      // the task goes to the DLQ even when the status cannot be written (database down on the last try):
+      // the DLQ copy then says so in its headers, so the receipt is not silently stuck in "processing"
+      const statusWritten = await db.finishError(receipt.id, "max_attempts", `${delivery.count} attempts, last: ${err.message}`)
+        .then(() => true, () => false);
+      return { action: "dlq", result: "error", reason: err.code, statusWritten };
     }
     await db.noteRetry(receipt.id, err.code, err.message).catch(() => {});
     return { action: "nak", delayMs: retryDelay(delivery.count), result: "retry", reason: err.code };
