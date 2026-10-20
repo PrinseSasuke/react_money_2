@@ -228,6 +228,37 @@ const SCENARIOS = {
     await waitFor(async () => (await http("GET", `${CORE}/api/health`)).status === 200, 60000, 1000);
   },
 
+  // stage L4: needs the observability profile (Prometheus on :9090). Not part of "all".
+  async alerts(token) {
+    console.log("\n▶ алерты: worker остановлен, чеки идут 3/с — когда срабатывает каждый алерт");
+    const firing = async () => {
+      const r = await http("GET", "http://localhost:9090/api/v1/alerts");
+      return r.status === 200 ? r.body.data.alerts.filter((a) => a.state === "firing").map((a) => a.labels.alertname) : null;
+    };
+    if ((await firing()) === null) return check(false, "Prometheus на :9090 не отвечает — нужен --profile observability");
+    const want = ["ReceiptsWorkerDown", "ReceiptsQueueStuck", "ReceiptsQueueWillOverflow"];
+    compose(["stop", "receipts-worker"]);
+    const t0 = Date.now();
+    const firedAt = {};
+    let sent = 0;
+    while (Date.now() - t0 < 300000 && want.some((a) => !firedAt[a])) {
+      for (let k = 0; k < 3; k++) { await postQr(token); sent++; }
+      for (const a of (await firing()) || []) if (want.includes(a) && !firedAt[a]) {
+        firedAt[a] = Math.round((Date.now() - t0) / 1000);
+        step(`${a} сработал через ${firedAt[a]} с (в очереди ≈ ${pending()})`);
+      }
+      await sleep(1000);
+    }
+    for (const a of want) check(Boolean(firedAt[a]), `${a} сработал`, firedAt[a] ? `через ${firedAt[a]} с после остановки worker` : "не сработал за 5 мин");
+    check(firedAt.ReceiptsQueueWillOverflow < 300, "прогноз предупредил задолго до 1000 в очереди",
+      `в очереди было ≈ ${Math.min(sent, 1000)} при срабатывании, порог прогноза 1000`);
+    compose(["start", "receipts-worker"]);
+    const drained = await waitFor(async () => pending() === 0, 120000, 2000);
+    check(Boolean(drained.value), "после старта worker очередь разобрана", `за ${Math.round(drained.ms / 1000)} с, отправлено ${sent} чеков`);
+    const cleared = await waitFor(async () => { const f = await firing(); return f && !want.some((a) => f.includes(a)); }, 180000, 5000);
+    check(Boolean(cleared.value), "алерты погасли сами", `через ${Math.round(cleared.ms / 1000)} с`);
+  },
+
   async "slow-parser"(token) {
     console.log("\n▶ медленный разбор (3 с, 4 потока): очередь растёт, но всё обрабатывается");
     workerEnv({ PARSER_DELAY_MS: "3000" });
@@ -250,7 +281,7 @@ const SCENARIOS = {
 // ---------- main ----------
 
 const wanted = process.argv[2] || "all";
-const names = wanted === "all" ? Object.keys(SCENARIOS) : [wanted];
+const names = wanted === "all" ? Object.keys(SCENARIOS).filter((n) => n !== "alerts") : [wanted];
 if (!names.every((n) => SCENARIOS[n])) {
   console.log(`unknown scenario. Available: all, ${Object.keys(SCENARIOS).join(", ")}`);
   process.exit(2);

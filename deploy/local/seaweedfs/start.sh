@@ -7,4 +7,5 @@ cat > /tmp/s3.json <<EOF
 EOF
 exec weed server -dir=/data -ip=seaweedfs -ip.bind=0.0.0.0 \
   -master.volumeSizeLimitMB=1024 -volume.max=10 \
-  -s3 -s3.port=8333 -s3.config=/tmp/s3.json
+  -s3 -s3.port=8333 -s3.config=/tmp/s3.json \
+  -metricsPort=9327

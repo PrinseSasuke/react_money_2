@@ -1,0 +1,85 @@
+# Alerts of the receipts service (ТЗ, stage L4). Thresholds and "for" are short for local experiments;
+# the stand version will use longer windows. Locally the alerts are seen at http://localhost:9090/alerts
+# (no Alertmanager here).
+groups:
+  - name: receipts
+    rules:
+      # --- the early warning: trend, not a threshold already crossed ---
+      - alert: ReceiptsQueueWillOverflow
+        expr: |
+          predict_linear(jetstream_consumer_num_pending{consumer_name="receipts-worker"}[2m], 600) > 1000
+        for: 30s
+        labels: { severity: warning }
+        annotations:
+          summary: "Очередь чеков переполнится (> 1000) в ближайшие 10 минут при нынешнем темпе"
+          description: "Сейчас ждут {{ $value | printf \"%.0f\" }} по прогнозу через 10 мин. Worker не успевает или стоит."
+
+      - alert: ReceiptsQueueStuck
+        expr: |
+          jetstream_consumer_num_pending{consumer_name="receipts-worker"} > 0
+          and increase(jetstream_consumer_delivered_consumer_seq{consumer_name="receipts-worker"}[1m]) == 0
+        for: 30s
+        labels: { severity: critical }
+        annotations:
+          summary: "Чеки ждут, а worker ничего не берёт из очереди уже больше минуты"
+
+      # --- something is down ---
+      - alert: ReceiptsWorkerDown
+        expr: up{job="receipts-worker"} == 0
+        for: 30s
+        labels: { severity: critical }
+        annotations:
+          summary: "receipts-worker не отвечает"
+
+      - alert: ReceiptsApiDown
+        expr: up{job="receipts-api"} == 0
+        for: 30s
+        labels: { severity: critical }
+        annotations:
+          summary: "receipts-api не отвечает"
+
+      # --- quality of what the users get ---
+      - alert: ReceiptsApiErrors
+        expr: |
+          sum(rate(receipts_http_request_duration_seconds_count{code=~"5.."}[2m]))
+            / sum(rate(receipts_http_request_duration_seconds_count[2m])) > 0.05
+        for: 1m
+        labels: { severity: warning }
+        annotations:
+          summary: "Больше 5% ответов receipts-api — ошибки 5xx (недоступна зависимость)"
+
+      - alert: ReceiptsApiSlow
+        expr: |
+          histogram_quantile(0.95, sum by (le) (rate(receipts_http_request_duration_seconds_bucket{route="/api/receipts/"}[2m]))) > 1
+        for: 1m
+        labels: { severity: warning }
+        annotations:
+          summary: "p95 приёма чека дольше 1 с"
+
+      - alert: ReceiptsParseErrors
+        expr: |
+          sum(rate(receipts_processed_total{result="error"}[5m])) / sum(rate(receipts_processed_total[5m])) > 0.1
+        for: 1m
+        labels: { severity: warning }
+        annotations:
+          summary: "Больше 10% чеков заканчиваются ошибкой"
+
+      - alert: ReceiptsCoreApiFailing
+        expr: sum(rate(receipts_retries_total{reason="core_api_unavailable"}[2m])) > 0.05
+        for: 1m
+        labels: { severity: warning }
+        annotations:
+          summary: "Worker повторяет вызовы core-api: core-api недоступен или отвечает 5xx"
+
+      # --- needs a person ---
+      - alert: ReceiptsDlqNeedsHuman
+        expr: increase(receipts_dlq_total{status_written="false"}[30m]) > 0
+        labels: { severity: critical }
+        annotations:
+          summary: "Чек ушёл в DLQ, но его статус не записан — он висит в processing"
+
+      - alert: ReceiptsDlqGrowing
+        expr: increase(jetstream_stream_total_messages{stream_name="RECEIPTS_DLQ"}[15m]) > 0
+        labels: { severity: warning }
+        annotations:
+          summary: "В receipts.dlq появились задачи: чеки, которые не удалось обработать за 5 попыток"

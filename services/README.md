@@ -93,6 +93,42 @@ node scripts/scenarios.mjs all
 
 Один сценарий: `node scripts/scenarios.mjs worker-killed`. Вся серия ~10 минут.
 
+## Мониторинг (этап L4)
+
+Prometheus, Grafana и экспортёр метрик NATS поднимаются отдельным профилем:
+
+```bash
+docker compose -f deploy/local/docker-compose.yml --profile observability up -d
+```
+
+| Что | Адрес |
+|---|---|
+| Grafana, дашборд «Сервис чеков» | http://localhost:3000 (смотреть можно без входа; админ — `admin` / `GRAFANA_ADMIN_PASSWORD`, по умолчанию `admin_local`) |
+| Prometheus: алерты | http://localhost:9090/alerts |
+
+Длина очереди в алертах и на графиках берётся **из экспортёра NATS**, а не из worker: когда worker лежит, его собственных метрик нет, а очередь растёт как раз тогда. Главный ранний сигнал — `ReceiptsQueueWillOverflow`: `predict_linear` по очереди за 2 минуты предсказывает, что через 10 минут в ней будет больше 1000 задач.
+
+| Алерт | Когда |
+|---|---|
+| `ReceiptsQueueWillOverflow` | прогноз очереди через 10 мин > 1000 |
+| `ReceiptsQueueStuck` | задачи ждут, а worker минуту ничего не берёт |
+| `ReceiptsWorkerDown`, `ReceiptsApiDown` | сервис не отвечает 30 с |
+| `ReceiptsApiErrors`, `ReceiptsApiSlow` | > 5 % ответов 5xx; p95 приёма чека > 1 с |
+| `ReceiptsParseErrors`, `ReceiptsCoreApiFailing` | > 10 % чеков в `error`; worker повторяет вызовы core-api |
+| `ReceiptsDlqGrowing`, `ReceiptsDlqNeedsHuman` | задачи в DLQ; задача в DLQ без записанного статуса |
+
+Пороги и окна короткие, под локальные опыты; для стенда их удлиним. Правила: `deploy/local/prometheus/alerts.yml` (после правки: `curl -X POST localhost:9090/-/reload`). Дашборд генерируется: `node scripts/gen-receipts-dashboard.mjs`.
+
+Проверка алертов: `node scripts/scenarios.mjs alerts` — останавливает worker, шлёт чеки и засекает, через сколько секунд срабатывает каждый алерт.
+
+## Нагрузка (этап L5)
+
+```bash
+node scripts/load.mjs
+```
+
+k6 (в Docker) отправляет 500 чеков за минуту, каждый десятый — повтор предыдущего QR через ~0,1 с, чтобы worker встретил два одинаковых чека почти одновременно. Потом скрипт ждёт, пока worker всё разберёт, и проверяет в базе: 450 `parsed`, 50 `duplicate`, ровно 450 трат с разными фискальными ключами. Другая нагрузка: `RATE=1000 DURATION=2m node scripts/load.mjs`.
+
 ## Остановить и сбросить
 
 ```bash

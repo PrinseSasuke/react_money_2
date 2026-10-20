@@ -72,8 +72,10 @@ services:
       - "8888:8888" # filer UI (browse files): http://localhost:8888
     mem_limit: 256m
     healthcheck:
-      # any HTTP answer from the S3 gateway (403 to an anonymous request included) means it is up
-      test: ["CMD-SHELL", "wget -S -q -O /dev/null http://127.0.0.1:8333/ 2>&1 | grep -q HTTP/"]
+      # healthy only when the master has elected itself leader AND the S3 gateway answers (any HTTP code,
+      # a 403 to this anonymous request included). Without the leader check the container looked healthy
+      # ~20 s before S3 could store anything after a restart.
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:9333/cluster/status | grep -q '\"IsLeader\":true' && wget -S -q -O /dev/null http://127.0.0.1:8333/ 2>&1 | grep -q HTTP/"]
       interval: 5s
       timeout: 5s
       retries: 30
@@ -163,7 +165,52 @@ services:
       - "3101:3101" # /healthz and /metrics only
     stop_grace_period: 30s # time to finish the current tasks on docker stop
 
+  # ---------- observability (ТЗ, stage L4): docker compose ... --profile observability up -d ----------
+
+  nats-exporter:
+    image: natsio/prometheus-nats-exporter:0.17.3
+    profiles: [observability]
+    command: ["-varz", "-jsz=all", "http://nats:8222"]
+    depends_on:
+      nats:
+        condition: service_healthy
+
+  prometheus:
+    image: prom/prometheus:v3.7.0
+    profiles: [observability]
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=7d
+      - --web.enable-lifecycle # lets `curl -X POST localhost:9090/-/reload` pick up edited alert rules
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus/alerts.yml:/etc/prometheus/alerts.yml:ro
+      - prom_data:/prometheus
+    ports:
+      - "9090:9090" # http://localhost:9090/alerts
+
+  grafana:
+    image: grafana/grafana:12.2.0
+    profiles: [observability]
+    depends_on:
+      - prometheus
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin_local}
+      # locally anyone may look without logging in; editing still needs the admin
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/receipts.json
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "3000:3000" # http://localhost:3000
+
 volumes:
+  prom_data:
+  grafana_data:
   pg_data:
   nats_data:
   s3_data:
