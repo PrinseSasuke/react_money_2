@@ -5,12 +5,17 @@ import { useQuery } from "@tanstack/react-query";
 import { coreFetch } from "@/api/fetcher";
 import { getGetReadyQueryOptions } from "@/api/generated/receipts";
 import { config } from "@/lib/config";
+import { useQueue } from "@/lib/queue";
+import { flushQueue } from "@/lib/sender";
 import { useSession } from "@/lib/session";
+import { authToken } from "@/lib/token";
 
 export default function Settings() {
   const { user, signOut } = useSession();
   const core = useQuery({ queryKey: ["core-health"], queryFn: () => coreFetch<{ status: string }>("/api/health"), retry: false });
   const receipts = useQuery({ ...getGetReadyQueryOptions(), retry: false });
+  const userId = authToken.userId();
+  const waiting = useQueue().filter((i) => i.userId === userId && i.status !== "sent" && i.status !== "failed").length;
 
   return (
     <SafeAreaView edges={["top"]} className="flex-1 bg-white px-6 dark:bg-black">
@@ -18,6 +23,12 @@ export default function Settings() {
 
       <Item label="Вы вошли как" value={user?.email ?? "—"} />
       <Item label="Версия" value={Constants.expoConfig?.version ?? "—"} />
+      <Item label="Ждут отправки на телефоне" value={String(waiting)} />
+      {waiting > 0 && (
+        <Pressable onPress={() => void flushQueue()} className="mt-2 self-start rounded-lg bg-neutral-200 px-4 py-2 dark:bg-neutral-800">
+          <Text className="text-base text-black dark:text-white">Отправить сейчас</Text>
+        </Pressable>
+      )}
 
       <Text className="mb-1 mt-8 text-lg font-semibold text-black dark:text-white">Связь с сервисами</Text>
       <Check label="react-money" url={config.coreApiUrl} loading={core.isFetching} ok={core.isSuccess} />

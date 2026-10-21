@@ -6,6 +6,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useColorScheme } from "react-native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SessionProvider, useSession } from "@/lib/session";
+import { useQueueSync } from "@/lib/sync"; // also defines the background task at module load
 
 SplashScreen.preventAutoHideAsync();
 
@@ -37,15 +38,24 @@ function Routes() {
   if (status === "loading") return null; // the splash screen stays up meanwhile
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Protected guard={status === "signedOut"}>
-        <Stack.Screen name="sign-in" />
-      </Stack.Protected>
-      <Stack.Protected guard={status === "signedIn"}>
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="receipt/new" options={{ presentation: "modal" }} />
-        <Stack.Screen name="receipt/[id]" options={{ presentation: "modal" }} />
-      </Stack.Protected>
-    </Stack>
+    <>
+      {status === "signedIn" && <QueueSync />}
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Protected guard={status === "signedOut"}>
+          <Stack.Screen name="sign-in" />
+        </Stack.Protected>
+        <Stack.Protected guard={status === "signedIn"}>
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="receipt/new" options={{ presentation: "modal" }} />
+          <Stack.Screen name="receipt/[id]" options={{ presentation: "modal" }} />
+        </Stack.Protected>
+      </Stack>
+    </>
   );
+}
+
+// sends the on-phone queue while signed in; after sign-out the receipts wait for the next sign-in
+function QueueSync() {
+  useQueueSync();
+  return null;
 }

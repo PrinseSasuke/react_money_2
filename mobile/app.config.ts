@@ -37,6 +37,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "expo-router",
     ["expo-splash-screen", { backgroundColor: "#208AEF", image: "./assets/images/splash-icon.png", imageWidth: 76 }],
     "expo-secure-store",
+    // sends the receipt queue while the app is closed (ТЗ, «Офлайн и синхронизация»)
+    "expo-background-task",
     [
       "expo-build-properties",
       {

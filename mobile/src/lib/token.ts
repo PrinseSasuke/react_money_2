@@ -6,8 +6,20 @@ const KEY = "react-money.token";
 let current: string | null = null;
 let unauthorizedHandler: () => void = () => {};
 
+/** userId from the JWT payload — known without network, unlike /api/auth/me */
+function userIdOf(token: string | null): string | null {
+  if (!token) return null;
+  try {
+    const payload = token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+    return (JSON.parse(atob(payload)) as { userId?: string }).userId ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export const authToken = {
   get: () => current,
+  userId: () => userIdOf(current),
 
   async load(): Promise<string | null> {
     current = await SecureStore.getItemAsync(KEY);
