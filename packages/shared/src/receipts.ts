@@ -10,6 +10,7 @@ export const receiptSchema = z.object({
   status: z.enum(RECEIPT_STATUSES),
   source: z.enum(["qr", "photo"]),
   accountId: z.string().nullable(),
+  category: z.string().nullish(),
   amount: z.number().nullable(),
   purchasedAt: z.string().nullable(),
   transactionId: z.string().nullable(),

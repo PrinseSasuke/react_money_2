@@ -9,9 +9,9 @@
  *
  * OpenAPI spec version: 0.1.0
  */
-import type { ReceiptError } from './receiptError';
-import type { ReceiptSource } from './receiptSource';
-import type { ReceiptStatus } from './receiptStatus';
+import type { ReceiptError } from './receiptError.ts';
+import type { ReceiptSource } from './receiptSource.ts';
+import type { ReceiptStatus } from './receiptStatus.ts';
 
 export interface Receipt {
   id: string;
@@ -19,6 +19,8 @@ export interface Receipt {
   source: ReceiptSource;
   /** @nullable */
   accountId: string | null;
+  /** @nullable */
+  category: string | null;
   /** @nullable */
   amount: number | null;
   /** @nullable */

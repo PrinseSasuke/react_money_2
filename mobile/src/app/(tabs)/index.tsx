@@ -7,6 +7,9 @@ import { Camera, useCameraPermission } from "react-native-vision-camera";
 import { useBarcodeScannerOutput } from "react-native-vision-camera-barcode-scanner";
 import { parseFnsQr } from "@react-money/shared";
 import { ScanFrame } from "@/components/ScanFrame";
+import { pickReceiptImage } from "@/lib/gallery";
+import { prefs } from "@/lib/prefs";
+import { sendReceipt } from "@/lib/send";
 
 const SAME_CODE_PAUSE_MS = 3000; // ТЗ: «защита от двойного срабатывания на один и тот же QR 3 с»
 
@@ -27,9 +30,9 @@ export default function Scanner() {
     }, []),
   );
 
-  const onCode = useCallback((raw: string) => {
+  const onCode = useCallback((raw: string, fromPicture = false) => {
     const now = Date.now();
-    if (busy.current || (raw === last.current.value && now - last.current.at < SAME_CODE_PAUSE_MS)) return;
+    if ((busy.current && !fromPicture) || (raw === last.current.value && now - last.current.at < SAME_CODE_PAUSE_MS)) return;
     last.current = { value: raw, at: now };
 
     const parsed = parseFnsQr(raw);
@@ -38,10 +41,27 @@ export default function Scanner() {
       return;
     }
     busy.current = true;
-    Vibration.vibrate(60);
+    const { vibrate, autoSend, accountId } = prefs.get();
+    if (vibrate) Vibration.vibrate(60);
     setHint("Наведите камеру на QR-код чека");
-    router.push({ pathname: "/receipt/new", params: { qr: parsed.receipt.raw } });
+    // ТЗ: «режим „отправлять сразу без карточки“ в настройках»
+    if (autoSend) sendReceipt(parsed.receipt, { accountId }, "push");
+    else router.push({ pathname: "/receipt/new", params: { qr: parsed.receipt.raw } });
   }, []);
+
+  const fromGallery = useCallback(async () => {
+    if (busy.current) return;
+    busy.current = true;
+    try {
+      const res = await pickReceiptImage();
+      if (res.kind === "qr") onCode(res.qr, true);
+      else if (res.kind === "photo") router.push({ pathname: "/receipt/photo", params: { uri: res.uri, mimeType: res.mimeType } });
+      else busy.current = false;
+    } catch {
+      busy.current = false;
+      setHint("Не получилось открыть фото, попробуйте другое");
+    }
+  }, [onCode]);
 
   const scanner = useBarcodeScannerOutput({
     barcodeFormats: ["qr-code"],
@@ -92,6 +112,14 @@ export default function Scanner() {
           className={`rounded-full px-4 py-2 ${torch ? "bg-white" : "bg-white/25"}`}
         >
           <Text className={`text-base font-semibold ${torch ? "text-black" : "text-white"}`}>{torch ? "Фонарик вкл" : "Фонарик"}</Text>
+        </Pressable>
+      </SafeAreaView>
+      <SafeAreaView edges={["bottom"]} className="absolute bottom-0 left-0 right-0 flex-row justify-center gap-3 px-5 pb-6">
+        <Pressable accessibilityRole="button" onPress={fromGallery} className="rounded-full bg-white/25 px-5 py-3">
+          <Text className="text-base font-semibold text-white">Из галереи</Text>
+        </Pressable>
+        <Pressable accessibilityRole="button" onPress={() => router.push("/receipt/manual")} className="rounded-full bg-white/25 px-5 py-3">
+          <Text className="text-base font-semibold text-white">Ввести вручную</Text>
         </Pressable>
       </SafeAreaView>
     </View>

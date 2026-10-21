@@ -59,7 +59,8 @@ export default function ReceiptStatus() {
         {busy && <ActivityIndicator size="large" />}
         <Text className={`mt-4 text-center text-3xl font-bold ${color}`}>{title}</Text>
         {note && <Text className="mt-3 text-center text-base text-neutral-500">{note}</Text>}
-        {onPhone && <Text className="mt-6 text-4xl font-bold text-black dark:text-white">{money(item.amount)}</Text>}
+        {onPhone && item.amount !== undefined && <Text className="mt-6 text-4xl font-bold text-black dark:text-white">{money(item.amount)}</Text>}
+        {(r?.category ?? item?.category) && <Text className="mt-2 text-base text-neutral-500">{r?.category ?? item?.category}</Text>}
         {purchasedAt && <Text className="mt-3 text-base text-neutral-500">Чек от {dateTime(purchasedAt)}</Text>}
         {onPhone && item.status !== "sending" && (
           <Pressable accessibilityRole="button" onPress={() => retryNow(item.localId)} className="mt-6 rounded-lg bg-neutral-200 px-5 py-2 dark:bg-neutral-800">

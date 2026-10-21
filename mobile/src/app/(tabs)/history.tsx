@@ -58,8 +58,8 @@ function LocalRow({ item }: { item: QueuedReceipt }) {
   const failed = item.status === "failed";
   return (
     <RowShell
-      amount={money.format(item.amount)}
-      date={item.purchasedAt}
+      amount={item.amount === undefined ? "Фото чека" : money.format(item.amount)}
+      date={item.purchasedAt ?? item.createdAt}
       status={failed ? errorText(item.lastError) : STATUS_LABEL.queued}
       color={failed ? "text-red-600" : "text-amber-600"}
       onPress={() => router.push({ pathname: "/receipt/[id]", params: { id: item.localId, local: "1" } })}

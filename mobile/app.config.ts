@@ -22,9 +22,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundImage: "./assets/images/android-icon-background.png",
       monochromeImage: "./assets/images/android-icon-monochrome.png",
     },
-    // camera only (ТЗ: «Права»); the gallery picker in M3 needs no permission on Android 13+
-    permissions: ["android.permission.CAMERA"],
-    blockedPermissions: ["android.permission.RECORD_AUDIO"],
+    // camera and fingerprint (ТЗ: «Права»); the gallery uses the system photo picker, no storage permission
+    permissions: ["android.permission.CAMERA", "android.permission.USE_BIOMETRIC"],
+    blockedPermissions: ["android.permission.RECORD_AUDIO", "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE"],
     predictiveBackGestureEnabled: false,
   },
   ios: {
@@ -39,6 +39,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "expo-secure-store",
     // sends the receipt queue while the app is closed (ТЗ, «Офлайн и синхронизация»)
     "expo-background-task",
+    // the system photo picker; no camera or microphone from this module (the scanner has its own camera)
+    ["expo-image-picker", { photosPermission: "Фото нужны, чтобы найти QR-код на скриншоте или снимке чека.", cameraPermission: false, microphonePermission: false }],
+    ["expo-local-authentication", { faceIDPermission: "Face ID нужен для входа в приложение без пароля." }],
     [
       "expo-build-properties",
       {

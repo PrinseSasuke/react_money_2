@@ -44,10 +44,11 @@ function createCoreApi({ coreApiUrl, jwtSecret, coreApiTimeoutMs, observe = () =
     },
 
     // externalId = the fiscal key: a repeated call returns the expense created the first time
-    async createExpense(userId, { accountId, amount, purchasedAt, fiscalKey }) {
+    async createExpense(userId, { accountId, category, amount, purchasedAt, fiscalKey }) {
       const fn = fiscalKey.split(":")[0];
       const tx = await call("POST", "/api/transactions", userId, {
         type: "Расход",
+        source: category || undefined, // core-api falls back to «Остальное»
         summ: amount,
         date: purchasedAt.toISOString(),
         description: `Чек ФН ${fn}`,

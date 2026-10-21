@@ -18,4 +18,9 @@ export interface CreateReceiptJson {
   qr: string;
   /** core-api account for the expense; omitted → the user's oldest account */
   accountId?: string;
+  /**
+     * expense category (core-api transactions.source); omitted → «Остальное»
+     * @maxLength 64
+     */
+  category?: string;
 }

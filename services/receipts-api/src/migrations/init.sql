@@ -25,6 +25,9 @@ CREATE TABLE IF NOT EXISTS receipts.receipts (
   updated_at     TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+-- M3 of the mobile app: the expense category chosen on the phone (core-api transactions.source); null = core-api default
+ALTER TABLE receipts.receipts ADD COLUMN IF NOT EXISTS category TEXT;
+
 CREATE INDEX IF NOT EXISTS receipts_user_created_idx ON receipts.receipts (user_id, created_at DESC);
 
 -- One fiscal receipt = one expense per user, whatever arrives twice (ТЗ, section 4).

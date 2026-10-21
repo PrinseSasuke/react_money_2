@@ -9,7 +9,7 @@
  *
  * OpenAPI spec version: 0.1.0
  */
-import type { Receipt } from './receipt';
+import type { Receipt } from './receipt.ts';
 
 export interface ReceiptList {
   items: Receipt[];

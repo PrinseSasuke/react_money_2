@@ -1,8 +1,9 @@
 // Sends queued receipts to receipts-api. Safe to call as often as wanted: one run at a time, and a call that
 // arrives during a run makes it go round once more. Used by the foreground triggers and the background task.
 import { RETRYABLE } from "@react-money/shared";
-import { ApiError } from "@/api/fetcher";
-import { createReceipt } from "@/api/generated/receipts";
+import { ApiError, receiptsFetch } from "@/api/fetcher";
+import { createReceipt, getCreateReceiptUrl } from "@/api/generated/receipts";
+import type { Accepted } from "@/api/generated/model";
 import { queue, type QueuedReceipt } from "@/lib/queue";
 import { authToken } from "@/lib/token";
 
@@ -42,7 +43,7 @@ export async function flushQueue(): Promise<FlushResult> {
 async function sendOne(item: QueuedReceipt): Promise<"ok" | "retry" | "failed" | "unauthorized"> {
   queue.update(item.localId, { status: "sending" });
   try {
-    const accepted = await createReceipt({ qr: item.qr });
+    const accepted = item.kind === "photo" ? await sendPhoto(item) : await createReceipt({ qr: item.qr!, ...choiceOf(item) });
     queue.update(item.localId, { status: "sent", receiptId: accepted.id, lastError: undefined });
     return "ok";
   } catch (err) {
@@ -62,6 +63,19 @@ async function sendOne(item: QueuedReceipt): Promise<"ok" | "retry" | "failed" |
     queue.update(item.localId, { status: "failed", attempts: item.attempts + 1, lastError: e.code });
     return "failed";
   }
+}
+
+function choiceOf(item: QueuedReceipt) {
+  return { ...(item.accountId ? { accountId: item.accountId } : {}), ...(item.category ? { category: item.category } : {}) };
+}
+
+// multipart/form-data: React Native's FormData takes a file as { uri, name, type }
+function sendPhoto(item: QueuedReceipt): Promise<Accepted> {
+  const form = new FormData();
+  const ext = item.mimeType === "image/png" ? "png" : item.mimeType === "image/webp" ? "webp" : "jpg";
+  form.append("image", { uri: item.imageUri!, name: `receipt.${ext}`, type: item.mimeType ?? "image/jpeg" } as unknown as Blob);
+  for (const [k, v] of Object.entries(choiceOf(item))) form.append(k, v);
+  return receiptsFetch<Accepted>(getCreateReceiptUrl(), { method: "POST", body: form });
 }
 
 /** «Повторить» for a failed or waiting receipt: try right now. */

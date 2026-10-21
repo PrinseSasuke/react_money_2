@@ -5,6 +5,7 @@ import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useColorScheme } from "react-native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BiometricGate } from "@/lib/biometric";
 import { SessionProvider, useSession } from "@/lib/session";
 import { useQueueSync } from "@/lib/sync"; // also defines the background task at module load
 
@@ -20,7 +21,9 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <SessionProvider>
         <ThemeProvider value={scheme === "dark" ? DarkTheme : DefaultTheme}>
-          <Routes />
+          <BiometricGate>
+            <Routes />
+          </BiometricGate>
         </ThemeProvider>
       </SessionProvider>
     </QueryClientProvider>
@@ -47,6 +50,8 @@ function Routes() {
         <Stack.Protected guard={status === "signedIn"}>
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="receipt/new" options={{ presentation: "modal" }} />
+          <Stack.Screen name="receipt/photo" options={{ presentation: "modal" }} />
+          <Stack.Screen name="receipt/manual" options={{ presentation: "modal" }} />
           <Stack.Screen name="receipt/[id]" options={{ presentation: "modal" }} />
         </Stack.Protected>
       </Stack>

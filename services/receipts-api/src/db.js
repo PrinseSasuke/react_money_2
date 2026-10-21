@@ -25,9 +25,9 @@ function createDb({ databaseUrl, dependencyTimeoutMs }) {
 
     async insertReceipt(r) {
       await pool.query(
-        `INSERT INTO receipts.receipts (id, user_id, account_id, source, qr_raw, image_key, status, error_code, error_message)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
-        [r.id, r.userId, r.accountId, r.source, r.qrRaw, r.imageKey, r.status, r.errorCode || null, r.errorMessage || null]
+        `INSERT INTO receipts.receipts (id, user_id, account_id, category, source, qr_raw, image_key, status, error_code, error_message)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+        [r.id, r.userId, r.accountId, r.category || null, r.source, r.qrRaw, r.imageKey, r.status, r.errorCode || null, r.errorMessage || null]
       );
     },
 

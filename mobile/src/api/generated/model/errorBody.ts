@@ -9,7 +9,7 @@
  *
  * OpenAPI spec version: 0.1.0
  */
-import type { ErrorBodyError } from './errorBodyError';
+import type { ErrorBodyError } from './errorBodyError.ts';
 
 export interface ErrorBody {
   error: ErrorBodyError;

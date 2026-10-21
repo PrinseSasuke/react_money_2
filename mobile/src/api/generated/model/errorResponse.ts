@@ -9,7 +9,7 @@
  *
  * OpenAPI spec version: 0.1.0
  */
-import type { ErrorBody } from './errorBody';
+import type { ErrorBody } from './errorBody.ts';
 
 /**
  * error with a machine-readable code

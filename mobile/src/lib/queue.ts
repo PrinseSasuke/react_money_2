@@ -10,10 +10,18 @@ export interface QueuedReceipt {
   localId: string;
   /** owner of the receipt: it is only ever sent with this user's token */
   userId: string;
-  qr: string;
-  fiscalKey: string;
-  amount: number;
-  purchasedAt: string;
+  kind: "qr" | "photo";
+  /** kind "qr": the FNS string */
+  qr?: string;
+  /** kind "photo": a picture without a readable QR, sent as is (receipts-api answers ocr_not_implemented for now) */
+  imageUri?: string;
+  mimeType?: string;
+  /** known only for a QR receipt */
+  fiscalKey?: string;
+  amount?: number;
+  purchasedAt?: string;
+  accountId?: string;
+  category?: string;
   createdAt: string;
   status: LocalStatus;
   /** set once receipts-api accepted it (202) */
@@ -33,7 +41,7 @@ let cache: QueuedReceipt[] | null = null;
 function read(): QueuedReceipt[] {
   if (cache) return cache;
   try {
-    cache = JSON.parse(storage.getString(KEY) ?? "[]") as QueuedReceipt[];
+    cache = (JSON.parse(storage.getString(KEY) ?? "[]") as QueuedReceipt[]).map((i) => ({ ...i, kind: i.kind ?? "qr" }));
   } catch {
     cache = [];
   }
@@ -53,29 +61,52 @@ const subscribe = (l: () => void) => {
   return () => listeners.delete(l);
 };
 
+/** What the user chose on the receipt card. */
+export interface Choice {
+  accountId?: string | null;
+  category?: string | null;
+}
+
+const newId = () => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+
+function fresh(userId: string, choice: Choice): Omit<QueuedReceipt, "kind"> {
+  return {
+    localId: newId(),
+    userId,
+    accountId: choice.accountId ?? undefined,
+    category: choice.category ?? undefined,
+    createdAt: new Date().toISOString(),
+    status: "queued",
+    attempts: 0,
+    nextAttemptAt: 0,
+  };
+}
+
 export const queue = {
   all: read,
 
   get: (localId: string) => read().find((i) => i.localId === localId),
 
   /** The same fiscal receipt is queued once per user; scanning it again returns the existing entry. */
-  enqueue(userId: string, r: FnsReceipt): { item: QueuedReceipt; isNew: boolean } {
+  enqueue(userId: string, r: FnsReceipt, choice: Choice = {}): { item: QueuedReceipt; isNew: boolean } {
     const existing = read().find((i) => i.userId === userId && i.fiscalKey === r.fiscalKey && i.status !== "failed");
     if (existing) return { item: existing, isNew: false };
     const item: QueuedReceipt = {
-      localId: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
-      userId,
+      ...fresh(userId, choice),
+      kind: "qr",
       qr: r.raw,
       fiscalKey: r.fiscalKey,
       amount: r.amount,
       purchasedAt: r.purchasedAt,
-      createdAt: new Date().toISOString(),
-      status: "queued",
-      attempts: 0,
-      nextAttemptAt: 0,
     };
     write([item, ...read()]);
     return { item, isNew: true };
+  },
+
+  enqueuePhoto(userId: string, imageUri: string, mimeType: string, choice: Choice = {}): QueuedReceipt {
+    const item: QueuedReceipt = { ...fresh(userId, choice), kind: "photo", imageUri, mimeType };
+    write([item, ...read()]);
+    return item;
   },
 
   update(localId: string, patch: Partial<QueuedReceipt>) {

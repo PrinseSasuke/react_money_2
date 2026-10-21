@@ -40,7 +40,7 @@ import type {
   ReceiptList
 } from './model';
 
-import { receiptsFetch } from '../fetcher';
+import { receiptsFetch } from '../fetcher.ts';
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 

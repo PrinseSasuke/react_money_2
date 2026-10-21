@@ -10,18 +10,18 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export * from './accepted';
-export * from './createReceiptJson';
-export * from './createReceiptPhoto';
-export * from './errorBody';
-export * from './errorBodyError';
-export * from './errorResponse';
-export * from './getReady200';
-export * from './getReady503';
-export * from './getReady503DownItem';
-export * from './listReceiptsParams';
-export * from './receipt';
-export * from './receiptError';
-export * from './receiptList';
-export * from './receiptSource';
-export * from './receiptStatus';
+export * from './accepted.ts';
+export * from './createReceiptJson.ts';
+export * from './createReceiptPhoto.ts';
+export * from './errorBody.ts';
+export * from './errorBodyError.ts';
+export * from './errorResponse.ts';
+export * from './getReady200.ts';
+export * from './getReady503.ts';
+export * from './getReady503DownItem.ts';
+export * from './listReceiptsParams.ts';
+export * from './receipt.ts';
+export * from './receiptError.ts';
+export * from './receiptList.ts';
+export * from './receiptSource.ts';
+export * from './receiptStatus.ts';

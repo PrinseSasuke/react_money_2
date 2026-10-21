@@ -22,7 +22,7 @@ function fakes() {
     ping: async () => down("db"),
     insertReceipt: async (r) => {
       down("db");
-      rows.set(r.id, { id: r.id, user_id: r.userId, account_id: r.accountId, source: r.source, qr_raw: r.qrRaw,
+      rows.set(r.id, { id: r.id, user_id: r.userId, account_id: r.accountId, category: r.category || null, source: r.source, qr_raw: r.qrRaw,
         image_key: r.imageKey, status: r.status, error_code: r.errorCode || null, error_message: r.errorMessage || null,
         amount: null, purchased_at: null, transaction_id: null, attempts: 0, created_at: new Date(), updated_at: new Date() });
     },
@@ -66,6 +66,20 @@ describe("POST /api/receipts", () => {
     const accountId = "33333333-3333-4333-8333-333333333333";
     const res = await request(app).post("/api/receipts").set("Authorization", token()).send({ qr: QR, accountId });
     expect(db.rows.get(res.body.id).account_id).toBe(accountId);
+  });
+
+  test("category is kept and returned", async () => {
+    const { app, db } = build();
+    const res = await request(app).post("/api/receipts").set("Authorization", token()).send({ qr: QR, category: "Супермаркеты" });
+    expect(db.rows.get(res.body.id).category).toBe("Супермаркеты");
+    const got = await request(app).get(`/api/receipts/${res.body.id}`).set("Authorization", token());
+    expect(got.body.category).toBe("Супермаркеты");
+  });
+
+  test("too long category → 400", async () => {
+    const { app } = build();
+    const res = await request(app).post("/api/receipts").set("Authorization", token()).send({ qr: QR, category: "x".repeat(65) });
+    expect(res.status).toBe(400);
   });
 
   test.each([

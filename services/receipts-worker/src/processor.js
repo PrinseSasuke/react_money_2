@@ -27,7 +27,7 @@ async function processTask(task, delivery, { db, parser, coreApi, metrics, confi
     }
 
     const accountId = receipt.account_id || (await coreApi.defaultAccountId(receipt.user_id));
-    const transactionId = await coreApi.createExpense(receipt.user_id, { accountId, ...parsed });
+    const transactionId = await coreApi.createExpense(receipt.user_id, { accountId, category: receipt.category || null, ...parsed });
     await db.finishParsed({ ...receipt, fiscal_key: parsed.fiscalKey }, transactionId);
     return { action: "ack", result: "parsed", transactionId };
   } catch (e) {

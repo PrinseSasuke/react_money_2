@@ -14,4 +14,6 @@ export interface CreateReceiptPhoto {
   /** JPEG, PNG or WebP, up to 10 MB */
   image: Blob | File;
   accountId?: string;
+  /** @maxLength 64 */
+  category?: string;
 }

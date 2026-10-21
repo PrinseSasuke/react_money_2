@@ -5,6 +5,7 @@ const { validateQr } = require("../qr");
 const { sendError } = require("../auth");
 
 const IMAGE_TYPES = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" };
+const MAX_CATEGORY = 64;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 // POST /api/receipts accepts and queues; it never parses (ТЗ, section 3).
@@ -22,10 +23,12 @@ function receiptsRouter({ db, storage, queue, metrics, logger, maxUploadMb }) {
     const qrRaw = req.body && typeof req.body.qr === "string" ? req.body.qr : null;
     const file = req.file || null;
     const accountId = req.body && req.body.accountId ? String(req.body.accountId) : null;
+    const category = req.body && req.body.category ? String(req.body.category).trim() : null;
 
     if (!qrRaw && !file) return sendError(res, 400, "bad_request", "нужно фото (поле image) или строка QR (поле qr)");
     if (qrRaw && file) return sendError(res, 400, "bad_request", "передайте что-то одно: фото или строку QR");
     if (accountId && !UUID.test(accountId)) return sendError(res, 400, "bad_request", "accountId должен быть UUID");
+    if (category && category.length > MAX_CATEGORY) return sendError(res, 400, "bad_request", `category длиннее ${MAX_CATEGORY} символов`);
 
     let qr = null;
     if (qrRaw) {
@@ -41,6 +44,7 @@ function receiptsRouter({ db, storage, queue, metrics, logger, maxUploadMb }) {
       id: crypto.randomUUID(),
       userId: req.userId,
       accountId,
+      category: category || null,
       source: qr ? "qr" : "photo",
       qrRaw: qr,
       imageKey: null,
@@ -115,6 +119,7 @@ function toDto(r) {
     status: r.status,
     source: r.source,
     accountId: r.account_id,
+    category: r.category ?? null,
     amount: r.amount === null ? null : Number(r.amount),
     purchasedAt: r.purchased_at,
     transactionId: r.transaction_id,

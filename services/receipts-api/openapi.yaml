@@ -114,6 +114,10 @@ components:
           type: string
           format: uuid
           description: core-api account for the expense; omitted → the user's oldest account
+        category:
+          type: string
+          maxLength: 64
+          description: expense category (core-api transactions.source); omitted → «Остальное»
 
     CreateReceiptPhoto:
       type: object
@@ -124,6 +128,7 @@ components:
           format: binary
           description: JPEG, PNG or WebP, up to 10 MB
         accountId: { type: string, format: uuid }
+        category: { type: string, maxLength: 64 }
 
     Accepted:
       type: object
@@ -138,12 +143,13 @@ components:
 
     Receipt:
       type: object
-      required: [id, status, source, accountId, amount, purchasedAt, transactionId, error, attempts, createdAt, updatedAt]
+      required: [id, status, source, accountId, category, amount, purchasedAt, transactionId, error, attempts, createdAt, updatedAt]
       properties:
         id: { type: string, format: uuid }
         status: { $ref: "#/components/schemas/ReceiptStatus" }
         source: { type: string, enum: [qr, photo] }
         accountId: { type: [string, "null"], format: uuid }
+        category: { type: [string, "null"] }
         amount: { type: [number, "null"] }
         purchasedAt: { type: [string, "null"], format: date-time }
         transactionId:

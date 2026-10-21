@@ -9,7 +9,7 @@
  *
  * OpenAPI spec version: 0.1.0
  */
-import type { GetReady503DownItem } from './getReady503DownItem';
+import type { GetReady503DownItem } from './getReady503DownItem.ts';
 
 export type GetReady503 = {
   status: string;

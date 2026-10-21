@@ -53,6 +53,12 @@ test("the account chosen by the user wins over the default", async () => {
   expect(api.calls[0].accountId).toBe("acc-chosen");
 });
 
+test("the category chosen on the phone goes to the expense", async () => {
+  const { api, deps } = setup({ receipts: [{ id: "r1", category: "Аптеки" }] });
+  await processTask({ receiptId: "r1" }, first, deps);
+  expect(api.calls[0].category).toBe("Аптеки");
+});
+
 test("the same QR sent again → duplicate, no second expense", async () => {
   const { db, api, deps } = setup({ receipts: [{ id: "r1" }, { id: "r2" }] });
   await processTask({ receiptId: "r1" }, first, deps);
