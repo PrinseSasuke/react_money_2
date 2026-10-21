@@ -29,13 +29,34 @@ pnpm --filter mobile add <пакет>          # или в mobile/: npx expo ins
 
 Раскладка пакетов изолированная (по умолчанию в pnpm): у приложения свой React 19, у сайта свой React 18.
 
-## Запуск для разработки
+## Запуск для разработки: по USB-кабелю (основной способ)
 
-1. Поднять сервисы на ноутбуке: `docker compose -f deploy/local/docker-compose.yml up -d` (из корня репозитория).
-2. `cp mobile/.env.example mobile/.env` и вписать адрес ноутбука в Wi-Fi (`ipconfig` → IPv4).
-3. Один раз поставить на телефон dev-сборку (ниже), потом: `cd mobile && npx expo start` — телефон подключается к ноутбуку по Wi-Fi и подтягивает код.
+Кабель обходит Wi-Fi, брандмауэр Windows и запреты связи устройств в рабочей сети. Нужны Android platform-tools (`adb`) и на телефоне «Отладка по USB» (Xiaomi/HyperOS: 7 раз нажать «Версия ОС» в «О телефоне», затем «Расширенные настройки → Для разработчиков»).
 
-Телефон и ноутбук должны быть в одной сети, и в ней не должно быть запрета на связь устройств между собой (в рабочих и гостевых Wi-Fi он часто есть).
+1. Сервисы на ноутбуке (из корня репозитория): `docker compose -f deploy/local/docker-compose.yml up -d`
+2. `mobile/.env`:
+   ```
+   EXPO_PUBLIC_CORE_API_URL=http://localhost:4000
+   EXPO_PUBLIC_RECEIPTS_API_URL=http://localhost:3100
+   ```
+3. Порты ноутбука на телефон (после каждого переподключения кабеля):
+   ```bash
+   adb reverse tcp:8081 tcp:8081
+   adb reverse tcp:4000 tcp:4000
+   adb reverse tcp:3100 tcp:3100
+   ```
+4. Сервер разработки (в `mobile/`):
+   ```bash
+   REACT_NATIVE_PACKAGER_HOSTNAME=localhost npx expo start --dev-client --host lan
+   ```
+   Не `--localhost`: на Windows он слушает только IPv6 `::1`, а `adb reverse` приходит на `127.0.0.1` — телефон получает «unexpected end of stream». `--host lan` слушает все адреса, а переменная оставляет в ссылках `localhost`.
+5. На телефоне в «Чеки (dev)»: `http://localhost:8081` → Connect.
+
+Вход — пользователем **локального** react-money, например тестовым из `deploy/local/.env.example` (`E2E_EMAIL` / `E2E_PASSWORD`).
+
+## Запуск по Wi-Fi (дома)
+
+В `mobile/.env` — адрес ноутбука в сети (`ipconfig` → IPv4) вместо `localhost`, сервер — `npx expo start --dev-client`. Сеть в Windows должна быть «Частной», и Docker и Node.js должны быть разрешены в брандмауэре для частных сетей; в рабочих и гостевых Wi-Fi связь устройств между собой часто запрещена.
 
 ## Сборка для телефона (EAS)
 
