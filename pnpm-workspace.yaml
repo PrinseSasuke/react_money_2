@@ -1,0 +1,17 @@
+# pnpm workspace for the TypeScript parts: the mobile app and the shared package.
+# The web app in the repo root and the services under services/ keep using npm, and CI for prod
+# runs `npm install` in the root — so the root package is never installed by pnpm:
+# always run pnpm with a filter, e.g. `pnpm --filter mobile... install` (see mobile/README.md).
+packages:
+  - mobile
+  - packages/*
+
+
+# Dependency install scripts are off unless listed here (pnpm default). core-js only prints a donation notice.
+allowBuilds:
+  core-js: false
+  core-js-pure: false
+  esbuild: false # the platform binary comes from an optional dependency; the script only re-checks it
+
+# Isolated layout (pnpm default): the app keeps its own React 19 tree. A hoisted (flat) layout mixed it
+# with the web app's React 18 from the root package and left several React copies (expo-doctor caught it).
