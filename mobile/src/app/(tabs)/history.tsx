@@ -1,5 +1,7 @@
 // M0: the user's receipts straight from receipts-api (the on-phone queue joins the list in M2).
-import { FlatList, RefreshControl, Text, View } from "react-native";
+import { FlatList, Pressable, RefreshControl, Text, View } from "react-native";
+import { router, useFocusEffect } from "expo-router";
+import { useCallback } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { STATUS_LABEL, errorText } from "@react-money/shared";
 import { useListReceipts } from "@/api/generated/receipts";
@@ -10,6 +12,8 @@ const when = new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "short", 
 
 export default function History() {
   const { data, isPending, isError, refetch, isRefetching } = useListReceipts({ limit: 50 });
+  // fresh statuses every time the tab is opened
+  useFocusEffect(useCallback(() => { void refetch(); }, [refetch]));
 
   return (
     <SafeAreaView edges={["top"]} className="flex-1 bg-white dark:bg-black">
@@ -32,7 +36,11 @@ export default function History() {
 function Row({ receipt }: { receipt: Receipt }) {
   const color = receipt.status === "parsed" ? "text-green-600" : receipt.status === "error" ? "text-red-600" : "text-neutral-500";
   return (
-    <View className="mx-6 border-b border-neutral-200 py-3 dark:border-neutral-800">
+    <Pressable
+      accessibilityRole="button"
+      onPress={() => router.push({ pathname: "/receipt/[id]", params: { id: receipt.id } })}
+      className="mx-6 border-b border-neutral-200 py-3 active:opacity-60 dark:border-neutral-800"
+    >
       <View className="flex-row justify-between">
         <Text className="text-lg font-semibold text-black dark:text-white">
           {receipt.amount === null ? "—" : money.format(receipt.amount)}
@@ -42,6 +50,6 @@ function Row({ receipt }: { receipt: Receipt }) {
       <Text className={`mt-0.5 text-base ${color}`}>
         {receipt.status === "error" ? errorText(receipt.error?.code) : STATUS_LABEL[receipt.status]}
       </Text>
-    </View>
+    </Pressable>
   );
 }

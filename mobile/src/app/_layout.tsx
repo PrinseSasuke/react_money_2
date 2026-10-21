@@ -43,6 +43,8 @@ function Routes() {
       </Stack.Protected>
       <Stack.Protected guard={status === "signedIn"}>
         <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="receipt/new" options={{ presentation: "modal" }} />
+        <Stack.Screen name="receipt/[id]" options={{ presentation: "modal" }} />
       </Stack.Protected>
     </Stack>
   );

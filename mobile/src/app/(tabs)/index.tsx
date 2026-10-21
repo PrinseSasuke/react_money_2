@@ -1,36 +1,99 @@
-// M0: placeholder of the scanner (VisionCamera comes in M1) + a check that the phone reaches both services.
-import { ActivityIndicator, Pressable, Text, View } from "react-native";
+// The start screen (ТЗ, «Главный сценарий»): camera at once → point at the QR → vibration → receipt card.
+import { useCallback, useRef, useState } from "react";
+import { Linking, Pressable, Text, Vibration, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useQuery } from "@tanstack/react-query";
-import { coreFetch } from "@/api/fetcher";
-import { getGetReadyQueryOptions } from "@/api/generated/receipts";
+import { router, useFocusEffect } from "expo-router";
+import { Camera, useCameraPermission } from "react-native-vision-camera";
+import { useBarcodeScannerOutput } from "react-native-vision-camera-barcode-scanner";
+import { parseFnsQr } from "@react-money/shared";
+import { ScanFrame } from "@/components/ScanFrame";
+
+const SAME_CODE_PAUSE_MS = 3000; // ТЗ: «защита от двойного срабатывания на один и тот же QR 3 с»
 
 export default function Scanner() {
-  const core = useQuery({ queryKey: ["core-health"], queryFn: () => coreFetch<{ status: string }>("/api/health") });
-  const receipts = useQuery({ ...getGetReadyQueryOptions(), retry: false });
+  const { hasPermission, canRequestPermission, requestPermission } = useCameraPermission();
+  const [focused, setFocused] = useState(false);
+  const [torch, setTorch] = useState(false);
+  const [hint, setHint] = useState("Наведите камеру на QR-код чека");
+  const last = useRef({ value: "", at: 0 });
+  const busy = useRef(false);
 
-  return (
-    <SafeAreaView edges={["top"]} className="flex-1 bg-white px-6 dark:bg-black">
-      <Text className="mt-4 text-3xl font-bold text-black dark:text-white">Сканер</Text>
-      <View className="mt-6 items-center justify-center rounded-2xl border-2 border-dashed border-neutral-300 py-24 dark:border-neutral-700">
-        <Text className="text-center text-lg text-neutral-500">Камера и считывание QR{"\n"}появятся в этапе M1</Text>
-      </View>
-
-      <Text className="mb-2 mt-8 text-lg font-semibold text-black dark:text-white">Связь с сервисами</Text>
-      <Check label="react-money (core-api)" loading={core.isPending} ok={core.isSuccess} />
-      <Check label="Сервис чеков" loading={receipts.isPending} ok={receipts.isSuccess} />
-      <Pressable onPress={() => { core.refetch(); receipts.refetch(); }} className="mt-4 self-start rounded-lg bg-neutral-200 px-4 py-2 dark:bg-neutral-800">
-        <Text className="text-base text-black dark:text-white">Проверить ещё раз</Text>
-      </Pressable>
-    </SafeAreaView>
+  // the camera runs only while this tab is on screen (and stops while the receipt card is open)
+  useFocusEffect(
+    useCallback(() => {
+      setFocused(true);
+      busy.current = false;
+      return () => setFocused(false);
+    }, []),
   );
-}
 
-function Check({ label, loading, ok }: { label: string; loading: boolean; ok: boolean }) {
+  const onCode = useCallback((raw: string) => {
+    const now = Date.now();
+    if (busy.current || (raw === last.current.value && now - last.current.at < SAME_CODE_PAUSE_MS)) return;
+    last.current = { value: raw, at: now };
+
+    const parsed = parseFnsQr(raw);
+    if (!parsed.ok) {
+      setHint(`${parsed.reason}. Наведите камеру на QR-код кассового чека`);
+      return;
+    }
+    busy.current = true;
+    Vibration.vibrate(60);
+    setHint("Наведите камеру на QR-код чека");
+    router.push({ pathname: "/receipt/new", params: { qr: parsed.receipt.raw } });
+  }, []);
+
+  const scanner = useBarcodeScannerOutput({
+    barcodeFormats: ["qr-code"],
+    onBarcodeScanned(barcodes) {
+      const raw = barcodes.find((b) => b.rawValue)?.rawValue;
+      if (raw) onCode(raw);
+    },
+    onError() {
+      setHint("Камера не смогла прочитать код, попробуйте ещё раз");
+    },
+  });
+
+  if (!hasPermission) {
+    return (
+      <SafeAreaView className="flex-1 items-center justify-center bg-white px-8 dark:bg-black">
+        <Text className="text-center text-2xl font-bold text-black dark:text-white">Нужен доступ к камере</Text>
+        <Text className="mt-3 text-center text-base text-neutral-500">
+          Камера нужна только чтобы считывать QR-код с кассового чека. Фото не сохраняются.
+        </Text>
+        <Pressable
+          accessibilityRole="button"
+          onPress={() => (canRequestPermission ? requestPermission() : Linking.openSettings())}
+          className="mt-6 rounded-xl bg-brand px-6 py-4"
+        >
+          <Text className="text-lg font-semibold text-white">{canRequestPermission ? "Разрешить камеру" : "Открыть настройки"}</Text>
+        </Pressable>
+      </SafeAreaView>
+    );
+  }
+
   return (
-    <View className="flex-row items-center py-1.5">
-      {loading ? <ActivityIndicator /> : <Text className="text-lg">{ok ? "✅" : "❌"}</Text>}
-      <Text className="ml-3 text-base text-black dark:text-white">{label}</Text>
+    <View className="flex-1 bg-black">
+      <Camera
+        style={{ flex: 1 }}
+        device="back"
+        isActive={focused}
+        outputs={[scanner]}
+        torchMode={torch ? "on" : "off"}
+        enableNativeZoomGesture
+      />
+      <ScanFrame hint={hint} />
+      <SafeAreaView edges={["top"]} className="absolute left-0 right-0 top-0 flex-row items-center justify-between px-5">
+        <Text className="text-2xl font-bold text-white">Сканер</Text>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={torch ? "Выключить фонарик" : "Включить фонарик"}
+          onPress={() => setTorch((t) => !t)}
+          className={`rounded-full px-4 py-2 ${torch ? "bg-white" : "bg-white/25"}`}
+        >
+          <Text className={`text-base font-semibold ${torch ? "text-black" : "text-white"}`}>{torch ? "Фонарик вкл" : "Фонарик"}</Text>
+        </Pressable>
+      </SafeAreaView>
     </View>
   );
 }

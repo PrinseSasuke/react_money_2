@@ -25,6 +25,8 @@ async function request<T>(baseUrl: string, path: string, options: RequestInit = 
   options.signal?.addEventListener("abort", () => controller.abort());
 
   const headers = new Headers(options.headers);
+  // Orval's fetch client JSON.stringify()s the body without a Content-Type; express.json() would then ignore it
+  if (typeof options.body === "string" && !headers.has("Content-Type")) headers.set("Content-Type", "application/json");
   const token = authToken.get();
   if (token) headers.set("Authorization", `Bearer ${token}`);
 
