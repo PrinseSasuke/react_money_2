@@ -39,8 +39,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "expo-secure-store",
     // sends the receipt queue while the app is closed (ТЗ, «Офлайн и синхронизация»)
     "expo-background-task",
-    // the system photo picker; no camera or microphone from this module (the scanner has its own camera)
-    ["expo-image-picker", { photosPermission: "Фото нужны, чтобы найти QR-код на скриншоте или снимке чека.", cameraPermission: false, microphonePermission: false }],
+    // the system photo picker. No cameraPermission: false here: the plugin would then strip CAMERA from the whole app
+    ["expo-image-picker", { photosPermission: "Фото нужны, чтобы найти QR-код на скриншоте или снимке чека.", microphonePermission: false }],
     ["expo-local-authentication", { faceIDPermission: "Face ID нужен для входа в приложение без пароля." }],
     [
       "expo-build-properties",
