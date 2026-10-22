@@ -3,9 +3,25 @@ const { requireAuth, sendError } = require("./auth");
 const { receiptsRouter } = require("./routes/receipts");
 
 // Dependencies (db, storage, queue) are passed in, so tests can replace them with fakes.
-function createApp({ db, storage, queue, metrics, logger, jwtSecret, maxUploadMb }) {
+function createApp({ db, storage, queue, metrics, logger, jwtSecret, maxUploadMb, corsOrigins = [] }) {
   const app = express();
   app.disable("x-powered-by");
+
+  // the react-money site calls this service from the browser («Чеки» section, live updates); the phone needs no CORS
+  app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (origin && corsOrigins.includes(origin)) {
+      res.set("Access-Control-Allow-Origin", origin);
+      res.set("Vary", "Origin");
+      if (req.method === "OPTIONS") {
+        res.set("Access-Control-Allow-Methods", "GET, POST");
+        res.set("Access-Control-Allow-Headers", "Authorization, Content-Type");
+        res.set("Access-Control-Max-Age", "600");
+        return res.status(204).end();
+      }
+    }
+    next();
+  });
   app.use(express.json({ limit: "16kb" }));
 
   // response time by route template, not by raw URL (ids would explode the label set)

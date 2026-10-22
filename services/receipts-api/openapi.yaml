@@ -52,6 +52,39 @@ paths:
         "401": { $ref: "#/components/responses/Error" }
         "503": { $ref: "#/components/responses/Error" }
 
+  /api/receipts/events:
+    get:
+      operationId: receiptEvents
+      summary: Server-sent events — a receipt of the user was accepted or finished (for the site's live update)
+      description: |
+        `text/event-stream`, never ends. Each change is `event: receipt` with `data: {"receiptId": "…", "status": "accepted|parsed|duplicate|error"}`;
+        a `: ping` comment every 25 s. Events are not stored: a client that reconnects refetches what it shows.
+        Read it with fetch() — EventSource cannot send the Authorization header.
+      responses:
+        "200":
+          description: the event stream
+          content:
+            text/event-stream:
+              schema: { type: string }
+        "401": { $ref: "#/components/responses/Error" }
+
+  /api/receipts/{id}/retry:
+    post:
+      operationId: retryReceipt
+      summary: Send an errored receipt to the worker again (only for max_attempts, core_api_rejected, no_account, queue_unavailable)
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string, format: uuid } }
+      responses:
+        "202":
+          description: queued again
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Accepted" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+        "503": { $ref: "#/components/responses/Error" }
+
   /api/receipts/{id}:
     get:
       operationId: getReceipt

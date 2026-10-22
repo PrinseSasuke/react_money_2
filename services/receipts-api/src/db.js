@@ -31,6 +31,17 @@ function createDb({ databaseUrl, dependencyTimeoutMs }) {
       );
     },
 
+    /** an errored receipt whose error a new attempt can fix goes back to "accepted"; null if not allowed */
+    async resetForRetry(id, userId, codes) {
+      const { rows } = await pool.query(
+        `UPDATE receipts.receipts SET status = 'accepted', error_code = NULL, error_message = NULL, updated_at = now()
+         WHERE id = $1 AND user_id = $2 AND status = 'error' AND error_code = ANY($3)
+         RETURNING *`,
+        [id, userId, codes]
+      );
+      return rows[0] || null;
+    },
+
     async markError(id, code, message) {
       await pool.query(
         `UPDATE receipts.receipts SET status = 'error', error_code = $2, error_message = $3, updated_at = now()

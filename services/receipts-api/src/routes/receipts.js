@@ -6,6 +6,10 @@ const { sendError } = require("../auth");
 
 const IMAGE_TYPES = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" };
 const MAX_CATEGORY = 64;
+// errors a new attempt can fix; invalid_qr or ocr_not_implemented would fail again the same way,
+// storage_unavailable has no photo stored to retry with
+const RETRYABLE = ["max_attempts", "core_api_rejected", "no_account", "queue_unavailable"];
+const PING_MS = 25000;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 // POST /api/receipts accepts and queues; it never parses (ТЗ, section 3).
@@ -81,6 +85,7 @@ function receiptsRouter({ db, storage, queue, metrics, logger, maxUploadMb }) {
       return sendError(res, 503, "database_unavailable", "база данных недоступна, попробуйте позже");
     }
 
+    queue.publishEvent(receipt.userId, { receiptId: receipt.id, status: "accepted" });
     metrics.received.inc({ source: receipt.source });
     log.info({ source: receipt.source }, "receipt accepted");
     res.status(202).json({ id: receipt.id, status: "accepted" });
@@ -96,6 +101,50 @@ function receiptsRouter({ db, storage, queue, metrics, logger, maxUploadMb }) {
       logger.error({ err: err.message, userId: req.userId }, "list failed");
       sendError(res, 503, "database_unavailable", "база данных недоступна, попробуйте позже");
     }
+  });
+
+  // Server-sent events: one "receipt" event each time a receipt of this user is accepted or finished.
+  // The site reads it with fetch() (EventSource cannot send the Authorization header).
+  router.get("/events", (req, res) => {
+    res.writeHead(200, {
+      "Content-Type": "text/event-stream",
+      "Cache-Control": "no-cache, no-transform",
+      Connection: "keep-alive",
+      "X-Accel-Buffering": "no", // nginx in front must not buffer the stream
+    });
+    res.write("retry: 3000\n\n");
+    const stop = queue.subscribe(req.userId, (event) => res.write(`event: receipt\ndata: ${JSON.stringify(event)}\n\n`));
+    const ping = setInterval(() => res.write(": ping\n\n"), PING_MS); // keeps proxies from closing an idle stream
+    req.on("close", () => {
+      clearInterval(ping);
+      stop();
+    });
+  });
+
+  // «Повторить» for a receipt that ended in an error a new attempt can fix (site's «Чеки» section)
+  router.post("/:id/retry", async (req, res) => {
+    if (!UUID.test(req.params.id)) return sendError(res, 404, "not_found", "чек не найден");
+    let row;
+    try {
+      row = await db.resetForRetry(req.params.id, req.userId, RETRYABLE);
+      if (!row) {
+        const existing = await db.getReceipt(req.params.id, req.userId);
+        if (!existing) return sendError(res, 404, "not_found", "чек не найден");
+        return sendError(res, 409, "not_retryable", "этот чек повторная отправка не исправит");
+      }
+    } catch (err) {
+      logger.error({ err: err.message, receiptId: req.params.id }, "retry failed");
+      return sendError(res, 503, "database_unavailable", "база данных недоступна, попробуйте позже");
+    }
+    try {
+      const task = { receiptId: row.id, userId: row.user_id, source: row.source, enqueuedAt: new Date().toISOString() };
+      await queue.publish(task, `${row.id}:retry:${Date.now()}`);
+    } catch (err) {
+      await db.markError(row.id, "queue_unavailable", err.message).catch(() => {});
+      return sendError(res, 503, "queue_unavailable", "очередь недоступна, попробуйте позже", { id: row.id });
+    }
+    queue.publishEvent(row.user_id, { receiptId: row.id, status: "accepted" });
+    res.status(202).json({ id: row.id, status: "accepted" });
   });
 
   router.get("/:id", async (req, res) => {

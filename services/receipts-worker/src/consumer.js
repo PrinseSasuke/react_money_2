@@ -5,6 +5,9 @@ const { classify } = require("./errors");
 const STREAM = "RECEIPTS";
 const CONSUMER = "receipts-worker";
 const DLQ_SUBJECT = "receipts.dlq";
+// the same subject receipts-api's /api/receipts/events listens to (one per user)
+const EVENTS = "receipts.events";
+const FINAL = new Set(["parsed", "duplicate", "error"]);
 const sc = StringCodec();
 
 // WORKER_CONCURRENCY independent loops pull one message at a time from the durable consumer.
@@ -55,7 +58,13 @@ async function startConsumer({ nc, deps, logger, concurrency }) {
       deps.metrics.dlq.inc({ status_written: String(decision.statusWritten) });
       if (!decision.statusWritten) log.error("moved to DLQ, but the receipt status could not be written: it stays 'processing'");
     }
-    if (["parsed", "duplicate", "error"].includes(decision.result)) deps.metrics.processed.inc({ result: decision.result });
+    if (FINAL.has(decision.result)) {
+      deps.metrics.processed.inc({ result: decision.result });
+      // the site updates the open tab: «трата добавлена» within a second of the scan (mobile ТЗ, M4)
+      if (decision.action === "ack" || decision.statusWritten) {
+        nc.publish(`${EVENTS}.${task.userId}`, JSON.stringify({ receiptId: task.receiptId, status: decision.result }));
+      }
+    }
     log.info({ action: decision.action, result: decision.result, reason: decision.reason, delayMs: decision.delayMs }, "task handled");
   }
 
@@ -87,4 +96,4 @@ async function startConsumer({ nc, deps, logger, concurrency }) {
   };
 }
 
-module.exports = { startConsumer, STREAM, CONSUMER };
+module.exports = { startConsumer, STREAM, CONSUMER, EVENTS };

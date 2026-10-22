@@ -22,6 +22,7 @@ import ForecastPage from "./pages/Forecast";
 import AccountsPage from "./pages/AccountsPage";
 import RecurringPage from "./pages/RecurringPage";
 import SettingsPage from "./pages/Settings";
+import ReceiptsPage from "./pages/Receipts";
 
 dayjs.locale("ru");
 
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
       { path: "accounts", element: <AccountsPage /> },
       { path: "recurring", element: <RecurringPage /> },
       { path: "settings", element: <SettingsPage /> },
+      { path: "receipts", element: <ReceiptsPage /> },
     ],
   },
 ]);

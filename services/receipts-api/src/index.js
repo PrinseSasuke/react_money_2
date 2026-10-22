@@ -17,7 +17,7 @@ async function main() {
   const storage = createStorage(config);
   const queue = await createQueue({ ...config, logger });
   const metrics = createMetrics();
-  const app = createApp({ db, storage, queue, metrics, logger, jwtSecret: config.jwtSecret, maxUploadMb: config.maxUploadMb });
+  const app = createApp({ db, storage, queue, metrics, logger, jwtSecret: config.jwtSecret, maxUploadMb: config.maxUploadMb, corsOrigins: config.corsOrigins });
 
   const server = app.listen(config.port, () => logger.info({ port: config.port }, "receipts-api listening"));
 

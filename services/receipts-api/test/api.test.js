@@ -28,16 +28,35 @@ function fakes() {
     },
     markError: async (id, code, message) => Object.assign(rows.get(id), { status: "error", error_code: code, error_message: message }),
     getReceipt: async (id, userId) => { down("db"); const r = rows.get(id); return r && r.user_id === userId ? r : null; },
+    resetForRetry: async (id, userId, codes) => {
+      down("db");
+      const r = rows.get(id);
+      if (!r || r.user_id !== userId || r.status !== "error" || !codes.includes(r.error_code)) return null;
+      return Object.assign(r, { status: "accepted", error_code: null, error_message: null });
+    },
     listReceipts: async (userId) => { down("db"); return [...rows.values()].filter((r) => r.user_id === userId); },
   };
   const storage = { objects: new Map(), ping: async () => down("storage"), put: async (k, b) => { down("storage"); storage.objects.set(k, b); } };
-  const queue = { tasks: [], ping: async () => down("queue"), publish: async (t) => { down("queue"); queue.tasks.push(t); } };
+  const listeners = new Map();
+  const queue = {
+    tasks: [],
+    msgIds: [],
+    events: [],
+    ping: async () => down("queue"),
+    publish: async (t, msgId = t.receiptId) => { down("queue"); queue.tasks.push(t); queue.msgIds.push(msgId); },
+    publishEvent: (userId, e) => { queue.events.push({ userId, ...e }); (listeners.get(userId) || []).forEach((l) => l(e)); },
+    subscribe: (userId, l) => {
+      listeners.set(userId, [...(listeners.get(userId) || []), l]);
+      return () => listeners.set(userId, listeners.get(userId).filter((x) => x !== l));
+    },
+    listeners,
+  };
   return { db, storage, queue, fail };
 }
 
 function build() {
   const f = fakes();
-  const app = createApp({ ...f, metrics: createMetrics(), logger: pino({ level: "silent" }), jwtSecret: SECRET, maxUploadMb: 1 });
+  const app = createApp({ ...f, metrics: createMetrics(), logger: pino({ level: "silent" }), jwtSecret: SECRET, maxUploadMb: 1, corsOrigins: ["http://site.test"] });
   return { app, ...f };
 }
 
@@ -172,5 +191,91 @@ describe("health, readiness, metrics", () => {
     const res = await request(app).get("/metrics");
     expect(res.text).toMatch(/receipts_received_total\{source="qr"\} 1/);
     expect(res.text).toMatch(/receipts_http_request_duration_seconds_count\{route="\/api\/receipts\/",code="202"\} 1/);
+  });
+});
+
+describe("POST /api/receipts/:id/retry", () => {
+  async function errored(app, db, code) {
+    const res = await request(app).post("/api/receipts").set("Authorization", token()).send({ qr: QR });
+    Object.assign(db.rows.get(res.body.id), { status: "error", error_code: code });
+    return res.body.id;
+  }
+
+  test("a fixable error → accepted again, a new task with its own msgId, an event", async () => {
+    const { app, db, queue } = build();
+    const id = await errored(app, db, "max_attempts");
+    const res = await request(app).post(`/api/receipts/${id}/retry`).set("Authorization", token());
+    expect(res.status).toBe(202);
+    expect(db.rows.get(id)).toMatchObject({ status: "accepted", error_code: null });
+    expect(queue.tasks).toHaveLength(2);
+    expect(queue.msgIds[1]).not.toBe(id); // the stream would drop a second message with the same Nats-Msg-Id
+    expect(queue.events.at(-1)).toMatchObject({ userId: USER, receiptId: id, status: "accepted" });
+  });
+
+  test("an error a retry cannot fix → 409, receipt unchanged", async () => {
+    const { app, db } = build();
+    const id = await errored(app, db, "invalid_qr");
+    const res = await request(app).post(`/api/receipts/${id}/retry`).set("Authorization", token());
+    expect(res.status).toBe(409);
+    expect(res.body.error.code).toBe("not_retryable");
+    expect(db.rows.get(id).status).toBe("error");
+  });
+
+  test("someone else's receipt → 404", async () => {
+    const { app, db } = build();
+    const id = await errored(app, db, "max_attempts");
+    const res = await request(app).post(`/api/receipts/${id}/retry`).set("Authorization", token(OTHER));
+    expect(res.status).toBe(404);
+  });
+});
+
+describe("CORS for the site", () => {
+  test("preflight from the allowed origin", async () => {
+    const res = await request(build().app).options("/api/receipts").set("Origin", "http://site.test")
+      .set("Access-Control-Request-Method", "GET").set("Access-Control-Request-Headers", "authorization");
+    expect(res.status).toBe(204);
+    expect(res.headers["access-control-allow-origin"]).toBe("http://site.test");
+    expect(res.headers["access-control-allow-headers"]).toMatch(/Authorization/);
+  });
+
+  test("another origin gets no CORS headers", async () => {
+    const res = await request(build().app).get("/healthz").set("Origin", "http://evil.test");
+    expect(res.headers["access-control-allow-origin"]).toBeUndefined();
+  });
+});
+
+describe("GET /api/receipts/events", () => {
+  test("streams this user's events, not another user's, and unsubscribes on close", async () => {
+    const http = require("http");
+    const { app, queue } = build();
+    const server = app.listen(0);
+    const { port } = server.address();
+    try {
+      const chunks = [];
+      const req = http.get({ port, path: "/api/receipts/events", headers: { Authorization: token() } });
+      const res = await new Promise((resolve) => req.on("response", resolve));
+      expect(res.statusCode).toBe(200);
+      expect(res.headers["content-type"]).toBe("text/event-stream");
+      res.on("data", (c) => chunks.push(c.toString()));
+      await new Promise((r) => setTimeout(r, 50));
+
+      queue.publishEvent(OTHER, { receiptId: "r-other", status: "parsed" });
+      queue.publishEvent(USER, { receiptId: "r1", status: "parsed" });
+      await new Promise((r) => setTimeout(r, 50));
+      const text = chunks.join("");
+      expect(text).toContain('event: receipt\ndata: {"receiptId":"r1","status":"parsed"}\n\n');
+      expect(text).not.toContain("r-other");
+
+      req.destroy();
+      await new Promise((r) => setTimeout(r, 50));
+      expect(queue.listeners.get(USER)).toHaveLength(0);
+    } finally {
+      server.close();
+    }
+  });
+
+  test("without a token → 401", async () => {
+    const res = await request(build().app).get("/api/receipts/events");
+    expect(res.status).toBe(401);
   });
 });

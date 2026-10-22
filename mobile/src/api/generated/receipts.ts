@@ -242,6 +242,184 @@ export function useListReceipts<TData = Awaited<ReturnType<typeof listReceipts>>
 
 
 
+export const getReceiptEventsUrl = () => {
+
+
+
+
+  return `/api/receipts/events`
+}
+
+/**
+ * `text/event-stream`, never ends. Each change is `event: receipt` with `data: {"receiptId": "…", "status": "accepted|parsed|duplicate|error"}`;
+ * a `: ping` comment every 25 s. Events are not stored: a client that reconnects refetches what it shows.
+ * Read it with fetch() — EventSource cannot send the Authorization header.
+ * @summary Server-sent events — a receipt of the user was accepted or finished (for the site's live update)
+ */
+export const receiptEvents = async ( options?: Parameters<typeof receiptsFetch>[1]): Promise<string> => {
+
+  return receiptsFetch<string>(getReceiptEventsUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getReceiptEventsQueryKey = () => {
+    return [
+    `/api/receipts/events`
+    ] as const;
+    }
+
+
+export const getReceiptEventsQueryOptions = <TData = Awaited<ReturnType<typeof receiptEvents>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof receiptEvents>>, TError, TData>>, request?: SecondParameter<typeof receiptsFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getReceiptEventsQueryKey();
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof receiptEvents>>> = ({ signal }) => receiptEvents({ signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof receiptEvents>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ReceiptEventsQueryResult = NonNullable<Awaited<ReturnType<typeof receiptEvents>>>
+export type ReceiptEventsQueryError = ErrorResponse
+
+
+export function useReceiptEvents<TData = Awaited<ReturnType<typeof receiptEvents>>, TError = ErrorResponse>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof receiptEvents>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof receiptEvents>>,
+          TError,
+          Awaited<ReturnType<typeof receiptEvents>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof receiptsFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useReceiptEvents<TData = Awaited<ReturnType<typeof receiptEvents>>, TError = ErrorResponse>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof receiptEvents>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof receiptEvents>>,
+          TError,
+          Awaited<ReturnType<typeof receiptEvents>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof receiptsFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useReceiptEvents<TData = Awaited<ReturnType<typeof receiptEvents>>, TError = ErrorResponse>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof receiptEvents>>, TError, TData>>, request?: SecondParameter<typeof receiptsFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Server-sent events — a receipt of the user was accepted or finished (for the site's live update)
+ */
+
+export function useReceiptEvents<TData = Awaited<ReturnType<typeof receiptEvents>>, TError = ErrorResponse>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof receiptEvents>>, TError, TData>>, request?: SecondParameter<typeof receiptsFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getReceiptEventsQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getRetryReceiptUrl = (id: string,) => {
+
+
+
+
+  return `/api/receipts/${id}/retry`
+}
+
+/**
+ * @summary Send an errored receipt to the worker again (only for max_attempts, core_api_rejected, no_account, queue_unavailable)
+ */
+export const retryReceipt = async (id: string, options?: Parameters<typeof receiptsFetch>[1]): Promise<Accepted> => {
+
+  return receiptsFetch<Accepted>(getRetryReceiptUrl(id),
+  {
+    ...options,
+    method: 'POST'
+
+
+  }
+);}
+
+
+
+
+
+export const getRetryReceiptMutationKey = () => ['retryReceipt'] as const;
+
+export const getRetryReceiptMutationOptions = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof retryReceipt>>, TError,RetryReceiptMutationVariables, TContext>, request?: SecondParameter<typeof receiptsFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof retryReceipt>>, TError,RetryReceiptMutationVariables, TContext> => {
+
+const mutationKey = getRetryReceiptMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof retryReceipt>>, RetryReceiptMutationVariables> = (props) => {
+          const {id} = props ?? {};
+
+          return  retryReceipt(id,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type RetryReceiptMutationResult = NonNullable<Awaited<ReturnType<typeof retryReceipt>>>
+
+    export type RetryReceiptMutationError = ErrorResponse
+    export type RetryReceiptMutationVariables = {id: string}
+
+    /**
+ * @summary Send an errored receipt to the worker again (only for max_attempts, core_api_rejected, no_account, queue_unavailable)
+ */
+export const useRetryReceipt = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof retryReceipt>>, TError,RetryReceiptMutationVariables, TContext>, request?: SecondParameter<typeof receiptsFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof retryReceipt>>,
+        TError,
+        RetryReceiptMutationVariables,
+        TContext
+      > => {
+      return useMutation(getRetryReceiptMutationOptions(options), queryClient);
+    }
+
 export const getGetReceiptUrl = (id: string,) => {
 
 

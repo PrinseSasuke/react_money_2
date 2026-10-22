@@ -13,6 +13,9 @@ COPY tailwind.config.js ./
 
 ARG REACT_APP_API_URL=http://localhost:4000/api
 ENV REACT_APP_API_URL=$REACT_APP_API_URL
+# the receipt service (section «Чеки», live updates); set it where receipts-api is deployed
+ARG REACT_APP_RECEIPTS_API_URL=http://localhost:3100/api
+ENV REACT_APP_RECEIPTS_API_URL=$REACT_APP_RECEIPTS_API_URL
 
 RUN npm run build
 

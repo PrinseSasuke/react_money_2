@@ -6,6 +6,7 @@ import Sidebar, { SIDEBAR_WIDTH } from "./components/layout/Sidebar";
 import Topbar from "./components/layout/Topbar";
 import { useAuth } from "./context/AuthContext";
 import * as api from "./services/api";
+import { subscribeReceiptEvents } from "./services/receipts";
 import { DEFAULT_RATES } from "./utils/currency";
 
 export const AppContext = createContext({});
@@ -33,6 +34,32 @@ function App() {
     if (user) refreshTransactions();
   }, [user, refreshTransactions]);
 
+  // Живое обновление: чек отсканирован на телефоне → трата появляется здесь через 1–2 с без перезагрузки.
+  // receiptsVersion растёт на каждое событие — по нему раздел «Чеки» перечитывает список.
+  const [receiptsVersion, setReceiptsVersion] = useState(0);
+  const [receiptsLive, setReceiptsLive] = useState(false);
+  useEffect(() => {
+    if (!user) return undefined;
+    return subscribeReceiptEvents((event) => {
+      setReceiptsVersion((v) => v + 1);
+      if (event.status === "parsed") refreshTransactions();
+    }, setReceiptsLive);
+  }, [user, refreshTransactions]);
+
+  // Без потока (сервис чеков недоступен) — запасной путь из ТЗ: перечитать при возврате на вкладку и раз в 30 с.
+  useEffect(() => {
+    if (!user || receiptsLive) return undefined;
+    const refresh = () => {
+      if (document.visibilityState === "visible") refreshTransactions();
+    };
+    const timer = setInterval(refresh, 30000);
+    document.addEventListener("visibilitychange", refresh);
+    return () => {
+      clearInterval(timer);
+      document.removeEventListener("visibilitychange", refresh);
+    };
+  }, [user, receiptsLive, refreshTransactions]);
+
   // Курсы ЦБ для пересчёта операций в $/€ в рубли во всех сводках.
   const [rates, setRates] = useState(DEFAULT_RATES);
   useEffect(() => {
@@ -44,8 +71,8 @@ function App() {
   }, [user]);
 
   const contextValue = useMemo(
-    () => ({ transactions, setTransactions, refreshTransactions, rates }),
-    [transactions, refreshTransactions, rates]
+    () => ({ transactions, setTransactions, refreshTransactions, rates, receiptsVersion, receiptsLive }),
+    [transactions, refreshTransactions, rates, receiptsVersion, receiptsLive]
   );
 
   return (

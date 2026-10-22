@@ -17,6 +17,8 @@ module.exports = {
     accessKeyId: required("S3_ACCESS_KEY"),
     secretAccessKey: required("S3_SECRET_KEY"),
   },
+  // browser origins allowed to call the API (the react-money site), comma-separated
+  corsOrigins: (process.env.CORS_ORIGINS || "http://localhost:3000").split(",").map((s) => s.trim()).filter(Boolean),
   maxUploadMb: Number(process.env.MAX_UPLOAD_MB || 10),
   // a dependency that does not answer within this time is reported as unavailable (ТЗ: 503 within 3 s)
   dependencyTimeoutMs: Number(process.env.DEPENDENCY_TIMEOUT_MS || 2500),
