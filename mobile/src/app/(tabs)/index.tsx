@@ -88,6 +88,13 @@ export default function Scanner() {
         >
           <Text className="text-lg font-semibold text-white">{canRequestPermission ? "Разрешить камеру" : "Открыть настройки"}</Text>
         </Pressable>
+        {/* the gallery and manual entry work without the camera */}
+        <Pressable accessibilityRole="button" onPress={fromGallery} className="mt-8 rounded-xl bg-neutral-200 px-6 py-4 dark:bg-neutral-800">
+          <Text className="text-lg font-semibold text-black dark:text-white">Из галереи</Text>
+        </Pressable>
+        <Pressable accessibilityRole="button" onPress={() => router.push("/receipt/manual")} className="mt-3 rounded-xl bg-neutral-200 px-6 py-4 dark:bg-neutral-800">
+          <Text className="text-lg font-semibold text-black dark:text-white">Ввести вручную</Text>
+        </Pressable>
       </SafeAreaView>
     );
   }
