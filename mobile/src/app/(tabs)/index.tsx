@@ -26,7 +26,10 @@ export default function Scanner() {
     useCallback(() => {
       setFocused(true);
       busy.current = false;
-      return () => setFocused(false);
+      return () => {
+        setFocused(false);
+        setTorch(false);
+      };
     }, []),
   );
 
@@ -106,7 +109,12 @@ export default function Scanner() {
         device="back"
         isActive={focused}
         outputs={[scanner]}
-        torchMode={torch ? "on" : "off"}
+        // the torch only while the camera runs: switching it on an inactive camera throws
+        torchMode={torch && focused ? "on" : "off"}
+        onError={(e) => {
+          // a torch or zoom call that lands just as the camera stops: harmless, the next start resets it
+          if (!/not active/i.test(e.message)) setHint("Камера не запустилась, попробуйте ещё раз");
+        }}
         enableNativeZoomGesture
       />
       <ScanFrame hint={hint} />

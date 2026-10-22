@@ -1,7 +1,7 @@
 // Sends queued receipts to receipts-api. Safe to call as often as wanted: one run at a time, and a call that
 // arrives during a run makes it go round once more. Used by the foreground triggers and the background task.
 import { RETRYABLE } from "@react-money/shared";
-import { ApiError, receiptsFetch } from "@/api/fetcher";
+import { ApiError, receiptsUpload } from "@/api/fetcher";
 import { createReceipt, getCreateReceiptUrl } from "@/api/generated/receipts";
 import type { Accepted } from "@/api/generated/model";
 import { queue, type QueuedReceipt } from "@/lib/queue";
@@ -48,6 +48,7 @@ async function sendOne(item: QueuedReceipt): Promise<"ok" | "retry" | "failed" |
     return "ok";
   } catch (err) {
     const e = err instanceof ApiError ? err : new ApiError(0, "network", String(err));
+    if (__DEV__) console.warn(`[queue] ${item.kind} not sent: ${e.status} ${e.code} ${e.message}`); // no fiscal data here
     if (e.status === 401) {
       // the session signs out; the receipt waits in the queue and goes after the next sign-in (ТЗ, п. 7)
       queue.update(item.localId, { status: "queued", nextAttemptAt: 0, lastError: "unauthorized" });
@@ -75,7 +76,7 @@ function sendPhoto(item: QueuedReceipt): Promise<Accepted> {
   const ext = item.mimeType === "image/png" ? "png" : item.mimeType === "image/webp" ? "webp" : "jpg";
   form.append("image", { uri: item.imageUri!, name: `receipt.${ext}`, type: item.mimeType ?? "image/jpeg" } as unknown as Blob);
   for (const [k, v] of Object.entries(choiceOf(item))) form.append(k, v);
-  return receiptsFetch<Accepted>(getCreateReceiptUrl(), { method: "POST", body: form });
+  return receiptsUpload<Accepted>(getCreateReceiptUrl(), form);
 }
 
 /** «Повторить» for a failed or waiting receipt: try right now. */
