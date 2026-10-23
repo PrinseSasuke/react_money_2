@@ -50,6 +50,7 @@ export default function ManualReceipt() {
         <View className="mt-4">
           <Text className="text-sm text-neutral-500">{label}</Text>
           <TextInput
+            testID={`manual-${name}`} // for the Maestro flow (mobile/.maestro)
             value={f.value}
             onChangeText={(t) => f.onChange(opts.mask ? opts.mask(t) : t)}
             onBlur={f.onBlur}

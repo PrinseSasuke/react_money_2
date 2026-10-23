@@ -76,3 +76,18 @@ npx eas-cli build --profile development --platform android
 cd mobile && npx tsc --noEmit && npx expo-doctor
 cd packages/shared && node --test "src/**/*.test.ts"
 ```
+
+## Maestro: сквозной сценарий на телефоне
+
+`.maestro/manual-receipt.yaml` — «чек → трата»: ручной ввод чека (камеру тест навести на QR не может, а ручной
+ввод собирает ту же строку QR и идёт тем же путём) → «Трата … добавлена». ФД и ФП каждый раз новые, дублей нет.
+
+Перед запуском: dev-сборка стоит на телефоне, телефон на кабеле, сервисы и Metro подняты (см. «Запуск по USB»),
+в приложении выполнен вход, «Вход по отпечатку» выключен (датчик тест не нажмёт).
+
+```bash
+powershell -File scripts/maestro.ps1
+```
+
+Maestro нужна Java 17+: скрипт берёт портативные Temurin 17 и Maestro CLI из `%LOCALAPPDATA%\Programs`
+(`temurin\jdk-17*`, `maestro-cli\maestro`), системная Java не трогается.
