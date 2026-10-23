@@ -93,3 +93,9 @@ CREATE INDEX IF NOT EXISTS idx_recurring_user_id ON recurring_transactions(user_
 
 ALTER TABLE transactions ADD COLUMN IF NOT EXISTS is_auto_generated BOOLEAN NOT NULL DEFAULT false;
 
+-- Ключ идемпотентности от внешних сервисов (сервис чеков): повторный POST с тем же
+-- externalId у того же пользователя возвращает уже созданную транзакцию, а не вторую.
+ALTER TABLE transactions ADD COLUMN IF NOT EXISTS external_id TEXT;
+CREATE UNIQUE INDEX IF NOT EXISTS uq_transactions_user_external_id
+  ON transactions(user_id, external_id) WHERE external_id IS NOT NULL;
+

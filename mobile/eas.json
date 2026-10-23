@@ -1,0 +1,29 @@
+{
+  "cli": {
+    "version": ">= 16.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": { "APP_VARIANT": "development" },
+      "android": { "buildType": "apk" }
+    },
+    "preview": {
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_CORE_API_URL": "https://react-money-app.ru",
+        "EXPO_PUBLIC_RECEIPTS_API_URL": "https://react-money-app.ru"
+      },
+      "android": { "buildType": "apk" }
+    },
+    "production": {
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_CORE_API_URL": "https://react-money-app.ru",
+        "EXPO_PUBLIC_RECEIPTS_API_URL": "https://react-money-app.ru"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+# Local Prometheus for the receipts service (ТЗ, stage L4). Only with the "observability" profile:
+#   docker compose -f deploy/local/docker-compose.yml --profile observability up -d
+# 5-second scrapes so a local experiment shows up on the graphs at once (the stand uses 15 s).
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+rule_files:
+  - /etc/prometheus/alerts.yml
+
+scrape_configs:
+  - job_name: receipts-api
+    static_configs:
+      - targets: ["receipts-api:3100"]
+
+  - job_name: receipts-worker
+    static_configs:
+      - targets: ["receipts-worker:3101"]
+
+  # the queue as NATS sees it — still there when the worker is down, unlike the worker's own gauges
+  - job_name: nats
+    static_configs:
+      - targets: ["nats-exporter:7777"]
+
+  - job_name: seaweedfs
+    static_configs:
+      - targets: ["seaweedfs:9327"]

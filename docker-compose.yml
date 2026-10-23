@@ -32,15 +32,127 @@ services:
       UPLOAD_DIR: /app/uploads
     volumes:
       - uploads_data:/app/uploads
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:4000/api/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
 
   frontend:
     build:
       context: .
       args:
         REACT_APP_API_URL: ${REACT_APP_API_URL}
+        # same domain as the site: nginx sends /api/receipts to receipts-api, so no CORS is needed
+        REACT_APP_RECEIPTS_API_URL: ${REACT_APP_RECEIPTS_API_URL:-/api}
     restart: unless-stopped
     depends_on:
       - backend
+
+  # ---------- receipt service (mobile app «Чеки»): NATS → receipts-worker → expense in core-api ----------
+  # Same setup as deploy/local, sized for this 2 GB VPS. Secrets come from .env next to this file:
+  # RECEIPTS_DB_PASSWORD, S3_ACCESS_KEY, S3_SECRET_KEY (JWT_SECRET is shared with the backend).
+
+  nats:
+    image: nats:2.10-alpine
+    restart: unless-stopped
+    command: ["-js", "-sd", "/data", "-m", "8222"]
+    volumes:
+      - nats_data:/data
+    mem_limit: 128m
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8222/healthz?js-enabled-only=true"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  nats-init: # creates the streams and the worker's consumer, then exits; safe to re-run
+    image: natsio/nats-box:0.14.5
+    depends_on:
+      nats:
+        condition: service_healthy
+    environment:
+      NATS_URL: nats://nats:4222
+    volumes:
+      - ./deploy/local/nats/init-streams.sh:/init-streams.sh:ro
+    entrypoint: ["sh", "/init-streams.sh"]
+    restart: "no"
+
+  seaweedfs: # S3 storage for receipt photos
+    image: chrislusf/seaweedfs:4.48
+    restart: unless-stopped
+    environment:
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY:?set S3_ACCESS_KEY in .env}
+      S3_SECRET_KEY: ${S3_SECRET_KEY:?set S3_SECRET_KEY in .env}
+    volumes:
+      - ./deploy/prod/seaweedfs-start.sh:/start.sh:ro
+      - s3_data:/data
+    entrypoint: ["sh", "/start.sh"]
+    mem_limit: 256m
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:9333/cluster/status | grep -q '\"IsLeader\":true' && wget -S -q -O /dev/null http://127.0.0.1:8333/ 2>&1 | grep -q HTTP/"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  seaweedfs-init: # creates the "receipts" bucket, then exits; safe to re-run
+    image: chrislusf/seaweedfs:4.48
+    depends_on:
+      seaweedfs:
+        condition: service_healthy
+    volumes:
+      - ./deploy/local/seaweedfs/init-bucket.sh:/init-bucket.sh:ro
+    entrypoint: ["sh", "/init-bucket.sh"]
+    restart: "no"
+
+  receipts-api:
+    build: ./services/receipts-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      nats-init:
+        condition: service_completed_successfully
+      seaweedfs-init:
+        condition: service_completed_successfully
+    environment:
+      PORT: 3100
+      DATABASE_URL: postgres://receipts_svc:${RECEIPTS_DB_PASSWORD:?set RECEIPTS_DB_PASSWORD in .env}@postgres:5432/react_money
+      NATS_URL: nats://nats:4222
+      S3_ENDPOINT: http://seaweedfs:8333
+      S3_BUCKET: receipts
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY}
+      S3_SECRET_KEY: ${S3_SECRET_KEY}
+      JWT_SECRET: ${JWT_SECRET}
+      MAX_UPLOAD_MB: 10
+      CORS_ORIGINS: https://react-money-app.ru
+    mem_limit: 192m
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3100/healthz').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+  receipts-worker:
+    build: ./services/receipts-worker
+    restart: unless-stopped
+    depends_on:
+      nats-init:
+        condition: service_completed_successfully
+      receipts-api: # creates the receipts tables on start
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    environment:
+      METRICS_PORT: 3101
+      DATABASE_URL: postgres://receipts_svc:${RECEIPTS_DB_PASSWORD}@postgres:5432/react_money
+      NATS_URL: nats://nats:4222
+      JWT_SECRET: ${JWT_SECRET}
+      CORE_API_URL: http://backend:4000
+      WORKER_CONCURRENCY: 2
+      PARSER: stub
+    mem_limit: 192m
+    stop_grace_period: 30s # time to finish the current tasks on docker stop
 
   nginx:
     image: nginx:1.27-alpine
@@ -52,18 +164,25 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - certbot_www:/var/www/certbot
       - certbot_certs:/etc/letsencrypt
+    # reload every 6 h so a certificate renewed by certbot is picked up without a restart
+    command: ["/bin/sh", "-c", "while :; do sleep 6h & wait $${!}; nginx -s reload; done & exec nginx -g 'daemon off;'"]
     depends_on:
       - frontend
       - backend
 
   certbot:
     image: certbot/certbot
+    restart: unless-stopped
     volumes:
       - certbot_www:/var/www/certbot
       - certbot_certs:/etc/letsencrypt
+    # renew twice a day; certbot renews only within 30 days of expiry, through the webroot nginx serves
+    entrypoint: ["/bin/sh", "-c", "trap exit TERM; while :; do certbot renew --webroot -w /var/www/certbot --quiet; sleep 12h & wait $${!}; done"]
 
 volumes:
   postgres_data:
   uploads_data:
   certbot_www:
   certbot_certs:
+  nats_data:
+  s3_data:

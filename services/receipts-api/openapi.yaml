@@ -1,0 +1,222 @@
+openapi: 3.1.0
+info:
+  title: receipts-api
+  version: 0.1.0
+  description: |
+    Receipt service of react-money: accepts a receipt (the FNS QR string or a photo), the worker parses it
+    in the background and creates the expense in core-api. Authorization: the same JWT as react-money
+    (POST /api/auth/login of core-api), header `Authorization: Bearer <token>`.
+    The mobile app and the web app generate their clients from this file (Orval).
+servers:
+  - url: http://localhost:3100
+    description: local docker compose
+
+security:
+  - bearer: []
+
+paths:
+  /api/receipts:
+    post:
+      operationId: createReceipt
+      summary: Accept a receipt (QR string or photo) and queue it for parsing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateReceiptJson" }
+          multipart/form-data:
+            schema: { $ref: "#/components/schemas/CreateReceiptPhoto" }
+      responses:
+        "202":
+          description: accepted, parsing goes on in the background
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Accepted" }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "413": { $ref: "#/components/responses/Error" }
+        "415": { $ref: "#/components/responses/Error" }
+        "503": { $ref: "#/components/responses/Error" }
+    get:
+      operationId: listReceipts
+      summary: Receipts of the user, newest first
+      parameters:
+        - { name: limit, in: query, schema: { type: integer, minimum: 1, maximum: 100, default: 20 } }
+        - { name: offset, in: query, schema: { type: integer, minimum: 0, default: 0 } }
+      responses:
+        "200":
+          description: a page of receipts
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ReceiptList" }
+        "401": { $ref: "#/components/responses/Error" }
+        "503": { $ref: "#/components/responses/Error" }
+
+  /api/receipts/events:
+    get:
+      operationId: receiptEvents
+      summary: Server-sent events — a receipt of the user was accepted or finished (for the site's live update)
+      description: |
+        `text/event-stream`, never ends. Each change is `event: receipt` with `data: {"receiptId": "…", "status": "accepted|parsed|duplicate|error"}`;
+        a `: ping` comment every 25 s. Events are not stored: a client that reconnects refetches what it shows.
+        Read it with fetch() — EventSource cannot send the Authorization header.
+      responses:
+        "200":
+          description: the event stream
+          content:
+            text/event-stream:
+              schema: { type: string }
+        "401": { $ref: "#/components/responses/Error" }
+
+  /api/receipts/{id}/retry:
+    post:
+      operationId: retryReceipt
+      summary: Send an errored receipt to the worker again (only for max_attempts, core_api_rejected, no_account, queue_unavailable)
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string, format: uuid } }
+      responses:
+        "202":
+          description: queued again
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Accepted" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+        "503": { $ref: "#/components/responses/Error" }
+
+  /api/receipts/{id}:
+    get:
+      operationId: getReceipt
+      summary: One receipt with its status; someone else's or unknown → 404
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string, format: uuid } }
+      responses:
+        "200":
+          description: the receipt
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Receipt" }
+        "401": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "503": { $ref: "#/components/responses/Error" }
+
+  /readyz:
+    get:
+      operationId: getReady
+      summary: Whether Postgres, NATS and S3 are reachable
+      security: []
+      responses:
+        "200":
+          description: ready
+          content:
+            application/json:
+              schema: { type: object, required: [status], properties: { status: { type: string } } }
+        "503":
+          description: something is down
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, down]
+                properties:
+                  status: { type: string }
+                  down: { type: array, items: { type: string, enum: [postgres, nats, s3] } }
+
+components:
+  securitySchemes:
+    bearer: { type: http, scheme: bearer, bearerFormat: JWT }
+
+  responses:
+    Error:
+      description: error with a machine-readable code
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ErrorBody" }
+
+  schemas:
+    CreateReceiptJson:
+      type: object
+      required: [qr]
+      properties:
+        qr:
+          type: string
+          maxLength: 512
+          description: "FNS QR string: t=20261012T1530&s=1234.50&fn=…&i=…&fp=…&n=1"
+        accountId:
+          type: string
+          format: uuid
+          description: core-api account for the expense; omitted → the user's oldest account
+        category:
+          type: string
+          maxLength: 64
+          description: expense category (core-api transactions.source); omitted → «Остальное»
+
+    CreateReceiptPhoto:
+      type: object
+      required: [image]
+      properties:
+        image:
+          type: string
+          format: binary
+          description: JPEG, PNG or WebP, up to 10 MB
+        accountId: { type: string, format: uuid }
+        category: { type: string, maxLength: 64 }
+
+    Accepted:
+      type: object
+      required: [id, status]
+      properties:
+        id: { type: string, format: uuid }
+        status: { type: string, const: accepted }
+
+    ReceiptStatus:
+      type: string
+      enum: [accepted, processing, parsed, duplicate, error]
+
+    Receipt:
+      type: object
+      required: [id, status, source, accountId, category, amount, purchasedAt, transactionId, error, attempts, createdAt, updatedAt]
+      properties:
+        id: { type: string, format: uuid }
+        status: { $ref: "#/components/schemas/ReceiptStatus" }
+        source: { type: string, enum: [qr, photo] }
+        accountId: { type: [string, "null"], format: uuid }
+        category: { type: [string, "null"] }
+        amount: { type: [number, "null"] }
+        purchasedAt: { type: [string, "null"], format: date-time }
+        transactionId:
+          type: [string, "null"]
+          format: uuid
+          description: the expense in core-api (for "duplicate" — the expense of the first such receipt)
+        error:
+          oneOf:
+            - type: "null"
+            - type: object
+              required: [code, message]
+              properties:
+                code: { type: string, description: "e.g. invalid_qr, ocr_not_implemented, max_attempts" }
+                message: { type: [string, "null"] }
+        attempts: { type: integer }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+
+    ReceiptList:
+      type: object
+      required: [items, limit, offset]
+      properties:
+        items: { type: array, items: { $ref: "#/components/schemas/Receipt" } }
+        limit: { type: integer }
+        offset: { type: integer }
+
+    ErrorBody:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code: { type: string }
+            message: { type: string }
+            id: { type: string, format: uuid, description: "the receipt id, when the receipt was recorded before the failure" }

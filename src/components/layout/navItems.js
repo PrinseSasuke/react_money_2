@@ -7,10 +7,12 @@ import EventRepeatRounded from "@mui/icons-material/EventRepeatRounded";
 import SpeedRounded from "@mui/icons-material/SpeedRounded";
 import UploadFileRounded from "@mui/icons-material/UploadFileRounded";
 import SettingsRounded from "@mui/icons-material/SettingsRounded";
+import QrCodeScannerRounded from "@mui/icons-material/QrCodeScannerRounded";
 
 export const MAIN_NAV = [
   { to: "/", label: "Главная", icon: SpaceDashboardRounded, end: true },
   { to: "/transactions", label: "Операции", icon: ReceiptLongRounded },
+  { to: "/receipts", label: "Чеки", icon: QrCodeScannerRounded },
   { to: "/stats", label: "Статистика", icon: InsightsRounded },
   { to: "/forecast", label: "Прогноз", icon: AutoGraphRounded },
   { to: "/accounts", label: "Счета", icon: AccountBalanceWalletRounded },
