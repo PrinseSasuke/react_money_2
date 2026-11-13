@@ -1,0 +1,58 @@
+{
+  "source": "deploy@2.26.95.49:~/react-money/research/",
+  "source_code_commit": "c1b61ca0321679f5ae77fc7c727fba6b184e271a",
+  "saved_date": "2026-11-13",
+  "note": "Files copied read-only from stand. Original query ranges and tool versions are not confirmed.",
+  "files": [
+    {
+      "name": "dataset.csv",
+      "bytes": 3353503,
+      "sha256": "75bc7e77183abdeb1a369e2119d1cd05212913eea19720290cd3f60e1da82b03"
+    },
+    {
+      "name": "journal.3class-proof.bak",
+      "bytes": 2990,
+      "sha256": "d397c61822199bf25b5e25428b133a65288141318c95f132ea0de40718bef033"
+    },
+    {
+      "name": "journal.9scn-1790762143.bak",
+      "bytes": 58669,
+      "sha256": "3e9f22a2cbb71a4734a6f5fc356aff5fc14f81d3047855cda4cf2e05cdc9b5f1"
+    },
+    {
+      "name": "journal.base-partial.bak",
+      "bytes": 5013,
+      "sha256": "1c0a0f8375dc5cf4d9cab69d66d26d9c6fc7a5ff6aace1ba8e331651dd001b61"
+    },
+    {
+      "name": "journal.jsonl",
+      "bytes": 51408,
+      "sha256": "ba7b070e3fb3853794f7c3630fd238cfe04b4388275c900de56b07497281e31b"
+    },
+    {
+      "name": "journal.norm-fault.bak",
+      "bytes": 1634,
+      "sha256": "ff116c1dbae0236c31d5b56da261061495b38b6f047e16cbab50e498d56c162d"
+    },
+    {
+      "name": "journal.pre-3class.bak",
+      "bytes": 2065,
+      "sha256": "74f111dd657ca43a97609531cde51266ef5e6d131917286336e27d619c56b3ea"
+    },
+    {
+      "name": "run-flood.log",
+      "bytes": 1195,
+      "sha256": "8ca554de9741f944dc7df936c49c0606b3a19ca1b627a0b612dde2d891c92dae"
+    },
+    {
+      "name": "run.log",
+      "bytes": 77993,
+      "sha256": "02a96ebac80a485fe1f23a7d736f699eb67622d09cc938c63487f067ad31b428"
+    },
+    {
+      "name": "windows.csv",
+      "bytes": 17717806,
+      "sha256": "5ec844d3c6e5e5c09cfcf65f22d0bce854cdca798f62c48c58f2693958ccd7b3"
+    }
+  ]
+}

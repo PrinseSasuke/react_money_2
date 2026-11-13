@@ -46,6 +46,15 @@ def main():
     for family in ['brute_family','flood_family']:
         g=gp[(gp.kind=='holdout')&(gp.group==family)]
         lines.append(f'| {family} | {len(g)} | {(g.prediction==2).mean():.3f} |')
+    lines += ['', '## Абляция метрик для RF', '',
+              'Macro-F1 без отдельных семейств признаков: среднее ± std по пяти групповым разбиениям.', '',
+              '| Исключено | Macro-F1 |', '|---|---:|']
+    ablation = gp[gp.kind=='ablation']
+    for group in ['none','network','database']:
+        values=[]
+        for _, subset in ablation[ablation.group==group].groupby('split'):
+            values.append(f1_score(subset.truth, subset.prediction, labels=[0,1,2], average='macro', zero_division=0))
+        lines.append(f'| {group} | {np.mean(values):.3f} ± {np.std(values, ddof=1):.3f} |')
     lines += ['', 'Состав групп, предсказания и оценки для отдельных сценариев доступны в `audited_results/generalization_predictions.csv.gz`. '
       'Абляции сети и БД находятся там же (`kind=ablation`). Ошибки пар — в `pair_errors.csv`. '
       'Поля интенсивности и длительности выводятся раздельно в `attack_intensity.csv`; пустая частота означает, что журнал её не сохранил.', '',
