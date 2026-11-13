@@ -25,6 +25,7 @@ MAX_RATE = 180
 NOMINAL_RATE = 120
 DURATION = 300
 USE_TOKEN = True
+EXPERIMENT_VERSION = 'matched-ramp30s-v2'
 OUT = Path(__file__).resolve().parent / 'evidence' / 'matched-control'
 
 SCRIPT = r'''
@@ -32,11 +33,13 @@ import http from 'k6/http';
 import { check } from 'k6';
 const varying = __ENV.PROFILE === 'burst';
 const scenario = varying ? {
-  executor: 'ramping-arrival-rate', startRate: 120, timeUnit: '1s',
+  executor: 'ramping-arrival-rate', startRate: 180, timeUnit: '1s',
   stages: [
-    {duration:'60s',target:60}, {duration:'60s',target:180},
-    {duration:'60s',target:60}, {duration:'60s',target:180},
-    {duration:'60s',target:120}],
+    {duration:'30s',target:60}, {duration:'30s',target:180},
+    {duration:'30s',target:60}, {duration:'30s',target:180},
+    {duration:'30s',target:60}, {duration:'30s',target:180},
+    {duration:'30s',target:60}, {duration:'30s',target:180},
+    {duration:'30s',target:60}, {duration:'30s',target:180}],
   preAllocatedVUs: 50, maxVUs: 350
 } : {
   executor: 'constant-arrival-rate', rate:120, timeUnit:'1s', duration:'300s',
@@ -107,6 +110,8 @@ def run_one(profile, rep):
     cm, job = manifest(name, profile)
     record = {'run_id':name, 'profile':profile, 'repeat':rep, 'endpoint':ENDPOINT,
               'duration_s':DURATION, 'nominal_rate_rps':NOMINAL_RATE, 'max_rate_rps':MAX_RATE,
+              'experiment_version':EXPERIMENT_VERSION,
+              'workload_script_sha256':hashlib.sha256(SCRIPT.encode('utf-8')).hexdigest(),
               'status':'created', 'created_at_epoch':time.time(), 'queries':series.SERIES,
               'caveat':'Both profiles are synthetic controlled load; profile labels do not establish malicious intent.'}
     OUT.mkdir(parents=True, exist_ok=True)

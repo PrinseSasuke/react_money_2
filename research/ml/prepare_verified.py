@@ -32,16 +32,18 @@ def main():
             raw={k:{float(t):v for t,v in series.items()} for k,series in data['raw_series'].items()}
             grid=sorted(raw.get('rps_total',{})); n_before=len(records)
             for i,ts in enumerate(grid):
-                if not 185<=ts-start<=295 or i<17: continue
+                if not 235<=ts-start<=295 or i<17: continue
                 times=grid[i-17:i+1]
-                if times[0]<start or any(abs(b-a-10)>.01 for a,b in zip(times,times[1:])):continue
+                if times[0]<start+60 or any(abs(b-a-10)>.01 for a,b in zip(times,times[1:])):continue
                 seq=[[np.nan if raw.get(name,{}).get(t) is None else raw[name][t]
                       for name in names] for t in times]
                 records.append({'window_id':data['run_id']+'#'+str(int(ts)),
                     'run_id':data['run_id'],'scenario':scenario,'class':cls,'window_end':ts})
                 sequences.append(seq)
             source_runs[data['run_id']]={'scenario':scenario,'class':cls,'path':str(path.relative_to(ROOT)),
-                                         'setup_epoch':start,'n_windows':len(records)-n_before}
+                                         'setup_epoch':start,'n_windows':len(records)-n_before,
+                                         'experiment_version':data.get('experiment_version','legacy-v1'),
+                                         'workload_script_sha256':data.get('workload_script_sha256')}
     if not records: raise ValueError('No verified timestamped windows found')
     DEST.mkdir(parents=True,exist_ok=True)
     np.savez_compressed(DEST/'sequences.npz',X=np.asarray(sequences,dtype=np.float32),

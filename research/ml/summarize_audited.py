@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Summarise repeated group splits and uncertainty at run level."""
 import json
+import argparse
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -12,6 +13,11 @@ from experiment_audited import OUT, DATA, nested_subset, LABELS
 
 
 def main():
+    global OUT, DATA
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--data',type=Path,default=DATA)
+    parser.add_argument('--out',type=Path,default=OUT)
+    args=parser.parse_args(); DATA=args.data; OUT=args.out
     pred = pd.read_csv(OUT / 'predictions.csv.gz')
     meta = pd.read_csv(DATA / 'windows.csv')
     splits = json.loads((OUT / 'splits.json').read_text(encoding='utf-8'))
@@ -38,7 +44,8 @@ def main():
     ax.set(xlabel='Объём обучающих прогонов, %', ylabel='Macro-F1', ylim=(0,1.04), xticks=[50,75,100])
     ax.grid(alpha=.25); ax.legend(); fig.tight_layout(); fig.savefig(OUT / 'learning_curves.png', dpi=160); plt.close(fig)
     pair_defs = {'flash_vs_flood':['01-norm-flashcrowd','21-attack-flood','25-attack-lowflood'],
-                 'auth_vs_brute':['14-fault-authfail','20-attack-bruteforce','23-attack-lowbrute']}
+                 'auth_vs_brute':['14-fault-authfail','20-attack-bruteforce','23-attack-lowbrute'],
+                 'verified_401':['auth-misconfiguration','auth-guessing']}
     pair_rows = []
     for (split, model, scenario, truth), g in pred[(pred.fraction==1) & (~pred.temporal)].groupby(['split','model','scenario','truth']):
         for pair, scenarios in pair_defs.items():
@@ -53,7 +60,9 @@ def main():
     intensity_rows = []
     selected = pred[(pred.model == 'rf') & (pred.fraction == 1) & (~pred.temporal)]
     for (split, seed, rid), g in selected.groupby(['split', 'seed', 'run_id']):
-        r = journal[rid]; intensity = r.get('intensity') or {}
+        r = journal.get(rid)
+        if r is None: continue
+        intensity = r.get('intensity') or {}
         if r['class'] != 'attack': continue
         rate = intensity.get('job_rate', intensity.get('flood_rate'))
         intensity_rows.append({'split': split, 'seed': seed, 'run_id': rid, 'scenario':r['scenario'],

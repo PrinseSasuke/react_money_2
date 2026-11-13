@@ -39,6 +39,7 @@ def main():
     control.ENDPOINT=LOGIN
     control.MAX_RATE=control.NOMINAL_RATE=10
     control.USE_TOKEN=False
+    control.EXPERIMENT_VERSION='auth401-v1'
     control.OUT=Path(__file__).resolve().parent/'evidence'/'auth-pair'
     if not args.execute:
         print(json.dumps({'target':LOGIN,'profiles':{'flat':'synthetic_fault',

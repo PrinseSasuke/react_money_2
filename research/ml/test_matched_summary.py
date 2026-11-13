@@ -27,8 +27,8 @@ class MatchedSummaryTest(unittest.TestCase):
             rows = json.loads((out/'matched_control_summary.json').read_text(encoding='utf-8'))
             self.assertEqual(len(rows),1)
             self.assertEqual(rows[0]['features']['rps_total']['median'],120)
-            self.assertEqual(rows[0]['features']['rps_total']['samples'],11)
-            self.assertEqual(sum(rows[0]['historical_rf_predictions'].values()),11)
+            self.assertEqual(rows[0]['features']['rps_total']['samples'],6)
+            self.assertEqual(sum(rows[0]['historical_rf_predictions'].values()),6)
             self.assertTrue((out/'matched_control.png').exists())
 
 

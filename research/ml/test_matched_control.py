@@ -16,6 +16,7 @@ class MatchedControlTests(unittest.TestCase):
         self.assertEqual(flat_cm['data']['script.js'], burst_cm['data']['script.js'])
         self.assertIn(control.ENDPOINT, control.SCRIPT)
         self.assertEqual(control.MAX_RATE, 180)
+        self.assertEqual(control.SCRIPT.count("duration:'30s'"), 10)
         for job in (flat, burst):
             self.assertEqual(job['metadata']['namespace'], 'redlab')
             self.assertLessEqual(job['spec']['activeDeadlineSeconds'], 390)

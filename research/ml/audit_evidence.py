@@ -33,6 +33,8 @@ def main():
             issues['label_mismatch'] += 1
         if end - 180 < run['baseline_start']:
             issues['180s_history_before_baseline'] += 1
+        if end - 180 < run['baseline_start'] + 60:
+            issues['180s_history_and_60s_rate_lookback_before_baseline'] += 1
         if run['scenario'] == '11-fault-kill-backend' and row['class'] == 'fault':
             issues['podkill_effect_windows_observation_not_confirmed'] += 1
         if run['class'] != 'norm' and start >= run['end_ts']:

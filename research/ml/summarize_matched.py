@@ -37,15 +37,16 @@ def main():
             print('excluded missing setup timestamp:',path.name); continue
         start=int(match.group(1))/1000
         summary={'run_id':data['run_id'], 'profile':data['profile'], 'setup_epoch':start,
-                 'time_interval_s':[185,295], 'job_status':data['status'], 'features':{}}
+                 'experiment_version':data.get('experiment_version','matched-ramp60s-v1'),
+                 'time_interval_s':[235,295], 'job_status':data['status'], 'features':{}}
         # Construct 18-sample histories only from the timestamped current job.
         raw = {k:{float(t):v for t,v in vals.items()} for k,vals in data['raw_series'].items()}
         grid = sorted(raw.get('rps_total',{}))
         sequences=[]
         for idx,t in enumerate(grid):
-            if not 185 <= t-start <= 295 or idx < 17: continue
+            if not 235 <= t-start <= 295 or idx < 17: continue
             times=grid[idx-17:idx+1]
-            if times[0] < start or any(abs(b-a-10)>0.01 for a,b in zip(times,times[1:])): continue
+            if times[0] < start+60 or any(abs(b-a-10)>0.01 for a,b in zip(times,times[1:])): continue
             sequences.append([[np.nan if raw.get(n,{}).get(ts) is None else raw[n][ts]
                                for n in names] for ts in times])
         if sequences:
@@ -54,13 +55,14 @@ def main():
             summary['prediction_caveat']='RF trained on all historical data; workload is a synthetic profile, not a confirmed attack.'
         for ax,key in zip(axes,['rps_total','pg_tps']):
             points=sorted((float(t)-start, float(v)) for t,v in data['raw_series'].get(key,{}).items()
-                          if v is not None and 185 <= float(t)-start <= 295)
+                          if v is not None and 235 <= float(t)-start <= 295)
             if not points:
                 print('warning: no points for',path.name,key); continue
             vals=np.array([v for _,v in points])
             summary['features'][key]={'samples':len(vals),'min':float(np.min(vals)),
                 'median':float(np.median(vals)),'max':float(np.max(vals))}
-            ax.plot([t for t,_ in points], vals, label=f'{data["profile"]} {data["repeat"]}', alpha=.8)
+            version=data.get('experiment_version','matched-ramp60s-v1').replace('matched-ramp','')
+            ax.plot([t for t,_ in points], vals, label=f'{data["profile"]} {data["repeat"]} {version}', alpha=.8)
             ax.set_ylabel(key); ax.grid(alpha=.25)
         records.append(summary)
     DEST.mkdir(parents=True,exist_ok=True)

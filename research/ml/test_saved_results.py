@@ -37,5 +37,19 @@ class SavedResultsTests(unittest.TestCase):
         self.assertEqual(len(m),6*3*3*4)
         self.assertTrue(all(x['train_seconds']>=0 and x['inference_seconds']>=0 for x in m))
 
+    def test_strict_results_preserve_group_and_sample_parity(self):
+        root=HERE/'strict_results'
+        metrics=json.loads((root/'metrics.json').read_text())
+        splits={s['split']:s for s in json.loads((root/'splits.json').read_text())}
+        pred=pd.read_csv(root/'predictions.csv.gz')
+        self.assertEqual(len(metrics),6*3*3*4)
+        for (split,fraction,seed),group in pred.groupby(['split','fraction','seed']):
+            self.assertTrue(set(group.run_id)<=set(splits[split]['test']))
+            reference=None
+            for _,each in group.groupby('model'):
+                current=set(zip(each.window_id,each.truth))
+                if reference is None: reference=current
+                else: self.assertEqual(reference,current)
+
 
 if __name__ == '__main__': unittest.main()

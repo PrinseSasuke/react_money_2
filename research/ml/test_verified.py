@@ -25,9 +25,9 @@ class VerifiedDataTest(unittest.TestCase):
             with patch.object(prepare_verified,'ROOT',root), patch.object(prepare_verified,'SOURCE',source), \
                  patch.object(prepare_verified,'DEST',destination): prepare_verified.main()
             meta=pd.read_csv(destination/'windows.csv')
-            self.assertEqual(meta['class'].value_counts().to_dict(),{'norm':22,'fault':11,'attack':11})
+            self.assertEqual(meta['class'].value_counts().to_dict(),{'norm':12,'fault':6,'attack':6})
             self.assertEqual(len(meta),len(np.load(destination/'sequences.npz')['X']))
-            self.assertTrue(meta.window_end.between(1185,1295).all())
+            self.assertTrue(meta.window_end.between(1235,1295).all())
 
 
 if __name__=='__main__': unittest.main()

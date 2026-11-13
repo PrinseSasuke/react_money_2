@@ -28,6 +28,7 @@
   },
   "issues": {
     "180s_history_before_baseline": 1865,
+    "180s_history_and_60s_rate_lookback_before_baseline": 2575,
     "recovery_windows_labelled_norm": 300,
     "podkill_effect_windows_observation_not_confirmed": 252,
     "label_mismatch": 1
