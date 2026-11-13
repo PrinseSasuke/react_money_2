@@ -1,0 +1,10 @@
+# Источники для статьи
+
+Проверено 13.11.2026 по страницам первоисточников. Работы решают близкие, но не идентичные задачи; результаты на разных стендах и выборках напрямую не сопоставляются.
+
+1. Bakhtin A. и др. **LO2: Microservice API Anomaly Dataset of Logs and Metrics**. 2025. [arXiv:2504.12067](https://arxiv.org/abs/2504.12067). Датасет логов и метрик API при корректных и ошибочных вызовах, с разметкой вызвавших ошибку событий.
+2. Ping K. и др. **AnoMod: A Dataset for Anomaly Detection and Root Cause Analysis in Microservice Systems**. MSR 2026. [arXiv:2601.22881](https://arxiv.org/abs/2601.22881). Два открытых микросервисных приложения, четыре категории неисправностей и пять модальностей данных.
+3. Panahandeh M., Hamou-Lhadj A., Hamdaqa M., Miller J. **ServiceAnomaly: An Anomaly Detection Approach in Microservices Using Distributed Traces and Profiling Metrics**. [Препринт статьи](https://users.encs.concordia.ca/~abdelw/papers/JSS24-ServiceAnomaly_preprint.pdf). Обнаружение аномалий по совместной информации распределённых трасс и шести профилирующих метрик.
+4. **Evaluating intrusion detection for microservice applications: Benchmark, dataset, and case studies**. [Страница издателя](https://www.sciencedirect.com/science/article/pii/S0164121224001870). Работа релевантна бенчмаркам обнаружения вторжений в микросервисах; полный текст при текущей проверке издатель не предоставил, поэтому деталей методики и численных сравнений здесь не утверждаем.
+
+Позиционирование нашей работы: контролируемое сравнение моделей по метрикам на собственном стенде, с отдельными тестами похожих сбоев/атак и исключением сценариев и семейств атак из обучения. Требуется дополнительный обзор, прежде чем заявлять научную новизну как отсутствие аналогов.

@@ -11,5 +11,9 @@ results/**/*.csv
 __pycache__/
 *.pyc
 ml/.venv/
+.venv/
+evidence/
+ml/audited_results/predictions.csv
+ml/audited_results/generalization_predictions.csv
 ml/results/
 ml/*.log

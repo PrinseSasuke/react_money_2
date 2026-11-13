@@ -86,7 +86,7 @@ def load_sequences(T=18):
     """windows.csv → {window_id: (seq[T,F], run_id, y, boundary)}."""
     df = pd.read_csv(WINDOWS)
     fcols = [c for c in df.columns if c not in
-             ("window_id", "run_id", "step_idx", "class", "technique", "boundary")]
+             ("window_id", "run_id", "step_idx", "class", "technique", "boundary", "sample_ts")]
     out = {}
     for wid, g in df.groupby("window_id", sort=False):
         g = g.sort_values("step_idx")

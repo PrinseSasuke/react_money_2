@@ -1,0 +1,11 @@
+{
+  "python": "3.13.13 (tags/v3.13.13:01104ce, Apr  7 2026, 19:25:48) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD",
+  "logical_cpus": 12,
+  "numpy": "2.5.4",
+  "pandas": "3.1.1",
+  "sklearn": "1.9.1",
+  "torch": "2.15.0+cpu",
+  "cuda": false
+}

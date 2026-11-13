@@ -775,6 +775,7 @@ def cmd_dataset(args):
     STRIDE = getattr(args, "step", None) or S_DEFAULT
     SEQLEN = getattr(args, "seq_len", None) or SEQLEN_DEFAULT
     BUFFER = getattr(args, "buffer", None) or BUFFER_DEFAULT
+    archive_raw = getattr(args, "archive_raw", False)
 
     runs = _read_journal()
     prom = Prom()
@@ -802,6 +803,13 @@ def cmd_dataset(args):
         q_start = b0 - BUFFER - SEQLEN * STEP
         q_end = r1 + BUFFER
         data = {k: prom.range(q, q_start, q_end, step=STEP) for k, q in S.SERIES.items()}
+        if archive_raw:
+            raw_dir = HERE / 'evidence' / 'raw'
+            raw_dir.mkdir(parents=True, exist_ok=True)
+            archive = {'run_id': run['run_id'], 'query_start': q_start, 'query_end': q_end,
+                       'step_s': STEP, 'queries': S.SERIES, 'series': data}
+            (raw_dir / (run['run_id'] + '.json')).write_text(
+                json.dumps(archive, ensure_ascii=False), encoding='utf-8')
         grid = sorted(data[feats[0]]) if data.get(feats[0]) else sorted(
             {t for d in data.values() for t in d})
         if not grid:
@@ -837,7 +845,8 @@ def cmd_dataset(args):
             seq_ts = [t for t in grid if t <= we][-SEQLEN:]
             for i, t in enumerate(seq_ts):
                 srow = {"window_id": wid, "run_id": run["run_id"], "step_idx": i,
-                        "class": cls, "technique": technique, "boundary": boundary}
+                        "class": cls, "technique": technique, "boundary": boundary,
+                        "sample_ts": t}
                 for f in feats:
                     v = data[f].get(t)
                     srow[f] = "" if v is None else round(v, 6)
@@ -856,7 +865,7 @@ def cmd_dataset(args):
         w.writerows(ds_rows)
     with open(WINDOWS_CSV, "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["window_id", "run_id", "step_idx",
-                                          "class", "technique", "boundary"] + feats)
+                                          "class", "technique", "boundary", "sample_ts"] + feats)
         w.writeheader()
         w.writerows(seq_rows)
 
@@ -896,6 +905,7 @@ def main(argv=None):
     ds.add_argument("--sample-step", type=int, help=f"шаг выборки Prometheus, с (по умолч. {STEP_DEFAULT})")
     ds.add_argument("--seq-len", type=int, help=f"отсчётов на окно для Transformer (по умолч. {SEQLEN_DEFAULT})")
     ds.add_argument("--buffer", type=int, help=f"запас по краям прогона, с (по умолч. {BUFFER_DEFAULT})")
+    ds.add_argument("--archive-raw", action="store_true", help="сохранить запросы и исходные ряды с временными метками")
 
     m = sub.add_parser("model", help="модели (M4)")
     m.add_argument("action", choices=["train"])
