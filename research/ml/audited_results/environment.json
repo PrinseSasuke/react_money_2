@@ -7,5 +7,7 @@
   "pandas": "3.1.1",
   "sklearn": "1.9.1",
   "torch": "2.15.0+cpu",
-  "cuda": false
+  "cuda": false,
+  "ram_bytes": 16469520384,
+  "cpu_model": "AMD Ryzen 5 5500U with Radeon Graphics         "
 }

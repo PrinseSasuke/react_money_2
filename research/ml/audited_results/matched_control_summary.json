@@ -1,0 +1,122 @@
+[
+  {
+    "run_id": "ids-control-burst-06169dcc",
+    "profile": "burst",
+    "setup_epoch": 1794571743.2,
+    "time_interval_s": [
+      185,
+      295
+    ],
+    "job_status": "success",
+    "features": {
+      "rps_total": {
+        "samples": 11,
+        "min": 74.44,
+        "median": 145.08,
+        "max": 171.64000000000001
+      },
+      "pg_tps": {
+        "samples": 11,
+        "min": 79.32000000000001,
+        "median": 149.16,
+        "max": 177.12
+      }
+    },
+    "historical_rf_predictions": {
+      "norm": 0,
+      "fault": 0,
+      "attack": 11
+    },
+    "prediction_caveat": "RF trained on all historical data; workload is a synthetic profile, not a confirmed attack."
+  },
+  {
+    "run_id": "ids-control-burst-d7bcec75",
+    "profile": "burst",
+    "setup_epoch": 1794571434.838,
+    "time_interval_s": [
+      185,
+      295
+    ],
+    "job_status": "success",
+    "features": {
+      "rps_total": {
+        "samples": 11,
+        "min": 73.36,
+        "median": 146.56,
+        "max": 171.6
+      },
+      "pg_tps": {
+        "samples": 11,
+        "min": 78.2,
+        "median": 152.0,
+        "max": 176.28
+      }
+    },
+    "historical_rf_predictions": {
+      "norm": 0,
+      "fault": 0,
+      "attack": 11
+    },
+    "prediction_caveat": "RF trained on all historical data; workload is a synthetic profile, not a confirmed attack."
+  },
+  {
+    "run_id": "ids-control-flat-45b11273",
+    "profile": "flat",
+    "setup_epoch": 1794571123.714,
+    "time_interval_s": [
+      185,
+      295
+    ],
+    "job_status": "success",
+    "features": {
+      "rps_total": {
+        "samples": 11,
+        "min": 120.0,
+        "median": 120.0,
+        "max": 120.04
+      },
+      "pg_tps": {
+        "samples": 11,
+        "min": 123.2,
+        "median": 125.72,
+        "max": 127.08
+      }
+    },
+    "historical_rf_predictions": {
+      "norm": 2,
+      "fault": 9,
+      "attack": 0
+    },
+    "prediction_caveat": "RF trained on all historical data; workload is a synthetic profile, not a confirmed attack."
+  },
+  {
+    "run_id": "ids-control-flat-4b737e0d",
+    "profile": "flat",
+    "setup_epoch": 1794572050.08,
+    "time_interval_s": [
+      185,
+      295
+    ],
+    "job_status": "success",
+    "features": {
+      "rps_total": {
+        "samples": 11,
+        "min": 119.96000000000001,
+        "median": 120.0,
+        "max": 120.0
+      },
+      "pg_tps": {
+        "samples": 11,
+        "min": 123.28,
+        "median": 125.72,
+        "max": 128.12
+      }
+    },
+    "historical_rf_predictions": {
+      "norm": 11,
+      "fault": 0,
+      "attack": 0
+    },
+    "prediction_caveat": "RF trained on all historical data; workload is a synthetic profile, not a confirmed attack."
+  }
+]

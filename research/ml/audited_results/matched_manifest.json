@@ -1,0 +1,48 @@
+{
+  "source": "authorised k3s stand, matched_control.py",
+  "source_script_sha256": "65c2f620a712a9abad13072de783718e72b3f97de8df22ee68456b27b060b10a",
+  "collected_utc_date": "2026-11-13",
+  "note": "Four synthetic controls, not attack labels; raw series stored outside git.",
+  "files": [
+    {
+      "name": "ids-control-burst-06169dcc.json",
+      "bytes": 40547,
+      "sha256": "34c0ade337768158d3d0c1e8f314ad2758d08fa1f40762b3630a13896e44c938",
+      "status": "success",
+      "profile": "burst",
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "name": "ids-control-burst-d7bcec75.json",
+      "bytes": 40368,
+      "sha256": "26b668adc87fdfd3cfd9341219fba109b3293734a6e6e75597ffa5e97aaaff54",
+      "status": "success",
+      "profile": "burst",
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "name": "ids-control-flat-45b11273.json",
+      "bytes": 39852,
+      "sha256": "22e15af1270bda4a7a5aabe355f0c16ab629c814ab42b34ff42039e5564a6bdb",
+      "status": "success",
+      "profile": "flat",
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "name": "ids-control-flat-4b737e0d.json",
+      "bytes": 40143,
+      "sha256": "3e812f5567c017ea82d5a9ddd1a354e5268fa00509d14eb212ecd550f44b9a39",
+      "status": "success",
+      "profile": "flat",
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    }
+  ]
+}

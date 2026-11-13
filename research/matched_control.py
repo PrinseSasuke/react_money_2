@@ -22,7 +22,9 @@ NS = 'redlab'
 ENDPOINT = 'http://traefik.kube-system.svc.cluster.local/api/auth/me'
 IMAGE = 'grafana/k6:latest'
 MAX_RATE = 180
+NOMINAL_RATE = 120
 DURATION = 300
+USE_TOKEN = True
 OUT = Path(__file__).resolve().parent / 'evidence' / 'matched-control'
 
 SCRIPT = r'''
@@ -68,6 +70,8 @@ def manifest(name, profile):
                             'limits':{'cpu':'500m','memory':'512Mi'}},
                'volumeMounts':[{'name':'script','mountPath':'/scripts','readOnly':True}]}],
              'volumes':[{'name':'script','configMap':{'name':name}}]}}}}
+    if not USE_TOKEN:
+        job['spec']['template']['spec']['containers'][0]['env'] = [{'name':'PROFILE','value':profile}]
     return cm, job
 
 
@@ -102,14 +106,14 @@ def run_one(profile, rep):
     name = f'ids-control-{profile}-{uuid.uuid4().hex[:8]}'
     cm, job = manifest(name, profile)
     record = {'run_id':name, 'profile':profile, 'repeat':rep, 'endpoint':ENDPOINT,
-              'duration_s':DURATION, 'nominal_rate_rps':120, 'max_rate_rps':MAX_RATE,
+              'duration_s':DURATION, 'nominal_rate_rps':NOMINAL_RATE, 'max_rate_rps':MAX_RATE,
               'status':'created', 'created_at_epoch':time.time(), 'queries':series.SERIES,
               'caveat':'Both profiles are synthetic controlled load; profile labels do not establish malicious intent.'}
     OUT.mkdir(parents=True, exist_ok=True)
     target = OUT / f'{name}.json'
     write_json(target, record)
     try:
-        for obj in (ephemeral_secret(name), cm, job):
+        for obj in ((ephemeral_secret(name), cm, job) if USE_TOKEN else (cm, job)):
             labctl.kubectl('create','-f','-',input=json.dumps(obj))
         deadline = time.monotonic() + 420
         pod = None; status = None
@@ -147,7 +151,8 @@ def run_one(profile, rep):
         write_json(target, record)
         labctl.kubectl('-n',NS,'delete','job',name,'--ignore-not-found','--wait=false',check=False)
         labctl.kubectl('-n',NS,'delete','configmap',name,'--ignore-not-found','--wait=false',check=False)
-        labctl.kubectl('-n',NS,'delete','secret',name+'-token','--ignore-not-found','--wait=false',check=False)
+        if USE_TOKEN:
+            labctl.kubectl('-n',NS,'delete','secret',name+'-token','--ignore-not-found','--wait=false',check=False)
     if record['status'] != 'success':
         raise RuntimeError(f'{name} did not complete successfully; see {target}')
     print(f'{name}: {record["status"]}, saved {target}', flush=True)

@@ -54,7 +54,11 @@ def split_groups(meta, split, temporal=False):
     random = np.random.RandomState(2100 + split)
     train, valid, test = [], [], []
     for _, rows in meta.groupby('scenario'):
-        ids = sorted(rows.run_id.unique())
+        if 'window_end' in rows.columns:
+            times = rows.groupby('run_id').window_end.min().to_dict()
+            ids = sorted(rows.run_id.unique(), key=lambda rid: (times[rid], rid))
+        else:
+            ids = sorted(rows.run_id.unique())
         if not temporal:
             ids = list(random.permutation(ids))
         if len(ids) < 3:
@@ -134,11 +138,15 @@ def transformer_predict(X, y, tr, va, te, seed, max_epochs):
 
 
 def main():
+    global DATA, OUT
     parser = argparse.ArgumentParser()
     parser.add_argument('--splits', type=int, default=5)
     parser.add_argument('--seeds', type=int, default=3)
     parser.add_argument('--epochs', type=int, default=25)
+    parser.add_argument('--data', type=Path, default=DATA)
+    parser.add_argument('--out', type=Path, default=OUT)
     args = parser.parse_args()
+    DATA, OUT = args.data, args.out
     OUT.mkdir(parents=True, exist_ok=True)
     meta = pd.read_csv(DATA / 'windows.csv')
     raw = np.load(DATA / 'sequences.npz')
@@ -148,7 +156,7 @@ def main():
     # Baseline is a shallow tree over three interpretable metric families.
     base_features = [names.index(n) for n in ('rps_total', 'err_pct', 'pg_tps')]
     B = np.nanmean(X[:, :, base_features], axis=1)
-    config = vars(args) | {'labels': LABELS, 'input_shape': list(X.shape),
+    config = {k: str(v) if isinstance(v, Path) else v for k,v in vars(args).items()} | {'labels': LABELS, 'input_shape': list(X.shape),
              'python': platform.python_version(), 'torch': torch.__version__,
              'caveat': 'Exploratory; source sample timestamps and injection success unavailable.'}
     (OUT / 'config.json').write_text(json.dumps(config, indent=2), encoding='utf-8')
