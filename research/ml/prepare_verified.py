@@ -5,11 +5,14 @@ These are synthetic scenarios; no intent or real-world prevalence can be inferre
 """
 import json
 import re
+import sys
 from pathlib import Path
 import numpy as np
 import pandas as pd
 
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT))
+from series import FEATURE_ORDER
 SOURCE=ROOT/'evidence'
 DEST=SOURCE/'verified'
 MAPPING={('matched-control','flat'):('control-flat','norm'),
@@ -19,7 +22,7 @@ MAPPING={('matched-control','flat'):('control-flat','norm'),
 
 
 def main():
-    names=list(np.load(SOURCE/'prepared'/'sequences.npz')['features'])
+    names=list(FEATURE_ORDER)
     records=[]; sequences=[]; excluded=[]; source_runs={}
     for collection in ('matched-control','auth-pair'):
         for path in sorted((SOURCE/collection).glob('ids-control-*.json')):

@@ -55,19 +55,30 @@ def main():
                                       'truth':truth,'prediction':guessed,'windows_across_seeds':int(count),
                                       'runs':g.run_id.nunique()})
     pd.DataFrame(pair_rows).to_csv(OUT / 'pair_errors.csv', index=False)
+    journal_path = DATA.parent / 'legacy' / 'journal.jsonl'
     journal = {r['run_id']: r for r in (json.loads(line) for line in
-        (DATA.parent / 'legacy' / 'journal.jsonl').read_text(encoding='utf-8').splitlines() if line)}
+        journal_path.read_text(encoding='utf-8').splitlines() if line)} if journal_path.exists() else {}
+    verified_runs = {}
+    for folder in ('auth-pair', 'matched-control'):
+        for file in (DATA.parent / folder).glob('ids-control-*.json'):
+            record=json.loads(file.read_text(encoding='utf-8'))
+            verified_runs[record['run_id']]=record
     intensity_rows = []
     selected = pred[(pred.model == 'rf') & (pred.fraction == 1) & (~pred.temporal)]
     for (split, seed, rid), g in selected.groupby(['split', 'seed', 'run_id']):
         r = journal.get(rid)
-        if r is None: continue
-        intensity = r.get('intensity') or {}
-        if r['class'] != 'attack': continue
-        rate = intensity.get('job_rate', intensity.get('flood_rate'))
-        intensity_rows.append({'split': split, 'seed': seed, 'run_id': rid, 'scenario':r['scenario'],
-          'attack_rate_rps': rate, 'baseline_rate_rps':intensity.get('rate'),
-          'duration_s':intensity.get('duration_s'), 'n_windows':len(g),
+        if r is not None:
+            if r['class'] != 'attack': continue
+            intensity = r.get('intensity') or {}
+            rate = intensity.get('job_rate', intensity.get('flood_rate'))
+            baseline, duration, scenario = intensity.get('rate'), intensity.get('duration_s'), r['scenario']
+        else:
+            r = verified_runs.get(rid)
+            if r is None or g.truth.iloc[0] != 'attack': continue
+            rate, baseline, duration, scenario = r.get('nominal_rate_rps'), None, r.get('duration_s'), g.scenario.iloc[0]
+        intensity_rows.append({'split': split, 'seed': seed, 'run_id': rid, 'scenario':scenario,
+          'attack_rate_rps': rate, 'baseline_rate_rps':baseline,
+          'duration_s':duration, 'n_windows':len(g),
           'attack_recall':float((g.prediction == 'attack').mean())})
     pd.DataFrame(intensity_rows).to_csv(OUT / 'attack_intensity.csv', index=False)
     # Cluster bootstrap on one fixed held-out test, one seed: illustrative, not a population guarantee.

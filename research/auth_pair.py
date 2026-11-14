@@ -2,7 +2,7 @@
 """Matched 401 control: synthetic misconfiguration vs password guessing.
 
 Both send 10 requests/s to the same own lab endpoint and use an intentionally
-nonexistent synthetic account. No discovery of real accounts is attempted.
+synthetic address in the .invalid domain. No account discovery is attempted.
 """
 import argparse
 import json

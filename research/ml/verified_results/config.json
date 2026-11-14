@@ -1,0 +1,20 @@
+{
+  "splits": 5,
+  "seeds": 3,
+  "epochs": 25,
+  "data": "research\\evidence\\verified",
+  "out": "research\\ml\\verified_results",
+  "labels": [
+    "norm",
+    "fault",
+    "attack"
+  ],
+  "input_shape": [
+    120,
+    18,
+    21
+  ],
+  "python": "3.13.13",
+  "torch": "2.15.0+cpu",
+  "caveat": "Exploratory; source sample timestamps and injection success unavailable."
+}

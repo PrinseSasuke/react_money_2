@@ -3,6 +3,7 @@
     "run_id": "ids-control-burst-06169dcc",
     "profile": "burst",
     "setup_epoch": 1794571743.2,
+    "experiment_version": "matched-ramp60s-v1",
     "time_interval_s": [
       235,
       295
@@ -30,9 +31,103 @@
     "prediction_caveat": "RF trained on all historical data; workload is a synthetic profile, not a confirmed attack."
   },
   {
+    "run_id": "ids-control-burst-2f1fd69f",
+    "profile": "burst",
+    "setup_epoch": 1794577334.538,
+    "experiment_version": "matched-ramp30s-v2",
+    "time_interval_s": [
+      235,
+      295
+    ],
+    "job_status": "success",
+    "features": {
+      "rps_total": {
+        "samples": 6,
+        "min": 87.04,
+        "median": 120.0,
+        "max": 152.92000000000002
+      },
+      "pg_tps": {
+        "samples": 6,
+        "min": 90.96000000000001,
+        "median": 125.48,
+        "max": 159.24
+      }
+    },
+    "historical_rf_predictions": {
+      "norm": 3,
+      "fault": 0,
+      "attack": 3
+    },
+    "prediction_caveat": "RF trained on all historical data; workload is a synthetic profile, not a confirmed attack."
+  },
+  {
+    "run_id": "ids-control-burst-3721ff66",
+    "profile": "burst",
+    "setup_epoch": 1794576102.879,
+    "experiment_version": "matched-ramp30s-v2",
+    "time_interval_s": [
+      235,
+      295
+    ],
+    "job_status": "success",
+    "features": {
+      "rps_total": {
+        "samples": 6,
+        "min": 85.0,
+        "median": 120.0,
+        "max": 154.96
+      },
+      "pg_tps": {
+        "samples": 6,
+        "min": 93.08,
+        "median": 125.34,
+        "max": 159.52
+      }
+    },
+    "historical_rf_predictions": {
+      "norm": 3,
+      "fault": 0,
+      "attack": 3
+    },
+    "prediction_caveat": "RF trained on all historical data; workload is a synthetic profile, not a confirmed attack."
+  },
+  {
+    "run_id": "ids-control-burst-6663d3ca",
+    "profile": "burst",
+    "setup_epoch": 1794576410.374,
+    "experiment_version": "matched-ramp30s-v2",
+    "time_interval_s": [
+      235,
+      295
+    ],
+    "job_status": "success",
+    "features": {
+      "rps_total": {
+        "samples": 6,
+        "min": 86.24,
+        "median": 119.98,
+        "max": 153.76
+      },
+      "pg_tps": {
+        "samples": 6,
+        "min": 90.28,
+        "median": 125.88,
+        "max": 160.92000000000002
+      }
+    },
+    "historical_rf_predictions": {
+      "norm": 0,
+      "fault": 0,
+      "attack": 6
+    },
+    "prediction_caveat": "RF trained on all historical data; workload is a synthetic profile, not a confirmed attack."
+  },
+  {
     "run_id": "ids-control-burst-d7bcec75",
     "profile": "burst",
     "setup_epoch": 1794571434.838,
+    "experiment_version": "matched-ramp60s-v1",
     "time_interval_s": [
       235,
       295
@@ -60,9 +155,41 @@
     "prediction_caveat": "RF trained on all historical data; workload is a synthetic profile, not a confirmed attack."
   },
   {
+    "run_id": "ids-control-flat-0956f92a",
+    "profile": "flat",
+    "setup_epoch": 1794575794.527,
+    "experiment_version": "matched-ramp30s-v2",
+    "time_interval_s": [
+      235,
+      295
+    ],
+    "job_status": "success",
+    "features": {
+      "rps_total": {
+        "samples": 6,
+        "min": 120.0,
+        "median": 120.0,
+        "max": 120.0
+      },
+      "pg_tps": {
+        "samples": 6,
+        "min": 124.84,
+        "median": 125.54,
+        "max": 126.76
+      }
+    },
+    "historical_rf_predictions": {
+      "norm": 0,
+      "fault": 6,
+      "attack": 0
+    },
+    "prediction_caveat": "RF trained on all historical data; workload is a synthetic profile, not a confirmed attack."
+  },
+  {
     "run_id": "ids-control-flat-45b11273",
     "profile": "flat",
     "setup_epoch": 1794571123.714,
+    "experiment_version": "matched-ramp60s-v1",
     "time_interval_s": [
       235,
       295
@@ -93,6 +220,7 @@
     "run_id": "ids-control-flat-4b737e0d",
     "profile": "flat",
     "setup_epoch": 1794572050.08,
+    "experiment_version": "matched-ramp60s-v1",
     "time_interval_s": [
       235,
       295
@@ -110,6 +238,68 @@
         "min": 123.28,
         "median": 125.72,
         "max": 127.0
+      }
+    },
+    "historical_rf_predictions": {
+      "norm": 6,
+      "fault": 0,
+      "attack": 0
+    },
+    "prediction_caveat": "RF trained on all historical data; workload is a synthetic profile, not a confirmed attack."
+  },
+  {
+    "run_id": "ids-control-flat-4c7c876c",
+    "profile": "flat",
+    "setup_epoch": 1794577026.643,
+    "experiment_version": "matched-ramp30s-v2",
+    "time_interval_s": [
+      235,
+      295
+    ],
+    "job_status": "success",
+    "features": {
+      "rps_total": {
+        "samples": 6,
+        "min": 120.0,
+        "median": 120.0,
+        "max": 120.0
+      },
+      "pg_tps": {
+        "samples": 6,
+        "min": 125.28,
+        "median": 125.72,
+        "max": 127.4
+      }
+    },
+    "historical_rf_predictions": {
+      "norm": 6,
+      "fault": 0,
+      "attack": 0
+    },
+    "prediction_caveat": "RF trained on all historical data; workload is a synthetic profile, not a confirmed attack."
+  },
+  {
+    "run_id": "ids-control-flat-6bef87b9",
+    "profile": "flat",
+    "setup_epoch": 1794576720.366,
+    "experiment_version": "matched-ramp30s-v2",
+    "time_interval_s": [
+      235,
+      295
+    ],
+    "job_status": "success",
+    "features": {
+      "rps_total": {
+        "samples": 6,
+        "min": 119.96000000000001,
+        "median": 120.0,
+        "max": 120.0
+      },
+      "pg_tps": {
+        "samples": 6,
+        "min": 123.52,
+        "median": 127.02,
+        "max": 129.08
       }
     },
     "historical_rf_predictions": {

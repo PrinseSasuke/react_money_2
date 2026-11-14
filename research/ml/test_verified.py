@@ -23,7 +23,8 @@ class VerifiedDataTest(unittest.TestCase):
                     (folder/('ids-control-'+profile+'.json')).write_text(json.dumps(data))
             destination=source/'verified'
             with patch.object(prepare_verified,'ROOT',root), patch.object(prepare_verified,'SOURCE',source), \
-                 patch.object(prepare_verified,'DEST',destination): prepare_verified.main()
+                 patch.object(prepare_verified,'DEST',destination), \
+                 patch.object(prepare_verified,'FEATURE_ORDER',['rps_total','pg_tps']): prepare_verified.main()
             meta=pd.read_csv(destination/'windows.csv')
             self.assertEqual(meta['class'].value_counts().to_dict(),{'norm':12,'fault':6,'attack':6})
             self.assertEqual(len(meta),len(np.load(destination/'sequences.npz')['X']))

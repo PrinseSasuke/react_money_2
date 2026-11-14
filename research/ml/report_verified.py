@@ -19,11 +19,21 @@ def main():
     prep=json.loads((DATA/'preparation.json').read_text(encoding='utf-8'))
     scores=pd.read_csv(OUT/'macro_f1_by_split.csv')
     predictions=pd.read_csv(OUT/'predictions.csv.gz')
+    repro_path=OUT/'reproducibility.json'
+    repro=json.loads(repro_path.read_text(encoding='utf-8')) if repro_path.exists() else None
+    if repro and repro.get('same_keys') and not any(repro.get('different_by_model',{}).values()):
+        reproducibility=(f"Повторный запуск на той же машине с теми же зависимостями, разбиениями и seed совпал по всем "
+                         f"{repro['total_rows']} предсказаниям; время не сравнивалось. Это не доказывает идентичность на другой аппаратуре.")
+    else:
+        reproducibility='Повторяемость сохранённых предсказаний отдельно не подтверждена.'
     lines=['# Дополнительный эксперимент: проверенные интервалы и пара 401','',
       '**Это небольшой синтетический контроль на одном стенде.** Классы задаются сценарием, '
       'а не устанавливают реальные намерения клиента или переносимость на другие приложения.','',
       'Для каждой метрики сохранены временные метки и исходные серии; включены только успешно завершённые Job, '
       'прошедшие проверки HTTP-ответов и количества сброшенных итераций. Первые 235 секунд исключены с учётом истории и lookback.', '',
+      'Это timestamps вычисления Prometheus query_range, а не времена исходных scrape отдельных счётчиков. '
+      'Сохранены результаты PromQL с выражениями, а не полный архив сырых счётчиков; состояние системы может сохраняться от предыдущего прогона.', '',
+      reproducibility, '',
       f"Число окон по классам: `{prep['windows_by_class']}`. Прогонов по сценариям: `{prep['runs_by_scenario']}`.", '',
       '## Сравнение моделей','',
       'Macro-F1, среднее ± std по пяти групповым разбиениям после усреднения трёх seed внутри разбиения.', '',
@@ -56,7 +66,8 @@ def main():
         ax.imshow(cm,cmap='Blues'); ax.set_title(model)
         ax.set_xticks(range(3),LABELS,rotation=30); ax.set_yticks(range(3),LABELS)
         for i in range(3):
-            for j in range(3): ax.text(j,i,str(cm[i,j]),ha='center',va='center')
+            for j in range(3): ax.text(j,i,str(cm[i,j]),ha='center',va='center',
+                                       color='white' if cm[i,j] > cm.max()/2 else 'black')
     fig.tight_layout();fig.savefig(OUT/'confusion_split0.png',dpi=160);plt.close(fig)
     lines += ['', 'Доли объединяют окна по пяти разбиениям и трём seed; окна перекрываются, прогоны повторяются между разбиениями. '
       'Они не являются независимыми наблюдениями и не оценивают частоты инцидентов в эксплуатации. '

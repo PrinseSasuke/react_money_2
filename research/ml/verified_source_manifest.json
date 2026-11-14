@@ -1,0 +1,268 @@
+{
+  "saved_date": "2026-11-14",
+  "source": "authorised k3s stand research/evidence",
+  "raw_data": "research/evidence/",
+  "note": "Raw job artefacts and telemetry remain outside Git; local/remote SHA-256 matched.",
+  "files": [
+    {
+      "collection": "auth-pair",
+      "file": "ids-control-burst-238fb57f.json",
+      "bytes": 39988,
+      "sha256": "f024996188dcf34a1bdf3f818c0fe163ac2b298d7f16d5a62d810942eb79d791",
+      "status": "success",
+      "profile": "burst",
+      "version": "legacy-v1",
+      "workload_script_sha256": null,
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "auth-pair",
+      "file": "ids-control-burst-45b2002b.json",
+      "bytes": 39928,
+      "sha256": "87b764326c1fdcd332c9c5911a2b1758201b4eead278be74d5b419e0c8fc21cc",
+      "status": "success",
+      "profile": "burst",
+      "version": "legacy-v1",
+      "workload_script_sha256": null,
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "auth-pair",
+      "file": "ids-control-burst-5bc920ab.json",
+      "bytes": 40039,
+      "sha256": "f54f3bc2413e9bc5c703bf5e52bd3baaf83c5635274bd554bedce59f61d84952",
+      "status": "success",
+      "profile": "burst",
+      "version": "legacy-v1",
+      "workload_script_sha256": null,
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "auth-pair",
+      "file": "ids-control-burst-5c4a2264.json",
+      "bytes": 39952,
+      "sha256": "3495127ab39f2a48fa4d5bb1aa092db203f2265639bb38edabf9fe08399ca18a",
+      "status": "success",
+      "profile": "burst",
+      "version": "legacy-v1",
+      "workload_script_sha256": null,
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "auth-pair",
+      "file": "ids-control-burst-f5827089.json",
+      "bytes": 39933,
+      "sha256": "e37468db6e8d589a332b198b89249e944838f1c5d4be75b503d6e34d0e914f34",
+      "status": "success",
+      "profile": "burst",
+      "version": "legacy-v1",
+      "workload_script_sha256": null,
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "auth-pair",
+      "file": "ids-control-flat-2af272c1.json",
+      "bytes": 39967,
+      "sha256": "2813664b90b7b80f3610921511f8ad3bcdeef040132a07ef6b5deadd4e92dad3",
+      "status": "success",
+      "profile": "flat",
+      "version": "legacy-v1",
+      "workload_script_sha256": null,
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "auth-pair",
+      "file": "ids-control-flat-4e7be339.json",
+      "bytes": 39957,
+      "sha256": "a1309fc9550b914bf0fe7970e1079b67b07bf23d6ad7a1788f04ba60a1ef4f03",
+      "status": "success",
+      "profile": "flat",
+      "version": "legacy-v1",
+      "workload_script_sha256": null,
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "auth-pair",
+      "file": "ids-control-flat-63fcf2f8.json",
+      "bytes": 39840,
+      "sha256": "c6dba87af86ac65484b77e316959fff18d061507cbfa4ba6b05c2f5034f38f59",
+      "status": "success",
+      "profile": "flat",
+      "version": "legacy-v1",
+      "workload_script_sha256": null,
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "auth-pair",
+      "file": "ids-control-flat-7dcb6a66.json",
+      "bytes": 39974,
+      "sha256": "8e0f5eecc09eeca9ef3d6e0fb9cb746830067d702f12d3b8b351abbce89f39d5",
+      "status": "success",
+      "profile": "flat",
+      "version": "legacy-v1",
+      "workload_script_sha256": null,
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "auth-pair",
+      "file": "ids-control-flat-c7e68717.json",
+      "bytes": 38963,
+      "sha256": "e4f79c87c241726522ba4d4aee855f456b6a2c8fff513826efcdee40700e100d",
+      "status": "success",
+      "profile": "flat",
+      "version": "legacy-v1",
+      "workload_script_sha256": null,
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "matched-control",
+      "file": "ids-control-burst-06169dcc.json",
+      "bytes": 40547,
+      "sha256": "34c0ade337768158d3d0c1e8f314ad2758d08fa1f40762b3630a13896e44c938",
+      "status": "success",
+      "profile": "burst",
+      "version": "legacy-v1",
+      "workload_script_sha256": null,
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "matched-control",
+      "file": "ids-control-burst-2f1fd69f.json",
+      "bytes": 40326,
+      "sha256": "dd8afe5921e842aed9d3365ba6a69df80180f0b0cf41b5da01fc27af3c33c0ff",
+      "status": "success",
+      "profile": "burst",
+      "version": "matched-ramp30s-v2",
+      "workload_script_sha256": "764e02b1b2a5ef93e9167d0c8991b3a1301a915ad299d7267aeacddb3da6fd20",
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "matched-control",
+      "file": "ids-control-burst-3721ff66.json",
+      "bytes": 40401,
+      "sha256": "2a489a83873271c5a31be311602a0a94d2b8c13e25082af918bec2e7956bef88",
+      "status": "success",
+      "profile": "burst",
+      "version": "matched-ramp30s-v2",
+      "workload_script_sha256": "764e02b1b2a5ef93e9167d0c8991b3a1301a915ad299d7267aeacddb3da6fd20",
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "matched-control",
+      "file": "ids-control-burst-6663d3ca.json",
+      "bytes": 41281,
+      "sha256": "90f742f5cc2d929bebf0ea5b5d4a789cbd9d271252bbbba1d381a15d476d9552",
+      "status": "success",
+      "profile": "burst",
+      "version": "matched-ramp30s-v2",
+      "workload_script_sha256": "764e02b1b2a5ef93e9167d0c8991b3a1301a915ad299d7267aeacddb3da6fd20",
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "matched-control",
+      "file": "ids-control-burst-d7bcec75.json",
+      "bytes": 40368,
+      "sha256": "26b668adc87fdfd3cfd9341219fba109b3293734a6e6e75597ffa5e97aaaff54",
+      "status": "success",
+      "profile": "burst",
+      "version": "legacy-v1",
+      "workload_script_sha256": null,
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "matched-control",
+      "file": "ids-control-flat-0956f92a.json",
+      "bytes": 40200,
+      "sha256": "668e0261b81634062a8e1092f834b490426833b4135a1856bf878793a4be68f7",
+      "status": "success",
+      "profile": "flat",
+      "version": "matched-ramp30s-v2",
+      "workload_script_sha256": "764e02b1b2a5ef93e9167d0c8991b3a1301a915ad299d7267aeacddb3da6fd20",
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "matched-control",
+      "file": "ids-control-flat-45b11273.json",
+      "bytes": 39852,
+      "sha256": "22e15af1270bda4a7a5aabe355f0c16ab629c814ab42b34ff42039e5564a6bdb",
+      "status": "success",
+      "profile": "flat",
+      "version": "legacy-v1",
+      "workload_script_sha256": null,
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "matched-control",
+      "file": "ids-control-flat-4b737e0d.json",
+      "bytes": 40143,
+      "sha256": "3e812f5567c017ea82d5a9ddd1a354e5268fa00509d14eb212ecd550f44b9a39",
+      "status": "success",
+      "profile": "flat",
+      "version": "legacy-v1",
+      "workload_script_sha256": null,
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "matched-control",
+      "file": "ids-control-flat-4c7c876c.json",
+      "bytes": 40196,
+      "sha256": "04385b15c9bc28f3dfcd17649fce48927708f89c2096fc9f88befbffd725afc7",
+      "status": "success",
+      "profile": "flat",
+      "version": "matched-ramp30s-v2",
+      "workload_script_sha256": "764e02b1b2a5ef93e9167d0c8991b3a1301a915ad299d7267aeacddb3da6fd20",
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    },
+    {
+      "collection": "matched-control",
+      "file": "ids-control-flat-6bef87b9.json",
+      "bytes": 40324,
+      "sha256": "6d9c282142a91f1d514871319095bb36a5732e8e059bd10daa7044c88d9ed48f",
+      "status": "success",
+      "profile": "flat",
+      "version": "matched-ramp30s-v2",
+      "workload_script_sha256": "764e02b1b2a5ef93e9167d0c8991b3a1301a915ad299d7267aeacddb3da6fd20",
+      "image_ids": [
+        "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
+      ]
+    }
+  ]
+}

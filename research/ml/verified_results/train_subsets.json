@@ -1,0 +1,254 @@
+[
+  {
+    "split": 0,
+    "fraction": 0.5,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 0,
+    "fraction": 0.75,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-4c7c876c",
+      "ids-control-flat-6bef87b9"
+    ]
+  },
+  {
+    "split": 0,
+    "fraction": 1.0,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4c7c876c",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-4b737e0d"
+    ]
+  },
+  {
+    "split": 1,
+    "fraction": 0.5,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4b737e0d"
+    ]
+  },
+  {
+    "split": 1,
+    "fraction": 0.75,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-f5827089",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273"
+    ]
+  },
+  {
+    "split": 1,
+    "fraction": 1.0,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-f5827089",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-4e7be339",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273",
+      "ids-control-flat-0956f92a"
+    ]
+  },
+  {
+    "split": 2,
+    "fraction": 0.5,
+    "train_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-6bef87b9"
+    ]
+  },
+  {
+    "split": 2,
+    "fraction": 0.75,
+    "train_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-06169dcc",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-4b737e0d"
+    ]
+  },
+  {
+    "split": 2,
+    "fraction": 1.0,
+    "train_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-burst-238fb57f",
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 3,
+    "fraction": 0.5,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-6bef87b9"
+    ]
+  },
+  {
+    "split": 3,
+    "fraction": 0.75,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-flat-4e7be339",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-0956f92a"
+    ]
+  },
+  {
+    "split": 3,
+    "fraction": 1.0,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-4e7be339",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-0956f92a",
+      "ids-control-flat-4b737e0d"
+    ]
+  },
+  {
+    "split": 4,
+    "fraction": 0.5,
+    "train_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-4b737e0d"
+    ]
+  },
+  {
+    "split": 4,
+    "fraction": 0.75,
+    "train_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-0956f92a"
+    ]
+  },
+  {
+    "split": 4,
+    "fraction": 1.0,
+    "train_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-0956f92a",
+      "ids-control-flat-45b11273"
+    ]
+  },
+  {
+    "split": 5,
+    "fraction": 0.5,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4b737e0d"
+    ]
+  },
+  {
+    "split": 5,
+    "fraction": 0.75,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273"
+    ]
+  },
+  {
+    "split": 5,
+    "fraction": 1.0,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-c7e68717",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273",
+      "ids-control-flat-0956f92a"
+    ]
+  }
+]
