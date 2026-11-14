@@ -69,7 +69,26 @@ def split_groups(meta, split, temporal=False):
     return train, valid, test
 
 
-def nested_subset(meta, train, fraction, split):
+def nested_subset(meta, train, fraction, split, mode='legacy'):
+    if mode == 'proportional':
+        scenarios=sorted(meta.scenario.unique())
+        groups={}
+        for index,scenario in enumerate(scenarios):
+            ids=sorted(set(meta.loc[meta.scenario==scenario,'run_id']) & set(train))
+            if ids:
+                groups[scenario]=list(np.random.RandomState(15000+split*100+index).permutation(ids))
+        if not groups: raise ValueError('No train runs')
+        # Give every scenario one representative, then fill the largest proportional deficit.
+        order=list(np.random.RandomState(91000+split).permutation(sorted(groups)))
+        selected=[groups[s][0] for s in order]; counts={s:1 for s in groups}
+        total=sum(map(len,groups.values()))
+        while len(selected)<total:
+            available=[s for s in order if counts[s]<len(groups[s])]
+            chosen=max(available,key=lambda s:(len(selected)+1)*len(groups[s])/total-counts[s])
+            selected.append(groups[chosen][counts[chosen]]);counts[chosen]+=1
+        size=min(total,max(len(groups),int(np.floor(total*fraction+0.5))))
+        return selected[:size]
+    if mode != 'legacy':raise ValueError('Unknown subset mode')
     selected = []
     for scenario in sorted(meta.scenario.unique()):
         ids = sorted(set(meta.loc[meta.scenario == scenario, 'run_id']) & set(train))
@@ -145,6 +164,8 @@ def main():
     parser.add_argument('--epochs', type=int, default=25)
     parser.add_argument('--data', type=Path, default=DATA)
     parser.add_argument('--out', type=Path, default=OUT)
+    parser.add_argument('--subset-mode',choices=['legacy','proportional'],default='legacy')
+    parser.add_argument('--mlp-selection',choices=['fixed','grouped'],default='fixed')
     args = parser.parse_args()
     DATA, OUT = args.data, args.out
     OUT.mkdir(parents=True, exist_ok=True)
@@ -167,13 +188,19 @@ def main():
         splits_out.append({'split': split, 'temporal': temporal, 'train': train, 'valid': valid, 'test': test})
         va = np.flatnonzero(meta.run_id.isin(valid)); te = np.flatnonzero(meta.run_id.isin(test))
         for fraction in (.5, .75, 1.):
-            selected = nested_subset(meta, train, fraction, split)
+            selected = nested_subset(meta, train, fraction, split, args.subset_mode)
             tr = np.flatnonzero(meta.run_id.isin(selected))
             for seed in range(args.seeds):
                 for name in ('rules', 'rf', 'mlp', 'transformer'):
                     t0 = time.perf_counter()
                     if name == 'transformer':
                         pred, epochs, train_seconds, inference_seconds = transformer_predict(X, y, tr, va, te, seed, args.epochs)
+                    elif name=='mlp' and args.mlp_selection=='grouped':
+                        from mlp_group_validation import select
+                        model,epochs,validation_candidates=select(A,y,tr,va,seed)
+                        train_seconds=time.perf_counter()-t0
+                        inference_start=time.perf_counter();pred=model.predict(A[te])
+                        inference_seconds=time.perf_counter()-inference_start
                     else:
                         inp = B if name == 'rules' else A
                         if name == 'rules': model = DecisionTreeClassifier(max_depth=2, min_samples_leaf=20, random_state=seed)
@@ -192,6 +219,7 @@ def main():
                       'model': name, 'macro_f1': f1_score(y[te], pred, labels=[0,1,2], average='macro', zero_division=0),
                       'confusion': cm.tolist(), 'report': rep, 'elapsed_s': elapsed, 'epochs': epochs,
                       'train_seconds': train_seconds, 'inference_seconds': inference_seconds,
+                      'validation_candidates': validation_candidates if name=='mlp' and args.mlp_selection=='grouped' else None,
                       'fault_as_attack': cm[1,2]/max(cm[1].sum(),1), 'norm_as_attack': cm[0,2]/max(cm[0].sum(),1),
                       'attack_as_fault': cm[2,1]/max(cm[2].sum(),1)})
                     for ix, p in zip(te, pred):

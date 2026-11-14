@@ -27,6 +27,15 @@ class ProtocolTests(unittest.TestCase):
         self.assertTrue(a <= b <= c)
         self.assertFalse(c.intersection(validation) or c.intersection(test))
 
+    def test_proportional_subsets_have_target_sizes_and_cover_scenarios(self):
+        meta=pd.DataFrame([{'scenario':f's{s}','run_id':f'{s}_{r}'} for s in range(4) for r in range(3)])
+        train=list(meta.run_id)
+        selected=[nested_subset(meta,train,fraction,0,'proportional') for fraction in (.5,.75,1.)]
+        self.assertEqual([len(s) for s in selected],[6,9,12])
+        self.assertTrue(set(selected[0]) <= set(selected[1]) <= set(selected[2]))
+        for subset in selected:
+            self.assertEqual({x.split('_')[0] for x in subset},{'0','1','2','3'})
+
     def test_temporal_split_uses_timestamp_not_run_id(self):
         meta = pd.DataFrame([{'scenario':'s','run_id':'z','window_end':1},
                              {'scenario':'s','run_id':'m','window_end':2},

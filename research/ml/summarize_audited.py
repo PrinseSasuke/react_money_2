@@ -21,11 +21,13 @@ def main():
     pred = pd.read_csv(OUT / 'predictions.csv.gz')
     meta = pd.read_csv(DATA / 'windows.csv')
     splits = json.loads((OUT / 'splits.json').read_text(encoding='utf-8'))
+    config = json.loads((OUT / 'config.json').read_text(encoding='utf-8'))
     all_subsets = []
     for s in splits:
         for fraction in (.5, .75, 1.):
             all_subsets.append({'split': s['split'], 'fraction': fraction,
-                                'train_runs': nested_subset(meta, s['train'], fraction, s['split'])})
+                                'train_runs': nested_subset(meta, s['train'], fraction, s['split'],
+                                                            config.get('subset_mode','legacy'))})
     (OUT / 'train_subsets.json').write_text(json.dumps(all_subsets, indent=2), encoding='utf-8')
     rows = []
     # The split, not its highly correlated windows or model seeds, is the uncertainty unit.
