@@ -1,0 +1,22 @@
+{
+  "splits": 5,
+  "seeds": 3,
+  "epochs": 25,
+  "data": "research\\evidence\\prepared",
+  "out": "research\\ml\\historical_proportional",
+  "subset_mode": "proportional",
+  "mlp_selection": "grouped",
+  "labels": [
+    "norm",
+    "fault",
+    "attack"
+  ],
+  "input_shape": [
+    1556,
+    18,
+    21
+  ],
+  "python": "3.13.13",
+  "torch": "2.15.0+cpu",
+  "caveat": "Exploratory; source sample timestamps and injection success unavailable."
+}

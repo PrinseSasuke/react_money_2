@@ -1,0 +1,17 @@
+{
+  "same_keys": true,
+  "total_rows": 5184,
+  "different_by_model": {
+    "mlp": 0,
+    "rf": 0,
+    "rules": 0,
+    "transformer": 0
+  },
+  "rows_by_model": {
+    "mlp": 1296,
+    "rf": 1296,
+    "rules": 1296,
+    "transformer": 1296
+  },
+  "scope": "Same machine, dependencies, split and seeds; timing excluded."
+}

@@ -1,0 +1,12 @@
+{
+  "model": "rf",
+  "split": 0,
+  "seed": 0,
+  "unit": "run_id",
+  "samples": 1000,
+  "macro_f1_percentile_95": [
+    0.20952380952380953,
+    0.5585284280936454
+  ],
+  "caveat": "Conditional on the selected held-out runs."
+}

@@ -23,6 +23,10 @@ OUT=ROOT/'ml'/'paired_flood_results'
 def extract(data,names):
     if data.get('status')!='success' or data.get('assigned_condition') not in ('flash_crowd','simulated_flood'):
         raise ValueError('Unsuccessful or unlabelled run')
+    containers=data.get('container_statuses') or []
+    if (data.get('pod_phase')!='Succeeded' or not (data.get('job_status') or {}).get('succeeded')
+        or not containers or any(c.get('state',{}).get('terminated',{}).get('exitCode')!=0 for c in containers)):
+        raise ValueError('Job or container did not complete successfully')
     if data.get('nominal_rate_rps')!=150 or data.get('profile')!='flat':
         raise ValueError('Unexpected workload')
     match=re.search(r'K6_SETUP_UNIX_MS=(\d+)',data.get('k6_log',''))

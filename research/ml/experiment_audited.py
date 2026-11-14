@@ -177,9 +177,13 @@ def main():
     # Baseline is a shallow tree over three interpretable metric families.
     base_features = [names.index(n) for n in ('rps_total', 'err_pct', 'pg_tps')]
     B = np.nanmean(X[:, :, base_features], axis=1)
+    prep_path=DATA/'preparation.json'
+    prep=json.loads(prep_path.read_text(encoding='utf8')) if prep_path.exists() else {}
+    caveat=('Synthetic scenarios with saved query timestamps; intent and full recovery are not established.'
+            if 'runs' in prep else
+            'Exploratory; source sample timestamps and injection success unavailable.')
     config = {k: str(v) if isinstance(v, Path) else v for k,v in vars(args).items()} | {'labels': LABELS, 'input_shape': list(X.shape),
-             'python': platform.python_version(), 'torch': torch.__version__,
-             'caveat': 'Exploratory; source sample timestamps and injection success unavailable.'}
+             'python': platform.python_version(), 'torch': torch.__version__, 'caveat': caveat}
     (OUT / 'config.json').write_text(json.dumps(config, indent=2), encoding='utf-8')
     outputs, metrics, splits_out = [], [], []
     for split in range(args.splits + 1):

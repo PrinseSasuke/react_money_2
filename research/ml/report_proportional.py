@@ -2,6 +2,10 @@
 import json
 from pathlib import Path
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
 
 ROOT=Path(__file__).resolve().parent
 
@@ -33,6 +37,28 @@ def main():
                            max(len(s['train_runs']) for s in subsets if s['fraction']==frac)] for frac in (.5,.75,1.)}
         lines+=['',f'Количество обучающих прогонов по разделениям: `{ranges}`.', '',
                 f'![Зависимость качества от объёма]({folder}/learning_curves.png)', '']
+        predictions=pd.read_csv(path/'predictions.csv.gz')
+        fig,axes=plt.subplots(1,4,figsize=(12,3.4));labels=['norm','fault','attack']
+        for ax,model in zip(axes,('rules','rf','mlp','transformer')):
+            g=predictions[(predictions.model==model)&(predictions.fraction==1)&
+                          (predictions.split==0)&(predictions.seed==0)]
+            cm=confusion_matrix(g.truth,g.prediction,labels=labels);ax.imshow(cm,cmap='Blues');ax.set_title(model)
+            ax.set_xticks(range(3),labels,rotation=45);ax.set_yticks(range(3),labels)
+            for i in range(3):
+                for j in range(3):ax.text(j,i,str(cm[i,j]),ha='center',va='center',
+                                         color='white' if cm[i,j]>cm.max()/2 else 'black')
+        fig.tight_layout();fig.savefig(path/'confusion_split0.png',dpi=160);plt.close(fig)
+        lines+=['Матрицы одного разделения и seed; строки — истинный класс, столбцы — прогноз.', '',
+                f'![Матрицы ошибок]({folder}/confusion_split0.png)', '']
+        if folder=='verified_proportional':
+            p=predictions[(predictions.fraction==1)&(~predictions.temporal)]
+            lines+=['Для пары одинаковых 401 (доли окон, объединённых по разделениям и seed):','',
+                    '| Модель | сбой → атака | атака → сбой |','|---|---:|---:|']
+            for model in ('rules','rf','mlp','transformer'):
+                g=p[p.model==model];fault=g[g.truth=='fault'];attack=g[g.truth=='attack']
+                lines.append(f"| {model} | {(fault.prediction=='attack').mean():.3f} | "
+                             f"{(attack.prediction=='fault').mean():.3f} |")
+            lines+=['']
     lines += ['Исторический набор остаётся исследовательским: timestamps исходных отсчётов и подтверждение '
       'инъекций отсутствуют, дополнительный lookback `rate()` не учитывался. Малый набор содержит '
       'четыре синтетических сценария и один стенд; распределение классов не отражает реальную частоту атак.', '',
