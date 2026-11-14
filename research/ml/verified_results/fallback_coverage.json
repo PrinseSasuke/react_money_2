@@ -1,0 +1,205 @@
+{
+  "runs": 20,
+  "interval_s": [
+    235,
+    295
+  ],
+  "metric_counts": {
+    "rps_total": {
+      "present_nonzero": 120
+    },
+    "rps_4xx": {
+      "present_zero": 60,
+      "present_nonzero": 60
+    },
+    "rps_5xx": {
+      "present_zero": 120
+    },
+    "err_pct": {
+      "present_zero": 60,
+      "present_nonzero": 60
+    },
+    "pg_up": {
+      "present_nonzero": 120
+    },
+    "pg_active": {
+      "present_nonzero": 120
+    },
+    "rps_401_403": {
+      "zero_from_fallback_or_absent_code": 24,
+      "present_nonzero": 60,
+      "present_zero": 36
+    },
+    "net_tx_bytes": {
+      "present_nonzero": 120
+    },
+    "net_rx_bytes": {
+      "present_nonzero": 120
+    },
+    "pg_rollbacks": {
+      "present_zero": 120
+    }
+  },
+  "exporter_up": {
+    "up_traefik": {
+      "up": 120
+    },
+    "up_kubelet-cadvisor": {
+      "up": 120
+    },
+    "up_kube-state-metrics": {
+      "up": 120
+    },
+    "up_postgres-exporter": {
+      "up": 120
+    }
+  },
+  "files": [
+    {
+      "file": "ids-control-burst-06169dcc.json",
+      "bytes": 16859,
+      "sha256": "aae7e4cbca1bc6e6a2b042ea4f7a1b28ac2049ea90c54a677286dd3a0e1cb78b",
+      "source_sha256": "34c0ade337768158d3d0c1e8f314ad2758d08fa1f40762b3630a13896e44c938",
+      "source_folder": "matched-control"
+    },
+    {
+      "file": "ids-control-burst-238fb57f.json",
+      "bytes": 17920,
+      "sha256": "5349fa569ba7adc6a5f68f139eb91b5cfb51cb19110bcae0d404e5f4ede6adcb",
+      "source_sha256": "f024996188dcf34a1bdf3f818c0fe163ac2b298d7f16d5a62d810942eb79d791",
+      "source_folder": "auth-pair"
+    },
+    {
+      "file": "ids-control-burst-2f1fd69f.json",
+      "bytes": 17969,
+      "sha256": "e5d9eef1c851f1818490be2cc11ff95e2fc0765294f83c2f68dff3082e78965b",
+      "source_sha256": "dd8afe5921e842aed9d3365ba6a69df80180f0b0cf41b5da01fc27af3c33c0ff",
+      "source_folder": "matched-control"
+    },
+    {
+      "file": "ids-control-burst-3721ff66.json",
+      "bytes": 17886,
+      "sha256": "1569956c94ed3934f6af8d1665c671db85b275631785d47ec0e8ac3582797e3d",
+      "source_sha256": "2a489a83873271c5a31be311602a0a94d2b8c13e25082af918bec2e7956bef88",
+      "source_folder": "matched-control"
+    },
+    {
+      "file": "ids-control-burst-45b2002b.json",
+      "bytes": 17952,
+      "sha256": "c19e146607cce741874776812b7fdc3f8809fe37bbf2097e89b8b870d555ad47",
+      "source_sha256": "87b764326c1fdcd332c9c5911a2b1758201b4eead278be74d5b419e0c8fc21cc",
+      "source_folder": "auth-pair"
+    },
+    {
+      "file": "ids-control-burst-5bc920ab.json",
+      "bytes": 18039,
+      "sha256": "2ff5b9536fa0c1787ef414b32e36604775aa9887d29ef65c71c40999adacd5f1",
+      "source_sha256": "f54f3bc2413e9bc5c703bf5e52bd3baaf83c5635274bd554bedce59f61d84952",
+      "source_folder": "auth-pair"
+    },
+    {
+      "file": "ids-control-burst-5c4a2264.json",
+      "bytes": 17955,
+      "sha256": "43083518b37fa9ac950014e0818ca4c972a926fc43add7634f81135f781b6548",
+      "source_sha256": "3495127ab39f2a48fa4d5bb1aa092db203f2265639bb38edabf9fe08399ca18a",
+      "source_folder": "auth-pair"
+    },
+    {
+      "file": "ids-control-burst-6663d3ca.json",
+      "bytes": 18233,
+      "sha256": "1e963c089a09900531a2e66b5521029931fc8943115a2c9151abd6e9fc642677",
+      "source_sha256": "90f742f5cc2d929bebf0ea5b5d4a789cbd9d271252bbbba1d381a15d476d9552",
+      "source_folder": "matched-control"
+    },
+    {
+      "file": "ids-control-burst-d7bcec75.json",
+      "bytes": 16836,
+      "sha256": "f2660caa2c0e4afc124c496bd0df2b03fb22034a4a955502a4b3397b2aca0af4",
+      "source_sha256": "26b668adc87fdfd3cfd9341219fba109b3293734a6e6e75597ffa5e97aaaff54",
+      "source_folder": "matched-control"
+    },
+    {
+      "file": "ids-control-burst-f5827089.json",
+      "bytes": 17893,
+      "sha256": "0bb6318632a7f3f292239f01bd9a38b9d32bd059ada8449e90fccb10bcb10e72",
+      "source_sha256": "e37468db6e8d589a332b198b89249e944838f1c5d4be75b503d6e34d0e914f34",
+      "source_folder": "auth-pair"
+    },
+    {
+      "file": "ids-control-flat-0956f92a.json",
+      "bytes": 17875,
+      "sha256": "13e67d066caa01cf2cf0c6e8f93929acf34274f5eafa0e091cd8dccc8591a12b",
+      "source_sha256": "668e0261b81634062a8e1092f834b490426833b4135a1856bf878793a4be68f7",
+      "source_folder": "matched-control"
+    },
+    {
+      "file": "ids-control-flat-2af272c1.json",
+      "bytes": 17946,
+      "sha256": "d57215e07bd71bb9647c1302612aa656cdfe70a861481af4fc48f1d1be2f4156",
+      "source_sha256": "2813664b90b7b80f3610921511f8ad3bcdeef040132a07ef6b5deadd4e92dad3",
+      "source_folder": "auth-pair"
+    },
+    {
+      "file": "ids-control-flat-45b11273.json",
+      "bytes": 16695,
+      "sha256": "e5ea456e4dec611c13da44285d3955f78277e415e60d572273528c291fd06121",
+      "source_sha256": "22e15af1270bda4a7a5aabe355f0c16ab629c814ab42b34ff42039e5564a6bdb",
+      "source_folder": "matched-control"
+    },
+    {
+      "file": "ids-control-flat-4b737e0d.json",
+      "bytes": 16834,
+      "sha256": "2ecdbd26ed4f3226cbf42fd91fa6b553a7c4e9190b141d48038bd46f20d268e4",
+      "source_sha256": "3e812f5567c017ea82d5a9ddd1a354e5268fa00509d14eb212ecd550f44b9a39",
+      "source_folder": "matched-control"
+    },
+    {
+      "file": "ids-control-flat-4c7c876c.json",
+      "bytes": 17810,
+      "sha256": "f87d73ab1768e573b8c18026d809bf4dcaa4c86a3f55f3f7a55d8a1299d12138",
+      "source_sha256": "04385b15c9bc28f3dfcd17649fce48927708f89c2096fc9f88befbffd725afc7",
+      "source_folder": "matched-control"
+    },
+    {
+      "file": "ids-control-flat-4e7be339.json",
+      "bytes": 17958,
+      "sha256": "5e420624a83b2e3d08c2934d3c45032923e7544b15e4d3ad469f947324c52746",
+      "source_sha256": "a1309fc9550b914bf0fe7970e1079b67b07bf23d6ad7a1788f04ba60a1ef4f03",
+      "source_folder": "auth-pair"
+    },
+    {
+      "file": "ids-control-flat-63fcf2f8.json",
+      "bytes": 17909,
+      "sha256": "2a7cef5a9fa8756ff836a97870bbfe8b79f0fd4d8dc891af359ee3af2730b27c",
+      "source_sha256": "c6dba87af86ac65484b77e316959fff18d061507cbfa4ba6b05c2f5034f38f59",
+      "source_folder": "auth-pair"
+    },
+    {
+      "file": "ids-control-flat-6bef87b9.json",
+      "bytes": 17881,
+      "sha256": "5a317e6b749403998f1dd594f2ecb162b93e685b0bac49148257d2ec48213468",
+      "source_sha256": "6d9c282142a91f1d514871319095bb36a5732e8e059bd10daa7044c88d9ed48f",
+      "source_folder": "matched-control"
+    },
+    {
+      "file": "ids-control-flat-7dcb6a66.json",
+      "bytes": 17879,
+      "sha256": "edc5885889763ca76ac9b47e8b5e6c233f5760c1da66ed57e44e467f991723af",
+      "source_sha256": "8e0f5eecc09eeca9ef3d6e0fb9cb746830067d702f12d3b8b351abbce89f39d5",
+      "source_folder": "auth-pair"
+    },
+    {
+      "file": "ids-control-flat-c7e68717.json",
+      "bytes": 17059,
+      "sha256": "d0bd54dc5852c8033a457b125a78ae75cda19bebf9c715e3047a535f9176ebe5",
+      "source_sha256": "e4f79c87c241726522ba4d4aee855f456b6a2c8fff513826efcdee40700e100d",
+      "source_folder": "auth-pair"
+    }
+  ],
+  "caveats": [
+    "Exporter up is not proof every metric exists.",
+    "Absent status-code series may be a legitimate zero, not a failed scrape.",
+    "These are query_range evaluation points, not raw underlying scrape samples.",
+    "Recorded scores are unchanged; no data were re-imputed from this audit."
+  ]
+}

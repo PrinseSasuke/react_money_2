@@ -54,6 +54,16 @@ class VerifiedResultsTest(unittest.TestCase):
             self.assertTrue(all(c['state']['terminated']['exitCode']==0 for c in raw['container_statuses']))
             self.assertIn('K6_SETUP_UNIX_MS=',raw['k6_log'])
             self.assertEqual(len(raw['raw_series']),21)
+            if run['scenario'].startswith('auth-'):
+                self.assertTrue(raw['endpoint'].endswith('/api/auth/login'))
+                self.assertEqual(raw['nominal_rate_rps'],10)
+            else:
+                self.assertTrue(raw['endpoint'].endswith('/api/auth/me'))
+                self.assertEqual(raw['nominal_rate_rps'],120)
+            windows=pd.read_csv(DATA/'windows.csv')
+            subset=windows[windows.run_id==raw['run_id']]
+            self.assertTrue((subset.window_end>=run['setup_epoch']+235).all())
+            self.assertTrue((subset.window_end<=run['setup_epoch']+295).all())
 
 
 if __name__=='__main__':unittest.main()

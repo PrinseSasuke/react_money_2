@@ -264,5 +264,42 @@
         "docker.io/grafana/k6@sha256:3d8e5c7f1d53ec59408c2ffbd9943602a0985ffcbd4a2430ec00f3ffca89796e"
       ]
     }
+  ],
+  "source_versions": {
+    "matched_v1": {
+      "commit": "67c2649",
+      "path": "research/matched_control.py",
+      "sha256": "65c2f620a712a9abad13072de783718e72b3f97de8df22ee68456b27b060b10a"
+    },
+    "auth_401": {
+      "commit": "378831b",
+      "path": "research/auth_pair.py",
+      "sha256": "309742d564e52f14e73ca1b9d9d29a9253497cbcee6810609b996b2710d2516b"
+    },
+    "auth_collector": {
+      "commit": "378831b",
+      "path": "research/matched_control.py",
+      "sha256": "f9168b47242f73c5325f02062111f5fa634d670dde4be70fcc3c3aba174be829"
+    },
+    "matched_v2": {
+      "commit": "f2058cd",
+      "path": "research/matched_control.py",
+      "sha256": "abe96d98091d6a50671e437c055bb35795fb9a02815f85d3230e98c6a6478061"
+    }
+  },
+  "source_version_caveat": "Version attribution uses preserved Git and execution/deployment logs; early jobs did not embed workload hashes.",
+  "batch_logs": [
+    {
+      "file": "auth-pair/auth-pair-smoke-20261113.log",
+      "sha256": "77f929c1ba9ca4f986d51c12709546df268be5b6ede1d9edc283ef5bccf90cae"
+    },
+    {
+      "file": "auth-pair/verified-batch-20261113.log",
+      "sha256": "b983907e7aa085d02670002db667dd79b9a5ea4f37c8af16d5a1dd340a6eb39f"
+    },
+    {
+      "file": "matched-control/run.log",
+      "sha256": "5207a19571bbe7f16a44f74e12f9c6181f7ee1c89f4120fe69242350a1968360"
+    }
   ]
 }
