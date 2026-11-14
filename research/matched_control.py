@@ -26,6 +26,7 @@ NOMINAL_RATE = 120
 DURATION = 300
 USE_TOKEN = True
 EXPERIMENT_VERSION = 'matched-ramp30s-v2'
+RECOVERY_WAIT = 0
 OUT = Path(__file__).resolve().parent / 'evidence' / 'matched-control'
 
 SCRIPT = r'''
@@ -84,6 +85,24 @@ def write_json(path, data):
     tmp.replace(path)
 
 
+def recovery_snapshot(prom, before_ready):
+    """Limited idle/readiness check, not proof of full application recovery."""
+    measurements={k:prom.instant(series.SERIES[k]) for k in
+                  ('rps_total','rps_5xx','ready_backend','pg_up','hpa_replicas')}
+    measurements['traefik_up']=prom.instant('min(up{job="traefik"})')
+    measurements['postgres_exporter_up']=prom.instant('min(up{job="postgres-exporter"})')
+    measurements['kube_state_metrics_up']=prom.instant('min(up{job="kube-state-metrics"})')
+    finite=all(measurements[k] is not None for k in ('rps_total','rps_5xx','ready_backend','pg_up'))
+    ok=(finite and before_ready is not None and before_ready > 0 and
+        all(measurements[x]==1 for x in ('traefik_up','postgres_exporter_up','kube_state_metrics_up')) and
+        measurements['rps_total'] < 5 and
+        measurements['rps_5xx'] < 0.1 and measurements['ready_backend'] >= before_ready and
+        measurements['pg_up'] == 1)
+    return {'observed_at_epoch':time.time(),'values':measurements,'baseline_ready_backend':before_ready,
+            'limited_idle_readiness_check_passed':bool(ok),
+            'caveat':'No complete recovery or HPA settling is implied by this limited check.'}
+
+
 def ephemeral_secret(name):
     """Issue a short-lived token for the existing lab user without logging secrets."""
     source = json.loads(labctl.kubectl('-n','loadtest','get','secret','loadtest-token','-o','json'))
@@ -112,12 +131,15 @@ def run_one(profile, rep):
               'duration_s':DURATION, 'nominal_rate_rps':NOMINAL_RATE, 'max_rate_rps':MAX_RATE,
               'experiment_version':EXPERIMENT_VERSION,
               'workload_script_sha256':hashlib.sha256(SCRIPT.encode('utf-8')).hexdigest(),
+              'collector_script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
               'status':'created', 'created_at_epoch':time.time(), 'queries':series.SERIES,
               'caveat':'Both profiles are synthetic controlled load; profile labels do not establish malicious intent.'}
     OUT.mkdir(parents=True, exist_ok=True)
     target = OUT / f'{name}.json'
     write_json(target, record)
     try:
+        if RECOVERY_WAIT:
+            record['baseline_ready_backend']=labctl.Prom().instant(series.SERIES['ready_backend'])
         for obj in ((ephemeral_secret(name), cm, job) if USE_TOKEN else (cm, job)):
             labctl.kubectl('create','-f','-',input=json.dumps(obj))
         deadline = time.monotonic() + 420
@@ -140,6 +162,10 @@ def run_one(profile, rep):
             pod_name = pod['metadata']['name']
             record['k6_log'] = labctl.kubectl('-n',NS,'logs',pod_name,check=False)
         record['status'] = 'success' if (status.get('status') or {}).get('succeeded') else 'failed'
+        if RECOVERY_WAIT:
+            record['recovery_wait_s'] = RECOVERY_WAIT
+            time.sleep(RECOVERY_WAIT)
+            record['recovery'] = recovery_snapshot(labctl.Prom(),record.get('baseline_ready_backend'))
         # Save samples and query expressions immediately, with actual Prometheus timestamps.
         stop = time.time()
         start = record['created_at_epoch'] - 180
@@ -164,13 +190,18 @@ def run_one(profile, rep):
 
 
 def main():
+    global RECOVERY_WAIT, OUT
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--execute', action='store_true', help='run controlled load on authorised lab')
     ap.add_argument('--repeat', type=int, default=2, choices=[1,2,3])
+    ap.add_argument('--recovery-s',type=int,default=0,choices=[0,60],help='seconds to observe idle recovery')
+    ap.add_argument('--out',type=Path,default=OUT)
     args = ap.parse_args()
+    RECOVERY_WAIT=args.recovery_s; OUT=args.out
     if not args.execute:
         print(json.dumps({'target':ENDPOINT, 'profiles':['flat','burst'], 'repeat':args.repeat,
-                          'max_rate_rps':MAX_RATE,'duration_s':DURATION}, indent=2))
+                          'max_rate_rps':MAX_RATE,'duration_s':DURATION,
+                          'recovery_wait_s':RECOVERY_WAIT,'output':str(OUT)}, indent=2))
         return
     labctl.kubectl('-n', NS, 'get', 'networkpolicy', labctl.NETPOL)
     labctl.kubectl('-n', 'loadtest', 'get', 'secret', 'loadtest-token', '-o', 'name')

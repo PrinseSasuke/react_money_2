@@ -28,6 +28,17 @@ class MatchedControlTests(unittest.TestCase):
     def test_unknown_profile_refused(self):
         with self.assertRaises(ValueError): control.manifest('ids-control-test', 'other')
 
+    def test_recovery_check_fails_closed_on_missing_values(self):
+        class Prom:
+            def __init__(self, missing=False): self.missing=missing
+            def instant(self, query):
+                if self.missing: return None
+                if query == control.series.SERIES['ready_backend']: return 2
+                if query == control.series.SERIES['pg_up'] or query.startswith('min(up'): return 1
+                return 0
+        self.assertTrue(control.recovery_snapshot(Prom(),2)['limited_idle_readiness_check_passed'])
+        self.assertFalse(control.recovery_snapshot(Prom(missing=True),2)['limited_idle_readiness_check_passed'])
+
     def test_ephemeral_token_uses_lab_user_and_expires(self):
         enc = lambda b: base64.b64encode(b).decode()
         payload = base64.urlsafe_b64encode(json.dumps({'userId':7}).encode()).rstrip(b'=').decode()
