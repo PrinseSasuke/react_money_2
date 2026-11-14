@@ -57,6 +57,8 @@ def main():
             values.append(f1_score(subset.truth, subset.prediction, labels=[0,1,2], average='macro', zero_division=0))
         lines.append(f'| {group} | {np.mean(values):.3f} ± {np.std(values, ddof=1):.3f} |')
     lines += ['', 'Состав групп, предсказания и оценки для отдельных сценариев доступны в `audited_results/generalization_predictions.csv.gz`. '
+      'Оценки recall с равным весом прогонов и условные bootstrap-интервалы — в `audited_results/holdout_run_bootstrap.csv`; '
+      'они отличаются от долей по окнам и не являются внешней оценкой на новых средах. '
       'Абляции сети и БД находятся там же (`kind=ablation`). Ошибки пар — в `pair_errors.csv`. '
       'Поля интенсивности и длительности выводятся раздельно в `attack_intensity.csv`; пустая частота означает, что журнал её не сохранил.', '',
       '## Матрицы ошибок', '',

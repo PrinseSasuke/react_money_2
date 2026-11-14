@@ -1,0 +1,9 @@
+group,distinct_test_runs,mean_run_recall,bootstrap_p025,bootstrap_p975,caveat
+20-attack-bruteforce,6,0.6828703703703703,0.38408564814814816,0.9467592592592592,Conditional on repeatedly tested historical runs and model/split protocol.
+21-attack-flood,4,0.2569444444444444,0.0,0.75,Conditional on repeatedly tested historical runs and model/split protocol.
+22-attack-sqli,7,1.0,1.0,1.0,Conditional on repeatedly tested historical runs and model/split protocol.
+23-attack-lowbrute,8,0.4583333333333333,0.125,0.7916666666666666,Conditional on repeatedly tested historical runs and model/split protocol.
+24-attack-pathscan,6,1.0,1.0,1.0,Conditional on repeatedly tested historical runs and model/split protocol.
+25-attack-lowflood,6,0.5562169312169313,0.16666666666666666,0.8849206349206349,Conditional on repeatedly tested historical runs and model/split protocol.
+brute_family,14,0.5317460317460317,0.29365079365079366,0.7857142857142857,Conditional on repeatedly tested historical runs and model/split protocol.
+flood_family,10,0.0,0.0,0.0,Conditional on repeatedly tested historical runs and model/split protocol.

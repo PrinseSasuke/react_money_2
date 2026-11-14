@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-14",
+  "collection": "recovery-check",
+  "source": "~/react-money/research/evidence/recovery-check/ on authorised stand; local and remote SHA-256 matched",
+  "files": [
+    {"file": "ids-control-flat-3567545f.json", "sha256": "aa360cc5d97393961cf42528a0860a551e2e32f1913206b6da823f9566b3fe0a"},
+    {"file": "ids-control-burst-966a2695.json", "sha256": "2b89e644c60ba65bae1358ad64844d01fae4b08cb47a76244c777e3cb588c12f"}
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "splits": 5,
+  "seeds": 3,
+  "epochs": 25,
+  "held_out": {
+    "20-attack-bruteforce": [
+      "20-attack-bruteforce"
+    ],
+    "21-attack-flood": [
+      "21-attack-flood"
+    ],
+    "22-attack-sqli": [
+      "22-attack-sqli"
+    ],
+    "23-attack-lowbrute": [
+      "23-attack-lowbrute"
+    ],
+    "24-attack-pathscan": [
+      "24-attack-pathscan"
+    ],
+    "25-attack-lowflood": [
+      "25-attack-lowflood"
+    ],
+    "brute_family": [
+      "20-attack-bruteforce",
+      "23-attack-lowbrute"
+    ],
+    "flood_family": [
+      "21-attack-flood",
+      "25-attack-lowflood"
+    ]
+  },
+  "caveat": "Historical source sample timestamps and injection status unavailable."
+}

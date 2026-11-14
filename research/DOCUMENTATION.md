@@ -47,8 +47,8 @@ flowchart LR
 
 1. В отдельном Python-окружении установить версии из [`ml/requirements-lock.txt`](ml/requirements-lock.txt).
 2. Поместить сохранённые `dataset.csv`, `windows.csv`, `journal.jsonl`, `run.log` в игнорируемый `research/evidence/legacy/`, сверить SHA-256 из [`ml/audit_evidence.json`](ml/audit_evidence.json).
-3. Из корня репозитория выполнить `python research/ml/audit_evidence.py`. Для воспроизведения опубликованной предварительной таблицы из 1556 окон: `python research/ml/prepare_audited.py --lookback 0 --out research/evidence/prepared`. Более строгая выборка с 60-секундным запасом `rate()` создаётся командой `python research/ml/prepare_audited.py` в `evidence/prepared-strict/`; это другая выборка, ранее опубликованные метрики для неё не рассчитаны.
-4. Запустить `python research/ml/experiment_audited.py`, `python research/ml/generalization_audited.py`, затем `python research/ml/summarize_audited.py` и `python research/ml/report_audited.py`. Для проверки протокола, экспорта и результатов: из `research/ml` выполнить `python -m unittest test_protocol test_export test_matched_control test_matched_summary test_saved_results test_auth_pair test_verified test_verified_results test_fallback -v`.
+3. Из корня репозитория выполнить `python research/ml/audit_evidence.py`. Для воспроизведения опубликованной предварительной таблицы из 1556 окон: `python research/ml/prepare_audited.py --lookback 0 --out research/evidence/prepared`. Более строгая выборка с 60-секундным запасом `rate()` создаётся командой `python research/ml/prepare_audited.py` в `evidence/prepared-strict/`; её отдельные результаты приведены в `ml/STRICT_RESULTS.md` и не сопоставимы напрямую с результатами выборки из 1556 окон.
+4. Запустить `python research/ml/experiment_audited.py`, `python research/ml/generalization_audited.py`, затем `python research/ml/summarize_audited.py`, `python research/ml/summarize_generalization.py` и `python research/ml/report_audited.py`. Для проверки протокола, экспорта и результатов: из `research/ml` выполнить `python -m unittest test_protocol test_export test_matched_control test_matched_summary test_saved_results test_auth_pair test_verified test_verified_results test_fallback -v`.
 
 Крупные исходные файлы не входят в Git. Локальное сохранение не гарантирует долговременный архив — перед удалением/переустановкой ПК требуется отдельная копия с проверкой хешей. Результаты сохраняются в `ml/audited_results/`, предсказания содержат ID прогонов и разметку, но не токены.
 
@@ -57,6 +57,8 @@ flowchart LR
 - [Черновик статьи](ARTICLE_DRAFT.md)
 - [Предварительные результаты по единому контексту](ml/AUDITED_RESULTS.md)
 - [Чувствительность к временному запасу rate()](ml/STRICT_RESULTS.md)
+- [Исключение сценариев и семейств для трёх моделей](ml/HOLDOUT_RESULTS.md)
+- [Контроль состояния после нагрузки](ml/RECOVERY_RESULTS.md)
 - [Аудит и ограничения](AUDIT_2026-11-13.md)
 - [Источники](LITERATURE.md)
 - [Прежние результаты — устаревшие](ml/RESULTS.md)
@@ -96,3 +98,7 @@ python research/ml/report_verified.py
 Чтобы повторить аудит подстановки нулей, отдельно скопировать JSON из `~/react-money/research/evidence/fallback-audit/` в `research/evidence/fallback-audit/`, затем выполнить `python research/ml/verify_integrity.py` и `python research/ml/summarize_fallback.py`. Хеши контрольных файлов и их исходников перечислены в `ml/verified_results/fallback_coverage.json`; последняя проверка 40 локальных JSON по сохранённым манифестам прошла без расхождений.
 
 На той же машине, с теми же версиями, разбиениями и seed, повторное обучение совпало по всем 5184 предсказаниям четырёх методов; время работы не сравнивалось. Проверка и область её действия записаны в `ml/verified_results/reproducibility.json`. Это локальная проверка повторяемости, а не подтверждение переносимости на другую аппаратуру.
+
+Дополнительное сравнение трёх моделей с исключением шести сценариев и двух семейств из train и validation воспроизводится после подготовки исторической выборки командой `python research/ml/holdout_models.py --splits 5 --seeds 3 --epochs 25`, затем `python research/ml/summarize_holdout.py`. Составы разделений и предсказания сохранены в `ml/holdout_results/`; проверки — `python -m unittest discover -s research/ml -p test_holdout_results.py -v`. Это исследовательский анализ исторической выборки без минутного запаса `rate()`, а не проверка на новых реальных атаках.
+
+Два независимых от обучения контрольных прогона с наблюдением через минуту после нагрузки описаны в `ml/RECOVERY_RESULTS.md`. Их JSON следует скопировать с сервера из `~/react-money/research/evidence/recovery-check/` в `research/evidence/recovery-check/`; хеши перечислены в `ml/recovery_manifest.json`. Проверка `python research/ml/verify_integrity.py` сверяет все 42 сохранённых исходных и диагностических JSON. Полное восстановление или стабилизация HPA этими наблюдениями не подтверждены.

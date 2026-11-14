@@ -1,0 +1,10442 @@
+[
+  {
+    "split": 0,
+    "holdout": "20-attack-bruteforce",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        11,
+        19
+      ]
+    ],
+    "attack_recall": 0.6333333333333333,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3654654999845661,
+    "inference_seconds": 0.04269850000855513,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "20-attack-bruteforce",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        1,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        30
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.866314400016563,
+    "inference_seconds": 0.001524699997389689,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "20-attack-bruteforce",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        26,
+        4
+      ]
+    ],
+    "attack_recall": 0.13333333333333333,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 4.889935400016839,
+    "inference_seconds": 0.0033782999962568283,
+    "epochs": 17
+  },
+  {
+    "split": 0,
+    "holdout": "20-attack-bruteforce",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        8,
+        22
+      ]
+    ],
+    "attack_recall": 0.7333333333333333,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.35168150000390597,
+    "inference_seconds": 0.0437787999981083,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "20-attack-bruteforce",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        1,
+        101,
+        0
+      ],
+      [
+        0,
+        1,
+        29
+      ]
+    ],
+    "attack_recall": 0.9666666666666667,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9241386000066996,
+    "inference_seconds": 0.0018353000050410628,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "20-attack-bruteforce",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        30,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.580323000001954,
+    "inference_seconds": 0.0034320999984629452,
+    "epochs": 25
+  },
+  {
+    "split": 0,
+    "holdout": "20-attack-bruteforce",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        6,
+        96,
+        0
+      ],
+      [
+        0,
+        11,
+        19
+      ]
+    ],
+    "attack_recall": 0.6333333333333333,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3324267999851145,
+    "inference_seconds": 0.054791900009149686,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "20-attack-bruteforce",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        1,
+        29
+      ]
+    ],
+    "attack_recall": 0.9666666666666667,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.912504900014028,
+    "inference_seconds": 0.0015676999755669385,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "20-attack-bruteforce",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        27,
+        3
+      ]
+    ],
+    "attack_recall": 0.1,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.7885570999933407,
+    "inference_seconds": 0.0032654999813530594,
+    "epochs": 17
+  },
+  {
+    "split": 0,
+    "holdout": "21-attack-flood",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        23,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3381088999740314,
+    "inference_seconds": 0.044205900019733235,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "21-attack-flood",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        1,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.907702500000596,
+    "inference_seconds": 0.0015385000151582062,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "21-attack-flood",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.9303807000105735,
+    "inference_seconds": 0.0031030999962240458,
+    "epochs": 19
+  },
+  {
+    "split": 0,
+    "holdout": "21-attack-flood",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        23,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3329510999901686,
+    "inference_seconds": 0.04375280000385828,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "21-attack-flood",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.858721999975387,
+    "inference_seconds": 0.0017518000095151365,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "21-attack-flood",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.8198295000183862,
+    "inference_seconds": 0.0032229000062216073,
+    "epochs": 18
+  },
+  {
+    "split": 0,
+    "holdout": "21-attack-flood",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        23,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3338174000091385,
+    "inference_seconds": 0.04354240000247955,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "21-attack-flood",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.7891731999989133,
+    "inference_seconds": 0.0014746999950148165,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "21-attack-flood",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        1,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.933250100002624,
+    "inference_seconds": 0.004099300014786422,
+    "epochs": 19
+  },
+  {
+    "split": 0,
+    "holdout": "22-attack-sqli",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        30
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.40160959999775514,
+    "inference_seconds": 0.044294799998169765,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "22-attack-sqli",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        1,
+        101,
+        0
+      ],
+      [
+        21,
+        0,
+        9
+      ]
+    ],
+    "attack_recall": 0.3,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9507669000013266,
+    "inference_seconds": 0.0023604999878443778,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "22-attack-sqli",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        24,
+        0,
+        6
+      ]
+    ],
+    "attack_recall": 0.2,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.1779240999894682,
+    "inference_seconds": 0.003260700003011152,
+    "epochs": 21
+  },
+  {
+    "split": 0,
+    "holdout": "22-attack-sqli",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        30
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3403358999930788,
+    "inference_seconds": 0.04370089998701587,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "22-attack-sqli",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        24,
+        6
+      ]
+    ],
+    "attack_recall": 0.2,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.023693800001638,
+    "inference_seconds": 0.0017822999798227102,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "22-attack-sqli",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        7,
+        23,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.960916099982569,
+    "inference_seconds": 0.0033334000036120415,
+    "epochs": 19
+  },
+  {
+    "split": 0,
+    "holdout": "22-attack-sqli",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        30
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3218471000145655,
+    "inference_seconds": 0.04380799998762086,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "22-attack-sqli",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        30,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.902344499976607,
+    "inference_seconds": 0.002065500011667609,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "22-attack-sqli",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        69,
+        0,
+        3
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        30,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.041666666666666664,
+    "train_seconds": 2.0420111999846995,
+    "inference_seconds": 0.0034014999982900918,
+    "epochs": 20
+  },
+  {
+    "split": 0,
+    "holdout": "23-attack-lowbrute",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        12,
+        0,
+        14
+      ]
+    ],
+    "attack_recall": 0.5384615384615384,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3330098000005819,
+    "inference_seconds": 0.0429164000088349,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "23-attack-lowbrute",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        1,
+        101,
+        0
+      ],
+      [
+        21,
+        5,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9524958999827504,
+    "inference_seconds": 0.001781500002834946,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "23-attack-lowbrute",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        18,
+        8
+      ]
+    ],
+    "attack_recall": 0.3076923076923077,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.033569699997315,
+    "inference_seconds": 0.0031556000176351517,
+    "epochs": 19
+  },
+  {
+    "split": 0,
+    "holdout": "23-attack-lowbrute",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        12,
+        0,
+        14
+      ]
+    ],
+    "attack_recall": 0.5384615384615384,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3259022999845911,
+    "inference_seconds": 0.05335530001320876,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "23-attack-lowbrute",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        14,
+        12,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0762626999930944,
+    "inference_seconds": 0.0015047999913804233,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "23-attack-lowbrute",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        22,
+        0,
+        4
+      ]
+    ],
+    "attack_recall": 0.15384615384615385,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.1106798000109848,
+    "inference_seconds": 0.003470100025879219,
+    "epochs": 21
+  },
+  {
+    "split": 0,
+    "holdout": "23-attack-lowbrute",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        12,
+        0,
+        14
+      ]
+    ],
+    "attack_recall": 0.5384615384615384,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3315864999894984,
+    "inference_seconds": 0.04340550000779331,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "23-attack-lowbrute",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        70,
+        2,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        19,
+        7,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.8474503000034019,
+    "inference_seconds": 0.0014518999960273504,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "23-attack-lowbrute",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        4,
+        98,
+        0
+      ],
+      [
+        0,
+        17,
+        9
+      ]
+    ],
+    "attack_recall": 0.34615384615384615,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.5950312000059057,
+    "inference_seconds": 0.0033104000031016767,
+    "epochs": 15
+  },
+  {
+    "split": 0,
+    "holdout": "24-attack-pathscan",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33750930000678636,
+    "inference_seconds": 0.04364499999792315,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "24-attack-pathscan",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.025783799996134,
+    "inference_seconds": 0.001601299998583272,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "24-attack-pathscan",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.6441820000181906,
+    "inference_seconds": 0.003135799983283505,
+    "epochs": 25
+  },
+  {
+    "split": 0,
+    "holdout": "24-attack-pathscan",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3408519000222441,
+    "inference_seconds": 0.04415889998199418,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "24-attack-pathscan",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        1,
+        101,
+        0
+      ],
+      [
+        3,
+        0,
+        12
+      ]
+    ],
+    "attack_recall": 0.8,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9076933000178542,
+    "inference_seconds": 0.0019041999767068774,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "24-attack-pathscan",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.8912109999801032,
+    "inference_seconds": 0.0029937000072095543,
+    "epochs": 17
+  },
+  {
+    "split": 0,
+    "holdout": "24-attack-pathscan",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33613660000264645,
+    "inference_seconds": 0.05430059999343939,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "24-attack-pathscan",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.8582020000030752,
+    "inference_seconds": 0.0015057999989949167,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "24-attack-pathscan",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.094434500002535,
+    "inference_seconds": 0.0032247000199276954,
+    "epochs": 19
+  },
+  {
+    "split": 0,
+    "holdout": "25-attack-lowflood",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        32
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.35448680000263266,
+    "inference_seconds": 0.04456089998711832,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "25-attack-lowflood",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        23,
+        0,
+        9
+      ]
+    ],
+    "attack_recall": 0.28125,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.8841159000003245,
+    "inference_seconds": 0.001975600025616586,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "25-attack-lowflood",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        5,
+        0,
+        27
+      ]
+    ],
+    "attack_recall": 0.84375,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.3001283000048716,
+    "inference_seconds": 0.0033133999968413264,
+    "epochs": 23
+  },
+  {
+    "split": 0,
+    "holdout": "25-attack-lowflood",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        32
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.32114010001532733,
+    "inference_seconds": 0.04300100001273677,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "25-attack-lowflood",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        1,
+        101,
+        0
+      ],
+      [
+        22,
+        0,
+        10
+      ]
+    ],
+    "attack_recall": 0.3125,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9851258000126109,
+    "inference_seconds": 0.0018081000016536564,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "25-attack-lowflood",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        6,
+        0,
+        26
+      ]
+    ],
+    "attack_recall": 0.8125,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.316384300007485,
+    "inference_seconds": 0.0032030000002123415,
+    "epochs": 22
+  },
+  {
+    "split": 0,
+    "holdout": "25-attack-lowflood",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        32
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.330676699988544,
+    "inference_seconds": 0.04528769999160431,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "25-attack-lowflood",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        25,
+        0,
+        7
+      ]
+    ],
+    "attack_recall": 0.21875,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.827903299999889,
+    "inference_seconds": 0.0018288999854121357,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "25-attack-lowflood",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        12,
+        0,
+        20
+      ]
+    ],
+    "attack_recall": 0.625,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.5115864999825135,
+    "inference_seconds": 0.003544600011082366,
+    "epochs": 15
+  },
+  {
+    "split": 0,
+    "holdout": "brute_family",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        12,
+        12,
+        32
+      ]
+    ],
+    "attack_recall": 0.5714285714285714,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.32541869999840856,
+    "inference_seconds": 0.043447399977594614,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "brute_family",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        1,
+        101,
+        0
+      ],
+      [
+        20,
+        20,
+        16
+      ]
+    ],
+    "attack_recall": 0.2857142857142857,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9292008000193164,
+    "inference_seconds": 0.0016985000111162663,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "brute_family",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        9,
+        93,
+        0
+      ],
+      [
+        0,
+        56,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.6960581000021193,
+    "inference_seconds": 0.0035856000031344593,
+    "epochs": 17
+  },
+  {
+    "split": 0,
+    "holdout": "brute_family",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        12,
+        12,
+        32
+      ]
+    ],
+    "attack_recall": 0.5714285714285714,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.34132760000647977,
+    "inference_seconds": 0.05430649998015724,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "brute_family",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        1,
+        101,
+        0
+      ],
+      [
+        14,
+        22,
+        20
+      ]
+    ],
+    "attack_recall": 0.35714285714285715,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.957157199998619,
+    "inference_seconds": 0.0023572999925818294,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "brute_family",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        0,
+        56,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.5920776999846566,
+    "inference_seconds": 0.0036714000161737204,
+    "epochs": 17
+  },
+  {
+    "split": 0,
+    "holdout": "brute_family",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        12,
+        12,
+        32
+      ]
+    ],
+    "attack_recall": 0.5714285714285714,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33046420000027865,
+    "inference_seconds": 0.0516502000100445,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "brute_family",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        17,
+        31,
+        8
+      ]
+    ],
+    "attack_recall": 0.14285714285714285,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.8408591000188608,
+    "inference_seconds": 0.002099999983329326,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "brute_family",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        65,
+        7,
+        0
+      ],
+      [
+        4,
+        98,
+        0
+      ],
+      [
+        0,
+        56,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.3895506999979261,
+    "inference_seconds": 0.00354989999323152,
+    "epochs": 14
+  },
+  {
+    "split": 0,
+    "holdout": "flood_family",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        55,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3241215000161901,
+    "inference_seconds": 0.043474200007040054,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "flood_family",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        29,
+        0,
+        26
+      ]
+    ],
+    "attack_recall": 0.4727272727272727,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.8402475999901071,
+    "inference_seconds": 0.0016063000075519085,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "flood_family",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        44,
+        11,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.8072615999844857,
+    "inference_seconds": 0.0036124000034760684,
+    "epochs": 19
+  },
+  {
+    "split": 0,
+    "holdout": "flood_family",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        27,
+        28,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.337546900002053,
+    "inference_seconds": 0.04382469999836758,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "flood_family",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        1,
+        101,
+        0
+      ],
+      [
+        18,
+        1,
+        36
+      ]
+    ],
+    "attack_recall": 0.6545454545454545,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.8506360999890603,
+    "inference_seconds": 0.0023302000190597028,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "flood_family",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        55,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.118161999998847,
+    "inference_seconds": 0.003730099997483194,
+    "epochs": 22
+  },
+  {
+    "split": 0,
+    "holdout": "flood_family",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        43,
+        12,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33014239999465644,
+    "inference_seconds": 0.04363139998167753,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "flood_family",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        71,
+        1,
+        0
+      ],
+      [
+        0,
+        102,
+        0
+      ],
+      [
+        18,
+        0,
+        37
+      ]
+    ],
+    "attack_recall": 0.6727272727272727,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.7403474999882746,
+    "inference_seconds": 0.0016260999836958945,
+    "epochs": null
+  },
+  {
+    "split": 0,
+    "holdout": "flood_family",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        72,
+        0,
+        0
+      ],
+      [
+        7,
+        95,
+        0
+      ],
+      [
+        53,
+        0,
+        2
+      ]
+    ],
+    "attack_recall": 0.03636363636363636,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.3516193999967072,
+    "inference_seconds": 0.003561299992725253,
+    "epochs": 14
+  },
+  {
+    "split": 1,
+    "holdout": "20-attack-bruteforce",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        8,
+        16
+      ]
+    ],
+    "attack_recall": 0.6666666666666666,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33885020000161603,
+    "inference_seconds": 0.043248800007859245,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "20-attack-bruteforce",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0112525000004098,
+    "inference_seconds": 0.001796200027456507,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "20-attack-bruteforce",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        21,
+        3
+      ]
+    ],
+    "attack_recall": 0.125,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.1796506000100635,
+    "inference_seconds": 0.0032102999975904822,
+    "epochs": 22
+  },
+  {
+    "split": 1,
+    "holdout": "20-attack-bruteforce",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        11,
+        13
+      ]
+    ],
+    "attack_recall": 0.5416666666666666,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3334106999973301,
+    "inference_seconds": 0.04366329999174923,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "20-attack-bruteforce",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9696112999808975,
+    "inference_seconds": 0.002354399999603629,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "20-attack-bruteforce",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        24,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.7966604999965057,
+    "inference_seconds": 0.003283400001237169,
+    "epochs": 18
+  },
+  {
+    "split": 1,
+    "holdout": "20-attack-bruteforce",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        11,
+        13
+      ]
+    ],
+    "attack_recall": 0.5416666666666666,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3249508999870159,
+    "inference_seconds": 0.04359310001018457,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "20-attack-bruteforce",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0705064999929164,
+    "inference_seconds": 0.0016499999910593033,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "20-attack-bruteforce",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        21,
+        3
+      ]
+    ],
+    "attack_recall": 0.125,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.7635562999930698,
+    "inference_seconds": 0.0031909999961499125,
+    "epochs": 16
+  },
+  {
+    "split": 1,
+    "holdout": "21-attack-flood",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        22,
+        1,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3276612999907229,
+    "inference_seconds": 0.04222880001179874,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "21-attack-flood",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.079698500019731,
+    "inference_seconds": 0.0019588999857660383,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "21-attack-flood",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.037553200003458,
+    "inference_seconds": 0.0032066999992821366,
+    "epochs": 20
+  },
+  {
+    "split": 1,
+    "holdout": "21-attack-flood",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        23,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3202975000021979,
+    "inference_seconds": 0.04543210001429543,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "21-attack-flood",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9841635999910068,
+    "inference_seconds": 0.001823099999455735,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "21-attack-flood",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.8991089000192005,
+    "inference_seconds": 0.003297599992947653,
+    "epochs": 19
+  },
+  {
+    "split": 1,
+    "holdout": "21-attack-flood",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        23,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.34230260000913404,
+    "inference_seconds": 0.04348760002176277,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "21-attack-flood",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0224316000239924,
+    "inference_seconds": 0.001584300014656037,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "21-attack-flood",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.793522899999516,
+    "inference_seconds": 0.0032912000024225563,
+    "epochs": 18
+  },
+  {
+    "split": 1,
+    "holdout": "22-attack-sqli",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.338849299994763,
+    "inference_seconds": 0.0420317999960389,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "22-attack-sqli",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0591741999960504,
+    "inference_seconds": 0.002157100010663271,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "22-attack-sqli",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.937274800002342,
+    "inference_seconds": 0.0033210999972652644,
+    "epochs": 20
+  },
+  {
+    "split": 1,
+    "holdout": "22-attack-sqli",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.323173200013116,
+    "inference_seconds": 0.04402260002098046,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "22-attack-sqli",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9406901999900583,
+    "inference_seconds": 0.0016343999886885285,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "22-attack-sqli",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        24,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.749200699996436,
+    "inference_seconds": 0.0033186000073328614,
+    "epochs": 18
+  },
+  {
+    "split": 1,
+    "holdout": "22-attack-sqli",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3370878999994602,
+    "inference_seconds": 0.044797200011089444,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "22-attack-sqli",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9012471000023652,
+    "inference_seconds": 0.0017988999898079783,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "22-attack-sqli",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.8568262000044342,
+    "inference_seconds": 0.003234800009522587,
+    "epochs": 19
+  },
+  {
+    "split": 1,
+    "holdout": "23-attack-lowbrute",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        26,
+        0,
+        10
+      ]
+    ],
+    "attack_recall": 0.2777777777777778,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33184639998944476,
+    "inference_seconds": 0.04480360000161454,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "23-attack-lowbrute",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        16,
+        20,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.7359539000026416,
+    "inference_seconds": 0.0015482000017073005,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "23-attack-lowbrute",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        18,
+        5,
+        13
+      ]
+    ],
+    "attack_recall": 0.3611111111111111,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.0760369999916293,
+    "inference_seconds": 0.003471100004389882,
+    "epochs": 20
+  },
+  {
+    "split": 1,
+    "holdout": "23-attack-lowbrute",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        24,
+        0,
+        12
+      ]
+    ],
+    "attack_recall": 0.3333333333333333,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.32276559999445453,
+    "inference_seconds": 0.0525150999892503,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "23-attack-lowbrute",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        13,
+        23,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.7047366999904625,
+    "inference_seconds": 0.0015436999965459108,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "23-attack-lowbrute",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        23,
+        4,
+        9
+      ]
+    ],
+    "attack_recall": 0.25,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.9543626999948174,
+    "inference_seconds": 0.0036909999907948077,
+    "epochs": 20
+  },
+  {
+    "split": 1,
+    "holdout": "23-attack-lowbrute",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        26,
+        0,
+        10
+      ]
+    ],
+    "attack_recall": 0.2777777777777778,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33020749999559484,
+    "inference_seconds": 0.04330750001827255,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "23-attack-lowbrute",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        15,
+        21,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.6680468000122346,
+    "inference_seconds": 0.0015001000137999654,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "23-attack-lowbrute",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        18,
+        6,
+        12
+      ]
+    ],
+    "attack_recall": 0.3333333333333333,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.6063662999949884,
+    "inference_seconds": 0.0034789000055752695,
+    "epochs": 16
+  },
+  {
+    "split": 1,
+    "holdout": "24-attack-pathscan",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3304587999882642,
+    "inference_seconds": 0.04463950000354089,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "24-attack-pathscan",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.1024276000098325,
+    "inference_seconds": 0.0016974000027403235,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "24-attack-pathscan",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.994820299994899,
+    "inference_seconds": 0.003174299985403195,
+    "epochs": 19
+  },
+  {
+    "split": 1,
+    "holdout": "24-attack-pathscan",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3394661000056658,
+    "inference_seconds": 0.04525070000090636,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "24-attack-pathscan",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0040135000017472,
+    "inference_seconds": 0.002060500002698973,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "24-attack-pathscan",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.0911063000094146,
+    "inference_seconds": 0.0032121000112965703,
+    "epochs": 20
+  },
+  {
+    "split": 1,
+    "holdout": "24-attack-pathscan",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.326793699990958,
+    "inference_seconds": 0.04518040001858026,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "24-attack-pathscan",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9864433000038844,
+    "inference_seconds": 0.0017557000101078302,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "24-attack-pathscan",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.6652973000018392,
+    "inference_seconds": 0.003208900016034022,
+    "epochs": 16
+  },
+  {
+    "split": 1,
+    "holdout": "25-attack-lowflood",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        21,
+        0,
+        9
+      ]
+    ],
+    "attack_recall": 0.3,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.34057150001171976,
+    "inference_seconds": 0.0546784000180196,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "25-attack-lowflood",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        30,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.092387900018366,
+    "inference_seconds": 0.0018567999941296875,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "25-attack-lowflood",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        19,
+        0,
+        11
+      ]
+    ],
+    "attack_recall": 0.36666666666666664,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.839050300011877,
+    "inference_seconds": 0.003274899994721636,
+    "epochs": 18
+  },
+  {
+    "split": 1,
+    "holdout": "25-attack-lowflood",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        16,
+        0,
+        14
+      ]
+    ],
+    "attack_recall": 0.4666666666666667,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3414278000127524,
+    "inference_seconds": 0.042740500008221716,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "25-attack-lowflood",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        30,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0106507999880705,
+    "inference_seconds": 0.0017723000200930983,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "25-attack-lowflood",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        100,
+        1
+      ],
+      [
+        18,
+        0,
+        12
+      ]
+    ],
+    "attack_recall": 0.4,
+    "fault_as_attack": 0.009900990099009901,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.6223257000092417,
+    "inference_seconds": 0.003308999992441386,
+    "epochs": 16
+  },
+  {
+    "split": 1,
+    "holdout": "25-attack-lowflood",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        16,
+        0,
+        14
+      ]
+    ],
+    "attack_recall": 0.4666666666666667,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33601150001049973,
+    "inference_seconds": 0.04457699999329634,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "25-attack-lowflood",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        30,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0578126000182237,
+    "inference_seconds": 0.0015768999874126166,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "25-attack-lowflood",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        20,
+        0,
+        10
+      ]
+    ],
+    "attack_recall": 0.3333333333333333,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.5639079000102356,
+    "inference_seconds": 0.003340399998705834,
+    "epochs": 15
+  },
+  {
+    "split": 1,
+    "holdout": "brute_family",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        36,
+        12,
+        12
+      ]
+    ],
+    "attack_recall": 0.2,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3320997999981046,
+    "inference_seconds": 0.05447860001004301,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "brute_family",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        16,
+        32,
+        12
+      ]
+    ],
+    "attack_recall": 0.2,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.6957760000077542,
+    "inference_seconds": 0.0019075000018347055,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "brute_family",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        9,
+        46,
+        5
+      ]
+    ],
+    "attack_recall": 0.08333333333333333,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.1370637000072747,
+    "inference_seconds": 0.0037103999929968268,
+    "epochs": 23
+  },
+  {
+    "split": 1,
+    "holdout": "brute_family",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        34,
+        12,
+        14
+      ]
+    ],
+    "attack_recall": 0.23333333333333334,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33163889998104423,
+    "inference_seconds": 0.0461059000226669,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "brute_family",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        13,
+        35,
+        12
+      ]
+    ],
+    "attack_recall": 0.2,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.606623599975137,
+    "inference_seconds": 0.0017443000106140971,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "brute_family",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        0,
+        60,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.6355530000000726,
+    "inference_seconds": 0.0036689999978989363,
+    "epochs": 18
+  },
+  {
+    "split": 1,
+    "holdout": "brute_family",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        35,
+        12,
+        13
+      ]
+    ],
+    "attack_recall": 0.21666666666666667,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3426599999947939,
+    "inference_seconds": 0.043783500004792586,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "brute_family",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        13,
+        37,
+        10
+      ]
+    ],
+    "attack_recall": 0.16666666666666666,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.6300302000017837,
+    "inference_seconds": 0.002651599992532283,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "brute_family",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        10,
+        46,
+        4
+      ]
+    ],
+    "attack_recall": 0.06666666666666667,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.4441040999954566,
+    "inference_seconds": 0.003711099998326972,
+    "epochs": 16
+  },
+  {
+    "split": 1,
+    "holdout": "flood_family",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        52,
+        1,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3419014000101015,
+    "inference_seconds": 0.04297539999242872,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "flood_family",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        27,
+        0,
+        26
+      ]
+    ],
+    "attack_recall": 0.49056603773584906,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9601957999984734,
+    "inference_seconds": 0.0019214999920222908,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "flood_family",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        53,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.3191952999914065,
+    "inference_seconds": 0.0036087000044062734,
+    "epochs": 25
+  },
+  {
+    "split": 1,
+    "holdout": "flood_family",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        53,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33014130001538433,
+    "inference_seconds": 0.04465060000075027,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "flood_family",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        16,
+        3,
+        34
+      ]
+    ],
+    "attack_recall": 0.6415094339622641,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9661710000073072,
+    "inference_seconds": 0.0019173999899066985,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "flood_family",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        53,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.116126999986591,
+    "inference_seconds": 0.0036899000115226954,
+    "epochs": 23
+  },
+  {
+    "split": 1,
+    "holdout": "flood_family",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        52,
+        1,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.335021599981701,
+    "inference_seconds": 0.04228449999936856,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "flood_family",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        23,
+        0,
+        30
+      ]
+    ],
+    "attack_recall": 0.5660377358490566,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9065878000110388,
+    "inference_seconds": 0.001787999994121492,
+    "epochs": null
+  },
+  {
+    "split": 1,
+    "holdout": "flood_family",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        101,
+        0
+      ],
+      [
+        53,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.60172470001271,
+    "inference_seconds": 0.004043500026455149,
+    "epochs": 17
+  },
+  {
+    "split": 2,
+    "holdout": "20-attack-bruteforce",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        0,
+        0,
+        30
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3266631999867968,
+    "inference_seconds": 0.05423380000866018,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "20-attack-bruteforce",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        0,
+        1,
+        29
+      ]
+    ],
+    "attack_recall": 0.9666666666666667,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.153900600009365,
+    "inference_seconds": 0.001750499999616295,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "20-attack-bruteforce",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        9,
+        99,
+        0
+      ],
+      [
+        0,
+        30,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.415122700011125,
+    "inference_seconds": 0.00335729998187162,
+    "epochs": 23
+  },
+  {
+    "split": 2,
+    "holdout": "20-attack-bruteforce",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        0,
+        10,
+        20
+      ]
+    ],
+    "attack_recall": 0.6666666666666666,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33593169998493977,
+    "inference_seconds": 0.04133850001380779,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "20-attack-bruteforce",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        0,
+        0,
+        30
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.167351999989478,
+    "inference_seconds": 0.0017438000068068504,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "20-attack-bruteforce",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        3,
+        105,
+        0
+      ],
+      [
+        0,
+        30,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.8420703999872785,
+    "inference_seconds": 0.0030777000065427274,
+    "epochs": 18
+  },
+  {
+    "split": 2,
+    "holdout": "20-attack-bruteforce",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        0,
+        10,
+        20
+      ]
+    ],
+    "attack_recall": 0.6666666666666666,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3376249000139069,
+    "inference_seconds": 0.043024899990996346,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "20-attack-bruteforce",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        53,
+        1,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        0,
+        0,
+        30
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.1630281000107061,
+    "inference_seconds": 0.0016296999820042402,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "20-attack-bruteforce",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        8,
+        100,
+        0
+      ],
+      [
+        0,
+        30,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.2921460999932606,
+    "inference_seconds": 0.003044600016437471,
+    "epochs": 22
+  },
+  {
+    "split": 2,
+    "holdout": "21-attack-flood",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        27,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3479570999916177,
+    "inference_seconds": 0.04431169998133555,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "21-attack-flood",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        0,
+        0,
+        27
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.1471346000034828,
+    "inference_seconds": 0.0017803999944590032,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "21-attack-flood",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        0,
+        0,
+        27
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.5187102000054438,
+    "inference_seconds": 0.003260600002249703,
+    "epochs": 25
+  },
+  {
+    "split": 2,
+    "holdout": "21-attack-flood",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        27,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33301030000438914,
+    "inference_seconds": 0.04279310000129044,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "21-attack-flood",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        3,
+        105,
+        0
+      ],
+      [
+        0,
+        0,
+        27
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.14580230001593,
+    "inference_seconds": 0.001584999990882352,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "21-attack-flood",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        0,
+        0,
+        27
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.19093700000667,
+    "inference_seconds": 0.0029765999934170395,
+    "epochs": 21
+  },
+  {
+    "split": 2,
+    "holdout": "21-attack-flood",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        27,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33846379999886267,
+    "inference_seconds": 0.04314439999870956,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "21-attack-flood",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        53,
+        1,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        0,
+        0,
+        27
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0930306000227574,
+    "inference_seconds": 0.0019059000187553465,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "21-attack-flood",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        3,
+        105,
+        0
+      ],
+      [
+        0,
+        0,
+        27
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.566097200004151,
+    "inference_seconds": 0.0031377999985124916,
+    "epochs": 25
+  },
+  {
+    "split": 2,
+    "holdout": "22-attack-sqli",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        0,
+        0,
+        32
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3364768000028562,
+    "inference_seconds": 0.04372309998143464,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "22-attack-sqli",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        26,
+        6,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.1746552999829873,
+    "inference_seconds": 0.0017731999978423119,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "22-attack-sqli",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        7,
+        101,
+        0
+      ],
+      [
+        26,
+        5,
+        1
+      ]
+    ],
+    "attack_recall": 0.03125,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.4901100999850314,
+    "inference_seconds": 0.0033082999871112406,
+    "epochs": 24
+  },
+  {
+    "split": 2,
+    "holdout": "22-attack-sqli",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        0,
+        0,
+        32
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33280619999277405,
+    "inference_seconds": 0.04513990000123158,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "22-attack-sqli",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        3,
+        105,
+        0
+      ],
+      [
+        0,
+        28,
+        4
+      ]
+    ],
+    "attack_recall": 0.125,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.1335951999935787,
+    "inference_seconds": 0.0015687000122852623,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "22-attack-sqli",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        0,
+        32,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.812999999994645,
+    "inference_seconds": 0.0031420000013895333,
+    "epochs": 18
+  },
+  {
+    "split": 2,
+    "holdout": "22-attack-sqli",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        0,
+        0,
+        32
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.34053809999022633,
+    "inference_seconds": 0.054482100007589906,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "22-attack-sqli",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        53,
+        1,
+        0
+      ],
+      [
+        3,
+        105,
+        0
+      ],
+      [
+        0,
+        32,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.1438368000090122,
+    "inference_seconds": 0.0018360000103712082,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "22-attack-sqli",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        2,
+        106,
+        0
+      ],
+      [
+        32,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.5410396000079345,
+    "inference_seconds": 0.0033164999913424253,
+    "epochs": 25
+  },
+  {
+    "split": 2,
+    "holdout": "23-attack-lowbrute",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        27,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3430172999796923,
+    "inference_seconds": 0.05560150000383146,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "23-attack-lowbrute",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        53,
+        1,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        22,
+        5,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0968812999781221,
+    "inference_seconds": 0.001730400021187961,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "23-attack-lowbrute",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        7,
+        101,
+        0
+      ],
+      [
+        8,
+        13,
+        6
+      ]
+    ],
+    "attack_recall": 0.2222222222222222,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.611800599988783,
+    "inference_seconds": 0.0029885999974794686,
+    "epochs": 25
+  },
+  {
+    "split": 2,
+    "holdout": "23-attack-lowbrute",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        27,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3503838000178803,
+    "inference_seconds": 0.07142170000588521,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "23-attack-lowbrute",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        15,
+        12,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.1599401999847032,
+    "inference_seconds": 0.0019693000067491084,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "23-attack-lowbrute",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        20,
+        0,
+        7
+      ]
+    ],
+    "attack_recall": 0.25925925925925924,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.618692199990619,
+    "inference_seconds": 0.003115100000286475,
+    "epochs": 25
+  },
+  {
+    "split": 2,
+    "holdout": "23-attack-lowbrute",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        27,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.338880600000266,
+    "inference_seconds": 0.043173299985937774,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "23-attack-lowbrute",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        21,
+        6,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.118666900001699,
+    "inference_seconds": 0.0014350000128615648,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "23-attack-lowbrute",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        6,
+        102,
+        0
+      ],
+      [
+        11,
+        5,
+        11
+      ]
+    ],
+    "attack_recall": 0.4074074074074074,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.6742990000057034,
+    "inference_seconds": 0.0030165000061970204,
+    "epochs": 25
+  },
+  {
+    "split": 2,
+    "holdout": "24-attack-pathscan",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.472470600012457,
+    "inference_seconds": 0.053720600000815466,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "24-attack-pathscan",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.1595031000033487,
+    "inference_seconds": 0.0017513999773655087,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "24-attack-pathscan",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        6,
+        102,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.6138110000174493,
+    "inference_seconds": 0.0030125000048428774,
+    "epochs": 25
+  },
+  {
+    "split": 2,
+    "holdout": "24-attack-pathscan",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.331103999982588,
+    "inference_seconds": 0.054651400016155094,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "24-attack-pathscan",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        3,
+        105,
+        0
+      ],
+      [
+        9,
+        0,
+        6
+      ]
+    ],
+    "attack_recall": 0.4,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.1545902000216302,
+    "inference_seconds": 0.0014965999871492386,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "24-attack-pathscan",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.153370799991535,
+    "inference_seconds": 0.0029298999870661646,
+    "epochs": 21
+  },
+  {
+    "split": 2,
+    "holdout": "24-attack-pathscan",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.44770960000460036,
+    "inference_seconds": 0.0814851000031922,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "24-attack-pathscan",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0003983000060543,
+    "inference_seconds": 0.002010399999562651,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "24-attack-pathscan",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        2,
+        106,
+        0
+      ],
+      [
+        0,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.5111965000105556,
+    "inference_seconds": 0.002861399989342317,
+    "epochs": 24
+  },
+  {
+    "split": 2,
+    "holdout": "25-attack-lowflood",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        1,
+        0,
+        31
+      ]
+    ],
+    "attack_recall": 0.96875,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3371908999979496,
+    "inference_seconds": 0.04270009999163449,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "25-attack-lowflood",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        52,
+        2,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        30,
+        0,
+        2
+      ]
+    ],
+    "attack_recall": 0.0625,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.106525800016243,
+    "inference_seconds": 0.001428699993994087,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "25-attack-lowflood",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        5,
+        103,
+        0
+      ],
+      [
+        6,
+        0,
+        26
+      ]
+    ],
+    "attack_recall": 0.8125,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.6752948999928776,
+    "inference_seconds": 0.0029894000035710633,
+    "epochs": 25
+  },
+  {
+    "split": 2,
+    "holdout": "25-attack-lowflood",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        2,
+        0,
+        30
+      ]
+    ],
+    "attack_recall": 0.9375,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33102849998977035,
+    "inference_seconds": 0.04434130000299774,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "25-attack-lowflood",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        3,
+        105,
+        0
+      ],
+      [
+        29,
+        0,
+        3
+      ]
+    ],
+    "attack_recall": 0.09375,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0817957999825012,
+    "inference_seconds": 0.0015847999893594533,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "25-attack-lowflood",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        2,
+        106,
+        0
+      ],
+      [
+        10,
+        0,
+        22
+      ]
+    ],
+    "attack_recall": 0.6875,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.112990199995693,
+    "inference_seconds": 0.003177699982188642,
+    "epochs": 19
+  },
+  {
+    "split": 2,
+    "holdout": "25-attack-lowflood",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        1,
+        0,
+        31
+      ]
+    ],
+    "attack_recall": 0.96875,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3370621000067331,
+    "inference_seconds": 0.05539269998553209,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "25-attack-lowflood",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        3,
+        105,
+        0
+      ],
+      [
+        26,
+        0,
+        6
+      ]
+    ],
+    "attack_recall": 0.1875,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.087725200020941,
+    "inference_seconds": 0.0015422000142280012,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "25-attack-lowflood",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        7,
+        0,
+        25
+      ]
+    ],
+    "attack_recall": 0.78125,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.537553600006504,
+    "inference_seconds": 0.0030608999950345606,
+    "epochs": 25
+  },
+  {
+    "split": 2,
+    "holdout": "brute_family",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        27,
+        0,
+        30
+      ]
+    ],
+    "attack_recall": 0.5263157894736842,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3711085999966599,
+    "inference_seconds": 0.07573019998380914,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "brute_family",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        11,
+        40,
+        6
+      ]
+    ],
+    "attack_recall": 0.10526315789473684,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0707423000130802,
+    "inference_seconds": 0.0019091999856755137,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "brute_family",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        7,
+        101,
+        0
+      ],
+      [
+        8,
+        46,
+        3
+      ]
+    ],
+    "attack_recall": 0.05263157894736842,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.4709678000072017,
+    "inference_seconds": 0.0034389999927952886,
+    "epochs": 25
+  },
+  {
+    "split": 2,
+    "holdout": "brute_family",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        27,
+        0,
+        30
+      ]
+    ],
+    "attack_recall": 0.5263157894736842,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3266771000053268,
+    "inference_seconds": 0.04294010001467541,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "brute_family",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        9,
+        32,
+        16
+      ]
+    ],
+    "attack_recall": 0.2807017543859649,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0555467999947723,
+    "inference_seconds": 0.0017597000114619732,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "brute_family",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        1,
+        48,
+        8
+      ]
+    ],
+    "attack_recall": 0.14035087719298245,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.2837130000116304,
+    "inference_seconds": 0.0034755000087898225,
+    "epochs": 21
+  },
+  {
+    "split": 2,
+    "holdout": "brute_family",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        27,
+        0,
+        30
+      ]
+    ],
+    "attack_recall": 0.5263157894736842,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3376986999937799,
+    "inference_seconds": 0.042623699991963804,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "brute_family",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        19,
+        32,
+        6
+      ]
+    ],
+    "attack_recall": 0.10526315789473684,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.088992099976167,
+    "inference_seconds": 0.002279900014400482,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "brute_family",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        6,
+        102,
+        0
+      ],
+      [
+        8,
+        48,
+        1
+      ]
+    ],
+    "attack_recall": 0.017543859649122806,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.7995301999908406,
+    "inference_seconds": 0.0033887000172398984,
+    "epochs": 18
+  },
+  {
+    "split": 2,
+    "holdout": "flood_family",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        58,
+        1,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33812590001616627,
+    "inference_seconds": 0.04344310000305995,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "flood_family",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        52,
+        2,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        42,
+        0,
+        17
+      ]
+    ],
+    "attack_recall": 0.288135593220339,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0738295000046492,
+    "inference_seconds": 0.0016457999881822616,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "flood_family",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        9,
+        99,
+        0
+      ],
+      [
+        48,
+        11,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.3927059000125155,
+    "inference_seconds": 0.004708100022980943,
+    "epochs": 25
+  },
+  {
+    "split": 2,
+    "holdout": "flood_family",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        58,
+        1,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.34246929999790154,
+    "inference_seconds": 0.056595000001834705,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "flood_family",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        4,
+        104,
+        0
+      ],
+      [
+        33,
+        11,
+        15
+      ]
+    ],
+    "attack_recall": 0.2542372881355932,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0649972000101116,
+    "inference_seconds": 0.0018723999965004623,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "flood_family",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        2,
+        106,
+        0
+      ],
+      [
+        59,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.266060199995991,
+    "inference_seconds": 0.0035391999990679324,
+    "epochs": 23
+  },
+  {
+    "split": 2,
+    "holdout": "flood_family",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        0,
+        108,
+        0
+      ],
+      [
+        44,
+        15,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.32914469999377616,
+    "inference_seconds": 0.044262199982767925,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "flood_family",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        3,
+        105,
+        0
+      ],
+      [
+        29,
+        1,
+        29
+      ]
+    ],
+    "attack_recall": 0.4915254237288136,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.8627751000167336,
+    "inference_seconds": 0.0021100000012665987,
+    "epochs": null
+  },
+  {
+    "split": 2,
+    "holdout": "flood_family",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        54,
+        0,
+        0
+      ],
+      [
+        9,
+        99,
+        0
+      ],
+      [
+        59,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.2812052999797743,
+    "inference_seconds": 0.0036219000176060945,
+    "epochs": 22
+  },
+  {
+    "split": 3,
+    "holdout": "20-attack-bruteforce",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        8,
+        13
+      ]
+    ],
+    "attack_recall": 0.6190476190476191,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33806199999526143,
+    "inference_seconds": 0.043141999980434775,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "20-attack-bruteforce",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        6,
+        108,
+        0
+      ],
+      [
+        0,
+        0,
+        21
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.044366899994202,
+    "inference_seconds": 0.0021049999922979623,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "20-attack-bruteforce",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        20,
+        1
+      ]
+    ],
+    "attack_recall": 0.047619047619047616,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.5098437999840826,
+    "inference_seconds": 0.0036151999956928194,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "20-attack-bruteforce",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        9,
+        12
+      ]
+    ],
+    "attack_recall": 0.5714285714285714,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3312203999958001,
+    "inference_seconds": 0.053539899992756546,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "20-attack-bruteforce",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        6,
+        108,
+        0
+      ],
+      [
+        0,
+        0,
+        21
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9412447000213433,
+    "inference_seconds": 0.0015372000052593648,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "20-attack-bruteforce",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        21,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.513757100008661,
+    "inference_seconds": 0.003315700014354661,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "20-attack-bruteforce",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        8,
+        13
+      ]
+    ],
+    "attack_recall": 0.6190476190476191,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.32511910001630895,
+    "inference_seconds": 0.042811599996639416,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "20-attack-bruteforce",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        5,
+        109,
+        0
+      ],
+      [
+        0,
+        0,
+        21
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.8762339999957476,
+    "inference_seconds": 0.0016434999997727573,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "20-attack-bruteforce",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        21,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.4138398000213783,
+    "inference_seconds": 0.0034084000217262655,
+    "epochs": 24
+  },
+  {
+    "split": 3,
+    "holdout": "21-attack-flood",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        18,
+        0,
+        6
+      ]
+    ],
+    "attack_recall": 0.25,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.32856579998042434,
+    "inference_seconds": 0.043731800018576905,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "21-attack-flood",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        5,
+        109,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.038566000002902,
+    "inference_seconds": 0.0014968999894335866,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "21-attack-flood",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        1,
+        113,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.675218999997014,
+    "inference_seconds": 0.0035860999778378755,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "21-attack-flood",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        18,
+        0,
+        6
+      ]
+    ],
+    "attack_recall": 0.25,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33518399999593385,
+    "inference_seconds": 0.04307350001181476,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "21-attack-flood",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        5,
+        109,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.8835290000133682,
+    "inference_seconds": 0.001984800008358434,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "21-attack-flood",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.5878685000061523,
+    "inference_seconds": 0.004060000006575137,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "21-attack-flood",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        18,
+        0,
+        6
+      ]
+    ],
+    "attack_recall": 0.25,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3390276999853086,
+    "inference_seconds": 0.043672400002833456,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "21-attack-flood",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        5,
+        109,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.8452310999855399,
+    "inference_seconds": 0.0014670999953523278,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "21-attack-flood",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.4614271000027657,
+    "inference_seconds": 0.003691500023705885,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "22-attack-sqli",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        0,
+        27
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.34424679999938235,
+    "inference_seconds": 0.04706650000298396,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "22-attack-sqli",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        5,
+        109,
+        0
+      ],
+      [
+        0,
+        0,
+        27
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0870834999950603,
+    "inference_seconds": 0.0015442000003531575,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "22-attack-sqli",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        3,
+        111,
+        0
+      ],
+      [
+        0,
+        0,
+        27
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.4526081000221893,
+    "inference_seconds": 0.0036945999891031533,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "22-attack-sqli",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        0,
+        27
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3262352999881841,
+    "inference_seconds": 0.04267450000043027,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "22-attack-sqli",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        5,
+        109,
+        0
+      ],
+      [
+        0,
+        0,
+        27
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.975941699987743,
+    "inference_seconds": 0.0021115000126883388,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "22-attack-sqli",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        27,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.630773599987151,
+    "inference_seconds": 0.0037269000022206455,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "22-attack-sqli",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        0,
+        27
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3459456999844406,
+    "inference_seconds": 0.058228000008966774,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "22-attack-sqli",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        5,
+        109,
+        0
+      ],
+      [
+        0,
+        0,
+        27
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.8550820000236854,
+    "inference_seconds": 0.0026085000135935843,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "22-attack-sqli",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        0,
+        27
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.4675602999923285,
+    "inference_seconds": 0.0035571999906096607,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "23-attack-lowbrute",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        6,
+        0,
+        6
+      ]
+    ],
+    "attack_recall": 0.5,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.32780930001172237,
+    "inference_seconds": 0.04370249999919906,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "23-attack-lowbrute",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        6,
+        108,
+        0
+      ],
+      [
+        0,
+        12,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.7621896000055131,
+    "inference_seconds": 0.0017638000135775656,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "23-attack-lowbrute",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        6,
+        108,
+        0
+      ],
+      [
+        0,
+        12,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.461627100012265,
+    "inference_seconds": 0.003308999992441386,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "23-attack-lowbrute",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        6,
+        0,
+        6
+      ]
+    ],
+    "attack_recall": 0.5,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3145978999964427,
+    "inference_seconds": 0.04421120000188239,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "23-attack-lowbrute",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        6,
+        108,
+        0
+      ],
+      [
+        0,
+        12,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.6860493999847677,
+    "inference_seconds": 0.001510200003394857,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "23-attack-lowbrute",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        4,
+        110,
+        0
+      ],
+      [
+        10,
+        2,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.592519400001038,
+    "inference_seconds": 0.0035780000034719706,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "23-attack-lowbrute",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        6,
+        0,
+        6
+      ]
+    ],
+    "attack_recall": 0.5,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3265898000099696,
+    "inference_seconds": 0.04367149999598041,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "23-attack-lowbrute",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        6,
+        108,
+        0
+      ],
+      [
+        0,
+        12,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.6052835000155028,
+    "inference_seconds": 0.0018282000091858208,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "23-attack-lowbrute",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        3,
+        111,
+        0
+      ],
+      [
+        0,
+        10,
+        2
+      ]
+    ],
+    "attack_recall": 0.16666666666666666,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.5107186999812257,
+    "inference_seconds": 0.0033109000069089234,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "24-attack-pathscan",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        0,
+        12
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3987658999976702,
+    "inference_seconds": 0.04218600000604056,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "24-attack-pathscan",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        6,
+        108,
+        0
+      ],
+      [
+        0,
+        0,
+        12
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0860996999836061,
+    "inference_seconds": 0.001991600001929328,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "24-attack-pathscan",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        3,
+        111,
+        0
+      ],
+      [
+        0,
+        0,
+        12
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.771363100007875,
+    "inference_seconds": 0.0037497000012081116,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "24-attack-pathscan",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        0,
+        12
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.34939879999728873,
+    "inference_seconds": 0.055695499991998076,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "24-attack-pathscan",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        5,
+        109,
+        0
+      ],
+      [
+        0,
+        0,
+        12
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.910315899993293,
+    "inference_seconds": 0.0019921000057365745,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "24-attack-pathscan",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        0,
+        12
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.625399099983042,
+    "inference_seconds": 0.005238900019321591,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "24-attack-pathscan",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        0,
+        12
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.357073399994988,
+    "inference_seconds": 0.054566900013014674,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "24-attack-pathscan",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        5,
+        109,
+        0
+      ],
+      [
+        0,
+        0,
+        12
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0312128999794368,
+    "inference_seconds": 0.002163299999665469,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "24-attack-pathscan",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        0,
+        0,
+        12
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.503000800003065,
+    "inference_seconds": 0.0034146000107284635,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "25-attack-lowflood",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        28,
+        0,
+        2
+      ]
+    ],
+    "attack_recall": 0.06666666666666667,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3564378999872133,
+    "inference_seconds": 0.044355499994708225,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "25-attack-lowflood",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        8,
+        106,
+        0
+      ],
+      [
+        30,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9940498000069056,
+    "inference_seconds": 0.0019165999838151038,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "25-attack-lowflood",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        3,
+        111,
+        0
+      ],
+      [
+        17,
+        0,
+        13
+      ]
+    ],
+    "attack_recall": 0.43333333333333335,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.256881900015287,
+    "inference_seconds": 0.003511499991873279,
+    "epochs": 22
+  },
+  {
+    "split": 3,
+    "holdout": "25-attack-lowflood",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        19,
+        0,
+        11
+      ]
+    ],
+    "attack_recall": 0.36666666666666664,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.34084140000049956,
+    "inference_seconds": 0.04282920001423918,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "25-attack-lowflood",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        6,
+        108,
+        0
+      ],
+      [
+        27,
+        0,
+        3
+      ]
+    ],
+    "attack_recall": 0.1,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.091883399989456,
+    "inference_seconds": 0.0014168000197969377,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "25-attack-lowflood",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        16,
+        0,
+        14
+      ]
+    ],
+    "attack_recall": 0.4666666666666667,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.578453200025251,
+    "inference_seconds": 0.00367289999849163,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "25-attack-lowflood",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        2,
+        112,
+        0
+      ],
+      [
+        30,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33587510001962073,
+    "inference_seconds": 0.04411180000170134,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "25-attack-lowflood",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        5,
+        109,
+        0
+      ],
+      [
+        30,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0902589000179432,
+    "inference_seconds": 0.0023808999976608902,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "25-attack-lowflood",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        6,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 0.8,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.506552200007718,
+    "inference_seconds": 0.003372000006493181,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "brute_family",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        6,
+        12,
+        15
+      ]
+    ],
+    "attack_recall": 0.45454545454545453,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3663288000097964,
+    "inference_seconds": 0.044504199991934,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "brute_family",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        6,
+        108,
+        0
+      ],
+      [
+        0,
+        25,
+        8
+      ]
+    ],
+    "attack_recall": 0.24242424242424243,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.6670750000048429,
+    "inference_seconds": 0.0018330999882891774,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "brute_family",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        7,
+        107,
+        0
+      ],
+      [
+        0,
+        33,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.2472415000083856,
+    "inference_seconds": 0.0034918999881483614,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "brute_family",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        6,
+        8,
+        19
+      ]
+    ],
+    "attack_recall": 0.5757575757575758,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3334750000212807,
+    "inference_seconds": 0.05467829998815432,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "brute_family",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        7,
+        107,
+        0
+      ],
+      [
+        0,
+        24,
+        9
+      ]
+    ],
+    "attack_recall": 0.2727272727272727,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.6482011999760289,
+    "inference_seconds": 0.00194240000564605,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "brute_family",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        5,
+        109,
+        0
+      ],
+      [
+        0,
+        33,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.236021899996558,
+    "inference_seconds": 0.0035846999962814152,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "brute_family",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        6,
+        7,
+        20
+      ]
+    ],
+    "attack_recall": 0.6060606060606061,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.32081090001156554,
+    "inference_seconds": 0.04202470000018366,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "brute_family",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        6,
+        108,
+        0
+      ],
+      [
+        0,
+        24,
+        9
+      ]
+    ],
+    "attack_recall": 0.2727272727272727,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.6094111999846064,
+    "inference_seconds": 0.002238999994006008,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "brute_family",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        5,
+        109,
+        0
+      ],
+      [
+        0,
+        33,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.3557652000163216,
+    "inference_seconds": 0.0036748999846167862,
+    "epochs": 25
+  },
+  {
+    "split": 3,
+    "holdout": "flood_family",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        36,
+        18,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.34534589998656884,
+    "inference_seconds": 0.05382940001436509,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "flood_family",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        7,
+        107,
+        0
+      ],
+      [
+        32,
+        0,
+        22
+      ]
+    ],
+    "attack_recall": 0.4074074074074074,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9758954000135418,
+    "inference_seconds": 0.0018980999884661287,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "flood_family",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        69,
+        9,
+        0
+      ],
+      [
+        20,
+        75,
+        19
+      ],
+      [
+        52,
+        2,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.16666666666666666,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.7501577999792062,
+    "inference_seconds": 0.003953800012823194,
+    "epochs": 8
+  },
+  {
+    "split": 3,
+    "holdout": "flood_family",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        36,
+        18,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3232927000208292,
+    "inference_seconds": 0.04436529998201877,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "flood_family",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        6,
+        108,
+        0
+      ],
+      [
+        19,
+        2,
+        33
+      ]
+    ],
+    "attack_recall": 0.6111111111111112,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.8894509000238031,
+    "inference_seconds": 0.001594500005012378,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "flood_family",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        54,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.331082199991215,
+    "inference_seconds": 0.00401209999108687,
+    "epochs": 24
+  },
+  {
+    "split": 3,
+    "holdout": "flood_family",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        36,
+        18,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.31866300001274794,
+    "inference_seconds": 0.054429000010713935,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "flood_family",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        5,
+        109,
+        0
+      ],
+      [
+        22,
+        0,
+        32
+      ]
+    ],
+    "attack_recall": 0.5925925925925926,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.8209499999938998,
+    "inference_seconds": 0.0018350000027567148,
+    "epochs": null
+  },
+  {
+    "split": 3,
+    "holdout": "flood_family",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        78,
+        0,
+        0
+      ],
+      [
+        0,
+        114,
+        0
+      ],
+      [
+        30,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 0.4444444444444444,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.853835000016261,
+    "inference_seconds": 0.003783899999689311,
+    "epochs": 20
+  },
+  {
+    "split": 4,
+    "holdout": "20-attack-bruteforce",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3352921000041533,
+    "inference_seconds": 0.04440660000545904,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "20-attack-bruteforce",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        2,
+        118,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0582556999870576,
+    "inference_seconds": 0.00163720001000911,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "20-attack-bruteforce",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        24,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.230283800017787,
+    "inference_seconds": 0.0037625000113621354,
+    "epochs": 22
+  },
+  {
+    "split": 4,
+    "holdout": "20-attack-bruteforce",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        4,
+        20
+      ]
+    ],
+    "attack_recall": 0.8333333333333334,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.37716470001032576,
+    "inference_seconds": 0.04309970000758767,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "20-attack-bruteforce",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0995092000230215,
+    "inference_seconds": 0.001901599986013025,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "20-attack-bruteforce",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        24,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.674823799985461,
+    "inference_seconds": 0.003915000008419156,
+    "epochs": 17
+  },
+  {
+    "split": 4,
+    "holdout": "20-attack-bruteforce",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3261363999918103,
+    "inference_seconds": 0.053979799995431677,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "20-attack-bruteforce",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        24
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0940981000021566,
+    "inference_seconds": 0.001964900002349168,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "20-attack-bruteforce",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        24,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.802512199996272,
+    "inference_seconds": 0.0038619000115431845,
+    "epochs": 19
+  },
+  {
+    "split": 4,
+    "holdout": "21-attack-flood",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        23,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.36827060001087375,
+    "inference_seconds": 0.05457390000810847,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "21-attack-flood",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        2,
+        118,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0642097999807447,
+    "inference_seconds": 0.0018492999952286482,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "21-attack-flood",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.3783392000186723,
+    "inference_seconds": 0.0038870999997016042,
+    "epochs": 24
+  },
+  {
+    "split": 4,
+    "holdout": "21-attack-flood",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        23,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.33279650000622496,
+    "inference_seconds": 0.044634199992287904,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "21-attack-flood",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.1047087000042666,
+    "inference_seconds": 0.0015978000010363758,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "21-attack-flood",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.9235277000116184,
+    "inference_seconds": 0.0037111000274308026,
+    "epochs": 19
+  },
+  {
+    "split": 4,
+    "holdout": "21-attack-flood",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        23,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3142572999931872,
+    "inference_seconds": 0.05506799998693168,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "21-attack-flood",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0338534000038635,
+    "inference_seconds": 0.0016253000067081302,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "21-attack-flood",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        23
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.947803200018825,
+    "inference_seconds": 0.004478200018638745,
+    "epochs": 19
+  },
+  {
+    "split": 4,
+    "holdout": "22-attack-sqli",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        32
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.34889269998529926,
+    "inference_seconds": 0.05430059999343939,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "22-attack-sqli",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        32
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0782733999949414,
+    "inference_seconds": 0.0018859999836422503,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "22-attack-sqli",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        2,
+        118,
+        0
+      ],
+      [
+        0,
+        0,
+        32
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.9931801999919116,
+    "inference_seconds": 0.0036881999985780567,
+    "epochs": 19
+  },
+  {
+    "split": 4,
+    "holdout": "22-attack-sqli",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        32
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.35307620000094175,
+    "inference_seconds": 0.054739899991545826,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "22-attack-sqli",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        2,
+        118,
+        0
+      ],
+      [
+        0,
+        2,
+        30
+      ]
+    ],
+    "attack_recall": 0.9375,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0241986000037286,
+    "inference_seconds": 0.002009799994993955,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "22-attack-sqli",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        32,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.6642546999792103,
+    "inference_seconds": 0.004589000018313527,
+    "epochs": 17
+  },
+  {
+    "split": 4,
+    "holdout": "22-attack-sqli",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        32
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.4398207999765873,
+    "inference_seconds": 0.056297500006621704,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "22-attack-sqli",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        32
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0235596999991685,
+    "inference_seconds": 0.0022948999830987304,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "22-attack-sqli",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        4,
+        0,
+        28
+      ]
+    ],
+    "attack_recall": 0.875,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.045910199987702,
+    "inference_seconds": 0.004419400007463992,
+    "epochs": 21
+  },
+  {
+    "split": 4,
+    "holdout": "23-attack-lowbrute",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        18,
+        0,
+        9
+      ]
+    ],
+    "attack_recall": 0.3333333333333333,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3324299000087194,
+    "inference_seconds": 0.04321710002841428,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "23-attack-lowbrute",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        2,
+        118,
+        0
+      ],
+      [
+        22,
+        5,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0808073000225704,
+    "inference_seconds": 0.001931000006152317,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "23-attack-lowbrute",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        15,
+        12
+      ]
+    ],
+    "attack_recall": 0.4444444444444444,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.2837750000180677,
+    "inference_seconds": 0.00356919999467209,
+    "epochs": 22
+  },
+  {
+    "split": 4,
+    "holdout": "23-attack-lowbrute",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        18,
+        0,
+        9
+      ]
+    ],
+    "attack_recall": 0.3333333333333333,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.32679469999857247,
+    "inference_seconds": 0.04399769997689873,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "23-attack-lowbrute",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        14,
+        13,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0695883999869693,
+    "inference_seconds": 0.0018139999883715063,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "23-attack-lowbrute",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        22,
+        0,
+        5
+      ]
+    ],
+    "attack_recall": 0.18518518518518517,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.284638899989659,
+    "inference_seconds": 0.003790699993260205,
+    "epochs": 23
+  },
+  {
+    "split": 4,
+    "holdout": "23-attack-lowbrute",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        18,
+        0,
+        9
+      ]
+    ],
+    "attack_recall": 0.3333333333333333,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3702523999963887,
+    "inference_seconds": 0.05396019999170676,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "23-attack-lowbrute",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        20,
+        7,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9668723000213504,
+    "inference_seconds": 0.0016260000120382756,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "23-attack-lowbrute",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        2,
+        118,
+        0
+      ],
+      [
+        2,
+        16,
+        9
+      ]
+    ],
+    "attack_recall": 0.3333333333333333,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.8589190000202507,
+    "inference_seconds": 0.003746299975318834,
+    "epochs": 18
+  },
+  {
+    "split": 4,
+    "holdout": "24-attack-pathscan",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        28
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3346748000185471,
+    "inference_seconds": 0.05606819997774437,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "24-attack-pathscan",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        28
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0898193000175525,
+    "inference_seconds": 0.0026391999854240566,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "24-attack-pathscan",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        28
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.134007400018163,
+    "inference_seconds": 0.0036062999861314893,
+    "epochs": 20
+  },
+  {
+    "split": 4,
+    "holdout": "24-attack-pathscan",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        28
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3493136999895796,
+    "inference_seconds": 0.05487749999156222,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "24-attack-pathscan",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        28
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0842814000207,
+    "inference_seconds": 0.0019213000196032226,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "24-attack-pathscan",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        28
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.309851500001969,
+    "inference_seconds": 0.0038007999828550965,
+    "epochs": 23
+  },
+  {
+    "split": 4,
+    "holdout": "24-attack-pathscan",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        28
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3357755999895744,
+    "inference_seconds": 0.055894299992360175,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "24-attack-pathscan",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        28
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0976183000020683,
+    "inference_seconds": 0.0019597000209614635,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "24-attack-pathscan",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        1,
+        119,
+        0
+      ],
+      [
+        0,
+        0,
+        28
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 2.126009800005704,
+    "inference_seconds": 0.0036518000124488026,
+    "epochs": 21
+  },
+  {
+    "split": 4,
+    "holdout": "25-attack-lowflood",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        1,
+        0,
+        19
+      ]
+    ],
+    "attack_recall": 0.95,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3308002999983728,
+    "inference_seconds": 0.04168489997391589,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "25-attack-lowflood",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        2,
+        118,
+        0
+      ],
+      [
+        13,
+        0,
+        7
+      ]
+    ],
+    "attack_recall": 0.35,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0834451999980956,
+    "inference_seconds": 0.0018237000040244311,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "25-attack-lowflood",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        4,
+        0,
+        16
+      ]
+    ],
+    "attack_recall": 0.8,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.814773799997056,
+    "inference_seconds": 0.003571300010662526,
+    "epochs": 18
+  },
+  {
+    "split": 4,
+    "holdout": "25-attack-lowflood",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        1,
+        0,
+        19
+      ]
+    ],
+    "attack_recall": 0.95,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3470323999936227,
+    "inference_seconds": 0.04492210000171326,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "25-attack-lowflood",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        3,
+        117,
+        0
+      ],
+      [
+        14,
+        0,
+        6
+      ]
+    ],
+    "attack_recall": 0.3,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.076619400002528,
+    "inference_seconds": 0.0015093999973032624,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "25-attack-lowflood",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        10,
+        0,
+        10
+      ]
+    ],
+    "attack_recall": 0.5,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.605950600001961,
+    "inference_seconds": 0.003445200010901317,
+    "epochs": 16
+  },
+  {
+    "split": 4,
+    "holdout": "25-attack-lowflood",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        20
+      ]
+    ],
+    "attack_recall": 1.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.31871579997823574,
+    "inference_seconds": 0.042700399993918836,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "25-attack-lowflood",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        16,
+        0,
+        4
+      ]
+    ],
+    "attack_recall": 0.2,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.1006435000163037,
+    "inference_seconds": 0.0018248999840579927,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "25-attack-lowflood",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        4,
+        116,
+        0
+      ],
+      [
+        5,
+        0,
+        15
+      ]
+    ],
+    "attack_recall": 0.75,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.4888079999946058,
+    "inference_seconds": 0.003722800000105053,
+    "epochs": 15
+  },
+  {
+    "split": 4,
+    "holdout": "brute_family",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        18,
+        5,
+        28
+      ]
+    ],
+    "attack_recall": 0.5490196078431373,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3395821000158321,
+    "inference_seconds": 0.047527399990940467,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "brute_family",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        2,
+        118,
+        0
+      ],
+      [
+        21,
+        23,
+        7
+      ]
+    ],
+    "attack_recall": 0.13725490196078433,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.955658199993195,
+    "inference_seconds": 0.002513300016289577,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "brute_family",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        51,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.9527688999951351,
+    "inference_seconds": 0.004471799999009818,
+    "epochs": 22
+  },
+  {
+    "split": 4,
+    "holdout": "brute_family",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        18,
+        0,
+        33
+      ]
+    ],
+    "attack_recall": 0.6470588235294118,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3374424000212457,
+    "inference_seconds": 0.05676039998070337,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "brute_family",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        15,
+        28,
+        8
+      ]
+    ],
+    "attack_recall": 0.1568627450980392,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9753292999812402,
+    "inference_seconds": 0.002051699993899092,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "brute_family",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        5,
+        46,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.9180100999947172,
+    "inference_seconds": 0.004220799979520962,
+    "epochs": 21
+  },
+  {
+    "split": 4,
+    "holdout": "brute_family",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        18,
+        0,
+        33
+      ]
+    ],
+    "attack_recall": 0.6470588235294118,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.34412069999962114,
+    "inference_seconds": 0.05444899998838082,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "brute_family",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        20,
+        25,
+        6
+      ]
+    ],
+    "attack_recall": 0.11764705882352941,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.8936226999794599,
+    "inference_seconds": 0.002185499994084239,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "brute_family",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        3,
+        117,
+        0
+      ],
+      [
+        0,
+        51,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.6010116999968886,
+    "inference_seconds": 0.0043963000061921775,
+    "epochs": 18
+  },
+  {
+    "split": 4,
+    "holdout": "flood_family",
+    "model": "rf",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        19,
+        24,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3384129999903962,
+    "inference_seconds": 0.054418700019596145,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "flood_family",
+    "model": "mlp",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        1,
+        119,
+        0
+      ],
+      [
+        8,
+        0,
+        35
+      ]
+    ],
+    "attack_recall": 0.813953488372093,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.0007076000038069,
+    "inference_seconds": 0.0027018999971915036,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "flood_family",
+    "model": "transformer",
+    "seed": 0,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        4,
+        116,
+        0
+      ],
+      [
+        43,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.8058519000187516,
+    "inference_seconds": 0.0038902999949641526,
+    "epochs": 20
+  },
+  {
+    "split": 4,
+    "holdout": "flood_family",
+    "model": "rf",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        29,
+        14,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3230868999962695,
+    "inference_seconds": 0.05318499999702908,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "flood_family",
+    "model": "mlp",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        8,
+        1,
+        34
+      ]
+    ],
+    "attack_recall": 0.7906976744186046,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9744429999846034,
+    "inference_seconds": 0.0020779000187758356,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "flood_family",
+    "model": "transformer",
+    "seed": 1,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        43,
+        0,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.6166691999824252,
+    "inference_seconds": 0.0038250000216066837,
+    "epochs": 18
+  },
+  {
+    "split": 4,
+    "holdout": "flood_family",
+    "model": "rf",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        28,
+        15,
+        0
+      ]
+    ],
+    "attack_recall": 0.0,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.3266251999884844,
+    "inference_seconds": 0.04416680001304485,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "flood_family",
+    "model": "mlp",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        6,
+        0,
+        37
+      ]
+    ],
+    "attack_recall": 0.8604651162790697,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 0.9515982999873813,
+    "inference_seconds": 0.0016909000114537776,
+    "epochs": null
+  },
+  {
+    "split": 4,
+    "holdout": "flood_family",
+    "model": "transformer",
+    "seed": 2,
+    "confusion": [
+      [
+        84,
+        0,
+        0
+      ],
+      [
+        8,
+        112,
+        0
+      ],
+      [
+        34,
+        0,
+        9
+      ]
+    ],
+    "attack_recall": 0.20930232558139536,
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "train_seconds": 1.492350099986652,
+    "inference_seconds": 0.003968500008340925,
+    "epochs": 17
+  }
+]

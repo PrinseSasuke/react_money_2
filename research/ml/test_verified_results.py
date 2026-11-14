@@ -65,5 +65,12 @@ class VerifiedResultsTest(unittest.TestCase):
             self.assertTrue((subset.window_end>=run['setup_epoch']+235).all())
             self.assertTrue((subset.window_end<=run['setup_epoch']+295).all())
 
+    def test_fallback_audit_keeps_ambiguity_separate(self):
+        data=json.loads((OUT/'fallback_coverage.json').read_text(encoding='utf8'))
+        self.assertEqual(data['runs'],20)
+        self.assertEqual(len(data['files']),20)
+        self.assertTrue(all(row.get('up')==120 for row in data['exporter_up'].values()))
+        self.assertEqual(data['metric_counts']['rps_401_403']['zero_from_fallback_or_absent_code'],24)
+
 
 if __name__=='__main__':unittest.main()

@@ -20,6 +20,12 @@ def main():
         checked+=1
         if not path.exists() or hashlib.sha256(path.read_bytes()).hexdigest()!=entry['sha256']:
             failures.append(str(path))
+    recovery=json.loads((ROOT/'ml'/'recovery_manifest.json').read_text(encoding='utf8'))
+    for entry in recovery['files']:
+        path=ROOT/'evidence'/recovery['collection']/entry['file']
+        checked+=1
+        if not path.exists() or hashlib.sha256(path.read_bytes()).hexdigest()!=entry['sha256']:
+            failures.append(str(path))
     print(json.dumps({'checked':checked,'failures':failures},ensure_ascii=False))
     if failures: raise SystemExit(1)
 
