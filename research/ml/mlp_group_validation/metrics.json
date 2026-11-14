@@ -1,0 +1,2648 @@
+[
+  {
+    "split": 0,
+    "temporal": false,
+    "fraction": 0.5,
+    "seed": 0,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 1.0
+      }
+    ],
+    "macro_f1": 0.35978835978835977,
+    "selection_train_s": 0.1686516999907326,
+    "inference_s": 0.002440299984300509,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4c7c876c"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-0956f92a"
+    ],
+    "test_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-45b11273"
+    ]
+  },
+  {
+    "split": 0,
+    "temporal": false,
+    "fraction": 0.5,
+    "seed": 1,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.7777777777777777
+      }
+    ],
+    "macro_f1": 0.3846153846153846,
+    "selection_train_s": 0.15554709997377358,
+    "inference_s": 0.0023123999999370426,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4c7c876c"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-0956f92a"
+    ],
+    "test_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-45b11273"
+    ]
+  },
+  {
+    "split": 0,
+    "temporal": false,
+    "fraction": 0.5,
+    "seed": 2,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.9220779220779219
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.7777777777777777
+      }
+    ],
+    "macro_f1": 0.3846153846153846,
+    "selection_train_s": 0.15453070000512525,
+    "inference_s": 0.0024065999896265566,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4c7c876c"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-0956f92a"
+    ],
+    "test_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-45b11273"
+    ]
+  },
+  {
+    "split": 0,
+    "temporal": false,
+    "fraction": 0.75,
+    "seed": 0,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 1.0
+      }
+    ],
+    "macro_f1": 0.562962962962963,
+    "selection_train_s": 0.1905888000037521,
+    "inference_s": 0.002502999996067956,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-4c7c876c",
+      "ids-control-flat-6bef87b9"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-0956f92a"
+    ],
+    "test_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-45b11273"
+    ]
+  },
+  {
+    "split": 0,
+    "temporal": false,
+    "fraction": 0.75,
+    "seed": 1,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.959866220735786
+      }
+    ],
+    "macro_f1": 0.5,
+    "selection_train_s": 0.178504100011196,
+    "inference_s": 0.002370400005020201,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-4c7c876c",
+      "ids-control-flat-6bef87b9"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-0956f92a"
+    ],
+    "test_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-45b11273"
+    ]
+  },
+  {
+    "split": 0,
+    "temporal": false,
+    "fraction": 0.75,
+    "seed": 2,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 1.0
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.1775883999944199,
+    "inference_s": 0.0024102999886963516,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-4c7c876c",
+      "ids-control-flat-6bef87b9"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-0956f92a"
+    ],
+    "test_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-45b11273"
+    ]
+  },
+  {
+    "split": 0,
+    "temporal": false,
+    "fraction": 1.0,
+    "seed": 0,
+    "selected_max_iter": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 1.0
+      }
+    ],
+    "macro_f1": 0.3076923076923077,
+    "selection_train_s": 0.3329220000014175,
+    "inference_s": 0.0023230999941006303,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4c7c876c",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-0956f92a"
+    ],
+    "test_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-45b11273"
+    ]
+  },
+  {
+    "split": 0,
+    "temporal": false,
+    "fraction": 1.0,
+    "seed": 1,
+    "selected_max_iter": 100,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.4666666666666666
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.959866220735786
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.959866220735786
+      }
+    ],
+    "macro_f1": 0.32,
+    "selection_train_s": 0.3479370000131894,
+    "inference_s": 0.0022569999855477363,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4c7c876c",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-0956f92a"
+    ],
+    "test_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-45b11273"
+    ]
+  },
+  {
+    "split": 0,
+    "temporal": false,
+    "fraction": 1.0,
+    "seed": 2,
+    "selected_max_iter": 100,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3846153846153846
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 1.0
+      }
+    ],
+    "macro_f1": 0.3846153846153846,
+    "selection_train_s": 0.35425420000683516,
+    "inference_s": 0.0022594000038225204,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4c7c876c",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-0956f92a"
+    ],
+    "test_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-45b11273"
+    ]
+  },
+  {
+    "split": 1,
+    "temporal": false,
+    "fraction": 0.5,
+    "seed": 0,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.3333333333333333
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.1589111000066623,
+    "inference_s": 0.0025301999994553626,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 1,
+    "temporal": false,
+    "fraction": 0.5,
+    "seed": 1,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.3333333333333333
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.16678639999008738,
+    "inference_s": 0.0024775000056251884,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 1,
+    "temporal": false,
+    "fraction": 0.5,
+    "seed": 2,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.3333333333333333
+      }
+    ],
+    "macro_f1": 0.6638655462184874,
+    "selection_train_s": 0.1550518000149168,
+    "inference_s": 0.0023006999981589615,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 1,
+    "temporal": false,
+    "fraction": 0.75,
+    "seed": 0,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "macro_f1": 0.6666666666666666,
+    "selection_train_s": 0.17670549999456853,
+    "inference_s": 0.0023935000062920153,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-f5827089",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 1,
+    "temporal": false,
+    "fraction": 0.75,
+    "seed": 1,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "macro_f1": 0.4965034965034965,
+    "selection_train_s": 0.17952500001410954,
+    "inference_s": 0.0024317000061273575,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-f5827089",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 1,
+    "temporal": false,
+    "fraction": 0.75,
+    "seed": 2,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "macro_f1": 0.4965034965034965,
+    "selection_train_s": 0.17268920000060461,
+    "inference_s": 0.0024680999922566116,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-f5827089",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 1,
+    "temporal": false,
+    "fraction": 1.0,
+    "seed": 0,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "macro_f1": 0.5851851851851851,
+    "selection_train_s": 0.32707190001383424,
+    "inference_s": 0.002672100003110245,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-f5827089",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-4e7be339",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273",
+      "ids-control-flat-0956f92a"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 1,
+    "temporal": false,
+    "fraction": 1.0,
+    "seed": 1,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "macro_f1": 0.4965034965034965,
+    "selection_train_s": 0.3124418999941554,
+    "inference_s": 0.002282900008140132,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-f5827089",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-4e7be339",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273",
+      "ids-control-flat-0956f92a"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 1,
+    "temporal": false,
+    "fraction": 1.0,
+    "seed": 2,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "macro_f1": 0.5851851851851851,
+    "selection_train_s": 0.31244939999305643,
+    "inference_s": 0.0023247000062838197,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-f5827089",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-4e7be339",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273",
+      "ids-control-flat-0956f92a"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 2,
+    "temporal": false,
+    "fraction": 0.5,
+    "seed": 0,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.888888888888889
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.888888888888889
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.888888888888889
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.1521354999858886,
+    "inference_s": 0.0023281000030692667,
+    "train_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-6bef87b9"
+    ],
+    "validation_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-0956f92a"
+    ]
+  },
+  {
+    "split": 2,
+    "temporal": false,
+    "fraction": 0.5,
+    "seed": 1,
+    "selected_max_iter": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.7037037037037037
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.7714285714285715
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.8321678321678322
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.1528427000157535,
+    "inference_s": 0.0023585000017192215,
+    "train_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-6bef87b9"
+    ],
+    "validation_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-0956f92a"
+    ]
+  },
+  {
+    "split": 2,
+    "temporal": false,
+    "fraction": 0.5,
+    "seed": 2,
+    "selected_max_iter": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.7714285714285715
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.7714285714285715
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.8321678321678322
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.1609269000182394,
+    "inference_s": 0.002320500003406778,
+    "train_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-6bef87b9"
+    ],
+    "validation_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-0956f92a"
+    ]
+  },
+  {
+    "split": 2,
+    "temporal": false,
+    "fraction": 0.75,
+    "seed": 0,
+    "selected_max_iter": 100,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.6638655462184874
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.75
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.75
+      }
+    ],
+    "macro_f1": 0.5,
+    "selection_train_s": 0.17426500000874512,
+    "inference_s": 0.0026957000081893057,
+    "train_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-06169dcc",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-0956f92a"
+    ]
+  },
+  {
+    "split": 2,
+    "temporal": false,
+    "fraction": 0.75,
+    "seed": 1,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.8222222222222223
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.17686829998274334,
+    "inference_s": 0.002581400010967627,
+    "train_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-06169dcc",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-0956f92a"
+    ]
+  },
+  {
+    "split": 2,
+    "temporal": false,
+    "fraction": 0.75,
+    "seed": 2,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.75
+      }
+    ],
+    "macro_f1": 0.5294117647058824,
+    "selection_train_s": 0.17285140001331456,
+    "inference_s": 0.0024255999887827784,
+    "train_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-06169dcc",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-0956f92a"
+    ]
+  },
+  {
+    "split": 2,
+    "temporal": false,
+    "fraction": 1.0,
+    "seed": 0,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.8222222222222223
+      }
+    ],
+    "macro_f1": 0.3333333333333333,
+    "selection_train_s": 0.32798070000717416,
+    "inference_s": 0.002293800003826618,
+    "train_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-burst-238fb57f",
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-4c7c876c"
+    ],
+    "validation_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-0956f92a"
+    ]
+  },
+  {
+    "split": 2,
+    "temporal": false,
+    "fraction": 1.0,
+    "seed": 1,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.8857142857142858
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.75
+      }
+    ],
+    "macro_f1": 0.3333333333333333,
+    "selection_train_s": 0.35258509998675436,
+    "inference_s": 0.0022831000096630305,
+    "train_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-burst-238fb57f",
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-4c7c876c"
+    ],
+    "validation_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-0956f92a"
+    ]
+  },
+  {
+    "split": 2,
+    "temporal": false,
+    "fraction": 1.0,
+    "seed": 2,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.9440559440559441
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.8857142857142858
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.8222222222222223
+      }
+    ],
+    "macro_f1": 0.3333333333333333,
+    "selection_train_s": 0.32796620001317933,
+    "inference_s": 0.0023561999842058867,
+    "train_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-burst-238fb57f",
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-4c7c876c"
+    ],
+    "validation_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-0956f92a"
+    ]
+  },
+  {
+    "split": 3,
+    "temporal": false,
+    "fraction": 0.5,
+    "seed": 0,
+    "selected_max_iter": 100,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3076923076923077
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.3333333333333333
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.15320689999498427,
+    "inference_s": 0.002257100015413016,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-6bef87b9"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 3,
+    "temporal": false,
+    "fraction": 0.5,
+    "seed": 1,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.3333333333333333
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.154046899988316,
+    "inference_s": 0.0022484000073745847,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-6bef87b9"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 3,
+    "temporal": false,
+    "fraction": 0.5,
+    "seed": 2,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.3333333333333333
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.15194239999982528,
+    "inference_s": 0.0024978000146802515,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-6bef87b9"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 3,
+    "temporal": false,
+    "fraction": 0.75,
+    "seed": 0,
+    "selected_max_iter": 100,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5552941176470588
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5294117647058824
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.17469680000795051,
+    "inference_s": 0.0023216000117827207,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-flat-4e7be339",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-0956f92a"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 3,
+    "temporal": false,
+    "fraction": 0.75,
+    "seed": 1,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.1728198000055272,
+    "inference_s": 0.0023385999957099557,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-flat-4e7be339",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-0956f92a"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 3,
+    "temporal": false,
+    "fraction": 0.75,
+    "seed": 2,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5294117647058824
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5294117647058824
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5294117647058824
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.1693962000135798,
+    "inference_s": 0.0023803999938536435,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-flat-4e7be339",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-0956f92a"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 3,
+    "temporal": false,
+    "fraction": 1.0,
+    "seed": 0,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.75
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.75
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.75
+      }
+    ],
+    "macro_f1": 0.3333333333333333,
+    "selection_train_s": 0.31126810002024285,
+    "inference_s": 0.0024102999886963516,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-4e7be339",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-0956f92a",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 3,
+    "temporal": false,
+    "fraction": 1.0,
+    "seed": 1,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.75
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.75
+      }
+    ],
+    "macro_f1": 0.3333333333333333,
+    "selection_train_s": 0.33659419999457896,
+    "inference_s": 0.002288599993335083,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-4e7be339",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-0956f92a",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 3,
+    "temporal": false,
+    "fraction": 1.0,
+    "seed": 2,
+    "selected_max_iter": 100,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.75
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.75
+      }
+    ],
+    "macro_f1": 0.4666666666666666,
+    "selection_train_s": 0.30749029997969046,
+    "inference_s": 0.002556199993705377,
+    "train_runs": [
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-f5827089",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-4e7be339",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-burst-6663d3ca",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-6bef87b9",
+      "ids-control-flat-0956f92a",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-45b11273"
+    ],
+    "test_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 4,
+    "temporal": false,
+    "fraction": 0.5,
+    "seed": 0,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5294117647058824
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5294117647058824
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5294117647058824
+      }
+    ],
+    "macro_f1": 1.0,
+    "selection_train_s": 0.15516170000773855,
+    "inference_s": 0.0024027999897953123,
+    "train_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 4,
+    "temporal": false,
+    "fraction": 0.5,
+    "seed": 1,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5294117647058824
+      }
+    ],
+    "macro_f1": 1.0,
+    "selection_train_s": 0.1533229999768082,
+    "inference_s": 0.0023409000132232904,
+    "train_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 4,
+    "temporal": false,
+    "fraction": 0.5,
+    "seed": 2,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5294117647058824
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5294117647058824
+      }
+    ],
+    "macro_f1": 0.9440559440559442,
+    "selection_train_s": 0.16008490000967868,
+    "inference_s": 0.002372299990383908,
+    "train_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 4,
+    "temporal": false,
+    "fraction": 0.75,
+    "seed": 0,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3846153846153846
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.3846153846153846
+      }
+    ],
+    "macro_f1": 0.75,
+    "selection_train_s": 0.17321770000853576,
+    "inference_s": 0.002402999991318211,
+    "train_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-0956f92a"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 4,
+    "temporal": false,
+    "fraction": 0.75,
+    "seed": 1,
+    "selected_max_iter": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.4965034965034965
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.4666666666666666
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5
+      }
+    ],
+    "macro_f1": 0.8222222222222223,
+    "selection_train_s": 0.17251000000396743,
+    "inference_s": 0.0024018000112846494,
+    "train_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-0956f92a"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 4,
+    "temporal": false,
+    "fraction": 0.75,
+    "seed": 2,
+    "selected_max_iter": 100,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3846153846153846
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.4666666666666666
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.4666666666666666
+      }
+    ],
+    "macro_f1": 0.8222222222222223,
+    "selection_train_s": 0.17350539998733439,
+    "inference_s": 0.0023469000007025898,
+    "train_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-0956f92a"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 4,
+    "temporal": false,
+    "fraction": 1.0,
+    "seed": 0,
+    "selected_max_iter": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3846153846153846
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.4666666666666666
+      }
+    ],
+    "macro_f1": 0.75,
+    "selection_train_s": 0.3083055000170134,
+    "inference_s": 0.002314699988346547,
+    "train_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-0956f92a",
+      "ids-control-flat-45b11273"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 4,
+    "temporal": false,
+    "fraction": 1.0,
+    "seed": 1,
+    "selected_max_iter": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.42857142857142855
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5
+      }
+    ],
+    "macro_f1": 0.8222222222222223,
+    "selection_train_s": 0.3065152000053786,
+    "inference_s": 0.0023517000081483275,
+    "train_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-0956f92a",
+      "ids-control-flat-45b11273"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 4,
+    "temporal": false,
+    "fraction": 1.0,
+    "seed": 2,
+    "selected_max_iter": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3846153846153846
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.4666666666666666
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5
+      }
+    ],
+    "macro_f1": 0.75,
+    "selection_train_s": 0.28657309999107383,
+    "inference_s": 0.0022845000203233212,
+    "train_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-2af272c1",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-0956f92a",
+      "ids-control-flat-45b11273"
+    ],
+    "validation_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 5,
+    "temporal": true,
+    "fraction": 0.5,
+    "seed": 0,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.6638655462184874
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.15469249998568557,
+    "inference_s": 0.002272200013976544,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 5,
+    "temporal": true,
+    "fraction": 0.5,
+    "seed": 1,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.15422679999028333,
+    "inference_s": 0.0023336000158451498,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 5,
+    "temporal": true,
+    "fraction": 0.5,
+    "seed": 2,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "macro_f1": 0.5555555555555555,
+    "selection_train_s": 0.15491179999662563,
+    "inference_s": 0.0022669000027235597,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-burst-3721ff66",
+      "ids-control-flat-4b737e0d"
+    ],
+    "validation_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 5,
+    "temporal": true,
+    "fraction": 0.75,
+    "seed": 0,
+    "selected_max_iter": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5294117647058824
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5294117647058824
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5294117647058824
+      }
+    ],
+    "macro_f1": 0.3333333333333333,
+    "selection_train_s": 0.16778690001228824,
+    "inference_s": 0.0022566999832633883,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273"
+    ],
+    "validation_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 5,
+    "temporal": true,
+    "fraction": 0.75,
+    "seed": 1,
+    "selected_max_iter": 100,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.4666666666666666
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5
+      }
+    ],
+    "macro_f1": 0.3333333333333333,
+    "selection_train_s": 0.17328839999390766,
+    "inference_s": 0.002296799997566268,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273"
+    ],
+    "validation_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 5,
+    "temporal": true,
+    "fraction": 0.75,
+    "seed": 2,
+    "selected_max_iter": 100,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5294117647058824
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5294117647058824
+      }
+    ],
+    "macro_f1": 0.3333333333333333,
+    "selection_train_s": 0.21724920000997372,
+    "inference_s": 0.0064261000079568475,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-5bc920ab",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-c7e68717",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-d7bcec75",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273"
+    ],
+    "validation_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 5,
+    "temporal": true,
+    "fraction": 1.0,
+    "seed": 0,
+    "selected_max_iter": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.7037037037037037
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.7037037037037037
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.7714285714285715
+      }
+    ],
+    "macro_f1": 0.3846153846153846,
+    "selection_train_s": 0.38777690002461895,
+    "inference_s": 0.002405400009592995,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-c7e68717",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273",
+      "ids-control-flat-0956f92a"
+    ],
+    "validation_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 5,
+    "temporal": true,
+    "fraction": 1.0,
+    "seed": 1,
+    "selected_max_iter": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.4444444444444445
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.6571428571428571
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.7037037037037037
+      }
+    ],
+    "macro_f1": 0.3333333333333333,
+    "selection_train_s": 0.3473225000197999,
+    "inference_s": 0.0025305000017397106,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-c7e68717",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273",
+      "ids-control-flat-0956f92a"
+    ],
+    "validation_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4c7c876c"
+    ]
+  },
+  {
+    "split": 5,
+    "temporal": true,
+    "fraction": 1.0,
+    "seed": 2,
+    "selected_max_iter": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5428571428571428
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.6571428571428571
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.7714285714285715
+      }
+    ],
+    "macro_f1": 0.3333333333333333,
+    "selection_train_s": 0.3342656000168063,
+    "inference_s": 0.0022428999945987016,
+    "train_runs": [
+      "ids-control-burst-5c4a2264",
+      "ids-control-burst-5bc920ab",
+      "ids-control-burst-45b2002b",
+      "ids-control-flat-63fcf2f8",
+      "ids-control-flat-c7e68717",
+      "ids-control-flat-4e7be339",
+      "ids-control-burst-3721ff66",
+      "ids-control-burst-d7bcec75",
+      "ids-control-burst-06169dcc",
+      "ids-control-flat-4b737e0d",
+      "ids-control-flat-45b11273",
+      "ids-control-flat-0956f92a"
+    ],
+    "validation_runs": [
+      "ids-control-burst-238fb57f",
+      "ids-control-flat-2af272c1",
+      "ids-control-burst-6663d3ca",
+      "ids-control-flat-6bef87b9"
+    ],
+    "test_runs": [
+      "ids-control-burst-f5827089",
+      "ids-control-flat-7dcb6a66",
+      "ids-control-burst-2f1fd69f",
+      "ids-control-flat-4c7c876c"
+    ]
+  }
+]

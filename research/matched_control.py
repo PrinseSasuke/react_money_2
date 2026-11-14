@@ -124,7 +124,7 @@ def ephemeral_secret(name):
             'type':'Opaque', 'data':{'TOKEN':base64.b64encode(token).decode()}}
 
 
-def run_one(profile, rep):
+def run_one(profile, rep, condition=None):
     name = f'ids-control-{profile}-{uuid.uuid4().hex[:8]}'
     cm, job = manifest(name, profile)
     record = {'run_id':name, 'profile':profile, 'repeat':rep, 'endpoint':ENDPOINT,
@@ -134,6 +134,10 @@ def run_one(profile, rep):
               'collector_script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
               'status':'created', 'created_at_epoch':time.time(), 'queries':series.SERIES,
               'caveat':'Both profiles are synthetic controlled load; profile labels do not establish malicious intent.'}
+    if condition is not None:
+        record['assigned_condition'] = condition
+        record['caveat'] = ('Assigned conditions describe the experimenter intent only; '
+                            'identical requests do not establish a real malicious attack or denial of service.')
     OUT.mkdir(parents=True, exist_ok=True)
     target = OUT / f'{name}.json'
     write_json(target, record)

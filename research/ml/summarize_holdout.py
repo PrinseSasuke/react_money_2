@@ -10,6 +10,15 @@ from holdout_models import OUT
 
 def main():
     metrics=pd.DataFrame(json.loads((OUT/'metrics.json').read_text(encoding='utf8')))
+    selected_path=OUT.parent/'holdout_mlp_validation'/'metrics.json'
+    if selected_path.exists():
+        selected=pd.DataFrame(json.loads(selected_path.read_text(encoding='utf8')))
+        if len(selected)!=5*8*3:
+            raise ValueError('MLP group-validation holdout run is incomplete')
+        selected['model']='mlp'
+        selected['fault_as_attack']=selected.confusion.map(lambda c:c[1][2]/max(1,sum(c[1])))
+        selected['norm_as_attack']=selected.confusion.map(lambda c:c[0][2]/max(1,sum(c[0])))
+        metrics=pd.concat([metrics[metrics.model!='mlp'],selected],ignore_index=True)
     metrics['attack_precision']=metrics.confusion.map(
         lambda c: c[2][2]/max(1,c[0][2]+c[1][2]+c[2][2]))
     per=metrics.groupby(['holdout','model','split'],as_index=False)[
@@ -34,6 +43,9 @@ def main():
       'Исключённый сценарий или семейство отсутствует в train и validation. Test включает его атакующие окна '
       'и независимые тестовые окна нормальной работы и сбоев. Показаны среднее ± std по пяти групповым разделениям '
       'после усреднения трёх seed внутри разделения. Разбиения могут использовать одни и те же прогоны.', '',
+      'Для MLP число итераций выбиралось из 50, 100 и 150 по групповым validation-прогонам без исключённой атаки; '
+      'подробные результаты этого варианта находятся в `holdout_mlp_validation/`. '
+      'Исходные `holdout_results/metrics.json` и `predictions.csv.gz` сохраняют прежний MLP с фиксированным пределом.', '',
       '| Исключено | Random Forest | MLP | Transformer |','|---|---:|---:|---:|']
     for group in groups:
         values=[]
@@ -44,7 +56,8 @@ def main():
     lines += ['', '![Recall исключённых атак](holdout_results/unseen_recall.png)', '',
       'Precision класса атаки и доли `fault → attack` и `norm → attack` доступны в `holdout_results/summary.csv`; '
       'при отсутствии предсказаний класса атаки precision считается равной нулю. '
-      'Матрицы, время работы и все предсказания — в `metrics.json` и `predictions.csv.gz`. '
+      'Матрицы, время работы и предсказания RF и Transformer находятся в `holdout_results/metrics.json` и '
+      '`holdout_results/predictions.csv.gz`, а выбранного MLP — в одноимённых файлах `holdout_mlp_validation/`. '
       'Обучение только на других синтетических сценариях не гарантирует перенос на произвольные реальные атаки.']
     (OUT.parent/'HOLDOUT_RESULTS.md').write_text('\n'.join(lines)+'\n',encoding='utf8')
     print(summary.to_string(index=False))
