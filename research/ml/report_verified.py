@@ -19,6 +19,7 @@ def main():
     prep=json.loads((DATA/'preparation.json').read_text(encoding='utf-8'))
     scores=pd.read_csv(OUT/'macro_f1_by_split.csv')
     predictions=pd.read_csv(OUT/'predictions.csv.gz')
+    bootstrap=json.loads((OUT/'bootstrap.json').read_text(encoding='utf-8'))
     repro_path=OUT/'reproducibility.json'
     repro=json.loads(repro_path.read_text(encoding='utf-8')) if repro_path.exists() else None
     if repro and repro.get('same_keys') and not any(repro.get('different_by_model',{}).values()):
@@ -56,6 +57,9 @@ def main():
             vals.append(f'{row["mean"]:.3f} ± {row["std"]:.3f}')
         lines.append(f'| {model} | '+' | '.join(vals)+' |')
     lines += ['', '![Кривые обучения](verified_results/learning_curves.png)','',
+      f"Для RF на одном фиксированном тестовом разбиении групповой bootstrap по `run_id` даёт 95% перцентильный интервал Macro-F1 "
+      f"[{bootstrap['macro_f1_percentile_95'][0]:.3f}; {bootstrap['macro_f1_percentile_95'][1]:.3f}]. "
+      'В тесте всего четыре прогона; повторная выборка иногда не содержит все классы, поэтому интервал условен и очень груб.', '',
       '## Пара одинаковых 401','',
       'Оба профиля отправляли 10 запросов/с на один `/api/auth/login` к синтетическому адресу `.invalid`. '
       'Профиль ошибки клиента повторял один неверный пароль; профиль имитации перебора менял пароль той же длины. '
