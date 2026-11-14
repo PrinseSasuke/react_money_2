@@ -1,0 +1,44 @@
+{
+  "collection": "paired-flood",
+  "description": "Controlled identical-request negative control; no real DoS established.",
+  "remote": "~/react-money/research/paired-run/evidence/paired-flood/",
+  "run_log_remote": "~/react-money/research/paired-run/paired-flood.log",
+  "code_sha256": {
+    "paired_flood.py": "cbb3d278a21778d4df0395f2ca23876cda08471aa1ca0c3cfc50cb5115d40cbc",
+    "matched_control.py": "35cd261f46f4b1b820656ba1aa9af9fb3859a5bffc2e4057dafeb7b83a7f20ec",
+    "labctl.py": "17168bb25dbd644d7ef565cf1195457523075f0e42ef7701876b57ed1c057b93",
+    "series.py": "53780dd0817a39201ee0e70ba0c2c45c1be6fa5ea5758cc59c5d00e01f04a1dc"
+  },
+  "files": [
+    {
+      "file": "ids-control-flat-0ae0fcdc.json",
+      "bytes": 45048,
+      "sha256": "0136e035f74eaef291bcdeb333a3588d66cfc1f26f44ee95ff8d70386f6cd42f"
+    },
+    {
+      "file": "ids-control-flat-14005c4c.json",
+      "bytes": 44028,
+      "sha256": "005ad5792799b3f0ae193103e65136d64a67beee4863f7952eb5f068e2bb407a"
+    },
+    {
+      "file": "ids-control-flat-cf735480.json",
+      "bytes": 44416,
+      "sha256": "4cbb5ebe9258e47896f7bbc7e810876efe29c750c07b97cf10199d50337e2573"
+    },
+    {
+      "file": "ids-control-flat-fb4627b4.json",
+      "bytes": 44441,
+      "sha256": "5a462cb59a47c67187ce1bdafce0a452dc30bda5a6d1e0349b7c91ee11fb03fb"
+    },
+    {
+      "file": "idle_observations.jsonl",
+      "bytes": 5719,
+      "sha256": "a5a9e521d17c232a5eb1fccbef5796e250e53168a76a1be0edcb95ae65b3fb2c"
+    },
+    {
+      "file": "paired-flood.log",
+      "bytes": 1256,
+      "sha256": "f1da3d679054a7c00ea15bbe294a2b01dcff7739d1490eeb6812839e087ba263"
+    }
+  ]
+}

@@ -26,6 +26,14 @@ def main():
         checked+=1
         if not path.exists() or hashlib.sha256(path.read_bytes()).hexdigest()!=entry['sha256']:
             failures.append(str(path))
+    paired_path=ROOT/'ml'/'paired_flood_manifest.json'
+    if paired_path.exists():
+        paired=json.loads(paired_path.read_text(encoding='utf8'))
+        for entry in paired['files']:
+            path=ROOT/'evidence'/paired['collection']/entry['file']
+            checked+=1
+            if not path.exists() or hashlib.sha256(path.read_bytes()).hexdigest()!=entry['sha256']:
+                failures.append(str(path))
     print(json.dumps({'checked':checked,'failures':failures},ensure_ascii=False))
     if failures: raise SystemExit(1)
 
