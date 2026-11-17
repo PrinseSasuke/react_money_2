@@ -43,7 +43,7 @@ def main():
                 records.append({'window_id':data['run_id']+'#'+str(int(ts)),
                     'run_id':data['run_id'],'scenario':scenario,'class':cls,'window_end':ts})
                 sequences.append(seq)
-            source_runs[data['run_id']]={'scenario':scenario,'class':cls,'path':str(path.relative_to(ROOT)),
+            source_runs[data['run_id']]={'scenario':scenario,'class':cls,'path':path.relative_to(ROOT).as_posix(),
                                          'setup_epoch':start,'n_windows':len(records)-n_before,
                                          'experiment_version':data.get('experiment_version','legacy-v1'),
                                          'workload_script_sha256':data.get('workload_script_sha256')}

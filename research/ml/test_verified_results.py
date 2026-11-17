@@ -1,6 +1,6 @@
 import json
 import unittest
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import pandas as pd
 
 HERE=Path(__file__).resolve().parent
@@ -48,7 +48,7 @@ class VerifiedResultsTest(unittest.TestCase):
         prep=json.loads((DATA/'preparation.json').read_text(encoding='utf8'))
         self.assertEqual(len(prep['runs']),20)
         for run in prep['runs'].values():
-            raw=json.loads((HERE.parent/run['path']).read_text(encoding='utf8'))
+            raw=json.loads((HERE.parent.joinpath(*PureWindowsPath(run['path']).parts)).read_text(encoding='utf8'))
             self.assertEqual(raw['status'],'success')
             self.assertEqual(raw['pod_phase'],'Succeeded')
             self.assertTrue(all(c['state']['terminated']['exitCode']==0 for c in raw['container_statuses']))
