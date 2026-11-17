@@ -1,0 +1,121 @@
+{
+  "data": "research/evidence/verified",
+  "base": "research/ml/verified_proportional",
+  "labels": [
+    "norm",
+    "fault",
+    "attack"
+  ],
+  "groups": {
+    "none": [],
+    "network_io": [
+      "net_rx_bytes",
+      "net_tx_bytes",
+      "open_conns"
+    ],
+    "database": [
+      "pg_up",
+      "pg_tps",
+      "pg_active",
+      "pg_rollbacks"
+    ],
+    "http_network": [
+      "rps_total",
+      "rps_4xx",
+      "rps_5xx",
+      "err_pct",
+      "lat_mean_s",
+      "lat_p95_s",
+      "req_p99_s",
+      "open_conns",
+      "rps_401_403",
+      "net_rx_bytes",
+      "net_tx_bytes"
+    ]
+  },
+  "features_retained": {
+    "none": [
+      "rps_total",
+      "rps_4xx",
+      "rps_5xx",
+      "err_pct",
+      "lat_mean_s",
+      "lat_p95_s",
+      "req_p99_s",
+      "open_conns",
+      "ready_backend",
+      "cpu_cores",
+      "cpu_pct_req",
+      "mem_bytes",
+      "hpa_replicas",
+      "restarts",
+      "pg_up",
+      "pg_tps",
+      "pg_active",
+      "rps_401_403",
+      "net_tx_bytes",
+      "net_rx_bytes",
+      "pg_rollbacks"
+    ],
+    "network_io": [
+      "rps_total",
+      "rps_4xx",
+      "rps_5xx",
+      "err_pct",
+      "lat_mean_s",
+      "lat_p95_s",
+      "req_p99_s",
+      "ready_backend",
+      "cpu_cores",
+      "cpu_pct_req",
+      "mem_bytes",
+      "hpa_replicas",
+      "restarts",
+      "pg_up",
+      "pg_tps",
+      "pg_active",
+      "rps_401_403",
+      "pg_rollbacks"
+    ],
+    "database": [
+      "rps_total",
+      "rps_4xx",
+      "rps_5xx",
+      "err_pct",
+      "lat_mean_s",
+      "lat_p95_s",
+      "req_p99_s",
+      "open_conns",
+      "ready_backend",
+      "cpu_cores",
+      "cpu_pct_req",
+      "mem_bytes",
+      "hpa_replicas",
+      "restarts",
+      "rps_401_403",
+      "net_tx_bytes",
+      "net_rx_bytes"
+    ],
+    "http_network": [
+      "ready_backend",
+      "cpu_cores",
+      "cpu_pct_req",
+      "mem_bytes",
+      "hpa_replicas",
+      "restarts",
+      "pg_up",
+      "pg_tps",
+      "pg_active",
+      "pg_rollbacks"
+    ]
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "epochs_max": 25,
+  "scope": "Exploratory synthetic scenarios; split repetitions share runs.",
+  "warning": "Ablation removes named telemetry inputs, not all information correlated with them.",
+  "selection_metadata": "For MLP selected_epoch_or_limit is the selected iteration cap. For Transformer it is the number of completed training epochs, not the best epoch; the best validation checkpoint is loaded but its epoch is not saved."
+}

@@ -1,0 +1,6542 @@
+[
+  {
+    "split": 0,
+    "ablation": "none",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.5428571428571428,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        3,
+        3
+      ]
+    ],
+    "fault_as_attack": 0.8333333333333334,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.5,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3525119820005784,
+    "inference_seconds": 0.03561493200049881
+  },
+  {
+    "split": 0,
+    "ablation": "none",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.3076923076923077,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        4
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.6666666666666666,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 1.0
+      }
+    ],
+    "train_seconds": 0.3005025780003052,
+    "inference_seconds": 0.0009868570004982757
+  },
+  {
+    "split": 0,
+    "ablation": "none",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 11,
+    "validation_candidates": null,
+    "train_seconds": 1.6426006659994528,
+    "inference_seconds": 0.0011183679998794105
+  },
+  {
+    "split": 0,
+    "ablation": "none",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.5,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        2,
+        4
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.3333333333333333,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.37090677699961816,
+    "inference_seconds": 0.06435496599988255
+  },
+  {
+    "split": 0,
+    "ablation": "none",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.32,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        5
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.8333333333333334,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 100,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.4666666666666666
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.959866220735786
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.959866220735786
+      }
+    ],
+    "train_seconds": 0.29001116099971114,
+    "inference_seconds": 0.0013166480002837488
+  },
+  {
+    "split": 0,
+    "ablation": "none",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.4678362573099415,
+    "confusion": [
+      [
+        7,
+        5,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 8,
+    "validation_candidates": null,
+    "train_seconds": 0.21950939299949823,
+    "inference_seconds": 0.001975740000489168
+  },
+  {
+    "split": 0,
+    "ablation": "none",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.5,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        2,
+        4
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.3333333333333333,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.5649104149997584,
+    "inference_seconds": 0.047709276000205136
+  },
+  {
+    "split": 0,
+    "ablation": "none",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.3846153846153846,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        5,
+        1
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.8333333333333334,
+    "selected_epoch_or_limit": 100,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3846153846153846
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 1.0
+      }
+    ],
+    "train_seconds": 0.297894704999635,
+    "inference_seconds": 0.0015219810002236045
+  },
+  {
+    "split": 0,
+    "ablation": "none",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 8,
+    "validation_candidates": null,
+    "train_seconds": 0.1837336869994033,
+    "inference_seconds": 0.0017945019999388023
+  },
+  {
+    "split": 0,
+    "ablation": "network_io",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.4965034965034965,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        4,
+        2
+      ]
+    ],
+    "fault_as_attack": 0.8333333333333334,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.6666666666666666,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.5215103450000242,
+    "inference_seconds": 0.03742752199923416
+  },
+  {
+    "split": 0,
+    "ablation": "network_io",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.2962962962962963,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        3
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 1.0
+      }
+    ],
+    "train_seconds": 0.28608985200025927,
+    "inference_seconds": 0.000956126999881235
+  },
+  {
+    "split": 0,
+    "ablation": "network_io",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.10036219700032234,
+    "inference_seconds": 0.001068710999788891
+  },
+  {
+    "split": 0,
+    "ablation": "network_io",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.4965034965034965,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        4,
+        2
+      ]
+    ],
+    "fault_as_attack": 0.8333333333333334,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.6666666666666666,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.41733488499994564,
+    "inference_seconds": 0.039375815000312286
+  },
+  {
+    "split": 0,
+    "ablation": "network_io",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.4981684981684982,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        4
+      ],
+      [
+        0,
+        2,
+        4
+      ]
+    ],
+    "fault_as_attack": 0.6666666666666666,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.3333333333333333,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.75
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 1.0
+      }
+    ],
+    "train_seconds": 0.27244181799960643,
+    "inference_seconds": 0.0010191239998675883
+  },
+  {
+    "split": 0,
+    "ablation": "network_io",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 7,
+    "validation_candidates": null,
+    "train_seconds": 0.13591322400043282,
+    "inference_seconds": 0.0012717400004476076
+  },
+  {
+    "split": 0,
+    "ablation": "network_io",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.42857142857142855,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        4,
+        2
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.6666666666666666,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3833161749998908,
+    "inference_seconds": 0.03516927399959968
+  },
+  {
+    "split": 0,
+    "ablation": "network_io",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.3846153846153846,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        5,
+        1
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.8333333333333334,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.4666666666666666
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.9440559440559441
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 1.0
+      }
+    ],
+    "train_seconds": 0.29070377700008976,
+    "inference_seconds": 0.00129394899977342
+  },
+  {
+    "split": 0,
+    "ablation": "network_io",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 15,
+    "validation_candidates": null,
+    "train_seconds": 0.3811200870004541,
+    "inference_seconds": 0.001982374999897729
+  },
+  {
+    "split": 0,
+    "ablation": "database",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.5660822820000249,
+    "inference_seconds": 0.06125603899999987
+  },
+  {
+    "split": 0,
+    "ablation": "database",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.42857142857142855,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        4
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.6666666666666666,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.3333333333333333
+      }
+    ],
+    "train_seconds": 0.2798206900006335,
+    "inference_seconds": 0.0009693270003481302
+  },
+  {
+    "split": 0,
+    "ablation": "database",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.5294117647058824,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        1,
+        5
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.16666666666666666,
+    "selected_epoch_or_limit": 17,
+    "validation_candidates": null,
+    "train_seconds": 0.30319453999982215,
+    "inference_seconds": 0.001148261000707862
+  },
+  {
+    "split": 0,
+    "ablation": "database",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.45915137300016795,
+    "inference_seconds": 0.05169197499981237
+  },
+  {
+    "split": 0,
+    "ablation": "database",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.516078431372549,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        1,
+        5,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.31884057971014496
+      }
+    ],
+    "train_seconds": 0.2994072569999844,
+    "inference_seconds": 0.0011576189999686903
+  },
+  {
+    "split": 0,
+    "ablation": "database",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 8,
+    "validation_candidates": null,
+    "train_seconds": 0.14099347799947282,
+    "inference_seconds": 0.001087777999600803
+  },
+  {
+    "split": 0,
+    "ablation": "database",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.4018922790000943,
+    "inference_seconds": 0.03764877899993735
+  },
+  {
+    "split": 0,
+    "ablation": "database",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.5294117647058824,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        1,
+        5
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.16666666666666666,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "train_seconds": 0.27258855600030074,
+    "inference_seconds": 0.0009603879998394405
+  },
+  {
+    "split": 0,
+    "ablation": "database",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 9,
+    "validation_candidates": null,
+    "train_seconds": 0.20353075599996373,
+    "inference_seconds": 0.0020177850001346087
+  },
+  {
+    "split": 0,
+    "ablation": "http_network",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.4965034965034965,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        4,
+        2
+      ]
+    ],
+    "fault_as_attack": 0.8333333333333334,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.6666666666666666,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.559382058000665,
+    "inference_seconds": 0.05094816499968147
+  },
+  {
+    "split": 0,
+    "ablation": "http_network",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.35978835978835977,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        4,
+        0,
+        2
+      ],
+      [
+        0,
+        5,
+        1
+      ]
+    ],
+    "fault_as_attack": 0.3333333333333333,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.8333333333333334,
+    "selected_epoch_or_limit": 100,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 1.0
+      }
+    ],
+    "train_seconds": 0.2455020119996334,
+    "inference_seconds": 0.0011647430001175962
+  },
+  {
+    "split": 0,
+    "ablation": "http_network",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.2222222222222222,
+    "confusion": [
+      [
+        0,
+        12,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.1100563059999331,
+    "inference_seconds": 0.0011467940003058175
+  },
+  {
+    "split": 0,
+    "ablation": "http_network",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.4965034965034965,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        4,
+        2
+      ]
+    ],
+    "fault_as_attack": 0.8333333333333334,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.6666666666666666,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3809000869996453,
+    "inference_seconds": 0.04859737700007827
+  },
+  {
+    "split": 0,
+    "ablation": "http_network",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.46296296296296297,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        3
+      ],
+      [
+        0,
+        3,
+        3
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.5,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 1.0
+      }
+    ],
+    "train_seconds": 0.2602170099999057,
+    "inference_seconds": 0.0010560000000623404
+  },
+  {
+    "split": 0,
+    "ablation": "http_network",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 7,
+    "validation_candidates": null,
+    "train_seconds": 0.12014369200005603,
+    "inference_seconds": 0.000995518000308948
+  },
+  {
+    "split": 0,
+    "ablation": "http_network",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.4965034965034965,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        4,
+        2
+      ]
+    ],
+    "fault_as_attack": 0.8333333333333334,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.6666666666666666,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3940010529995561,
+    "inference_seconds": 0.06381516400051623
+  },
+  {
+    "split": 0,
+    "ablation": "http_network",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.4166666666666667,
+    "confusion": [
+      [
+        9,
+        3,
+        0
+      ],
+      [
+        3,
+        0,
+        3
+      ],
+      [
+        0,
+        3,
+        3
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.5,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.37894736842105264
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.41952707856598015
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.7777777777777777
+      }
+    ],
+    "train_seconds": 0.2549804520003818,
+    "inference_seconds": 0.0011071239996454096
+  },
+  {
+    "split": 0,
+    "ablation": "http_network",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.11190528400038602,
+    "inference_seconds": 0.001043707999997423
+  },
+  {
+    "split": 1,
+    "ablation": "none",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.5851851851851851,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        4,
+        2
+      ],
+      [
+        0,
+        5,
+        1
+      ]
+    ],
+    "fault_as_attack": 0.3333333333333333,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.8333333333333334,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.45994337299998733,
+    "inference_seconds": 0.06398739199994452
+  },
+  {
+    "split": 1,
+    "ablation": "none",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.5851851851851851,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        4,
+        2
+      ],
+      [
+        0,
+        5,
+        1
+      ]
+    ],
+    "fault_as_attack": 0.3333333333333333,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.8333333333333334,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "train_seconds": 0.39178980799988494,
+    "inference_seconds": 0.0019180509998477646
+  },
+  {
+    "split": 1,
+    "ablation": "none",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.11979776699990907,
+    "inference_seconds": 0.001668159000473679
+  },
+  {
+    "split": 1,
+    "ablation": "none",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.4666666666666666,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        3
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.4409533889993327,
+    "inference_seconds": 0.04127060900009383
+  },
+  {
+    "split": 1,
+    "ablation": "none",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.4965034965034965,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        4
+      ],
+      [
+        0,
+        5,
+        1
+      ]
+    ],
+    "fault_as_attack": 0.6666666666666666,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.8333333333333334,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "train_seconds": 0.3091733720002594,
+    "inference_seconds": 0.0013782480000372743
+  },
+  {
+    "split": 1,
+    "ablation": "none",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 8,
+    "validation_candidates": null,
+    "train_seconds": 0.24026796699945407,
+    "inference_seconds": 0.0020552189998852555
+  },
+  {
+    "split": 1,
+    "ablation": "none",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.5294117647058824,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        5,
+        1
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.16666666666666666,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.566256465999686,
+    "inference_seconds": 0.04111353600001166
+  },
+  {
+    "split": 1,
+    "ablation": "none",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.5851851851851851,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        4,
+        2
+      ],
+      [
+        0,
+        5,
+        1
+      ]
+    ],
+    "fault_as_attack": 0.3333333333333333,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.8333333333333334,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "train_seconds": 0.2858519030005482,
+    "inference_seconds": 0.001078769000741886
+  },
+  {
+    "split": 1,
+    "ablation": "none",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.10482316899924626,
+    "inference_seconds": 0.001069619000190869
+  },
+  {
+    "split": 1,
+    "ablation": "network_io",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.38241026400010014,
+    "inference_seconds": 0.050370996999845374
+  },
+  {
+    "split": 1,
+    "ablation": "network_io",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.6083916083916084,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        3
+      ],
+      [
+        0,
+        4,
+        2
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.6666666666666666,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.75
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "train_seconds": 0.2866510260000723,
+    "inference_seconds": 0.001035676000356034
+  },
+  {
+    "split": 1,
+    "ablation": "network_io",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.4444444444444444,
+    "confusion": [
+      [
+        6,
+        6,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.11934268200002407,
+    "inference_seconds": 0.001316158000008727
+  },
+  {
+    "split": 1,
+    "ablation": "network_io",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.9440559440559442,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        5,
+        1
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 0.16666666666666666,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.35995168299996294,
+    "inference_seconds": 0.05346608299987565
+  },
+  {
+    "split": 1,
+    "ablation": "network_io",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.5428571428571428,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        3
+      ],
+      [
+        0,
+        5,
+        1
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.8333333333333334,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "train_seconds": 0.2631497859993033,
+    "inference_seconds": 0.0011373649995221058
+  },
+  {
+    "split": 1,
+    "ablation": "network_io",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.11654749399986031,
+    "inference_seconds": 0.001078348999726586
+  },
+  {
+    "split": 1,
+    "ablation": "network_io",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 1.0,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3951068500000474,
+    "inference_seconds": 0.04051841799991962
+  },
+  {
+    "split": 1,
+    "ablation": "network_io",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.7037037037037036,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        5,
+        1
+      ],
+      [
+        0,
+        4,
+        2
+      ]
+    ],
+    "fault_as_attack": 0.16666666666666666,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.6666666666666666,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "train_seconds": 0.2642914809994181,
+    "inference_seconds": 0.0009983120007746038
+  },
+  {
+    "split": 1,
+    "ablation": "network_io",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.4444444444444444,
+    "confusion": [
+      [
+        6,
+        6,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 7,
+    "validation_candidates": null,
+    "train_seconds": 0.13000102000023617,
+    "inference_seconds": 0.00125518699951499
+  },
+  {
+    "split": 1,
+    "ablation": "database",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.4666666666666666,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        3
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.376273380999919,
+    "inference_seconds": 0.048166247999688494
+  },
+  {
+    "split": 1,
+    "ablation": "database",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3846153846153846
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.3333333333333333
+      }
+    ],
+    "train_seconds": 0.27307059899976593,
+    "inference_seconds": 0.0009784060002857586
+  },
+  {
+    "split": 1,
+    "ablation": "database",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.11125610900035099,
+    "inference_seconds": 0.001221663000251283
+  },
+  {
+    "split": 1,
+    "ablation": "database",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.4666666666666666,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        3
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.38716408100026456,
+    "inference_seconds": 0.03838078599983419
+  },
+  {
+    "split": 1,
+    "ablation": "database",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.625,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        5,
+        1
+      ],
+      [
+        0,
+        5,
+        1
+      ]
+    ],
+    "fault_as_attack": 0.16666666666666666,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.8333333333333334,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.42857142857142855
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.3333333333333333
+      }
+    ],
+    "train_seconds": 0.27260748200023954,
+    "inference_seconds": 0.0012116759999116766
+  },
+  {
+    "split": 1,
+    "ablation": "database",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 8,
+    "validation_candidates": null,
+    "train_seconds": 0.14700360000006185,
+    "inference_seconds": 0.0011534989998835954
+  },
+  {
+    "split": 1,
+    "ablation": "database",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.4666666666666666,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        3
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.4231665620000058,
+    "inference_seconds": 0.04946501599988551
+  },
+  {
+    "split": 1,
+    "ablation": "database",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.3333333333333333
+      }
+    ],
+    "train_seconds": 0.28079427699958615,
+    "inference_seconds": 0.001163904999884835
+  },
+  {
+    "split": 1,
+    "ablation": "database",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 7,
+    "validation_candidates": null,
+    "train_seconds": 0.12880687399956514,
+    "inference_seconds": 0.001170120999631763
+  },
+  {
+    "split": 1,
+    "ablation": "http_network",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 1.0,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3536526990001221,
+    "inference_seconds": 0.04876388000047882
+  },
+  {
+    "split": 1,
+    "ablation": "http_network",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.6083916083916084,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        3
+      ],
+      [
+        0,
+        4,
+        2
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.6666666666666666,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.6638655462184874
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "train_seconds": 0.2660741790004977,
+    "inference_seconds": 0.0011160639996887767
+  },
+  {
+    "split": 1,
+    "ablation": "http_network",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.2222222222222222,
+    "confusion": [
+      [
+        0,
+        12,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.10622306799996295,
+    "inference_seconds": 0.0010328130001653335
+  },
+  {
+    "split": 1,
+    "ablation": "http_network",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 1.0,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.43228441100018244,
+    "inference_seconds": 0.061206381999909354
+  },
+  {
+    "split": 1,
+    "ablation": "http_network",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.5428571428571428,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        3,
+        3
+      ]
+    ],
+    "fault_as_attack": 0.8333333333333334,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.5,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.6638655462184874
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "train_seconds": 0.2523977199998626,
+    "inference_seconds": 0.0009732379994602525
+  },
+  {
+    "split": 1,
+    "ablation": "http_network",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 7,
+    "validation_candidates": null,
+    "train_seconds": 0.13611527400007617,
+    "inference_seconds": 0.0011052380004912266
+  },
+  {
+    "split": 1,
+    "ablation": "http_network",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 1.0,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3770449869998629,
+    "inference_seconds": 0.03733135100083018
+  },
+  {
+    "split": 1,
+    "ablation": "http_network",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        4
+      ],
+      [
+        0,
+        4,
+        2
+      ]
+    ],
+    "fault_as_attack": 0.6666666666666666,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.6666666666666666,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.75
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "train_seconds": 0.2617895570001565,
+    "inference_seconds": 0.0010909910006375867
+  },
+  {
+    "split": 1,
+    "ablation": "http_network",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 11,
+    "validation_candidates": null,
+    "train_seconds": 0.18526174399994488,
+    "inference_seconds": 0.001995644000089669
+  },
+  {
+    "split": 2,
+    "ablation": "none",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.33913590900010604,
+    "inference_seconds": 0.03987399200013897
+  },
+  {
+    "split": 2,
+    "ablation": "none",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.8222222222222223
+      }
+    ],
+    "train_seconds": 0.2843872610001199,
+    "inference_seconds": 0.0012059499995302758
+  },
+  {
+    "split": 2,
+    "ablation": "none",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.5293668954996186,
+    "confusion": [
+      [
+        11,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.08333333333333333,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.11927975500020693,
+    "inference_seconds": 0.001233396999850811
+  },
+  {
+    "split": 2,
+    "ablation": "none",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3507040699996651,
+    "inference_seconds": 0.04194709100011096
+  },
+  {
+    "split": 2,
+    "ablation": "none",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.8857142857142858
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.75
+      }
+    ],
+    "train_seconds": 0.29924641300021904,
+    "inference_seconds": 0.0010640319997037295
+  },
+  {
+    "split": 2,
+    "ablation": "none",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5135566188197767,
+    "confusion": [
+      [
+        10,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.08333333333333333,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 9,
+    "validation_candidates": null,
+    "train_seconds": 0.15228925700012041,
+    "inference_seconds": 0.0011269589995208662
+  },
+  {
+    "split": 2,
+    "ablation": "none",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.36694349400022475,
+    "inference_seconds": 0.038671326000439876
+  },
+  {
+    "split": 2,
+    "ablation": "none",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.9440559440559441
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.8857142857142858
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.8222222222222223
+      }
+    ],
+    "train_seconds": 0.3241925300008006,
+    "inference_seconds": 0.0012929709992022254
+  },
+  {
+    "split": 2,
+    "ablation": "none",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.5293668954996186,
+    "confusion": [
+      [
+        11,
+        1,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.11133803299981082,
+    "inference_seconds": 0.0011752190002880525
+  },
+  {
+    "split": 2,
+    "ablation": "network_io",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.5294117647058824,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        1,
+        5
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.16666666666666666,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.37191877700024634,
+    "inference_seconds": 0.050426799999513605
+  },
+  {
+    "split": 2,
+    "ablation": "network_io",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.8857142857142858
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.8857142857142858
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.8222222222222223
+      }
+    ],
+    "train_seconds": 0.2809551909995207,
+    "inference_seconds": 0.0012661519995162962
+  },
+  {
+    "split": 2,
+    "ablation": "network_io",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 7,
+    "validation_candidates": null,
+    "train_seconds": 0.124721089000559,
+    "inference_seconds": 0.0011270280001554056
+  },
+  {
+    "split": 2,
+    "ablation": "network_io",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.399998322999636,
+    "inference_seconds": 0.04852013399977295
+  },
+  {
+    "split": 2,
+    "ablation": "network_io",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 100,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.6638655462184874
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.8222222222222223
+      }
+    ],
+    "train_seconds": 0.30066523799996503,
+    "inference_seconds": 0.0012078350000592764
+  },
+  {
+    "split": 2,
+    "ablation": "network_io",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.11159916999986308,
+    "inference_seconds": 0.0010900830002356088
+  },
+  {
+    "split": 2,
+    "ablation": "network_io",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.4551976579996335,
+    "inference_seconds": 0.05979733399999532
+  },
+  {
+    "split": 2,
+    "ablation": "network_io",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.888888888888889
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.8857142857142858
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.75
+      }
+    ],
+    "train_seconds": 0.3244711269999243,
+    "inference_seconds": 0.0011406479998186114
+  },
+  {
+    "split": 2,
+    "ablation": "network_io",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.4361616161616162,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        1,
+        4,
+        1
+      ]
+    ],
+    "fault_as_attack": 0.8333333333333334,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.6666666666666666,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.10282088900021336,
+    "inference_seconds": 0.0013124580000294372
+  },
+  {
+    "split": 2,
+    "ablation": "database",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.36278570299964485,
+    "inference_seconds": 0.05464472400035447
+  },
+  {
+    "split": 2,
+    "ablation": "database",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.42857142857142855,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        4,
+        2
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.6666666666666666,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3846153846153846
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.4666666666666666
+      }
+    ],
+    "train_seconds": 0.2984312250000585,
+    "inference_seconds": 0.001006342999971821
+  },
+  {
+    "split": 2,
+    "ablation": "database",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.5410628019323672,
+    "confusion": [
+      [
+        11,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.11100356400038436,
+    "inference_seconds": 0.0011951240003327257
+  },
+  {
+    "split": 2,
+    "ablation": "database",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.5294117647058824,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        1,
+        5
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.16666666666666666,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3809862010002689,
+    "inference_seconds": 0.05045096499998181
+  },
+  {
+    "split": 2,
+    "ablation": "database",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.31884057971014496,
+    "confusion": [
+      [
+        11,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3846153846153846
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.3333333333333333
+      }
+    ],
+    "train_seconds": 0.28382084900022164,
+    "inference_seconds": 0.0009930029991664924
+  },
+  {
+    "split": 2,
+    "ablation": "database",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 9,
+    "validation_candidates": null,
+    "train_seconds": 0.16640809100044862,
+    "inference_seconds": 0.0010011049998865929
+  },
+  {
+    "split": 2,
+    "ablation": "database",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.3846153846153846,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        5,
+        1
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.8333333333333334,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3881908180001119,
+    "inference_seconds": 0.07916027099963685
+  },
+  {
+    "split": 2,
+    "ablation": "database",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.4140786749482402,
+    "confusion": [
+      [
+        11,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        4,
+        2
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.6666666666666666,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.3846153846153846
+      }
+    ],
+    "train_seconds": 0.32965181300005497,
+    "inference_seconds": 0.0009893020005620201
+  },
+  {
+    "split": 2,
+    "ablation": "database",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.5293668954996186,
+    "confusion": [
+      [
+        11,
+        1,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 7,
+    "validation_candidates": null,
+    "train_seconds": 0.13352150900027482,
+    "inference_seconds": 0.0010725519996412913
+  },
+  {
+    "split": 2,
+    "ablation": "http_network",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.5,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        2,
+        4
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.3333333333333333,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.34904156799984776,
+    "inference_seconds": 0.06147562000023754
+  },
+  {
+    "split": 2,
+    "ablation": "http_network",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.9440559440559441
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.9440559440559441
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.9440559440559441
+      }
+    ],
+    "train_seconds": 0.24827876200015453,
+    "inference_seconds": 0.0011340820001350949
+  },
+  {
+    "split": 2,
+    "ablation": "http_network",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.2222222222222222,
+    "confusion": [
+      [
+        0,
+        12,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.11451874500016856,
+    "inference_seconds": 0.001200781000079587
+  },
+  {
+    "split": 2,
+    "ablation": "http_network",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.5294117647058824,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        1,
+        5
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.16666666666666666,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.37638750200039794,
+    "inference_seconds": 0.03904546499961725
+  },
+  {
+    "split": 2,
+    "ablation": "http_network",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.9440559440559441
+      }
+    ],
+    "train_seconds": 0.2351747909997357,
+    "inference_seconds": 0.0011440700000093784
+  },
+  {
+    "split": 2,
+    "ablation": "http_network",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 7,
+    "validation_candidates": null,
+    "train_seconds": 0.13050024500080326,
+    "inference_seconds": 0.0010942729995804257
+  },
+  {
+    "split": 2,
+    "ablation": "http_network",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3687617420000606,
+    "inference_seconds": 0.05062228599945229
+  },
+  {
+    "split": 2,
+    "ablation": "http_network",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.9440559440559441
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.9440559440559441
+      }
+    ],
+    "train_seconds": 0.2531760319998284,
+    "inference_seconds": 0.0011709589998645242
+  },
+  {
+    "split": 2,
+    "ablation": "http_network",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.5294117647058824,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        5,
+        1
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.16666666666666666,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 12,
+    "validation_candidates": null,
+    "train_seconds": 0.19507381600033114,
+    "inference_seconds": 0.0010654289999365574
+  },
+  {
+    "split": 3,
+    "ablation": "none",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3617377350001334,
+    "inference_seconds": 0.058965733999684744
+  },
+  {
+    "split": 3,
+    "ablation": "none",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.75
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.75
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.75
+      }
+    ],
+    "train_seconds": 0.3280375720005395,
+    "inference_seconds": 0.0013280319999466883
+  },
+  {
+    "split": 3,
+    "ablation": "none",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.11465032500018424,
+    "inference_seconds": 0.0011000000004059984
+  },
+  {
+    "split": 3,
+    "ablation": "none",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.34965100299996266,
+    "inference_seconds": 0.04991716800032009
+  },
+  {
+    "split": 3,
+    "ablation": "none",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.75
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.75
+      }
+    ],
+    "train_seconds": 0.3130026999997426,
+    "inference_seconds": 0.001309524000134843
+  },
+  {
+    "split": 3,
+    "ablation": "none",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 9,
+    "validation_candidates": null,
+    "train_seconds": 0.16054372800044803,
+    "inference_seconds": 0.001384323999445769
+  },
+  {
+    "split": 3,
+    "ablation": "none",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3717343959997379,
+    "inference_seconds": 0.04881165099959617
+  },
+  {
+    "split": 3,
+    "ablation": "none",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.4666666666666666,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        3,
+        3
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.5,
+    "selected_epoch_or_limit": 100,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.75
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.75
+      }
+    ],
+    "train_seconds": 0.3469267749997016,
+    "inference_seconds": 0.0014373330004673335
+  },
+  {
+    "split": 3,
+    "ablation": "none",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.14382700899932388,
+    "inference_seconds": 0.001327124000454205
+  },
+  {
+    "split": 3,
+    "ablation": "network_io",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.39830041200002597,
+    "inference_seconds": 0.051588330999948084
+  },
+  {
+    "split": 3,
+    "ablation": "network_io",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.8222222222222223
+      }
+    ],
+    "train_seconds": 0.28635063899946545,
+    "inference_seconds": 0.001154895000581746
+  },
+  {
+    "split": 3,
+    "ablation": "network_io",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 7,
+    "validation_candidates": null,
+    "train_seconds": 0.12285220600006141,
+    "inference_seconds": 0.0012025969999740482
+  },
+  {
+    "split": 3,
+    "ablation": "network_io",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.4172132910007349,
+    "inference_seconds": 0.04032439799993881
+  },
+  {
+    "split": 3,
+    "ablation": "network_io",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.42857142857142855,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        4,
+        2
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.6666666666666666,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.75
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.75
+      }
+    ],
+    "train_seconds": 0.30250904800050193,
+    "inference_seconds": 0.0015338550001615658
+  },
+  {
+    "split": 3,
+    "ablation": "network_io",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.10801198199987994,
+    "inference_seconds": 0.001374407000184874
+  },
+  {
+    "split": 3,
+    "ablation": "network_io",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.369086714000332,
+    "inference_seconds": 0.06435119599973405
+  },
+  {
+    "split": 3,
+    "ablation": "network_io",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.75
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.75
+      }
+    ],
+    "train_seconds": 0.3020794539997951,
+    "inference_seconds": 0.001252812000529957
+  },
+  {
+    "split": 3,
+    "ablation": "network_io",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.4444444444444444,
+    "confusion": [
+      [
+        6,
+        6,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 7,
+    "validation_candidates": null,
+    "train_seconds": 0.14116954799919768,
+    "inference_seconds": 0.0011534290006238734
+  },
+  {
+    "split": 3,
+    "ablation": "database",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3768032670004686,
+    "inference_seconds": 0.04910728899994865
+  },
+  {
+    "split": 3,
+    "ablation": "database",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.4666666666666666
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5294117647058824
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "train_seconds": 0.284408004999932,
+    "inference_seconds": 0.00124191799932305
+  },
+  {
+    "split": 3,
+    "ablation": "database",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.11136443299983512,
+    "inference_seconds": 0.0011296829998173052
+  },
+  {
+    "split": 3,
+    "ablation": "database",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.362440826999773,
+    "inference_seconds": 0.05032511100034753
+  },
+  {
+    "split": 3,
+    "ablation": "database",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.4666666666666666,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        3,
+        3
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.5,
+    "selected_epoch_or_limit": 100,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.5294117647058824
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5555555555555555
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "train_seconds": 0.25933980399986467,
+    "inference_seconds": 0.0012082550001650816
+  },
+  {
+    "split": 3,
+    "ablation": "database",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 8,
+    "validation_candidates": null,
+    "train_seconds": 0.17928626399952918,
+    "inference_seconds": 0.0015342730002885219
+  },
+  {
+    "split": 3,
+    "ablation": "database",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3305403340000339,
+    "inference_seconds": 0.03765164299966273
+  },
+  {
+    "split": 3,
+    "ablation": "database",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.4666666666666666
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.5
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5294117647058824
+      }
+    ],
+    "train_seconds": 0.3073163620001651,
+    "inference_seconds": 0.0012087430004612543
+  },
+  {
+    "split": 3,
+    "ablation": "database",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 7,
+    "validation_candidates": null,
+    "train_seconds": 0.12692206599967903,
+    "inference_seconds": 0.0012944379996042699
+  },
+  {
+    "split": 3,
+    "ablation": "http_network",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.36210063099952094,
+    "inference_seconds": 0.04037684999912017
+  },
+  {
+    "split": 3,
+    "ablation": "http_network",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.42857142857142855,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        4,
+        2
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.6666666666666666,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.75
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.7037037037037037
+      }
+    ],
+    "train_seconds": 0.23916789699978835,
+    "inference_seconds": 0.0011998039999525645
+  },
+  {
+    "split": 3,
+    "ablation": "http_network",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.2222222222222222,
+    "confusion": [
+      [
+        0,
+        12,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.1061801160003597,
+    "inference_seconds": 0.0010678030002964078
+  },
+  {
+    "split": 3,
+    "ablation": "http_network",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.38045345099999395,
+    "inference_seconds": 0.051731714000197826
+  },
+  {
+    "split": 3,
+    "ablation": "http_network",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.3846153846153846,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        5,
+        1
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.8333333333333334,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.7714285714285715
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.7037037037037037
+      }
+    ],
+    "train_seconds": 0.30299067300074967,
+    "inference_seconds": 0.0014595430002373178
+  },
+  {
+    "split": 3,
+    "ablation": "http_network",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 7,
+    "validation_candidates": null,
+    "train_seconds": 0.12079000199992151,
+    "inference_seconds": 0.0012172639999334933
+  },
+  {
+    "split": 3,
+    "ablation": "http_network",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.3333333333333333,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.44111577100011345,
+    "inference_seconds": 0.062440756999421865
+  },
+  {
+    "split": 3,
+    "ablation": "http_network",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.3846153846153846,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        5,
+        1
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.8333333333333334,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 1.0
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.8222222222222223
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.7714285714285715
+      }
+    ],
+    "train_seconds": 0.3463363360006042,
+    "inference_seconds": 0.0009623429996281629
+  },
+  {
+    "split": 3,
+    "ablation": "http_network",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 10,
+    "validation_candidates": null,
+    "train_seconds": 0.16928031299994473,
+    "inference_seconds": 0.001426507999894966
+  },
+  {
+    "split": 4,
+    "ablation": "none",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.4233448659997521,
+    "inference_seconds": 0.050111257000025944
+  },
+  {
+    "split": 4,
+    "ablation": "none",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.75,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        4
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 0.6666666666666666,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3846153846153846
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.4666666666666666
+      }
+    ],
+    "train_seconds": 0.46368092900047486,
+    "inference_seconds": 0.0032711560006646323
+  },
+  {
+    "split": 4,
+    "ablation": "none",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.16769673300041177,
+    "inference_seconds": 0.001992710999729752
+  },
+  {
+    "split": 4,
+    "ablation": "none",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.4274496479993104,
+    "inference_seconds": 0.06434553799954301
+  },
+  {
+    "split": 4,
+    "ablation": "none",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.8222222222222223,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        3
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.42857142857142855
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5
+      }
+    ],
+    "train_seconds": 0.3428826150002351,
+    "inference_seconds": 0.0011232569995627273
+  },
+  {
+    "split": 4,
+    "ablation": "none",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 8,
+    "validation_candidates": null,
+    "train_seconds": 0.14533662800022285,
+    "inference_seconds": 0.0010484570002518012
+  },
+  {
+    "split": 4,
+    "ablation": "none",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.4666666666666666,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        3
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.35431458499988366,
+    "inference_seconds": 0.040918118999798025
+  },
+  {
+    "split": 4,
+    "ablation": "none",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.75,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        4
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 0.6666666666666666,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3846153846153846
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.4666666666666666
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5
+      }
+    ],
+    "train_seconds": 0.3502727300001425,
+    "inference_seconds": 0.001359740000225429
+  },
+  {
+    "split": 4,
+    "ablation": "none",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.10980040800041024,
+    "inference_seconds": 0.0016265340000245487
+  },
+  {
+    "split": 4,
+    "ablation": "network_io",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.438952576999327,
+    "inference_seconds": 0.03854644900002313
+  },
+  {
+    "split": 4,
+    "ablation": "network_io",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.8222222222222223,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        3
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.42857142857142855
+      }
+    ],
+    "train_seconds": 0.3450882030001594,
+    "inference_seconds": 0.0014080000000831205
+  },
+  {
+    "split": 4,
+    "ablation": "network_io",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.4444444444444444,
+    "confusion": [
+      [
+        6,
+        6,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.11880895499962207,
+    "inference_seconds": 0.0011312189999443945
+  },
+  {
+    "split": 4,
+    "ablation": "network_io",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.4198002120001547,
+    "inference_seconds": 0.03762091299995518
+  },
+  {
+    "split": 4,
+    "ablation": "network_io",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.75,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        4
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 0.6666666666666666,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.42857142857142855
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.42857142857142855
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.4666666666666666
+      }
+    ],
+    "train_seconds": 0.3135997730005329,
+    "inference_seconds": 0.0010934349993476644
+  },
+  {
+    "split": 4,
+    "ablation": "network_io",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.11646612900040054,
+    "inference_seconds": 0.0012025969999740482
+  },
+  {
+    "split": 4,
+    "ablation": "network_io",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.44646428499981994,
+    "inference_seconds": 0.06050000800041744
+  },
+  {
+    "split": 4,
+    "ablation": "network_io",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.75,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        4
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 0.6666666666666666,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.42857142857142855
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.4666666666666666
+      }
+    ],
+    "train_seconds": 0.29307551700003387,
+    "inference_seconds": 0.0013275430001158384
+  },
+  {
+    "split": 4,
+    "ablation": "network_io",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.4444444444444444,
+    "confusion": [
+      [
+        6,
+        6,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 7,
+    "validation_candidates": null,
+    "train_seconds": 0.13274277900018205,
+    "inference_seconds": 0.0013167180004529655
+  },
+  {
+    "split": 4,
+    "ablation": "database",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.39744255200002954,
+    "inference_seconds": 0.049675936000312504
+  },
+  {
+    "split": 4,
+    "ablation": "database",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.42857142857142855
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "train_seconds": 0.30918098500023916,
+    "inference_seconds": 0.0010791880004035193
+  },
+  {
+    "split": 4,
+    "ablation": "database",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.11476053499973204,
+    "inference_seconds": 0.0017003550001390977
+  },
+  {
+    "split": 4,
+    "ablation": "database",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.5,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        4,
+        2
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.3333333333333333,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.4334241509995991,
+    "inference_seconds": 0.03958533799959696
+  },
+  {
+    "split": 4,
+    "ablation": "database",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.42857142857142855
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "train_seconds": 0.29665655799999513,
+    "inference_seconds": 0.0018153139999412815
+  },
+  {
+    "split": 4,
+    "ablation": "database",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 8,
+    "validation_candidates": null,
+    "train_seconds": 0.1591608010003256,
+    "inference_seconds": 0.001214050000271527
+  },
+  {
+    "split": 4,
+    "ablation": "database",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3607735760006108,
+    "inference_seconds": 0.04880410799978563
+  },
+  {
+    "split": 4,
+    "ablation": "database",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.5294117647058824,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        1,
+        5
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.16666666666666666,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.3333333333333333
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.5555555555555555
+      }
+    ],
+    "train_seconds": 0.3013816000002407,
+    "inference_seconds": 0.0010337909998270334
+  },
+  {
+    "split": 4,
+    "ablation": "database",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": 7,
+    "validation_candidates": null,
+    "train_seconds": 0.14581797499977256,
+    "inference_seconds": 0.0011610419996941346
+  },
+  {
+    "split": 4,
+    "ablation": "http_network",
+    "seed": 0,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.3980264250003529,
+    "inference_seconds": 0.05054043200016167
+  },
+  {
+    "split": 4,
+    "ablation": "http_network",
+    "seed": 0,
+    "model": "mlp",
+    "macro_f1": 0.75,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        4
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 0.6666666666666666,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 150,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.42857142857142855
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.42857142857142855
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.4666666666666666
+      }
+    ],
+    "train_seconds": 0.2599818550006603,
+    "inference_seconds": 0.0011103360002380214
+  },
+  {
+    "split": 4,
+    "ablation": "http_network",
+    "seed": 0,
+    "model": "transformer",
+    "macro_f1": 0.2222222222222222,
+    "confusion": [
+      [
+        0,
+        12,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 6,
+    "validation_candidates": null,
+    "train_seconds": 0.13008622599954833,
+    "inference_seconds": 0.001170540000202891
+  },
+  {
+    "split": 4,
+    "ablation": "http_network",
+    "seed": 1,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.39970555000036256,
+    "inference_seconds": 0.03949398600070708
+  },
+  {
+    "split": 4,
+    "ablation": "http_network",
+    "seed": 1,
+    "model": "mlp",
+    "macro_f1": 0.8222222222222223,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        3
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.42857142857142855
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.42857142857142855
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.42857142857142855
+      }
+    ],
+    "train_seconds": 0.23377154099944164,
+    "inference_seconds": 0.001207416000397643
+  },
+  {
+    "split": 4,
+    "ablation": "http_network",
+    "seed": 1,
+    "model": "transformer",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 1.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 7,
+    "validation_candidates": null,
+    "train_seconds": 0.11859049099984986,
+    "inference_seconds": 0.0012139810005464824
+  },
+  {
+    "split": 4,
+    "ablation": "http_network",
+    "seed": 2,
+    "model": "rf",
+    "macro_f1": 0.5555555555555555,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        6,
+        0
+      ]
+    ],
+    "fault_as_attack": 0.0,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 1.0,
+    "selected_epoch_or_limit": null,
+    "validation_candidates": null,
+    "train_seconds": 0.36576548100038053,
+    "inference_seconds": 0.04703363199951127
+  },
+  {
+    "split": 4,
+    "ablation": "http_network",
+    "seed": 2,
+    "model": "mlp",
+    "macro_f1": 0.7714285714285715,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        3
+      ],
+      [
+        0,
+        1,
+        5
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.16666666666666666,
+    "selected_epoch_or_limit": 50,
+    "validation_candidates": [
+      {
+        "max_iter": 50,
+        "actual_iterations": 50,
+        "validation_macro_f1": 0.42857142857142855
+      },
+      {
+        "max_iter": 100,
+        "actual_iterations": 100,
+        "validation_macro_f1": 0.42857142857142855
+      },
+      {
+        "max_iter": 150,
+        "actual_iterations": 150,
+        "validation_macro_f1": 0.42857142857142855
+      }
+    ],
+    "train_seconds": 0.2660846559992933,
+    "inference_seconds": 0.0015329460002249107
+  },
+  {
+    "split": 4,
+    "ablation": "http_network",
+    "seed": 2,
+    "model": "transformer",
+    "macro_f1": 0.8222222222222223,
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        3
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fault_as_attack": 0.5,
+    "norm_as_attack": 0.0,
+    "attack_as_fault": 0.0,
+    "selected_epoch_or_limit": 9,
+    "validation_candidates": null,
+    "train_seconds": 0.1675160530003268,
+    "inference_seconds": 0.001030369000545761
+  }
+]
