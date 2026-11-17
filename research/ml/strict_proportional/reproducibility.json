@@ -1,0 +1,24 @@
+{
+  "same_keys": true,
+  "total_rows": 40896,
+  "different_by_model": {
+    "mlp": 0,
+    "rf": 0,
+    "rules": 0,
+    "transformer": 0
+  },
+  "rows_by_model": {
+    "mlp": 10224,
+    "rf": 10224,
+    "rules": 10224,
+    "transformer": 10224
+  },
+  "scope": "Two runs on Aspire Linux using identical saved data, splits and seeds; timing excluded; not a guarantee across arbitrary hardware.",
+  "aspire": {
+    "system": "Linux-6.8.0-149-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "torch": "2.15.0+cpu",
+    "scikit_learn": "1.9.1",
+    "numpy": "2.5.4"
+  }
+}

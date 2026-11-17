@@ -19,6 +19,8 @@
 
 Составы разделений и подвыборок, параметры, матрицы, предсказания и времена находятся в `strict_proportional/`. Протокол проверен тестом `test_proportional_results.py`: совпадение тестовых окон между моделями, вложенность и размеры подвыборок, выбор MLP по validation. Значения времени не являются бенчмарком производительности: вычисления выполнялись на работающем стенде.
 
+Повторный запуск с теми же данными и seed на Aspire совпал по всем 40 896 прогнозам четырёх методов; параметры сравнения и версии библиотек сохранены в `strict_proportional/reproducibility.json`. Это проверка повторяемости на одной машине, не оценка переноса на другие стенды.
+
 Воспроизведение из корня проекта: `python research/ml/prepare_audited.py`, затем `python research/ml/experiment_audited.py --data research/evidence/prepared-strict --out research/ml/strict_proportional --subset-mode proportional --mlp-selection grouped` и `python research/ml/summarize_audited.py --data research/evidence/prepared-strict --out research/ml/strict_proportional`.
 
 ## Предыдущий расчёт

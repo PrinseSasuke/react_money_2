@@ -1,0 +1,63 @@
+{
+  "historical": {
+    "aggregate_rows": 4243,
+    "aggregate_key_duplicates": {
+      "groups_repeated": 0,
+      "extra_rows": 0
+    },
+    "aggregate_full_row_duplicates": {
+      "groups_repeated": 0,
+      "extra_rows": 0
+    },
+    "aggregate_feature_duplicate_groups": 0,
+    "aggregate_feature_groups_multiple_runs": 0,
+    "aggregate_feature_groups_multiple_classes": 0,
+    "aggregate_numeric": {
+      "missing": {},
+      "invalid": {},
+      "nan": {},
+      "infinite": {}
+    },
+    "sequence_rows": 76374,
+    "sequence_key_duplicates": {
+      "groups_repeated": 0,
+      "extra_rows": 0
+    },
+    "sequence_full_row_duplicates": {
+      "groups_repeated": 0,
+      "extra_rows": 0
+    },
+    "sequence_numeric": {
+      "missing": {
+        "err_pct": 5057,
+        "lat_mean_s": 5057,
+        "lat_p95_s": 5057,
+        "req_p99_s": 5057
+      },
+      "invalid": {},
+      "nan": {},
+      "infinite": {}
+    }
+  },
+  "verified": {
+    "windows": 120,
+    "metadata_window_id_duplicates": {
+      "groups_repeated": 0,
+      "extra_rows": 0
+    },
+    "metadata_run_time_duplicates": {
+      "groups_repeated": 0,
+      "extra_rows": 0
+    },
+    "nan_values": 0,
+    "infinite_values": 0,
+    "identical_sequence_groups": 0,
+    "identical_groups_multiple_runs": 0,
+    "identical_groups_multiple_classes": 0
+  },
+  "caveats": [
+    "Exact repeated feature vectors can arise naturally and are not proof of leakage.",
+    "Overlapping windows and near-duplicates are not measured by exact equality.",
+    "Missing historical series cannot automatically be distinguished from real zeroes."
+  ]
+}
