@@ -39,5 +39,8 @@ class ProportionalTest(unittest.TestCase):
     def test_historical(self):
         self.check_output('historical_proportional',ROOT.parent/'evidence'/'prepared'/'windows.csv')
 
+    def test_strict(self):
+        self.check_output('strict_proportional',ROOT.parent/'evidence'/'prepared-strict'/'windows.csv')
+
 
 if __name__=='__main__':unittest.main()
