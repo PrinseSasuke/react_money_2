@@ -1,0 +1,15 @@
+{
+  "role": "Aspire replay and current lab host; historical data were collected on the former VPS",
+  "platform": "Linux-6.8.0-149-generic-x86_64-with-glibc2.39",
+  "processor": "AMD Ryzen 3 3250U with Radeon Graphics",
+  "logical_cpus": 4,
+  "ram_bytes": 6146445312,
+  "python": "3.12.3",
+  "numpy": "2.5.4",
+  "pandas": "3.1.1",
+  "sklearn": "1.9.1",
+  "torch": "2.15.0+cpu",
+  "cuda_available": false,
+  "k3s": "k3s version v1.36.4+k3s1 (4dedb15b)",
+  "caveat": "Replay timings include a running Kubernetes lab and are not a controlled hardware benchmark."
+}

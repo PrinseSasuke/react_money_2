@@ -19,6 +19,8 @@ flowchart LR
 
 Исходные данные собраны на VPS; после окончания аренды стенд восстановлен на ноутбуке Aspire, исследовательский код находится в `~/diploma/react-money/research/`. Повторное обучение на Aspire проводилось на сохранённых данных и не меняет происхождение исходного набора. Для имитации атак используется отдельный namespace и NetworkPolicy. Наличие политики не является доказательством действующей изоляции; перед новым запуском требуется проверка исполнения CNI и разрешённых направлений.
 
+Фактическое окружение Aspire: AMD Ryzen 3 3250U, четыре логических CPU, около 5.72 GiB доступной системе физической памяти, Linux и Python 3.12.3; вычисления PyTorch выполнялись на CPU. Полные сведения — `ml/aspire_environment.json`. Исходное окружение Windows и старого VPS сохранено отдельно в `ml/audited_results/environment.json` и `stand_environment.txt`; измеренное время на разных окружениях не является сопоставимым бенчмарком.
+
 ## Сценарии исходного сбора
 
 | Класс | Сценарии | Наблюдаемые симптомы |
@@ -53,6 +55,16 @@ flowchart LR
 
 ## Воспроизведение
 
+Текущая рабочая папка на Aspire — `~/diploma/react-money`, окружение Python — `~/diploma/ml-venv`. После проверки исходных данных актуальный протокол запускается с явными флагами `--subset-mode proportional --mlp-selection grouped`. Например, для малого набора:
+
+```text
+python research/ml/verify_integrity.py
+python research/ml/experiment_audited.py --data research/evidence/verified --out research/ml/verified_proportional --subset-mode proportional --mlp-selection grouped
+python research/ml/summarize_audited.py --data research/evidence/verified --out research/ml/verified_proportional
+```
+
+Для сохранения опубликованных результатов при новом запуске следует указать другой каталог `--out`. Аналогичные варианты для исторического и строгого наборов приведены в `ml/PROPORTIONAL_RESULTS.md` и `ml/STRICT_RESULTS.md`. Следующие шаги описывают восстановление и более ранний расчёт, сохранённый для прослеживаемости:
+
 1. В отдельном Python-окружении установить версии из [`ml/requirements-lock.txt`](ml/requirements-lock.txt).
 2. Поместить сохранённые `dataset.csv`, `windows.csv`, `journal.jsonl`, `run.log` в игнорируемый `research/evidence/legacy/`, сверить SHA-256 из [`ml/audit_evidence.json`](ml/audit_evidence.json).
 3. Из корня репозитория выполнить `python research/ml/audit_evidence.py`. Для воспроизведения опубликованной предварительной таблицы из 1556 окон: `python research/ml/prepare_audited.py --lookback 0 --out research/evidence/prepared`. Более строгая выборка с 60-секундным запасом `rate()` создаётся командой `python research/ml/prepare_audited.py` в `evidence/prepared-strict/`; её отдельные результаты приведены в `ml/STRICT_RESULTS.md` и не сопоставимы напрямую с результатами выборки из 1556 окон.
@@ -62,6 +74,7 @@ flowchart LR
 
 ## Материалы
 
+- [Сверка с пунктами исходного плана](PLAN_STATUS.md)
 - [Черновик статьи](ARTICLE_DRAFT.md)
 - [Предварительные результаты по единому контексту](ml/AUDITED_RESULTS.md)
 - [Чувствительность к временному запасу rate()](ml/STRICT_RESULTS.md)
@@ -97,7 +110,7 @@ flowchart LR
 
 Для проверки отсутствующих рядов отдельно сохранены 20 файлов с запросами без `or on() vector(0)` и `up` экспортеров, также сверенных со стендом по SHA-256. На 120 контрольных точках каждый из четырёх проверенных источников отдавал `up=1`; в 24 точках ноль серии 401/403 был подставлен при отсутствии исходной серии. Это может означать отсутствие запросов с такими кодами, а не сбой сбора. `up=1` не гарантирует наличие каждой метрики. Результаты — `ml/verified_results/fallback_coverage.json`; исходные дополнительные JSON находятся в игнорируемом `evidence/fallback-audit/`.
 
-Для воспроизведения этой серии поместить 10 JSON из `~/react-money/research/evidence/auth-pair/` стенда в `research/evidence/auth-pair/` и 10 JSON из `~/react-money/research/evidence/matched-control/` в одноимённый каталог под `research/evidence/`; сверить SHA-256 по `ml/verified_source_manifest.json`. Из корня репозитория выполнить:
+Для воспроизведения этой серии поместить 10 JSON из `~/diploma/react-money/research/evidence/auth-pair/` стенда в `research/evidence/auth-pair/` и 10 JSON из `~/diploma/react-money/research/evidence/matched-control/` в одноимённый каталог под `research/evidence/`; сверить SHA-256 по `ml/verified_source_manifest.json`. Из корня репозитория выполнить:
 
 ```text
 python research/ml/prepare_verified.py
@@ -108,7 +121,7 @@ python research/ml/report_verified.py
 
 Для последней команды пересчёта требуется локальное окружение из `ml/requirements-lock.txt`. Прогон моделей создаёт новые значения времени работы; для битовой проверки исходных JSON использовать хеши, а сравнение численных результатов проводить с учётом допустимых различий версий и аппаратной платформы.
 
-Чтобы повторить аудит подстановки нулей, отдельно скопировать JSON из `~/react-money/research/evidence/fallback-audit/` в `research/evidence/fallback-audit/`, затем выполнить `python research/ml/verify_integrity.py` и `python research/ml/summarize_fallback.py`. Хеши контрольных файлов и их исходников перечислены в `ml/verified_results/fallback_coverage.json`; последняя проверка 40 локальных JSON по сохранённым манифестам прошла без расхождений.
+Чтобы повторить аудит подстановки нулей, отдельно скопировать JSON из `~/diploma/react-money/research/evidence/fallback-audit/` в `research/evidence/fallback-audit/`, затем выполнить `python research/ml/verify_integrity.py` и `python research/ml/summarize_fallback.py`. Хеши контрольных файлов и их исходников перечислены в `ml/verified_results/fallback_coverage.json`; последняя проверка 40 локальных JSON по сохранённым манифестам прошла без расхождений.
 
 На той же машине, с теми же версиями, разбиениями и seed, повторное обучение совпало по всем 5184 предсказаниям четырёх методов; время работы не сравнивалось. Проверка и область её действия записаны в `ml/verified_results/reproducibility.json`. Это локальная проверка повторяемости, а не подтверждение переносимости на другую аппаратуру.
 
@@ -120,8 +133,8 @@ python research/ml/report_verified.py
 
 Дополнительное сравнение трёх моделей с исключением шести сценариев и двух семейств из train и validation воспроизводится после подготовки исторической выборки командами `python research/ml/holdout_models.py --splits 5 --seeds 3 --epochs 25`, `python research/ml/holdout_mlp_validation.py`, затем `python research/ml/summarize_holdout.py`. Второй скрипт отдельно выбирает лимит итераций MLP по validation; старый вариант с фиксированным лимитом сохранён для прослеживаемости. Составы разделений и предсказания сохранены в `ml/holdout_results/` и `ml/holdout_mlp_validation/`; проверки — `python -m unittest discover -s research/ml -p test_holdout*.py -v`. Это исследовательский анализ исторической выборки без минутного запаса `rate()`, а не проверка на новых реальных атаках.
 
-Два независимых от обучения контрольных прогона с наблюдением через минуту после нагрузки описаны в `ml/RECOVERY_RESULTS.md`. Их JSON следует скопировать с сервера из `~/react-money/research/evidence/recovery-check/` в `research/evidence/recovery-check/`; хеши перечислены в `ml/recovery_manifest.json`. Проверка `python research/ml/verify_integrity.py` сверяет эти и другие сохранённые исходные и диагностические файлы. Полное восстановление или стабилизация HPA этими наблюдениями не подтверждены.
+Два независимых от обучения контрольных прогона с наблюдением через минуту после нагрузки описаны в `ml/RECOVERY_RESULTS.md`. Их JSON следует скопировать с сервера из `~/diploma/react-money/research/evidence/recovery-check/` в `research/evidence/recovery-check/`; хеши перечислены в `ml/recovery_manifest.json`. Проверка `python research/ml/verify_integrity.py` сверяет эти и другие сохранённые исходные и диагностические файлы. Полное восстановление или стабилизация HPA этими наблюдениями не подтверждены.
 
-Собран отдельный парный отрицательный контроль одинаковых запросов: четыре успешных прогона на одном endpoint по 150 запросов/с, назначенные в порядке «наплыв — имитация флуда — имитация флуда — наплыв». Скрипт, endpoint и тестовый пользователь одинаковы; метки описывают экспериментальное назначение, реальный отказ в обслуживании не подтверждён. Для воспроизведения нужно скопировать четыре JSON и `idle_observations.jsonl` из `~/react-money/research/paired-run/evidence/paired-flood/`, а `paired-flood.log` из родительской папки `paired-run/` в локальную `research/evidence/paired-flood/`, затем выполнить `python research/ml/verify_integrity.py`, `python research/ml/evaluate_paired_flood.py` и `python research/ml/report_paired_flood.py`. Контрольные суммы файлов и версий кода — `ml/paired_flood_manifest.json`. Проверка целостности теперь охватывает 48 файлов. Модели обучались и настраивались на исторических прогонах и оценивались на этих новых контрольных прогонах; подробности и ограничения — `ml/PAIRED_FLOOD_RESULTS.md`.
+Собран отдельный парный отрицательный контроль одинаковых запросов: четыре успешных прогона на одном endpoint по 150 запросов/с, назначенные в порядке «наплыв — имитация флуда — имитация флуда — наплыв». Скрипт, endpoint и тестовый пользователь одинаковы; метки описывают экспериментальное назначение, реальный отказ в обслуживании не подтверждён. Для воспроизведения нужно скопировать четыре JSON, `idle_observations.jsonl` и `paired-flood.log` из текущей папки Aspire `~/diploma/react-money/research/evidence/paired-flood/` в локальную `research/evidence/paired-flood/`, затем выполнить `python research/ml/verify_integrity.py`, `python research/ml/evaluate_paired_flood.py` и `python research/ml/report_paired_flood.py`. Контрольные суммы файлов и версий кода — `ml/paired_flood_manifest.json`. Проверка целостности теперь охватывает 48 файлов. Модели обучались и настраивались на исторических прогонах и оценивались на этих новых контрольных прогонах; подробности и ограничения — `ml/PAIRED_FLOOD_RESULTS.md`.
 
 Служебная таблица `ml/paired_flood_results/windows.csv` исключена из Git. Если её нет после переноса, выполнить `python research/ml/restore_paired_windows.py`: скрипт восстановит 24 окна из сохранённых JSON и сверит их ID с опубликованными предсказаниями. Существующий файл он не перезаписывает.

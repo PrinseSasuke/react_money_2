@@ -2,6 +2,8 @@
 
 Проверено 13.11.2026 по страницам первоисточников. Работы решают близкие, но не идентичные задачи; результаты на разных стендах и выборках напрямую не сопоставляются.
 
+При итоговой редактуре 17.11.2026 повторно проверены названия, авторы и описания LO2 и AnoMod на arXiv, а также авторский препринт ServiceAnomaly. Утверждение об отсутствии аналогов не делается; эти источники обосновывают контекст исследования, а не уникальность трёхклассовой постановки.
+
 1. Bakhtin A. и др. **LO2: Microservice API Anomaly Dataset of Logs and Metrics**. 2025. [arXiv:2504.12067](https://arxiv.org/abs/2504.12067). Датасет логов и метрик API при корректных и ошибочных вызовах, с разметкой вызвавших ошибку событий.
 2. Ping K. и др. **AnoMod: A Dataset for Anomaly Detection and Root Cause Analysis in Microservice Systems**. MSR 2026. [arXiv:2601.22881](https://arxiv.org/abs/2601.22881). Два открытых микросервисных приложения, четыре категории неисправностей и пять модальностей данных.
 3. Panahandeh M., Hamou-Lhadj A., Hamdaqa M., Miller J. **ServiceAnomaly: An Anomaly Detection Approach in Microservices Using Distributed Traces and Profiling Metrics**. [Препринт статьи](https://users.encs.concordia.ca/~abdelw/papers/JSS24-ServiceAnomaly_preprint.pdf). Обнаружение аномалий по совместной информации распределённых трасс и шести профилирующих метрик.
