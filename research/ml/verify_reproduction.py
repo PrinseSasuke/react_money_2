@@ -20,7 +20,7 @@ def main():
     comparison=a.assign(different=a.prediction!=b.prediction).groupby('model').different.agg(['sum','count'])
     result={'same_keys':True,'total_rows':len(a),'different_by_model':comparison['sum'].to_dict(),
             'rows_by_model':comparison['count'].to_dict(),
-            'scope':'Same machine, dependencies, split and seeds; timing excluded.'}
+            'scope':'Compares prediction keys and labels only; execution environments must be recorded separately; timing excluded.'}
     if args.out: args.out.write_text(json.dumps(result,indent=2),encoding='utf8')
     print(json.dumps(result,indent=2))
     if comparison['sum'].sum(): raise SystemExit(1)
