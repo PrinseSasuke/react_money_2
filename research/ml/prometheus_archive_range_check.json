@@ -1,0 +1,14 @@
+{
+  "archive_sha256": "18d341406969b500f47175abddb0e8bbe896bdeacb68f5b2f12eac3e0048862f",
+  "date": "2026-11-17",
+  "tool": "promtool 2.53.0",
+  "tool_sha256": "1df47f178f242b00a8aa19ac1e600bd92daa6451142b729317022b283b53c0da",
+  "source": "Isolated copy of prometheus/ from ~/acer-migration/cluster-data.tar.gz on Aspire; live TSDB and archive were not modified.",
+  "default_matcher": "{__name__=~'(?s:.*)'}",
+  "command_template": "promtool tsdb dump --sandbox-dir-root=<isolated_sandbox> --min-time=<min_time_ms> --max-time=<max_time_ms> <isolated_copy_of_prometheus> | wc -l",
+  "checks": [
+    {"name": "historical_experiment_day", "min_time_ms": 1790726400000, "max_time_ms": 1790812799999, "exit_code": 0, "output_lines": 0},
+    {"name": "positive_read_control", "min_time_ms": 1794052800000, "max_time_ms": 1794052860000, "exit_code": 0, "output_lines": 87036}
+  ],
+  "caveat": "This checks what promtool can read from this single copied snapshot, not every possible historical backup; it does not establish successful Chaos injection or recover original exported sample timestamps."
+}

@@ -1,0 +1,133 @@
+{
+  "archive_name": "cluster-data.tar.gz",
+  "archive_size": 269731006,
+  "sha256": "18d341406969b500f47175abddb0e8bbe896bdeacb68f5b2f12eac3e0048862f",
+  "blocks": 24,
+  "earliest_block_utc": "2026-11-06T14:00:00.304000+00:00",
+  "latest_block_exclusive_utc": "2026-11-08T14:00:00+00:00",
+  "wal_members": 5,
+  "head_members": 2,
+  "caveat": "Only block metadata inspected. WAL/head timestamps and complete recoverability were not verified.",
+  "block_metadata": [
+    {
+      "name": "prometheus/01M6W3TZZMFBXA2F96WG9KRGV0/meta.json",
+      "min_ms": 1794081600533,
+      "max_ms": 1794088800000
+    },
+    {
+      "name": "prometheus/01M6SRA07MSASVKJ9ZCK87DWDF/meta.json",
+      "min_ms": 1794002400041,
+      "max_ms": 1794009600000
+    },
+    {
+      "name": "prometheus/01M6VWZ8QMY0XV48F8N4BMBAS9/meta.json",
+      "min_ms": 1794074400297,
+      "max_ms": 1794081600000
+    },
+    {
+      "name": "prometheus/01M6WHJEFNZ54B5AP9CR5WFA2F/meta.json",
+      "min_ms": 1794096000177,
+      "max_ms": 1794103200000
+    },
+    {
+      "name": "prometheus/01M6S3PTFN1478ZVTQV92XGEK7/meta.json",
+      "min_ms": 1793980800202,
+      "max_ms": 1793988000000
+    },
+    {
+      "name": "prometheus/01M6RWV37QBRVWDR7A1KGAK5HX/meta.json",
+      "min_ms": 1793973600304,
+      "max_ms": 1793980800000
+    },
+    {
+      "name": "prometheus/01M6V1GBQNWQEWTPED3KP8AK67/meta.json",
+      "min_ms": 1794045600442,
+      "max_ms": 1794052800000
+    },
+    {
+      "name": "prometheus/01M6SZ5QFPF6Q17BHEZ9B5WJVM/meta.json",
+      "min_ms": 1794009600099,
+      "max_ms": 1794016800000
+    },
+    {
+      "name": "prometheus/01M6VF7T7NWEFTW1XSR0VYVPHC/meta.json",
+      "min_ms": 1794060000622,
+      "max_ms": 1794067200000
+    },
+    {
+      "name": "prometheus/01M6TKRX7PV7MF4HQAR84GR3G4/meta.json",
+      "min_ms": 1794031200098,
+      "max_ms": 1794038400000
+    },
+    {
+      "name": "prometheus/01M6XTRSZPT4RV60X3V85JC8QG/meta.json",
+      "min_ms": 1794139200044,
+      "max_ms": 1794146400000
+    },
+    {
+      "name": "prometheus/01M6SAJHQM99FRRZ3R6Y42ZS8Z/meta.json",
+      "min_ms": 1793988000308,
+      "max_ms": 1793995200000
+    },
+    {
+      "name": "prometheus/01M6VP3HFNR7B8JCEK7VPPQ6WN/meta.json",
+      "min_ms": 1794067200076,
+      "max_ms": 1794074400000
+    },
+    {
+      "name": "prometheus/01M6WRE5QNCSZ9WV1VWYHWWW06/meta.json",
+      "min_ms": 1794103200470,
+      "max_ms": 1794110400000
+    },
+    {
+      "name": "prometheus/01M6SHE8ZNNX3YK3HQVFXCEMXV/meta.json",
+      "min_ms": 1793995200124,
+      "max_ms": 1794002400000
+    },
+    {
+      "name": "prometheus/01M6WAPQ7NWQCEFQS8RY9NZM87/meta.json",
+      "min_ms": 1794088800050,
+      "max_ms": 1794096000000
+    },
+    {
+      "name": "prometheus/01M6XD1BFPCCVVY5Z058MC2CBB/meta.json",
+      "min_ms": 1794124800122,
+      "max_ms": 1794132000000
+    },
+    {
+      "name": "prometheus/01M6T61EQNMMAR6N3W4M4RNP41/meta.json",
+      "min_ms": 1794016800224,
+      "max_ms": 1794024000000
+    },
+    {
+      "name": "prometheus/01M6V8C2ZP4PTJWYZCGC968DDC/meta.json",
+      "min_ms": 1794052800379,
+      "max_ms": 1794060000000
+    },
+    {
+      "name": "prometheus/01M6TCX5ZNS7BHYQVWBYFQHKD4/meta.json",
+      "min_ms": 1794024000262,
+      "max_ms": 1794031200000
+    },
+    {
+      "name": "prometheus/01M6XKX2QNM2EMH67Z968RZPGW/meta.json",
+      "min_ms": 1794132000013,
+      "max_ms": 1794139200000
+    },
+    {
+      "name": "prometheus/01M6TTMMFNMTZZD1474S7VJA0N/meta.json",
+      "min_ms": 1794038400015,
+      "max_ms": 1794045600000
+    },
+    {
+      "name": "prometheus/01M6WZ9WZNTWHSCYSXSHSYR4ZB/meta.json",
+      "min_ms": 1794110400294,
+      "max_ms": 1794117600000
+    },
+    {
+      "name": "prometheus/01M6X65M7N386V9BGDYEQVNDYJ/meta.json",
+      "min_ms": 1794117600565,
+      "max_ms": 1794124800000
+    }
+  ]
+}
