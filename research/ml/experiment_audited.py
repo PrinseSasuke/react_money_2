@@ -112,7 +112,7 @@ class SequenceModel(nn.Module):
         return self.head(self.encoder(self.project(x) + self.position).mean(dim=1))
 
 
-def transformer_predict(X, y, tr, va, te, seed, max_epochs):
+def transformer_predict(X, y, tr, va, te, seed, max_epochs, return_details=False):
     t0 = time.perf_counter()
     torch.manual_seed(seed)
     torch.set_num_threads(2)
@@ -130,7 +130,7 @@ def transformer_predict(X, y, tr, va, te, seed, max_epochs):
     count = np.bincount(y[tr], minlength=3)
     weights = torch.tensor(count.sum() / np.maximum(count, 1), dtype=torch.float32)
     lossfn = nn.CrossEntropyLoss(weight=weights)
-    best, best_state, stale = -1, None, 0
+    best, best_state, stale, best_epoch = -1, None, 0, None
     for epoch in range(max_epochs):
         model.train()
         order = np.random.RandomState(seed * 1000 + epoch).permutation(tr)
@@ -144,6 +144,7 @@ def transformer_predict(X, y, tr, va, te, seed, max_epochs):
         if score > best + 1e-6:
             best, stale = score, 0
             best_state = {k: v.detach().clone() for k, v in model.state_dict().items()}
+            best_epoch = epoch + 1
         else:
             stale += 1
         if stale >= 5:
@@ -153,7 +154,10 @@ def transformer_predict(X, y, tr, va, te, seed, max_epochs):
     inference_start = time.perf_counter()
     with torch.no_grad():
         predictions = model(seq[te]).argmax(1).numpy()
-    return predictions, epoch + 1, train_seconds, time.perf_counter() - inference_start
+    result = (predictions, epoch + 1, train_seconds, time.perf_counter() - inference_start)
+    if return_details:
+        return (*result, {'best_epoch': best_epoch, 'best_validation_macro_f1': float(best)})
+    return result
 
 
 def main():
@@ -197,8 +201,10 @@ def main():
             for seed in range(args.seeds):
                 for name in ('rules', 'rf', 'mlp', 'transformer'):
                     t0 = time.perf_counter()
+                    transformer_selection = None
                     if name == 'transformer':
-                        pred, epochs, train_seconds, inference_seconds = transformer_predict(X, y, tr, va, te, seed, args.epochs)
+                        pred, epochs, train_seconds, inference_seconds, transformer_selection = transformer_predict(
+                            X, y, tr, va, te, seed, args.epochs, return_details=True)
                     elif name=='mlp' and args.mlp_selection=='grouped':
                         from mlp_group_validation import select
                         model,epochs,validation_candidates=select(A,y,tr,va,seed)
@@ -223,6 +229,7 @@ def main():
                       'model': name, 'macro_f1': f1_score(y[te], pred, labels=[0,1,2], average='macro', zero_division=0),
                       'confusion': cm.tolist(), 'report': rep, 'elapsed_s': elapsed, 'epochs': epochs,
                       'train_seconds': train_seconds, 'inference_seconds': inference_seconds,
+                      'transformer_selection': transformer_selection,
                       'validation_candidates': validation_candidates if name=='mlp' and args.mlp_selection=='grouped' else None,
                       'fault_as_attack': cm[1,2]/max(cm[1].sum(),1), 'norm_as_attack': cm[0,2]/max(cm[0].sum(),1),
                       'attack_as_fault': cm[2,1]/max(cm[2].sum(),1)})

@@ -47,7 +47,7 @@ def main():
             'epochs_max':25,'scope':'Exploratory synthetic scenarios; split repetitions share runs.',
             'selection_metadata':'For MLP selected_epoch_or_limit is the selected iteration cap. '
               'For Transformer it is the number of completed training epochs, not the best epoch; '
-              'the best validation checkpoint is loaded but its epoch is not saved.',
+              'the selected epoch and score are recorded separately in transformer_selection.',
             'warning':'Ablation removes named telemetry inputs, not all information correlated with them.'}
     (args.out/'config.json').write_text(json.dumps(config,indent=2),encoding='utf8')
     metrics=[];predictions=[]
@@ -60,9 +60,10 @@ def main():
             A=matrices[group]
             for seed in range(3):
                 for model_name in ('rf','mlp','transformer'):
-                    start=time.perf_counter();candidate_scores=None
+                    start=time.perf_counter();candidate_scores=None;transformer_selection=None
                     if model_name=='transformer':
-                        pred,selected,train_s,infer_s=transformer_predict(seq,y,tr,va,te,seed,25)
+                        pred,selected,train_s,infer_s,transformer_selection=transformer_predict(
+                            seq,y,tr,va,te,seed,25,return_details=True)
                     elif model_name=='mlp':
                         model,selected,candidate_scores=select(A,y,tr,va,seed)
                         train_s=time.perf_counter()-start;t=time.perf_counter()
@@ -79,6 +80,7 @@ def main():
                       'norm_as_attack':float(cm[0,2]/max(1,cm[0].sum())),
                       'attack_as_fault':float(cm[2,1]/max(1,cm[2].sum())),
                       'selected_epoch_or_limit':selected,'validation_candidates':candidate_scores,
+                      'transformer_selection':transformer_selection,
                       'train_seconds':train_s,'inference_seconds':infer_s})
                     for ix,p in zip(te,pred):
                         predictions.append({'split':s['split'],'ablation':group,'seed':seed,'model':model_name,

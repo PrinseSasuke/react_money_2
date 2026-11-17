@@ -117,5 +117,5 @@
   "epochs_max": 25,
   "scope": "Exploratory synthetic scenarios; split repetitions share runs.",
   "warning": "Ablation removes named telemetry inputs, not all information correlated with them.",
-  "selection_metadata": "For MLP selected_epoch_or_limit is the selected iteration cap. For Transformer it is the number of completed training epochs, not the best epoch; the best validation checkpoint is loaded but its epoch is not saved."
+  "selection_metadata": "For MLP selected_epoch_or_limit is the selected iteration cap. For Transformer it is completed epochs; validation-selected epochs were recovered in transformer_selection.json by replay with verified identical test predictions."
 }

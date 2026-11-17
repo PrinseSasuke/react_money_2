@@ -29,6 +29,14 @@ class AblationTest(unittest.TestCase):
         new=p[p.ablation=='none']
         keys=['split','seed','model','window_id','run_id','truth','prediction']
         self.assertEqual(set(map(tuple,old[keys].to_numpy())),set(map(tuple,new[keys].to_numpy())))
+        replay=json.loads((path/'transformer_selection.json').read_text())
+        self.assertEqual(replay['status'],'complete')
+        self.assertEqual(len(replay['records']),5*4*3)
+        original={(r['split'],r['ablation'],r['seed']):r for r in metrics if r['model']=='transformer'}
+        for row in replay['records']:
+            self.assertTrue(1<=row['best_epoch']<=row['completed_epochs']<=25)
+            self.assertEqual(row['completed_epochs'],original[(row['split'],row['ablation'],row['seed'])]['selected_epoch_or_limit'])
+            self.assertGreater(row['prediction_windows_verified'],0)
 
     def test_verified(self):self.check_dataset('ablation_verified','verified_proportional')
     def test_historical(self):self.check_dataset('ablation_historical','historical_proportional')
